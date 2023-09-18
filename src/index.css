@@ -3,5 +3,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Arial sans-serif;
+  text-align: center;
 }
 
