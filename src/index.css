@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-#radar-description {
+#radar-description.p {
 
 }
 
@@ -22,7 +22,7 @@ body {
   font-weight: bold;
 }
 
-#asses {
+#assess {
   display:inline;
   color: #c7ba00;
   font-weight: bold;
