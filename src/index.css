@@ -2,7 +2,34 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: Arial sans-serif;
+  font-family: sans-serif;
   text-align: center;
 }
 
+#radar-description {
+
+}
+
+#adopt {
+  display:inline;
+  color: #5ba300;
+  font-weight: bold;
+}
+
+#trial {
+  display:inline;
+  color: #009eb0;
+  font-weight: bold;
+}
+
+#asses {
+  display:inline;
+  color: #c7ba00;
+  font-weight: bold;
+}
+
+#hold {
+  display:inline;
+  color: #e09b96;
+  font-weight: bold;
+}
