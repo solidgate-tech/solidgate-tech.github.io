@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { MemoisedTechRadar, MemoisedFooter } from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <MemoisedTechRadar />
   </React.StrictMode>
+);
+
+const footer = ReactDOM.createRoot(document.getElementById('footer'));
+footer.render(
+    <React.StrictMode>
+        <MemoisedFooter />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

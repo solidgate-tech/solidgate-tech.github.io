@@ -6,8 +6,10 @@ body {
   text-align: center;
 }
 
-#radar-description.p {
-
+#radar-description {
+  margin: auto;
+  text-align: left;
+  display: inline-block;
 }
 
 #adopt {
@@ -32,4 +34,10 @@ body {
   display:inline;
   color: #e09b96;
   font-weight: bold;
+}
+
+#radar-container {
+  width: 100vw;
+  resize: both;
+  overflow: auto;
 }
