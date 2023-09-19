@@ -447,7 +447,7 @@ function TechRadar() {
 
     return (
         <div className="App">
-            <img src="logo_m.png" alt="solidgate logo" />
+            <img id="logo" src="logo_m.png" alt="solidgate logo" />
             <br/>
             <div id="radar-description">
                 <p><div id="hold">Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>

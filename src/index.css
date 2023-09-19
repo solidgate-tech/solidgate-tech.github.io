@@ -41,3 +41,8 @@ body {
   resize: both;
   overflow: auto;
 }
+
+#logo {
+  width: 100vw;
+  max-width: max-content;
+}
