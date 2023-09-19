@@ -99,7 +99,7 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Typescript",
+                label: "TypeScript",
                 quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
                 moved: 0             // -1 = moved out (triangle pointing down)
@@ -195,7 +195,7 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "AWS Fargate",
+                label: "AWS(Fargate, Aurora, ECS)",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
                 moved: 0             // -1 = moved out (triangle pointing down)
@@ -205,7 +205,7 @@ function TechRadar() {
             {
                 label: "Terraform",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 1,              // 0,1,2,3 (starting from inside)
+                ring: 0,              // 0,1,2,3 (starting from inside)
                 moved: 1             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
@@ -291,7 +291,7 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Kafka",
+                label: "Amazon MSK(Apache Kafka)",
                 quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 1,              // 0,1,2,3 (starting from inside)
                 moved: 1             // -1 = moved out (triangle pointing down)
@@ -315,7 +315,7 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Memcashed",
+                label: "Memcached",
                 quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 3,              // 0,1,2,3 (starting from inside)
                 moved: -1             // -1 = moved out (triangle pointing down)
