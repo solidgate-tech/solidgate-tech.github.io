@@ -195,7 +195,15 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "AWS(Fargate, Aurora, ECS)",
+                label: "AWS Fargate",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "AWS ECS",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
                 moved: 0             // -1 = moved out (triangle pointing down)
@@ -291,10 +299,18 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Amazon MSK(Apache Kafka)",
+                label: "Amazon MSK(Kafka)",
                 quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 1,              // 0,1,2,3 (starting from inside)
                 moved: 1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "AWS Aurora",
+                quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
             },
