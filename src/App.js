@@ -91,6 +91,14 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
+                label: "Go PGX",
+                quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
                 label: "React",
                 quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
@@ -158,6 +166,22 @@ function TechRadar() {
                 label: "Grafana",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "K8S",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 2,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "OpenTelemetry",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 2,              // 0,1,2,3 (starting from inside)
                 moved: 0             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
