@@ -483,6 +483,14 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
+                label: "Blue-green deploy",
+                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 2,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
                 label: "GitOps",
                 quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 1,              // 0,1,2,3 (starting from inside)
