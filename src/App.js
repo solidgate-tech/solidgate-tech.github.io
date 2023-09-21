@@ -115,10 +115,34 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
+                label: "Javascript",
+                quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 3,              // 0,1,2,3 (starting from inside)
+                moved: -1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Hugo",
+                quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 3,              // 0,1,2,3 (starting from inside)
+                moved: -1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Astro",
+                quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 1,              // 0,1,2,3 (starting from inside)
+                moved: 1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
                 label: "Redux",
                 quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 0,              // 0,1,2,3 (starting from inside)
-                moved: 0             // -1 = moved out (triangle pointing down)
+                ring: 3,              // 0,1,2,3 (starting from inside)
+                moved: -1             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
             },
@@ -164,6 +188,14 @@ function TechRadar() {
             },
             {
                 label: "Grafana",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Airflow",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
                 moved: 0             // -1 = moved out (triangle pointing down)
@@ -245,15 +277,47 @@ function TechRadar() {
             {
                 label: "Npm",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 0,              // 0,1,2,3 (starting from inside)
-                moved: 1             // -1 = moved out (triangle pointing down)
+                ring: 3,              // 0,1,2,3 (starting from inside)
+                moved: -1             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
             },
             {
                 label: "Yarn",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 3,              // 0,1,2,3 (starting from inside)
+                moved: -1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Sentry",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Vite",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Nx",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "PNPm",
+                quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 1,              // 0,1,2,3 (starting from inside)
                 moved: 1             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
@@ -339,6 +403,30 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
+                label: "AWS S3",
+                quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "DBT",
+                quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Redshift",
+                quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
                 label: "PostgreSQL",
                 quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
@@ -349,8 +437,8 @@ function TechRadar() {
             {
                 label: "Redis",
                 quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
-                ring: 3,              // 0,1,2,3 (starting from inside)
-                moved: -1             // -1 = moved out (triangle pointing down)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
                 //  0 = not moved (circle)
                 //  1 = moved in  (triangle pointing up)
             },
@@ -363,7 +451,7 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Elastic",
+                label: "Elasticsearch",
                 quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 3,              // 0,1,2,3 (starting from inside)
                 moved: -1             // -1 = moved out (triangle pointing down)
@@ -435,6 +523,22 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
+                label: "BDD",
+                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
+                label: "Conventional commits",
+                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 0             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
                 label: "GRPC",
                 quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 1,              // 0,1,2,3 (starting from inside)
@@ -443,7 +547,7 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Buf",
+                label: "GRPC registry",
                 quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 1,              // 0,1,2,3 (starting from inside)
                 moved: 1             // -1 = moved out (triangle pointing down)
@@ -483,6 +587,14 @@ function TechRadar() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
+                label: "Github Copilot",
+                quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                ring: 0,              // 0,1,2,3 (starting from inside)
+                moved: 1             // -1 = moved out (triangle pointing down)
+                //  0 = not moved (circle)
+                //  1 = moved in  (triangle pointing up)
+            },
+            {
                 label: "Blue-green deploy",
                 quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 2,              // 0,1,2,3 (starting from inside)
@@ -504,7 +616,6 @@ function TechRadar() {
     return (
         <div className="App">
             <img id="logo" src="logo_m.png" alt="solidgate logo" />
-            <br/>
             <div id="radar-description">
                 <p><div id="hold">Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
                 <p><div id="assess">Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>

@@ -10,6 +10,7 @@ body {
   margin: auto;
   text-align: left;
   display: inline-block;
+  font-size: 10pt;
 }
 
 #adopt {
@@ -43,6 +44,12 @@ body {
 }
 
 #logo {
+  margin: 2vw;
   width: 100vw;
-  max-width: max-content;
+  max-width: 300px;
+}
+
+#footer {
+  margin-bottom: 3vw;
+  font-size: 10pt;
 }
