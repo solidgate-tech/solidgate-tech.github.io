@@ -291,7 +291,7 @@ function TechRadar2023() {
                 //  1 = moved in  (triangle pointing up)
             },
             {
-                label: "Sentry",
+                label: "Sentry(frontend only)",
                 quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
                 ring: 0,              // 0,1,2,3 (starting from inside)
                 moved: 0             // -1 = moved out (triangle pointing down)
