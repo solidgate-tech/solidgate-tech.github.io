@@ -1252,8 +1252,19 @@ function TechRadar2025() {
 function App() {
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <style>{`
+                @media (max-width: 700px) {
+                    .App-flex-header {
+                        flex-direction: column !important;
+                        align-items: stretch !important;
+                    }
+                    #radar-description {
+                        margin-top: 24px !important;
+                    }
+                }
+            `}</style>
             <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '0 auto' }}>
-                <div className="App" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
+                <div className="App App-flex-header" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
                     <img id="logo" src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 300, width: '100%', height: 'auto' }} />
                     <div id="radar-description">
                         <p><div id="hold">Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
