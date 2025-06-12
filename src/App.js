@@ -626,10 +626,10 @@ function TechRadar2023() {
     );
 }
 
-function TechRadar2024() {
+function TechRadar2025() {
     window.radar_visualization({
         svg_id: "radar",
-        date: 2024.09,
+        date: 2025.06,
         width: 1450,
         height: 1000,
         colors: {
@@ -637,7 +637,7 @@ function TechRadar2024() {
             grid: "#bbb",
             inactive: "#ddd"
         },
-        title: "Tech radar 2024",
+        title: "Tech radar 2025",
         quadrants: [
             { name: "Language & Frameworks" },
             { name: "Platform & Infrastructure" },
@@ -1264,5 +1264,5 @@ function Footer() {
 }
 
 export const MemoisedTechRadar2023 = React.memo(TechRadar2023);
-export const MemoisedTechRadar2024 = React.memo(TechRadar2024);
+export const MemoisedTechRadar2025 = React.memo(TechRadar2025);
 export const MemoisedFooter = React.memo(Footer);

@@ -1,6 +1,6 @@
 # Solidgate tech site
 
-[Tech radar](https://solidgate-tech.github.io
+[Tech radar](https://solidgate-tech.github.io)
 
 ## Deploy to pages
 
