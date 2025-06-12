@@ -1266,20 +1266,20 @@ function Footer() {
 function TechRadarTabs() {
     const [selected, setSelected] = useState("2025");
     return (
-        <div>
-            <div style={{ display: 'flex', marginBottom: 20 }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 10, width: '100%', maxWidth: 400 }}>
                 <button
                     onClick={() => setSelected("2023")}
                     style={{
                         padding: '10px 20px',
-                        marginRight: 10,
                         background: selected === "2023" ? '#5ba300' : '#eee',
                         color: selected === "2023" ? '#fff' : '#333',
                         border: 'none',
                         borderRadius: 4,
                         cursor: 'pointer',
                         fontWeight: 'bold',
-                        fontSize: 16
+                        fontSize: 16,
+                        minWidth: 80
                     }}
                 >
                     2023
@@ -1294,7 +1294,8 @@ function TechRadarTabs() {
                         borderRadius: 4,
                         cursor: 'pointer',
                         fontWeight: 'bold',
-                        fontSize: 16
+                        fontSize: 16,
+                        minWidth: 80
                     }}
                 >
                     2025
