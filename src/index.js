@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { MemoisedFooter, MemoisedTechRadar2025 } from './App';
+import { MemoisedFooter, MemoisedApp } from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <MemoisedTechRadar2025 />
+   <MemoisedApp />
   </React.StrictMode>
 );
 
