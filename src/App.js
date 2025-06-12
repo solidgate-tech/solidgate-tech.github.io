@@ -614,7 +614,14 @@ function TechRadar2023() {
             ]
         });
     }, []);
-    return <div id="radar-2023-container"><svg id="radar-2023"></svg></div>;
+    return (
+        <div
+            id="radar-2023-container"
+            style={{ width: '100%', minWidth: 350, overflowX: 'auto', display: 'block', paddingBottom: 16 }}
+        >
+            <svg id="radar-2023" style={{ display: 'block', marginLeft: 0 }}></svg>
+        </div>
+    );
 }
 
 function TechRadar2025() {
@@ -1232,22 +1239,31 @@ function TechRadar2025() {
             ]
         });
     }, []);
-    return <div id="radar-2025-container"><svg id="radar-2025"></svg></div>;
+    return (
+        <div
+            id="radar-2025-container"
+            style={{ width: '100%', minWidth: 350, overflowX: 'auto', display: 'block', paddingBottom: 16 }}
+        >
+            <svg id="radar-2025" style={{ display: 'block', marginLeft: 0 }}></svg>
+        </div>
+    );
 }
 
 function App() {
     return (
-        <div>
-            <div className="App" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
-                <img id="logo" src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 300, width: '100%', height: 'auto' }} />
-                <div id="radar-description">
-                    <p><div id="hold">Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
-                    <p><div id="assess">Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>
-                    <p><div id="trial">Trial</div> — technologies and tools that have already passed the testing phase and are preparing to work in production (or are even already working there).</p>
-                    <p><div id="adopt">Adopt</div> — technologies and tools that are implemented and actively used by teams. Technologies in which Solidgate has expertise.</p>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '0 auto' }}>
+                <div className="App" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
+                    <img id="logo" src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 300, width: '100%', height: 'auto' }} />
+                    <div id="radar-description">
+                        <p><div id="hold">Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
+                        <p><div id="assess">Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>
+                        <p><div id="trial">Trial</div> — technologies and tools that have already passed the testing phase and are preparing to work in production (or are even already working there).</p>
+                        <p><div id="adopt">Adopt</div> — technologies and tools that are implemented and actively used by teams. Technologies in which Solidgate has expertise.</p>
+                    </div>
                 </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginTop: 32, marginBottom: 32 }}>
+            <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '32px auto' }}>
                 <MemoisedTechRadarTabs />
             </div>
         </div>
