@@ -619,7 +619,9 @@ function TechRadar2023() {
             id="radar-2023-container"
             style={{ width: '100%', minWidth: 350, overflowX: 'auto', display: 'block', paddingBottom: 16 }}
         >
-            <svg id="radar-2023" style={{ display: 'block', marginLeft: 0 }}></svg>
+            <div style={{ width: 'fit-content', margin: '0 auto' }}>
+                <svg id="radar-2023" style={{ display: 'block' }}></svg>
+            </div>
         </div>
     );
 }
@@ -1244,11 +1246,13 @@ function TechRadar2025() {
             id="radar-2025-container"
             style={{ width: '100%', minWidth: 350, overflowX: 'auto', display: 'block', paddingBottom: 16 }}
         >
-            <svg id="radar-2025" style={{ display: 'block', marginLeft: 0 }}></svg>
+            <div style={{ width: 'fit-content', margin: '0 auto' }}>
+                <svg id="radar-2025" style={{ display: 'block' }}></svg>
+            </div>
         </div>
     );
 }
-
+    
 function App() {
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
