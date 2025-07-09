@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function LanguageBlock({ language, logo, requirements, questions }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -1630,47 +1630,85 @@ function InterviewGuide() {
 }
     
 function App() {
-    const [currentPage, setCurrentPage] = useState("radar");
+    const [hash, setHash] = useState(window.location.hash || "#home");
+
+    useEffect(() => {
+        const onHashChange = () => setHash(window.location.hash || "#home");
+        window.addEventListener("hashchange", onHashChange);
+        return () => window.removeEventListener("hashchange", onHashChange);
+    }, []);
+
     return (
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {/* Navigation */}
-            <div style={{ width: '100%', background: '#fff', borderBottom: '1px solid #e5e7eb', marginBottom: 32 }}>
-                <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px 24px', display: 'flex', justifyContent: 'center', gap: 16 }}>
-                    <button
-                        className="button"
-                        style={{ background: currentPage === "radar" ? '#5ba300' : '#f7f8fa', color: currentPage === "radar" ? '#fff' : '#181A20', border: currentPage === "radar" ? 'none' : '1px solid #e5e7eb' }}
-                        onClick={() => setCurrentPage("radar")}
-                    >
-                        Tech Radar
-                    </button>
-                    <button
-                        className="button"
-                        style={{ background: currentPage === "interview" ? '#5ba300' : '#f7f8fa', color: currentPage === "interview" ? '#fff' : '#181A20', border: currentPage === "interview" ? 'none' : '1px solid #e5e7eb' }}
-                        onClick={() => setCurrentPage("interview")}
-                    >
-                        Interview Guide
-                    </button>
-                </div>
-            </div>
-            {currentPage === "radar" ? (
-                <>
-            <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '0 auto' }}>
-                <div className="App App-flex-header" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
-                    <img id="logo" src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 300, width: '100%', height: 'auto' }} />
-                    <div id="radar-description">
-                        <p><div id="hold">Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
-                        <p><div id="assess">Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>
-                        <p><div id="trial">Trial</div> — technologies and tools that have already passed the testing phase and are preparing to work in production (or are even already working there).</p>
-                        <p><div id="adopt">Adopt</div> — technologies and tools that are implemented and actively used by teams. Technologies in which Solidgate has expertise.</p>
-                    </div>
-                </div>
-            </div>
-            <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '32px auto' }}>
-                <MemoisedTechRadarTabs />
-            </div>
-                </>
-            ) : (
+        <div>
+            {/* Navigation Bar */}
+            <nav style={{
+                width: '100%',
+                background: '#fff',
+                borderBottom: '1px solid #e5e7eb',
+                padding: '12px 0',
+                marginBottom: 32,
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 32,
+                position: 'sticky',
+                top: 0,
+                zIndex: 100
+            }}>
+                <a
+                    href="#home"
+                    style={{
+                        color: hash === "#home" ? '#5ba300' : '#181A20',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        fontSize: '1.1rem',
+                        padding: '4px 12px',
+                        borderRadius: 6,
+                        background: hash === "#home" ? '#f7f8fa' : 'transparent',
+                        transition: 'background 0.2s'
+                    }}
+                >
+                    Tech Radar
+                </a>
+                <a
+                    href="#interview"
+                    style={{
+                        color: hash === "#interview" ? '#5ba300' : '#181A20',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        fontSize: '1.1rem',
+                        padding: '4px 12px',
+                        borderRadius: 6,
+                        background: hash === "#interview" ? '#f7f8fa' : 'transparent',
+                        transition: 'background 0.2s'
+                    }}
+                >
+                    Interview Guide
+                </a>
+            </nav>
+
+            {/* Page Content */}
+            {hash === "#interview" ? (
                 <InterviewGuide />
+            ) : (
+                <>
+                    {/* TechRadar Section ONLY */}
+                    <section className="card">
+                        <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '0 auto' }}>
+                            <div className="App App-flex-header" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
+                                <img id="logo" src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 300, width: '100%', height: 'auto' }} />
+                                <div id="radar-description">
+                                    <p><div id="hold" style={{ display: 'inline-block', background: '#e09b96', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
+                                    <p><div id="assess" style={{ display: 'inline-block', background: '#c7ba00', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>
+                                    <p><div id="trial" style={{ display: 'inline-block', background: '#009eb0', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Trial</div> — technologies and tools that have already passed the testing phase and are preparing to work in production (or are even already working there).</p>
+                                    <p><div id="adopt" style={{ display: 'inline-block', background: '#5ba300', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Adopt</div> — technologies and tools that are implemented and actively used by teams. Technologies in which Solidgate has expertise.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '32px auto' }}>
+                            <TechRadarTabs />
+                        </div>
+                    </section>
+                </>
             )}
         </div>
     );
@@ -1678,10 +1716,19 @@ function App() {
 
 function Footer() {
     return (
-        <>
-            <div>Made by backend developer for developers! With love 💚!</div>
-            <div><a href="https://jobs.dou.ua/companies/solidgate/vacancies/">Solidgate is hiring!</a></div>
-        </>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            fontSize: '1.1rem',
+            lineHeight: '1.6',
+            gap: '8px'
+        }}>
+            <div style={{ fontWeight: 500 }}>Made by backend developer for developers! With love 💚!</div>
+            <div><a href="https://jobs.dou.ua/companies/solidgate/vacancies/" style={{ color: '#5ba300', textDecoration: 'none', fontWeight: 500 }}>Solidgate is hiring!</a></div>
+        </div>
     );
 }
 
