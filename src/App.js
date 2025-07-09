@@ -89,285 +89,587 @@ function TechRadar2023() {
             entries: [
                 {
                     label: "Go",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Kotlin",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "PHP",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                                          //  0 = not moved (circle)
+                                          //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Symfony",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                                          //  0 = not moved (circle)
+                                          //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Ktor",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                                          //  0 = not moved (circle)
+                                          //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Spring",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Echo v4",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Gorm",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Go PGX",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "React",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "TypeScript",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Javascript",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Hugo",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Astro",
-                    quadrant: 0,
-                    ring: 1,
-                    moved: 1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Redux",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Python",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Task.dev",
-                    quadrant: 0,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Shell",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Make",
-                    quadrant: 0,
-                    ring: 3,
-                    moved: -1
+                    quadrant: 0,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "VictoriaMetrics",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Grafana",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Airflow",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "Kubernetes",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    label: "K8S",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 2,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "OpenTelemetry",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 2,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Nexus",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Grafana On Call",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Docker",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "AWS",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    label: "Nginx",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "AWS Fargate",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "AWS ECS",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Terraform",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "Helm",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 0
+                    label: "Npm",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "ArgoCD",
-                    quadrant: 1,
-                    ring: 0,
-                    moved: 1
+                    label: "Yarn",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Sentry(frontend only)",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Vite",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Nx",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "PNPm",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Gitlab",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "GitlabCI",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Jenkins",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Kibana",
+                    quadrant: 1,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Fluent",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Vector",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Loki",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "RabbitMQ",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Amazon MSK(Kafka)",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "AWS Aurora",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "AWS S3",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "DBT",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Redshift",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "PostgreSQL",
-                    quadrant: 2,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Redis",
-                    quadrant: 2,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "Kafka",
-                    quadrant: 2,
-                    ring: 0,
-                    moved: 0
-                },
-                {
-                    label: "ClickHouse",
-                    quadrant: 2,
-                    ring: 0,
-                    moved: 0
+                    label: "Memcached",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Elasticsearch",
-                    quadrant: 2,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "MongoDB",
-                    quadrant: 2,
-                    ring: 3,
-                    moved: -1
+                    label: "OpenSearch",
+                    quadrant: 2,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "MySQL",
-                    quadrant: 2,
-                    ring: 3,
-                    moved: -1
+                    label: "C4 model",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "ADR",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Structurizr",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Scrum",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "On call",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
+                },
+                {
+                    label: "Functional testing",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Unit testing",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
-                    label: "TBD(trunk based development)",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 0
+                    label: "BDD",
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Conventional commits",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Buf(gRPC)",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Buf(gRPC) registry",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "golangci-lint",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "OpenApi",
-                    quadrant: 3,
-                    ring: 3,
-                    moved: 0
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 3,              // 0,1,2,3 (starting from inside)
+                    moved: -1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Jira",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Confluence",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 0
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Github Copilot",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 0,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "Blue-green deploy",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 2,              // 0,1,2,3 (starting from inside)
+                    moved: 0             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 },
                 {
                     label: "GitOps",
-                    quadrant: 3,
-                    ring: 0,
-                    moved: 1
+                    quadrant: 3,          // 0,1,2,3 (counting clockwise, starting from bottom right)
+                    ring: 1,              // 0,1,2,3 (starting from inside)
+                    moved: 1             // -1 = moved out (triangle pointing down)
+                    //  0 = not moved (circle)
+                    //  1 = moved in  (triangle pointing up)
                 }
             ]
         });
