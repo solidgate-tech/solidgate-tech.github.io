@@ -650,6 +650,574 @@ function TechRadar2025() {
     );
 }
 
+function CompetencyMatrix() {
+    const categories = [
+        { 
+            name: "Engineering culture", 
+            score: 4,
+            description: "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software."
+        },
+        { 
+            name: "Architecture skills", 
+            score: 3,
+            description: "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems."
+        },
+        { 
+            name: "Programming language", 
+            score: 5,
+            description: "Proficiency in programming languages, frameworks, and tools relevant to the role. Includes understanding of language-specific features, best practices, and ecosystem knowledge."
+        },
+        { 
+            name: "Databases", 
+            score: 3,
+            description: "Knowledge of database design, query optimization, and data modeling. Includes understanding of SQL, NoSQL databases, and data access patterns."
+        },
+        { 
+            name: "DevOps", 
+            score: 3,
+            description: "Understanding of CI/CD pipelines, infrastructure as code, monitoring, and deployment strategies. Includes knowledge of cloud platforms and containerization."
+        },
+        { 
+            name: "Testing", 
+            score: 5,
+            description: "Expertise in testing methodologies including unit testing, integration testing, and automated testing. Includes understanding of test-driven development and quality assurance practices."
+        }
+    ];
+
+    const maxScore = 5;
+    const radius = 140;
+    const centerX = 300;
+    const centerY = 300;
+    const numCategories = categories.length;
+
+    // Generate hexagon points
+    const generateHexagonPoints = (r) => {
+        const points = [];
+        for (let i = 0; i < numCategories; i++) {
+            const angle = (i * 2 * Math.PI / numCategories) - Math.PI / 2;
+            const x = centerX + r * Math.cos(angle);
+            const y = centerY + r * Math.sin(angle);
+            points.push({ x, y });
+        }
+        return points;
+    };
+
+    // Generate data points based on scores
+    const generateDataPoints = () => {
+        const points = [];
+        for (let i = 0; i < numCategories; i++) {
+            const angle = (i * 2 * Math.PI / numCategories) - Math.PI / 2;
+            const scoreRadius = (categories[i].score / maxScore) * radius;
+            const x = centerX + scoreRadius * Math.cos(angle);
+            const y = centerY + scoreRadius * Math.sin(angle);
+            points.push({ x, y });
+        }
+        return points;
+    };
+
+    const hexagonPoints = generateHexagonPoints(radius);
+    const dataPoints = generateDataPoints();
+
+    // Create SVG path for hexagon grid
+    const createHexagonPath = (points) => {
+        return points.map((point, index) => 
+            `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+        ).join(' ') + ' Z';
+    };
+
+    // Create SVG path for data
+    const createDataPath = (points) => {
+        return points.map((point, index) => 
+            `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+        ).join(' ') + ' Z';
+    };
+
+    // Generate grid lines (concentric hexagons)
+    const gridLines = [];
+    for (let i = 1; i <= maxScore; i++) {
+        const gridRadius = (i / maxScore) * radius;
+        const gridPoints = generateHexagonPoints(gridRadius);
+        gridLines.push(gridPoints);
+    }
+
+    return (
+        <div style={{ 
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'flex-start'
+        }}>
+            {/* Competency Matrix */}
+            <div style={{ 
+                textAlign: 'center',
+                background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+                borderRadius: '16px',
+                padding: '40px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                border: '1px solid #f1f5f9',
+                position: 'relative',
+                overflow: 'hidden'
+            }}>
+                {/* Background accent */}
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                }} />
+                
+                <h3 style={{ 
+                    margin: '0 0 30px 0',
+                    fontSize: '28px',
+                    fontWeight: '700',
+                    color: '#0f172a',
+                    textAlign: 'center',
+                    letterSpacing: '-0.02em'
+                }}>
+                    Competency Matrix
+                </h3>
+                
+                <svg width="600" height="600" style={{ 
+                    display: 'block', 
+                    margin: '0 auto',
+                    filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06))'
+                }}>
+                    <defs>
+                        <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#5ba300" stopOpacity="0.15"/>
+                            <stop offset="100%" stopColor="#4a7c59" stopOpacity="0.25"/>
+                        </linearGradient>
+                        <linearGradient id="gridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#f1f5f9" stopOpacity="0.8"/>
+                            <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.6"/>
+                        </linearGradient>
+                    </defs>
+
+                    {/* Background circle */}
+                    <circle
+                        cx={centerX}
+                        cy={centerY}
+                        r={radius + 30}
+                        fill="url(#gridGradient)"
+                        opacity="0.4"
+                    />
+
+                    {/* Grid lines */}
+                    {gridLines.map((points, index) => (
+                        <path
+                            key={`grid-${index}`}
+                            d={createHexagonPath(points)}
+                            fill="none"
+                            stroke={index === 0 ? "#cbd5e1" : "#e2e8f0"}
+                            strokeWidth={index === 0 ? "2" : "1"}
+                            opacity="0.7"
+                        />
+                    ))}
+
+                    {/* Category labels */}
+                    {hexagonPoints.map((point, index) => {
+                        const angle = (index * 2 * Math.PI / numCategories) - Math.PI / 2;
+                        const labelRadius = radius + 90;
+                        const labelX = centerX + labelRadius * Math.cos(angle);
+                        const labelY = centerY + labelRadius * Math.sin(angle);
+                        
+                        return (
+                            <g key={`label-${index}`} style={{ cursor: 'pointer' }}>
+                                <rect
+                                    x={labelX - 70}
+                                    y={labelY - 15}
+                                    width="140"
+                                    height="30"
+                                    rx="15"
+                                    fill="rgba(255, 255, 255, 0.95)"
+                                    stroke="#e2e8f0"
+                                    strokeWidth="1"
+                                    style={{ transition: 'all 0.15s ease' }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.fill = 'rgba(91, 163, 0, 0.08)';
+                                        e.target.style.stroke = '#5ba300';
+                                        
+                                        const categoryDetails = document.getElementById(`category-${index}`);
+                                        if (categoryDetails) {
+                                            categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                            categoryDetails.style.borderColor = '#5ba300';
+                                            categoryDetails.style.padding = '16px';
+                                            
+                                            const description = document.getElementById(`description-${index}`);
+                                            if (description) {
+                                                description.style.maxHeight = '100px';
+                                                description.style.opacity = '1';
+                                                description.style.marginTop = '8px';
+                                            }
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.target.style.fill = 'rgba(255, 255, 255, 0.95)';
+                                        e.target.style.stroke = '#e2e8f0';
+                                        
+                                        const categoryDetails = document.getElementById(`category-${index}`);
+                                        if (categoryDetails) {
+                                            categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                            categoryDetails.style.borderColor = '#e2e8f0';
+                                            categoryDetails.style.padding = '12px';
+                                            
+                                            const description = document.getElementById(`description-${index}`);
+                                            if (description) {
+                                                description.style.maxHeight = '0';
+                                                description.style.opacity = '0';
+                                                description.style.marginTop = '0';
+                                            }
+                                        }
+                                    }}
+                                />
+                                <text
+                                    x={labelX}
+                                    y={labelY}
+                                    textAnchor="middle"
+                                    dominantBaseline="middle"
+                                    fontSize="13"
+                                    fill="#334155"
+                                    fontWeight="600"
+                                    style={{ 
+                                        fontFamily: 'Inter, sans-serif',
+                                        transition: 'all 0.15s ease'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.fill = '#5ba300';
+                                        
+                                        const categoryDetails = document.getElementById(`category-${index}`);
+                                        if (categoryDetails) {
+                                            categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                            categoryDetails.style.borderColor = '#5ba300';
+                                            categoryDetails.style.padding = '16px';
+                                            
+                                            const description = document.getElementById(`description-${index}`);
+                                            if (description) {
+                                                description.style.maxHeight = '100px';
+                                                description.style.opacity = '1';
+                                                description.style.marginTop = '8px';
+                                            }
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.target.style.fill = '#334155';
+                                        
+                                        const categoryDetails = document.getElementById(`category-${index}`);
+                                        if (categoryDetails) {
+                                            categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                            categoryDetails.style.borderColor = '#e2e8f0';
+                                            categoryDetails.style.padding = '12px';
+                                            
+                                            const description = document.getElementById(`description-${index}`);
+                                            if (description) {
+                                                description.style.maxHeight = '0';
+                                                description.style.opacity = '0';
+                                                description.style.marginTop = '0';
+                                            }
+                                        }
+                                    }}
+                                >
+                                    {categories[index].name}
+                                </text>
+                            </g>
+                        );
+                    })}
+
+                    {/* Score labels */}
+                    {hexagonPoints.map((point, index) => {
+                        const scoreRadius = (categories[index].score / maxScore) * radius;
+                        const scoreX = centerX + scoreRadius * Math.cos((index * 2 * Math.PI / numCategories) - Math.PI / 2);
+                        const scoreY = centerY + scoreRadius * Math.sin((index * 2 * Math.PI / numCategories) - Math.PI / 2);
+                        
+                        return (
+                            <g key={`score-${index}`} style={{ cursor: 'pointer' }}>
+                                <circle
+                                    cx={scoreX}
+                                    cy={scoreY}
+                                    r="14"
+                                    fill="white"
+                                    stroke="#5ba300"
+                                    strokeWidth="2.5"
+                                    style={{ transition: 'all 0.15s ease' }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.r = '16';
+                                        
+                                        const categoryDetails = document.getElementById(`category-${index}`);
+                                        if (categoryDetails) {
+                                            categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                            categoryDetails.style.borderColor = '#5ba300';
+                                            categoryDetails.style.padding = '16px';
+                                            
+                                            const description = document.getElementById(`description-${index}`);
+                                            if (description) {
+                                                description.style.maxHeight = '100px';
+                                                description.style.opacity = '1';
+                                                description.style.marginTop = '8px';
+                                            }
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.target.style.r = '14';
+                                        
+                                        const categoryDetails = document.getElementById(`category-${index}`);
+                                        if (categoryDetails) {
+                                            categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                            categoryDetails.style.borderColor = '#e2e8f0';
+                                            categoryDetails.style.padding = '12px';
+                                            
+                                            const description = document.getElementById(`description-${index}`);
+                                            if (description) {
+                                                description.style.maxHeight = '0';
+                                                description.style.opacity = '0';
+                                                description.style.marginTop = '0';
+                                            }
+                                        }
+                                    }}
+                                />
+                                <text
+                                    x={scoreX}
+                                    y={scoreY}
+                                    textAnchor="middle"
+                                    dominantBaseline="middle"
+                                    fontSize="15"
+                                    fill="#5ba300"
+                                    fontWeight="700"
+                                    style={{ 
+                                        fontFamily: 'Inter, sans-serif',
+                                        transition: 'all 0.15s ease'
+                                    }}
+                                >
+                                    {categories[index].score}
+                                </text>
+                            </g>
+                        );
+                    })}
+
+                    {/* Data area fill */}
+                    <path
+                        d={createDataPath(dataPoints)}
+                        fill="url(#dataGradient)"
+                        stroke="#5ba300"
+                        strokeWidth="2.5"
+                        opacity="0.9"
+                    />
+
+                    {/* Data points */}
+                    {dataPoints.map((point, index) => (
+                        <g key={`point-${index}`} style={{ cursor: 'pointer' }}>
+                            <circle
+                                cx={point.x}
+                                cy={point.y}
+                                r="7"
+                                fill="#5ba300"
+                                stroke="white"
+                                strokeWidth="2.5"
+                                style={{ transition: 'all 0.15s ease' }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.r = '9';
+                                    
+                                    const categoryDetails = document.getElementById(`category-${index}`);
+                                    if (categoryDetails) {
+                                        categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                        categoryDetails.style.borderColor = '#5ba300';
+                                        categoryDetails.style.padding = '16px';
+                                        
+                                        const description = document.getElementById(`description-${index}`);
+                                        if (description) {
+                                            description.style.maxHeight = '100px';
+                                            description.style.opacity = '1';
+                                            description.style.marginTop = '8px';
+                                        }
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.r = '7';
+                                    
+                                    const categoryDetails = document.getElementById(`category-${index}`);
+                                    if (categoryDetails) {
+                                        categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                        categoryDetails.style.borderColor = '#e2e8f0';
+                                        categoryDetails.style.padding = '12px';
+                                        
+                                        const description = document.getElementById(`description-${index}`);
+                                        if (description) {
+                                            description.style.maxHeight = '0';
+                                            description.style.opacity = '0';
+                                            description.style.marginTop = '0';
+                                        }
+                                    }
+                                }}
+                            />
+                        </g>
+                    ))}
+
+                    {/* Center point */}
+                    <circle
+                        cx={centerX}
+                        cy={centerY}
+                        r="5"
+                        fill="#5ba300"
+                        stroke="white"
+                        strokeWidth="2"
+                    />
+                </svg>
+            </div>
+
+            {/* Categories Details Panel */}
+            <div style={{
+                width: '380px',
+                background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+                borderRadius: '16px',
+                padding: '30px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                border: '1px solid #f1f5f9',
+                position: 'relative',
+                overflow: 'hidden'
+            }}>
+                {/* Background accent */}
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                }} />
+                
+                <h3 style={{
+                    margin: '0 0 25px 0',
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    color: '#0f172a',
+                    textAlign: 'center',
+                    letterSpacing: '-0.02em'
+                }}>
+                    Category Details
+                </h3>
+                
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '14px'
+                }}>
+                    {categories.map((category, index) => (
+                        <div
+                            key={`category-${index}`}
+                            id={`category-${index}`}
+                            style={{
+                                background: 'rgba(255, 255, 255, 0.9)',
+                                border: '1px solid #e2e8f0',
+                                borderRadius: '12px',
+                                padding: '12px',
+                                transition: 'all 0.15s ease',
+                                cursor: 'pointer'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = 'rgba(91, 163, 0, 0.04)';
+                                e.currentTarget.style.borderColor = '#5ba300';
+                                e.currentTarget.style.padding = '16px';
+                                
+                                const description = document.getElementById(`description-${index}`);
+                                if (description) {
+                                    description.style.maxHeight = '100px';
+                                    description.style.opacity = '1';
+                                    description.style.marginTop = '8px';
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                                e.currentTarget.style.borderColor = '#e2e8f0';
+                                e.currentTarget.style.padding = '12px';
+                                
+                                const description = document.getElementById(`description-${index}`);
+                                if (description) {
+                                    description.style.maxHeight = '0';
+                                    description.style.opacity = '0';
+                                    description.style.marginTop = '0';
+                                }
+                            }}
+                        >
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}>
+                                <h4 style={{
+                                    margin: '0',
+                                    fontSize: '15px',
+                                    fontWeight: '600',
+                                    color: '#0f172a'
+                                }}>
+                                    {category.name}
+                                </h4>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '4px'
+                                }}>
+                                    <span style={{
+                                        fontSize: '20px',
+                                        fontWeight: '700',
+                                        color: '#5ba300'
+                                    }}>
+                                        {category.score}
+                                    </span>
+                                    <span style={{
+                                        fontSize: '13px',
+                                        color: '#64748b',
+                                        fontWeight: '500'
+                                    }}>
+                                        /5
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div
+                                id={`description-${index}`}
+                                style={{
+                                    maxHeight: '0',
+                                    opacity: '0',
+                                    marginTop: '0',
+                                    transition: 'all 0.15s ease',
+                                    overflow: 'hidden'
+                                }}
+                            >
+                                <p style={{
+                                    margin: '0',
+                                    fontSize: '13px',
+                                    lineHeight: '1.5',
+                                    color: '#475569'
+                                }}>
+                                    {category.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                
+                <div style={{
+                    marginTop: '25px',
+                    padding: '14px',
+                    background: 'rgba(255, 255, 255, 0.7)',
+                    borderRadius: '10px',
+                    border: '1px solid #e2e8f0'
+                }}>
+                    <p style={{
+                        margin: '0',
+                        fontSize: '12px',
+                        color: '#64748b',
+                        textAlign: 'center',
+                        fontWeight: '500'
+                    }}>
+                        Hover over hexagon elements or category cards to expand details
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function InterviewGuide() {
     const [currentBookIndex, setCurrentBookIndex] = useState(0);
     
@@ -657,57 +1225,50 @@ function InterviewGuide() {
         {
             title: "Software Engineering at Google",
             authors: "Titus Winters, Tom Manshreck & Hyrum Wright",
-            description: "Comprehensive guide to software engineering practices at Google scale"
+            description: "Comprehensive guide to software engineering practices at Google scale",
+            cover: "/covers/software-engineering-at-google.jpg"
         },
         {
             title: "Accelerate: The Science of Lean Software and DevOps",
             authors: "Nicole Forsgren PhD, Jez Humble & Gene Kim",
-            description: "Research-based insights into high-performing software teams"
+            description: "Research-based insights into high-performing software teams",
+            cover: "/covers/accelerate-the-science-of-lean-software-and-devops.jpg"
         },
         {
             title: "Designing Data-Intensive Applications",
             authors: "Martin Kleppmann",
-            description: "Essential guide for building scalable data systems"
+            description: "Essential guide for building scalable data systems",
+            cover: "/covers/designing-data-intensive-applications.jpg"
         },
         {
             title: "Software Architecture: The Hard Parts",
             authors: "Neal Ford, Mark Richards, Pramod Sadalage & Zhamak Dehghani",
-            description: "Practical approaches to complex architectural decisions"
+            description: "Practical approaches to complex architectural decisions",
+            cover: "/covers/software-architecture-the-hard-parts.jpg"
         },
         {
             title: "Thinking in Systems: A Primer",
             authors: "Donella H. Meadows",
-            description: "Understanding complex systems and their behavior"
-        },
-        {
-            title: "AWS Solutions Architect Course",
-            authors: "AWS",
-            description: "Comprehensive cloud architecture training"
+            description: "Understanding complex systems and their behavior",
+            cover: "/covers/thinking-in-systems-a-primer.jpg"
         },
         {
             title: "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
             authors: "Robert Martin",
-            description: "Principles for creating maintainable software architecture"
+            description: "Principles for creating maintainable software architecture",
+            cover: "/covers/clean-architecture-a-craftsman-guide-to-software-structure-and-design.jpg"
         },
         {
             title: "The Phoenix Project",
             authors: "Gene Kim, Kevin Behr & George Spafford",
-            description: "Novel about DevOps transformation and IT management"
+            description: "Novel about DevOps transformation and IT management",
+            cover: "/covers/the-phoenix-project.jpg"
         },
         {
             title: "SRE by Google",
             authors: "Google",
-            description: "Site Reliability Engineering practices and principles"
-        },
-        {
-            title: "Martin Fowler's Practical Testing Pyramid",
-            authors: "Martin Fowler",
-            description: "Testing strategy for balanced test coverage"
-        },
-        {
-            title: "Testing Pyramids",
-            authors: "Various",
-            description: "Comprehensive testing strategies and methodologies"
+            description: "Site Reliability Engineering practices and principles",
+            cover: "/covers/sre-by-google.jpg"
         }
     ];
 
@@ -752,53 +1313,165 @@ function InterviewGuide() {
                         Technical evaluation includes coding exercises, system design discussions, and knowledge of relevant technologies. We focus on practical problem-solving rather than memorization.
                     </p>
                 </div>
+                <div style={{ marginBottom: '30px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Architecture Interview (Optional)</h3>
+                    <p style={{ color: '#444' }}>
+                        For senior positions, we may conduct an additional architecture-focused interview. This includes discussions about system design, scalability, and architectural decision-making processes.
+                    </p>
+                </div>
+                <div style={{ marginBottom: '30px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Test Task Discussion</h3>
+                    <p style={{ color: '#444' }}>
+                        After completing the test task, we'll have a detailed discussion about your solution. Be prepared to explain your design decisions, discuss potential improvements, and identify areas that could be enhanced or were missing from your implementation.
+                    </p>
+                </div>
             </section>
 
-            {/* Architecture Interview Section */}
+            {/* Competency Matrix Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Architecture Interview (Optional)</h2>
-                <p style={{ color: '#444' }}>
-                    For senior positions, we may conduct an additional architecture-focused interview. This includes discussions about system design, scalability, and architectural decision-making processes.
+                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Expected Competency Matrix</h2>
+                <p style={{ color: '#444', marginBottom: 20 }}>
+                    This matrix represents the expected competency levels for our engineering roles. 
+                    Each category is scored from 0 to 5, where 5 represents maximum competency.
                 </p>
+                <CompetencyMatrix />
             </section>
 
             {/* Recommendations Section */}
             <section className="card">
                 <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Our Media & Recommendations</h2>
                 <div style={{ display: 'grid', gap: 20, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
-                    <div style={{ background: '#f7f8fa', borderRadius: 12, padding: 20 }}>
-                        <h4 style={{ color: '#181A20', marginBottom: 8 }}>Чи варто деплоїтись у п'ятницю</h4>
-                        <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Сергій Сафонов, Tech Lead</p>
-                    </div>
-                    <div style={{ background: '#f7f8fa', borderRadius: 12, padding: 20 }}>
-                        <h4 style={{ color: '#181A20', marginBottom: 8 }}>$10.000 за хвилину даунтайму: архітектура, черги та стрімінг у фінтех</h4>
-                        <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Макс Багінський, Head of Engineering</p>
-                    </div>
-                    <div style={{ background: '#f7f8fa', borderRadius: 12, padding: 20 }}>
-                        <h4 style={{ color: '#181A20', marginBottom: 8 }}>Як стати джуном, якого найматимуть</h4>
-                        <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Владислав Павленко, Go Engineer</p>
-                    </div>
-                    <div style={{ background: '#f7f8fa', borderRadius: 12, padding: 20 }}>
-                        <h4 style={{ color: '#181A20', marginBottom: 8 }}>Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів</h4>
-                        <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Сергій Сафонов, Tech Lead</p>
-                    </div>
+                    <a href="https://dou.ua/forums/topic/54148" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div className="media-block">
+                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>Чи варто деплоїтись у п'ятницю</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Сергій Сафонов, Tech Lead</p>
+                        </div>
+                    </a>
+                    <a href="https://dou.ua/forums/topic/50318/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div className="media-block">
+                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>$10.000 за хвилину даунтайму: архітектура, черги та стрімінг у фінтех</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Макс Багінський, Head of Engineering</p>
+                        </div>
+                    </a>
+                    <a href="https://dou.ua/forums/topic/53604" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div className="media-block">
+                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>Як стати джуном, якого найматимуть</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Владислав Павленко, Go Engineer</p>
+                        </div>
+                    </a>
+                    <a href="https://dou.ua/forums/topic/51033/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                        <div className="media-block">
+                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Сергій Сафонов, Tech Lead</p>
+                        </div>
+                    </a>
                 </div>
             </section>
 
             {/* Books Section */}
             <section className="card">
                 <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Books We Love</h2>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
-                    <button className="button" onClick={prevBook} style={{ minWidth: 48, minHeight: 48, fontSize: 20 }}>&lsaquo;</button>
-                    <div style={{ flex: 1, textAlign: 'center', maxWidth: 400 }}>
-                        <div style={{ background: '#f7f8fa', borderRadius: 12, padding: 32, minHeight: 180 }}>
-                            <h3 style={{ color: '#181A20', marginBottom: 10 }}>{books[currentBookIndex].title}</h3>
-                            <p style={{ color: '#5ba300', fontStyle: 'italic', marginBottom: 16 }}>by {books[currentBookIndex].authors}</p>
-                            <p style={{ color: '#444' }}>{books[currentBookIndex].description}</p>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
+                    <button 
+                        onClick={prevBook} 
+                        style={{ 
+                            minWidth: 64, 
+                            minHeight: 64, 
+                            fontSize: 28, 
+                            borderRadius: 8,
+                            background: 'linear-gradient(135deg, #5ba300 0%, #489000 100%)',
+                            color: 'white',
+                            border: 'none',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 15px rgba(91, 163, 0, 0.3)',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: 'bold',
+                            ':hover': {
+                                transform: 'scale(1.1)',
+                                boxShadow: '0 6px 20px rgba(91, 163, 0, 0.4)'
+                            }
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.transform = 'scale(1.1)';
+                            e.target.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.4)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.3)';
+                        }}
+                    >
+                        ‹
+                    </button>
+                    <div style={{ flex: 1, textAlign: 'center', maxWidth: 600 }}>
+                        <div style={{ 
+                            background: '#f7f8fa', 
+                            borderRadius: 16, 
+                            padding: 40, 
+                            minHeight: 300,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 32,
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                        }}>
+                            <div style={{ flex: '0 0 150px' }}>
+                                <img 
+                                    src={books[currentBookIndex].cover} 
+                                    alt={`${books[currentBookIndex].title} cover`}
+                                    style={{ 
+                                        width: '100%', 
+                                        height: 'auto', 
+                                        borderRadius: 8,
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                                    }}
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                    }}
+                                />
+                            </div>
+                            <div style={{ flex: 1, textAlign: 'left' }}>
+                                <h3 style={{ color: '#181A20', marginBottom: 12, fontSize: '1.4rem' }}>{books[currentBookIndex].title}</h3>
+                                <p style={{ color: '#5ba300', fontStyle: 'italic', marginBottom: 20, fontSize: '1.1rem' }}>by {books[currentBookIndex].authors}</p>
+                                <p style={{ color: '#444', lineHeight: '1.6', fontSize: '1rem' }}>{books[currentBookIndex].description}</p>
+                            </div>
                         </div>
-                        <div style={{ marginTop: 12, color: '#888', fontSize: 14 }}>{currentBookIndex + 1} of {books.length}</div>
+                        <div style={{ marginTop: 20, color: '#888', fontSize: 16, fontWeight: 500 }}>{currentBookIndex + 1} of {books.length}</div>
                     </div>
-                    <button className="button" onClick={nextBook} style={{ minWidth: 48, minHeight: 48, fontSize: 20 }}>&rsaquo;</button>
+                    <button 
+                        onClick={nextBook} 
+                        style={{ 
+                            minWidth: 64, 
+                            minHeight: 64, 
+                            fontSize: 28, 
+                            borderRadius: 8,
+                            background: 'linear-gradient(135deg, #5ba300 0%, #489000 100%)',
+                            color: 'white',
+                            border: 'none',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 15px rgba(91, 163, 0, 0.3)',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: 'bold',
+                            ':hover': {
+                                transform: 'scale(1.1)',
+                                boxShadow: '0 6px 20px rgba(91, 163, 0, 0.4)'
+                            }
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.transform = 'scale(1.1)';
+                            e.target.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.4)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.3)';
+                        }}
+                    >
+                        ›
+                    </button>
                 </div>
             </section>
 

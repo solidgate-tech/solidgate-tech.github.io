@@ -114,3 +114,17 @@ h1, h2, h3, h4, h5, h6 {
   background: #ccc;
   border-radius: 8px;
 }
+
+/* Media blocks hover effect */
+.media-block {
+  background: #f7f8fa;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.media-block:hover {
+  transform: translateY(-2px);
+  background: #e8f5e8;
+}
