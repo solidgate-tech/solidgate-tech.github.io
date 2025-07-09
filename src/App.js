@@ -1,5 +1,64 @@
 import React, { useState } from "react";
 
+function LanguageBlock({ language, logo, requirements, questions }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+    
+    return (
+        <div style={{ 
+            background: '#fff', 
+            borderRadius: 8, 
+            padding: 16, 
+            border: '1px solid #e5e7eb',
+            marginBottom: 8
+        }}>
+            <div 
+                style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between',
+                    cursor: 'pointer',
+                    userSelect: 'none'
+                }}
+                onClick={() => setIsExpanded(!isExpanded)}
+            >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={logo} alt={`${language} logo`} style={{ width: 24, height: 24, marginRight: 12 }} />
+                    <h4 style={{ color: '#181A20', fontSize: '1.1rem', margin: 0, fontWeight: 600 }}>{language}</h4>
+                </div>
+                <div style={{ 
+                    fontSize: '1.2rem', 
+                    color: '#64748b', 
+                    transition: 'transform 0.2s ease',
+                    transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)'
+                }}>
+                    ▼
+                </div>
+            </div>
+            
+            {isExpanded && (
+                <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #f1f5f9' }}>
+                    <div style={{ marginBottom: 16 }}>
+                        <h5 style={{ color: '#181A20', marginBottom: 8, fontSize: '0.95rem', fontWeight: 600 }}>Requirements:</h5>
+                        <ul style={{ color: '#475569', lineHeight: '1.5', margin: 0, paddingLeft: 16, fontSize: '0.9rem' }}>
+                            {requirements.map((req, index) => (
+                                <li key={index} style={{ marginBottom: 4 }}>{req}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div style={{ padding: 12, background: '#f8fafc', borderRadius: 6, border: '1px solid #e2e8f0' }}>
+                        <h5 style={{ color: '#5ba300', marginBottom: 8, fontSize: '0.95rem', fontWeight: 600 }}>Top Interview Questions:</h5>
+                        <ol style={{ color: '#475569', lineHeight: '1.5', margin: 0, paddingLeft: 16, fontSize: '0.9rem' }}>
+                            {questions.map((question, index) => (
+                                <li key={index} style={{ marginBottom: 6 }}>{question}</li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
 function TechRadar2023() {
     React.useEffect(() => {
         window.radar_visualization({
@@ -1287,9 +1346,27 @@ function InterviewGuide() {
             {/* About Solidgate Section */}
             <section className="card">
                 <h2 className="section-title" style={{ fontSize: '1.5rem' }}>About Solidgate</h2>
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444' }}>
-                    Solidgate is a fintech company that specializes in payment processing solutions. We focus on delivering high-quality products for our customers rather than just completing tasks. Our engineering culture emphasizes DevOps practices, Lean methodologies, and continuous improvement.
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', marginBottom: '20px' }}>
+                    Solidgate is a leading fintech company that provides comprehensive payment infrastructure solutions. We enable businesses to accept payments globally through a unified API, supporting multiple payment methods, currencies, and compliance requirements. Our platform serves merchants, payment service providers, and financial institutions worldwide.
                 </p>
+                
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', marginBottom: '20px' }}>
+                    At Solidgate, we work with <strong>engineers</strong>, not just developers. Engineers take a holistic approach to problem-solving, designing systems with scalability, security, and business impact in mind. They understand the entire system lifecycle and make architectural decisions that drive business value.
+                </p>
+
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444' }}>
+                    We embrace DevOps principles with continuous integration/deployment, infrastructure as code (Terraform, Kubernetes), comprehensive monitoring (Grafana, VictoriaMetrics), and site reliability engineering. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
+                </p>
+            </section>
+
+            {/* Competency Matrix Section */}
+            <section className="card">
+                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Expected Competency Matrix</h2>
+                <p style={{ color: '#444', marginBottom: 20 }}>
+                    This matrix represents the expected competency levels for our engineering roles. 
+                    Each category is scored from 0 to 5, where 5 represents maximum competency.
+                </p>
+                <CompetencyMatrix />
             </section>
 
             {/* Tech Interview Section */}
@@ -1327,14 +1404,75 @@ function InterviewGuide() {
                 </div>
             </section>
 
-            {/* Competency Matrix Section */}
+            {/* Language-Specific Requirements Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Expected Competency Matrix</h2>
-                <p style={{ color: '#444', marginBottom: 20 }}>
-                    This matrix represents the expected competency levels for our engineering roles. 
-                    Each category is scored from 0 to 5, where 5 represents maximum competency.
-                </p>
-                <CompetencyMatrix />
+                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Language-Specific Requirements</h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                    <LanguageBlock 
+                        language="Go"
+                        logo="/covers/go-logo.svg"
+                        requirements={[
+                            "Strong understanding of Go concurrency patterns (goroutines, channels)",
+                            "Experience with Go modules and dependency management",
+                            "Knowledge of Go testing frameworks and best practices",
+                            "Understanding of Go performance optimization",
+                            "Experience with popular Go frameworks (Gin, Echo, Fiber)"
+                        ]}
+                        questions={[
+                            "What is Go and why was it created? Explain its design philosophy and how it addresses common programming challenges.",
+                            "What is a slice in Go? How does it differ from arrays, and what are the implications for memory management?",
+                            "Explain Go's concurrency model. How do goroutines and channels work together, and what are the best practices for avoiding race conditions?"
+                        ]}
+                    />
+                    <LanguageBlock 
+                        language="Kotlin"
+                        logo="/covers/kotlin-logo.svg"
+                        requirements={[
+                            "Proficiency in Kotlin syntax and language features",
+                            "Experience with Spring Boot and Kotlin integration",
+                            "Understanding of Kotlin coroutines and async programming",
+                            "Knowledge of Kotlin testing frameworks (JUnit, MockK)",
+                            "Experience with Kotlin DSL and build tools"
+                        ]}
+                        questions={[
+                            "What is the significance of data classes in Kotlin? How do they improve code quality and reduce boilerplate compared to Java?",
+                            "How does Kotlin ensure type safety? Explain the null safety system and how it prevents common runtime errors.",
+                            "What are the advantages of using Kotlin over Java? Discuss interoperability, syntax improvements, and modern language features."
+                        ]}
+                    />
+                    <LanguageBlock 
+                        language="Node.js"
+                        logo="/covers/nodejs-logo.svg"
+                        requirements={[
+                            "Strong JavaScript/TypeScript fundamentals",
+                            "Experience with Express.js or Fastify frameworks",
+                            "Understanding of Node.js event loop and async patterns",
+                            "Knowledge of npm/yarn package management",
+                            "Experience with Node.js testing (Jest, Mocha)"
+                        ]}
+                        questions={[
+                            "What tasks is Node.js good for? Which projects would you NOT use it for? Explain the trade-offs and use cases.",
+                            "Explain in detail how the Event Loop works in Node.js. How can you use it effectively and what are common pitfalls?",
+                            "How can you handle a large task consisting of small subtasks without blocking the event loop? Discuss strategies and best practices."
+                        ]}
+                    />
+                    <LanguageBlock 
+                        language="Python"
+                        logo="/covers/python-logo.svg"
+                        requirements={[
+                            "Strong Python fundamentals and best practices",
+                            "Experience with web frameworks (Django, Flask, FastAPI)",
+                            "Understanding of Python async programming (asyncio)",
+                            "Knowledge of Python testing (pytest, unittest)",
+                            "Experience with data processing libraries (pandas, numpy)"
+                        ]}
+                        questions={[
+                            "How do you implement graceful shutdown in Python? Discuss signal handling, cleanup procedures, and best practices for production systems.",
+                            "Explain the Global Interpreter Lock (GIL). Is it bad? What are its implications for multithreading vs multiprocessing?",
+                            "Concurrency vs Parallelism in Python: what does Python provide? In which cases should you use threading, multiprocessing, or asyncio?"
+                        ]}
+                    />
+                </div>
             </section>
 
             {/* Recommendations Section */}
