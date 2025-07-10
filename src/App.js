@@ -64,8 +64,8 @@ function TechRadar2023() {
         window.radar_visualization({
             svg_id: "radar-2023",
             date: 2023.09,
-            width: 1450,
-            height: 1000,
+            width: 1350,
+            height: 900,
             colors: {
                 background: "#fff",
                 grid: "#bbb",
@@ -677,7 +677,7 @@ function TechRadar2023() {
     return (
         <div
             id="radar-2023-container"
-            style={{ width: '100%', minWidth: 350, overflowX: 'auto', display: 'block', paddingBottom: 16 }}
+            style={{ width: '100%', overflowX: 'auto', display: 'block', paddingBottom: 16 }}
         >
             <div style={{ width: 'fit-content', margin: '0 auto' }}>
                 <svg id="radar-2023" style={{ display: 'block' }}></svg>
@@ -691,8 +691,8 @@ function TechRadar2025() {
         window.radar_visualization({
             svg_id: "radar-2025",
             date: 2025.01,
-            width: 1450,
-            height: 1000,
+            width: 1350,
+            height: 900,
             colors: {
                 background: "#fff",
                 grid: "#bbb",
@@ -1002,7 +1002,7 @@ function TechRadar2025() {
     return (
         <div
             id="radar-2025-container"
-            style={{ width: '100%', minWidth: 350, overflowX: 'auto', display: 'block', paddingBottom: 16 }}
+            style={{ width: '100%', overflowX: 'auto', display: 'block', paddingBottom: 16 }}
         >
             <div style={{ width: 'fit-content', margin: '0 auto' }}>
                 <svg id="radar-2025" style={{ display: 'block' }}></svg>
@@ -1012,6 +1012,17 @@ function TechRadar2025() {
 }
 
 function CompetencyMatrix() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const categories = [
         { 
             name: "Engineering culture", 
@@ -1104,19 +1115,22 @@ function CompetencyMatrix() {
     return (
         <div style={{ 
             display: 'flex',
-            gap: '40px',
-            alignItems: 'flex-start'
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '20px' : '40px',
+            alignItems: isMobile ? 'center' : 'flex-start'
         }}>
             {/* Competency Matrix */}
             <div style={{ 
                 textAlign: 'center',
                 background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
                 borderRadius: '16px',
-                padding: '40px',
+                padding: isMobile ? '20px' : '40px',
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                 border: '1px solid #f1f5f9',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                width: '100%',
+                maxWidth: '600px'
             }}>
                 {/* Background accent */}
                 <div style={{
@@ -1129,8 +1143,8 @@ function CompetencyMatrix() {
                 }} />
                 
                 <h3 style={{ 
-                    margin: '0 0 30px 0',
-                    fontSize: '28px',
+                    margin: isMobile ? '0 0 20px 0' : '0 0 30px 0',
+                    fontSize: isMobile ? '24px' : '28px',
                     fontWeight: '700',
                     color: '#0f172a',
                     textAlign: 'center',
@@ -1139,170 +1153,250 @@ function CompetencyMatrix() {
                     Competency Matrix
                 </h3>
                 
-                <svg width="600" height="600" style={{ 
-                    display: 'block', 
-                    margin: '0 auto',
-                    filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06))'
+                <div style={{
+                    width: '100%',
+                    overflowX: 'auto',
+                    overflowY: 'hidden'
                 }}>
-                    <defs>
-                        <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#5ba300" stopOpacity="0.15"/>
-                            <stop offset="100%" stopColor="#4a7c59" stopOpacity="0.25"/>
-                        </linearGradient>
-                        <linearGradient id="gridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#f1f5f9" stopOpacity="0.8"/>
-                            <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.6"/>
-                        </linearGradient>
-                    </defs>
+                    <svg width="600" height="600" style={{ 
+                        display: 'block', 
+                        margin: '0 auto',
+                        filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06))',
+                        minWidth: '600px'
+                    }}>
+                        <defs>
+                            <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#5ba300" stopOpacity="0.15"/>
+                                <stop offset="100%" stopColor="#4a7c59" stopOpacity="0.25"/>
+                            </linearGradient>
+                            <linearGradient id="gridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#f1f5f9" stopOpacity="0.8"/>
+                                <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.6"/>
+                            </linearGradient>
+                        </defs>
 
-                    {/* Background circle */}
-                    <circle
-                        cx={centerX}
-                        cy={centerY}
-                        r={radius + 30}
-                        fill="url(#gridGradient)"
-                        opacity="0.4"
-                    />
-
-                    {/* Grid lines */}
-                    {gridLines.map((points, index) => (
-                        <path
-                            key={`grid-${index}`}
-                            d={createHexagonPath(points)}
-                            fill="none"
-                            stroke={index === 0 ? "#cbd5e1" : "#e2e8f0"}
-                            strokeWidth={index === 0 ? "2" : "1"}
-                            opacity="0.7"
+                        {/* Background circle */}
+                        <circle
+                            cx={centerX}
+                            cy={centerY}
+                            r={radius + 30}
+                            fill="url(#gridGradient)"
+                            opacity="0.4"
                         />
-                    ))}
 
-                    {/* Category labels */}
-                    {hexagonPoints.map((point, index) => {
-                        const angle = (index * 2 * Math.PI / numCategories) - Math.PI / 2;
-                        const labelRadius = radius + 90;
-                        const labelX = centerX + labelRadius * Math.cos(angle);
-                        const labelY = centerY + labelRadius * Math.sin(angle);
-                        
-                        return (
-                            <g key={`label-${index}`} style={{ cursor: 'pointer' }}>
-                                <rect
-                                    x={labelX - 70}
-                                    y={labelY - 15}
-                                    width="140"
-                                    height="30"
-                                    rx="15"
-                                    fill="rgba(255, 255, 255, 0.95)"
-                                    stroke="#e2e8f0"
-                                    strokeWidth="1"
-                                    style={{ transition: 'all 0.15s ease' }}
-                                    onMouseEnter={(e) => {
-                                        e.target.style.fill = 'rgba(91, 163, 0, 0.08)';
-                                        e.target.style.stroke = '#5ba300';
-                                        
-                                        const categoryDetails = document.getElementById(`category-${index}`);
-                                        if (categoryDetails) {
-                                            categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
-                                            categoryDetails.style.borderColor = '#5ba300';
-                                            categoryDetails.style.padding = '16px';
-                                            
-                                            const description = document.getElementById(`description-${index}`);
-                                            if (description) {
-                                                description.style.maxHeight = '100px';
-                                                description.style.opacity = '1';
-                                                description.style.marginTop = '8px';
-                                            }
-                                        }
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.target.style.fill = 'rgba(255, 255, 255, 0.95)';
-                                        e.target.style.stroke = '#e2e8f0';
-                                        
-                                        const categoryDetails = document.getElementById(`category-${index}`);
-                                        if (categoryDetails) {
-                                            categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
-                                            categoryDetails.style.borderColor = '#e2e8f0';
-                                            categoryDetails.style.padding = '12px';
-                                            
-                                            const description = document.getElementById(`description-${index}`);
-                                            if (description) {
-                                                description.style.maxHeight = '0';
-                                                description.style.opacity = '0';
-                                                description.style.marginTop = '0';
-                                            }
-                                        }
-                                    }}
-                                />
-                                <text
-                                    x={labelX}
-                                    y={labelY}
-                                    textAnchor="middle"
-                                    dominantBaseline="middle"
-                                    fontSize="13"
-                                    fill="#334155"
-                                    fontWeight="600"
-                                    style={{ 
-                                        fontFamily: 'Inter, sans-serif',
-                                        transition: 'all 0.15s ease'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.target.style.fill = '#5ba300';
-                                        
-                                        const categoryDetails = document.getElementById(`category-${index}`);
-                                        if (categoryDetails) {
-                                            categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
-                                            categoryDetails.style.borderColor = '#5ba300';
-                                            categoryDetails.style.padding = '16px';
-                                            
-                                            const description = document.getElementById(`description-${index}`);
-                                            if (description) {
-                                                description.style.maxHeight = '100px';
-                                                description.style.opacity = '1';
-                                                description.style.marginTop = '8px';
-                                            }
-                                        }
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.target.style.fill = '#334155';
-                                        
-                                        const categoryDetails = document.getElementById(`category-${index}`);
-                                        if (categoryDetails) {
-                                            categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
-                                            categoryDetails.style.borderColor = '#e2e8f0';
-                                            categoryDetails.style.padding = '12px';
-                                            
-                                            const description = document.getElementById(`description-${index}`);
-                                            if (description) {
-                                                description.style.maxHeight = '0';
-                                                description.style.opacity = '0';
-                                                description.style.marginTop = '0';
-                                            }
-                                        }
-                                    }}
-                                >
-                                    {categories[index].name}
-                                </text>
-                            </g>
-                        );
-                    })}
+                        {/* Grid lines */}
+                        {gridLines.map((points, index) => (
+                            <path
+                                key={`grid-${index}`}
+                                d={createHexagonPath(points)}
+                                fill="none"
+                                stroke={index === 0 ? "#cbd5e1" : "#e2e8f0"}
+                                strokeWidth={index === 0 ? "2" : "1"}
+                                opacity="0.7"
+                            />
+                        ))}
 
-                    {/* Score labels */}
-                    {hexagonPoints.map((point, index) => {
-                        const scoreRadius = (categories[index].score / maxScore) * radius;
-                        const scoreX = centerX + scoreRadius * Math.cos((index * 2 * Math.PI / numCategories) - Math.PI / 2);
-                        const scoreY = centerY + scoreRadius * Math.sin((index * 2 * Math.PI / numCategories) - Math.PI / 2);
-                        
-                        return (
-                            <g key={`score-${index}`} style={{ cursor: 'pointer' }}>
+                        {/* Category labels */}
+                        {hexagonPoints.map((point, index) => {
+                            const angle = (index * 2 * Math.PI / numCategories) - Math.PI / 2;
+                            const labelRadius = radius + 90;
+                            const labelX = centerX + labelRadius * Math.cos(angle);
+                            const labelY = centerY + labelRadius * Math.sin(angle);
+                            
+                            return (
+                                <g key={`label-${index}`} style={{ cursor: 'pointer' }}>
+                                    <rect
+                                        x={labelX - 70}
+                                        y={labelY - 15}
+                                        width="140"
+                                        height="30"
+                                        rx="15"
+                                        fill="rgba(255, 255, 255, 0.95)"
+                                        stroke="#e2e8f0"
+                                        strokeWidth="1"
+                                        style={{ transition: 'all 0.15s ease' }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.fill = 'rgba(91, 163, 0, 0.08)';
+                                            e.target.style.stroke = '#5ba300';
+                                            
+                                            const categoryDetails = document.getElementById(`category-${index}`);
+                                            if (categoryDetails) {
+                                                categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                                categoryDetails.style.borderColor = '#5ba300';
+                                                categoryDetails.style.padding = '16px';
+                                                
+                                                const description = document.getElementById(`description-${index}`);
+                                                if (description) {
+                                                    description.style.maxHeight = '100px';
+                                                    description.style.opacity = '1';
+                                                    description.style.marginTop = '8px';
+                                                }
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.fill = 'rgba(255, 255, 255, 0.95)';
+                                            e.target.style.stroke = '#e2e8f0';
+                                            
+                                            const categoryDetails = document.getElementById(`category-${index}`);
+                                            if (categoryDetails) {
+                                                categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                                categoryDetails.style.borderColor = '#e2e8f0';
+                                                categoryDetails.style.padding = '12px';
+                                                
+                                                const description = document.getElementById(`description-${index}`);
+                                                if (description) {
+                                                    description.style.maxHeight = '0';
+                                                    description.style.opacity = '0';
+                                                    description.style.marginTop = '0';
+                                                }
+                                            }
+                                        }}
+                                    />
+                                    <text
+                                        x={labelX}
+                                        y={labelY}
+                                        textAnchor="middle"
+                                        dominantBaseline="middle"
+                                        fontSize="13"
+                                        fill="#334155"
+                                        fontWeight="600"
+                                        style={{ 
+                                            fontFamily: 'Inter, sans-serif',
+                                            transition: 'all 0.15s ease'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.fill = '#5ba300';
+                                            
+                                            const categoryDetails = document.getElementById(`category-${index}`);
+                                            if (categoryDetails) {
+                                                categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                                categoryDetails.style.borderColor = '#5ba300';
+                                                categoryDetails.style.padding = '16px';
+                                                
+                                                const description = document.getElementById(`description-${index}`);
+                                                if (description) {
+                                                    description.style.maxHeight = '100px';
+                                                    description.style.opacity = '1';
+                                                    description.style.marginTop = '8px';
+                                                }
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.fill = '#334155';
+                                            
+                                            const categoryDetails = document.getElementById(`category-${index}`);
+                                            if (categoryDetails) {
+                                                categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                                categoryDetails.style.borderColor = '#e2e8f0';
+                                                categoryDetails.style.padding = '12px';
+                                                
+                                                const description = document.getElementById(`description-${index}`);
+                                                if (description) {
+                                                    description.style.maxHeight = '0';
+                                                    description.style.opacity = '0';
+                                                    description.style.marginTop = '0';
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        {categories[index].name}
+                                    </text>
+                                </g>
+                            );
+                        })}
+
+                        {/* Score labels */}
+                        {hexagonPoints.map((point, index) => {
+                            const scoreRadius = (categories[index].score / maxScore) * radius;
+                            const scoreX = centerX + scoreRadius * Math.cos((index * 2 * Math.PI / numCategories) - Math.PI / 2);
+                            const scoreY = centerY + scoreRadius * Math.sin((index * 2 * Math.PI / numCategories) - Math.PI / 2);
+                            
+                            return (
+                                <g key={`score-${index}`} style={{ cursor: 'pointer' }}>
+                                    <circle
+                                        cx={scoreX}
+                                        cy={scoreY}
+                                        r="14"
+                                        fill="white"
+                                        stroke="#5ba300"
+                                        strokeWidth="2.5"
+                                        style={{ transition: 'all 0.15s ease' }}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.r = '16';
+                                            
+                                            const categoryDetails = document.getElementById(`category-${index}`);
+                                            if (categoryDetails) {
+                                                categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
+                                                categoryDetails.style.borderColor = '#5ba300';
+                                                categoryDetails.style.padding = '16px';
+                                                
+                                                const description = document.getElementById(`description-${index}`);
+                                                if (description) {
+                                                    description.style.maxHeight = '100px';
+                                                    description.style.opacity = '1';
+                                                    description.style.marginTop = '8px';
+                                                }
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.r = '14';
+                                            
+                                            const categoryDetails = document.getElementById(`category-${index}`);
+                                            if (categoryDetails) {
+                                                categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
+                                                categoryDetails.style.borderColor = '#e2e8f0';
+                                                categoryDetails.style.padding = '12px';
+                                                
+                                                const description = document.getElementById(`description-${index}`);
+                                                if (description) {
+                                                    description.style.maxHeight = '0';
+                                                    description.style.opacity = '0';
+                                                    description.style.marginTop = '0';
+                                                }
+                                            }
+                                        }}
+                                    />
+                                    <text
+                                        x={scoreX}
+                                        y={scoreY}
+                                        textAnchor="middle"
+                                        dominantBaseline="middle"
+                                        fontSize="15"
+                                        fill="#5ba300"
+                                        fontWeight="700"
+                                        style={{ 
+                                            fontFamily: 'Inter, sans-serif',
+                                            transition: 'all 0.15s ease'
+                                        }}
+                                    >
+                                        {categories[index].score}
+                                    </text>
+                                </g>
+                            );
+                        })}
+
+                        {/* Data area fill */}
+                        <path
+                            d={createDataPath(dataPoints)}
+                            fill="url(#dataGradient)"
+                            stroke="#5ba300"
+                            strokeWidth="2.5"
+                            opacity="0.9"
+                        />
+
+                        {/* Data points */}
+                        {dataPoints.map((point, index) => (
+                            <g key={`point-${index}`} style={{ cursor: 'pointer' }}>
                                 <circle
-                                    cx={scoreX}
-                                    cy={scoreY}
-                                    r="14"
-                                    fill="white"
-                                    stroke="#5ba300"
+                                    cx={point.x}
+                                    cy={point.y}
+                                    r="7"
+                                    fill="#5ba300"
+                                    stroke="white"
                                     strokeWidth="2.5"
                                     style={{ transition: 'all 0.15s ease' }}
                                     onMouseEnter={(e) => {
-                                        e.target.style.r = '16';
+                                        e.target.style.r = '9';
                                         
                                         const categoryDetails = document.getElementById(`category-${index}`);
                                         if (categoryDetails) {
@@ -1319,7 +1413,7 @@ function CompetencyMatrix() {
                                         }
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.target.style.r = '14';
+                                        e.target.style.r = '7';
                                         
                                         const categoryDetails = document.getElementById(`category-${index}`);
                                         if (categoryDetails) {
@@ -1336,101 +1430,29 @@ function CompetencyMatrix() {
                                         }
                                     }}
                                 />
-                                <text
-                                    x={scoreX}
-                                    y={scoreY}
-                                    textAnchor="middle"
-                                    dominantBaseline="middle"
-                                    fontSize="15"
-                                    fill="#5ba300"
-                                    fontWeight="700"
-                                    style={{ 
-                                        fontFamily: 'Inter, sans-serif',
-                                        transition: 'all 0.15s ease'
-                                    }}
-                                >
-                                    {categories[index].score}
-                                </text>
                             </g>
-                        );
-                    })}
+                        ))}
 
-                    {/* Data area fill */}
-                    <path
-                        d={createDataPath(dataPoints)}
-                        fill="url(#dataGradient)"
-                        stroke="#5ba300"
-                        strokeWidth="2.5"
-                        opacity="0.9"
-                    />
-
-                    {/* Data points */}
-                    {dataPoints.map((point, index) => (
-                        <g key={`point-${index}`} style={{ cursor: 'pointer' }}>
-                            <circle
-                                cx={point.x}
-                                cy={point.y}
-                                r="7"
-                                fill="#5ba300"
-                                stroke="white"
-                                strokeWidth="2.5"
-                                style={{ transition: 'all 0.15s ease' }}
-                                onMouseEnter={(e) => {
-                                    e.target.style.r = '9';
-                                    
-                                    const categoryDetails = document.getElementById(`category-${index}`);
-                                    if (categoryDetails) {
-                                        categoryDetails.style.background = 'rgba(91, 163, 0, 0.04)';
-                                        categoryDetails.style.borderColor = '#5ba300';
-                                        categoryDetails.style.padding = '16px';
-                                        
-                                        const description = document.getElementById(`description-${index}`);
-                                        if (description) {
-                                            description.style.maxHeight = '100px';
-                                            description.style.opacity = '1';
-                                            description.style.marginTop = '8px';
-                                        }
-                                    }
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.target.style.r = '7';
-                                    
-                                    const categoryDetails = document.getElementById(`category-${index}`);
-                                    if (categoryDetails) {
-                                        categoryDetails.style.background = 'rgba(255, 255, 255, 0.9)';
-                                        categoryDetails.style.borderColor = '#e2e8f0';
-                                        categoryDetails.style.padding = '12px';
-                                        
-                                        const description = document.getElementById(`description-${index}`);
-                                        if (description) {
-                                            description.style.maxHeight = '0';
-                                            description.style.opacity = '0';
-                                            description.style.marginTop = '0';
-                                        }
-                                    }
-                                }}
-                            />
-                        </g>
-                    ))}
-
-                    {/* Center point */}
-                    <circle
-                        cx={centerX}
-                        cy={centerY}
-                        r="5"
-                        fill="#5ba300"
-                        stroke="white"
-                        strokeWidth="2"
-                    />
-                </svg>
+                        {/* Center point */}
+                        <circle
+                            cx={centerX}
+                            cy={centerY}
+                            r="5"
+                            fill="#5ba300"
+                            stroke="white"
+                            strokeWidth="2"
+                        />
+                    </svg>
+                </div>
             </div>
 
             {/* Categories Details Panel */}
             <div style={{
-                width: '380px',
+                width: isMobile ? '100%' : '380px',
+                maxWidth: isMobile ? '600px' : '380px',
                 background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
                 borderRadius: '16px',
-                padding: '30px',
+                padding: isMobile ? '20px' : '30px',
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                 border: '1px solid #f1f5f9',
                 position: 'relative',
@@ -1447,8 +1469,8 @@ function CompetencyMatrix() {
                 }} />
                 
                 <h3 style={{
-                    margin: '0 0 25px 0',
-                    fontSize: '24px',
+                    margin: isMobile ? '0 0 20px 0' : '0 0 25px 0',
+                    fontSize: isMobile ? '20px' : '24px',
                     fontWeight: '700',
                     color: '#0f172a',
                     textAlign: 'center',
@@ -1460,7 +1482,9 @@ function CompetencyMatrix() {
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '14px'
+                    gap: isMobile ? '12px' : '14px',
+                    maxHeight: isMobile ? '400px' : 'none',
+                    overflowY: isMobile ? 'auto' : 'visible'
                 }}>
                     {categories.map((category, index) => (
                         <div
@@ -1470,7 +1494,7 @@ function CompetencyMatrix() {
                                 background: 'rgba(255, 255, 255, 0.9)',
                                 border: '1px solid #e2e8f0',
                                 borderRadius: '12px',
-                                padding: '12px',
+                                padding: isMobile ? '16px' : '12px',
                                 transition: 'all 0.15s ease',
                                 cursor: 'pointer'
                             }}
@@ -1489,7 +1513,7 @@ function CompetencyMatrix() {
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
                                 e.currentTarget.style.borderColor = '#e2e8f0';
-                                e.currentTarget.style.padding = '12px';
+                                e.currentTarget.style.padding = isMobile ? '16px' : '12px';
                                 
                                 const description = document.getElementById(`description-${index}`);
                                 if (description) {
@@ -1502,11 +1526,12 @@ function CompetencyMatrix() {
                             <div style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                alignItems: 'center'
+                                alignItems: 'center',
+                                marginBottom: isMobile ? '8px' : '0'
                             }}>
                                 <h4 style={{
                                     margin: '0',
-                                    fontSize: '15px',
+                                    fontSize: isMobile ? '14px' : '15px',
                                     fontWeight: '600',
                                     color: '#0f172a'
                                 }}>
@@ -1518,14 +1543,14 @@ function CompetencyMatrix() {
                                     gap: '4px'
                                 }}>
                                     <span style={{
-                                        fontSize: '20px',
+                                        fontSize: isMobile ? '18px' : '20px',
                                         fontWeight: '700',
                                         color: '#5ba300'
                                     }}>
                                         {category.score}
                                     </span>
                                     <span style={{
-                                        fontSize: '13px',
+                                        fontSize: isMobile ? '12px' : '13px',
                                         color: '#64748b',
                                         fontWeight: '500'
                                     }}>
@@ -1546,7 +1571,7 @@ function CompetencyMatrix() {
                             >
                                 <p style={{
                                     margin: '0',
-                                    fontSize: '13px',
+                                    fontSize: isMobile ? '12px' : '13px',
                                     lineHeight: '1.5',
                                     color: '#475569'
                                 }}>
@@ -1642,29 +1667,29 @@ function InterviewGuide() {
     };
 
     return (
-        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', padding: '20px' }}>
-            <h1 className="section-title" style={{ textAlign: 'center', marginBottom: 40 }}>Interview Guide</h1>
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', padding: '10px' }}>
+            <h1 className="section-title" style={{ textAlign: 'center', marginBottom: 30, fontSize: '1.8rem' }}>Interview Guide</h1>
 
             {/* About Solidgate Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>About Solidgate</h2>
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', marginBottom: '20px' }}>
-                    Solidgate is a leading fintech company that provides comprehensive payment infrastructure solutions. We enable businesses to accept payments globally through a unified API, supporting multiple payment methods, currencies, and compliance requirements. Our platform serves merchants, payment service providers, and financial institutions worldwide.
+                <h2 className="section-title" style={{ fontSize: '1.3rem' }}>About Solidgate</h2>
+                <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#444', marginBottom: '15px' }}>
+                    Solidgate is a payment processing and orchestration platform helping thousands of businesses to accept payments online. We enable businesses to accept payments globally through a unified API, supporting multiple payment methods, currencies, and compliance requirements. Our client base encompasses various industries and countries, working with both local merchants and multinational corporations. They do business while we do payments for their businesses.
                 </p>
                 
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', marginBottom: '20px' }}>
-                    At Solidgate, we work with <strong>engineers</strong>, not just developers. Engineers take a holistic approach to problem-solving, designing systems with scalability, security, and business impact in mind. They understand the entire system lifecycle and make architectural decisions that drive business value.
+                <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#444', marginBottom: '15px' }}>
+                    At Solidgate, we work with <strong>engineers</strong>, not just developers. Solidgate engineers don't maintain systems — they design them. We build the architecture behind seamless global payments, trusted by 150+ digital leaders. They take a holistic approach to problem-solving, designing systems with scalability, security, and business impact in mind. They understand the entire system lifecycle and make architectural decisions that drive business value.
                 </p>
 
-                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444' }}>
-                    We embrace DevOps principles with continuous integration/deployment, infrastructure as code (Terraform, Kubernetes), comprehensive monitoring (Grafana, VictoriaMetrics), and site reliability engineering. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
+                <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#444' }}>
+                    We embrace DevOps principles with continuous integration/deployment, infrastructure as code (Terraform, AWS Fargate), comprehensive monitoring (Grafana, VictoriaMetrics, Loki), and site reliability engineering. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
                 </p>
             </section>
 
             {/* Competency Matrix Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Expected Competency Matrix</h2>
-                <p style={{ color: '#444', marginBottom: 20 }}>
+                <h2 className="section-title" style={{ fontSize: '1.3rem' }}>Expected Competency Matrix</h2>
+                <p style={{ color: '#444', marginBottom: 20, fontSize: '0.95rem' }}>
                     This matrix represents the expected competency levels for our engineering roles. 
                     Each category is scored from 0 to 5, where 5 represents maximum competency.
                 </p>
@@ -1673,34 +1698,34 @@ function InterviewGuide() {
 
             {/* Tech Interview Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Tech Interview</h2>
-                <div style={{ marginBottom: '30px' }}>
-                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Introduction</h3>
-                    <p style={{ color: '#444' }}>
+                <h2 className="section-title" style={{ fontSize: '1.3rem' }}>Tech Interview</h2>
+                <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Introduction</h3>
+                    <p style={{ color: '#444', fontSize: '0.95rem' }}>
                         Our technical interview process is designed to assess both your technical skills and cultural fit. We believe in creating a collaborative environment where candidates can showcase their best work.
                     </p>
                 </div>
-                <div style={{ marginBottom: '30px' }}>
-                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Soft Skills Assessment</h3>
-                    <p style={{ color: '#444' }}>
+                <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Soft Skills Assessment</h3>
+                    <p style={{ color: '#444', fontSize: '0.95rem' }}>
                         We evaluate communication skills, problem-solving approach, teamwork, and how you handle challenges. Be prepared to discuss your previous projects, challenges you've faced, and how you've grown as a developer.
                     </p>
                 </div>
-                <div style={{ marginBottom: '30px' }}>
-                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Hard Skills Assessment</h3>
-                    <p style={{ color: '#444' }}>
+                <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Hard Skills Assessment</h3>
+                    <p style={{ color: '#444', fontSize: '0.95rem' }}>
                         Technical evaluation includes coding exercises, system design discussions, and knowledge of relevant technologies. We focus on practical problem-solving rather than memorization.
                     </p>
                 </div>
-                <div style={{ marginBottom: '30px' }}>
-                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Architecture Interview (Optional)</h3>
-                    <p style={{ color: '#444' }}>
+                <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Architecture Interview (Optional)</h3>
+                    <p style={{ color: '#444', fontSize: '0.95rem' }}>
                         For senior positions, we may conduct an additional architecture-focused interview. This includes discussions about system design, scalability, and architectural decision-making processes.
                     </p>
                 </div>
-                <div style={{ marginBottom: '30px' }}>
-                    <h3 style={{ color: '#5ba300', fontWeight: 600 }}>Test Task Discussion</h3>
-                    <p style={{ color: '#444' }}>
+                <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Test Task Discussion</h3>
+                    <p style={{ color: '#444', fontSize: '0.95rem' }}>
                         After completing the test task, we'll have a detailed discussion about your solution. Be prepared to explain your design decisions, discuss potential improvements, and identify areas that could be enhanced or were missing from your implementation.
                     </p>
                 </div>
@@ -1708,7 +1733,7 @@ function InterviewGuide() {
 
             {/* Language-Specific Requirements Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Language-Specific Requirements</h2>
+                <h2 className="section-title" style={{ fontSize: '1.3rem' }}>Language-Specific Requirements</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                     <LanguageBlock 
                         language="Go"
@@ -1779,30 +1804,30 @@ function InterviewGuide() {
 
             {/* Recommendations Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Our Media & Recommendations</h2>
-                <div style={{ display: 'grid', gap: 20, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+                <h2 className="section-title" style={{ fontSize: '1.3rem' }}>Our Engineers on Media</h2>
+                <div style={{ display: 'grid', gap: 15, gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
                     <a href="https://dou.ua/forums/topic/54148" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                         <div className="media-block">
-                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>Чи варто деплоїтись у п'ятницю</h4>
-                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Сергій Сафонов, Tech Lead</p>
+                            <h4 style={{ color: '#181A20', marginBottom: 8, fontSize: '0.95rem' }}>Чи варто деплоїтись у п'ятницю</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 13 }}>Сергій Сафонов, Tech Lead</p>
                         </div>
                     </a>
                     <a href="https://dou.ua/forums/topic/50318/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                         <div className="media-block">
-                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>$10.000 за хвилину даунтайму: архітектура, черги та стрімінг у фінтех</h4>
-                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Макс Багінський, Head of Engineering</p>
+                            <h4 style={{ color: '#181A20', marginBottom: 8, fontSize: '0.95rem' }}>$10.000 за хвилину даунтайму: архітектура, черги та стрімінг у фінтех</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 13 }}>Макс Багінський, Head of Engineering</p>
                         </div>
                     </a>
                     <a href="https://dou.ua/forums/topic/53604" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                         <div className="media-block">
-                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>Як стати джуном, якого найматимуть</h4>
-                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Владислав Павленко, Go Engineer</p>
+                            <h4 style={{ color: '#181A20', marginBottom: 8, fontSize: '0.95rem' }}>Як стати джуном, якого найматимуть</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 13 }}>Владислав Павленко, Go Engineer</p>
                         </div>
                     </a>
                     <a href="https://dou.ua/forums/topic/51033/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                         <div className="media-block">
-                            <h4 style={{ color: '#181A20', marginBottom: 8 }}>Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів</h4>
-                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 14 }}>Сергій Сафонов, Tech Lead</p>
+                            <h4 style={{ color: '#181A20', marginBottom: 8, fontSize: '0.95rem' }}>Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів</h4>
+                            <p style={{ color: '#5ba300', fontWeight: 500, fontSize: 13 }}>Сергій Сафонов, Tech Lead</p>
                         </div>
                     </a>
                 </div>
@@ -1810,14 +1835,14 @@ function InterviewGuide() {
 
             {/* Books Section */}
             <section className="card">
-                <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Books We Love</h2>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
+                <h2 className="section-title" style={{ fontSize: '1.3rem' }}>Books We Love and Recommend 💚</h2>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, flexWrap: 'wrap' }}>
                     <button 
                         onClick={prevBook} 
                         style={{ 
-                            minWidth: 64, 
-                            minHeight: 64, 
-                            fontSize: 28, 
+                            minWidth: 50, 
+                            minHeight: 50, 
+                            fontSize: 24, 
                             borderRadius: 8,
                             background: 'linear-gradient(135deg, #5ba300 0%, #489000 100%)',
                             color: 'white',
@@ -1828,11 +1853,7 @@ function InterviewGuide() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontWeight: 'bold',
-                            ':hover': {
-                                transform: 'scale(1.1)',
-                                boxShadow: '0 6px 20px rgba(91, 163, 0, 0.4)'
-                            }
+                            fontWeight: 'bold'
                         }}
                         onMouseEnter={(e) => {
                             e.target.style.transform = 'scale(1.1)';
@@ -1845,18 +1866,19 @@ function InterviewGuide() {
                     >
                         ‹
                     </button>
-                    <div style={{ flex: 1, textAlign: 'center', maxWidth: 600 }}>
+                    <div style={{ flex: 1, textAlign: 'center', maxWidth: 500, minWidth: 280 }}>
                         <div style={{ 
                             background: '#f7f8fa', 
                             borderRadius: 16, 
-                            padding: 40, 
-                            minHeight: 300,
+                            padding: 20, 
+                            minHeight: 200,
                             display: 'flex',
+                            flexDirection: 'column',
                             alignItems: 'center',
-                            gap: 32,
+                            gap: 15,
                             boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
                         }}>
-                            <div style={{ flex: '0 0 150px' }}>
+                            <div style={{ flex: '0 0 120px' }}>
                                 <img 
                                     src={books[currentBookIndex].cover} 
                                     alt={`${books[currentBookIndex].title} cover`}
@@ -1871,20 +1893,20 @@ function InterviewGuide() {
                                     }}
                                 />
                             </div>
-                            <div style={{ flex: 1, textAlign: 'left' }}>
-                                <h3 style={{ color: '#181A20', marginBottom: 12, fontSize: '1.4rem' }}>{books[currentBookIndex].title}</h3>
-                                <p style={{ color: '#5ba300', fontStyle: 'italic', marginBottom: 20, fontSize: '1.1rem' }}>by {books[currentBookIndex].authors}</p>
-                                <p style={{ color: '#444', lineHeight: '1.6', fontSize: '1rem' }}>{books[currentBookIndex].description}</p>
+                            <div style={{ flex: 1, textAlign: 'center' }}>
+                                <h3 style={{ color: '#181A20', marginBottom: 8, fontSize: '1.1rem' }}>{books[currentBookIndex].title}</h3>
+                                <p style={{ color: '#5ba300', fontStyle: 'italic', marginBottom: 12, fontSize: '0.9rem' }}>by {books[currentBookIndex].authors}</p>
+                                <p style={{ color: '#444', lineHeight: '1.5', fontSize: '0.85rem' }}>{books[currentBookIndex].description}</p>
                             </div>
                         </div>
-                        <div style={{ marginTop: 20, color: '#888', fontSize: 16, fontWeight: 500 }}>{currentBookIndex + 1} of {books.length}</div>
+                        <div style={{ marginTop: 15, color: '#888', fontSize: 14, fontWeight: 500 }}>{currentBookIndex + 1} of {books.length}</div>
                     </div>
                     <button 
                         onClick={nextBook} 
                         style={{ 
-                            minWidth: 64, 
-                            minHeight: 64, 
-                            fontSize: 28, 
+                            minWidth: 50, 
+                            minHeight: 50, 
+                            fontSize: 24, 
                             borderRadius: 8,
                             background: 'linear-gradient(135deg, #5ba300 0%, #489000 100%)',
                             color: 'white',
@@ -1895,11 +1917,7 @@ function InterviewGuide() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            fontWeight: 'bold',
-                            ':hover': {
-                                transform: 'scale(1.1)',
-                                boxShadow: '0 6px 20px rgba(91, 163, 0, 0.4)'
-                            }
+                            fontWeight: 'bold'
                         }}
                         onMouseEnter={(e) => {
                             e.target.style.transform = 'scale(1.1)';
@@ -1919,7 +1937,7 @@ function InterviewGuide() {
             <section className="card" style={{ background: '#f7f8fa', textAlign: 'center' }}>
                 <blockquote style={{
                     margin: 0,
-                    fontSize: '1.3rem',
+                    fontSize: '1.1rem',
                     fontWeight: 700,
                     color: '#181A20',
                     letterSpacing: '-0.5px',
@@ -1941,7 +1959,7 @@ function App() {
     }, []);
 
     return (
-        <div>
+        <div style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
             {/* Navigation Bar */}
             <nav style={{
                 width: '100%',
@@ -1951,11 +1969,13 @@ function App() {
                 marginBottom: 32,
                 display: 'flex',
                 justifyContent: 'center',
+                alignItems: 'center',
                 gap: 32,
                 position: 'sticky',
                 top: 0,
                 zIndex: 100
             }}>
+                <img src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 120, width: 'auto', height: 'auto' }} />
                 <a
                     href="#home"
                     style={{
@@ -1995,18 +2015,15 @@ function App() {
                 <>
                     {/* TechRadar Section ONLY */}
                     <section className="card">
-                        <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '0 auto' }}>
-                            <div className="App App-flex-header" style={{ display: 'flex', alignItems: 'flex-start', gap: 32 }}>
-                                <img id="logo" src="logo_m.png" alt="solidgate logo" style={{ maxWidth: 300, width: '100%', height: 'auto' }} />
-                                <div id="radar-description">
-                                    <p><div id="hold" style={{ display: 'inline-block', background: '#e09b96', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
-                                    <p><div id="assess" style={{ display: 'inline-block', background: '#c7ba00', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>
-                                    <p><div id="trial" style={{ display: 'inline-block', background: '#009eb0', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Trial</div> — technologies and tools that have already passed the testing phase and are preparing to work in production (or are even already working there).</p>
-                                    <p><div id="adopt" style={{ display: 'inline-block', background: '#5ba300', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Adopt</div> — technologies and tools that are implemented and actively used by teams. Technologies in which Solidgate has expertise.</p>
-                                </div>
+                        <div style={{ width: '100%', overflowX: 'auto', margin: '0 auto', padding: '0 40px' }}>
+                            <div id="radar-description" style={{ marginBottom: 20 }}>
+                                <p><div id="hold" style={{ display: 'inline-block', background: '#e09b96', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Hold</div> — in this category, we have expertise, but the mentioned tools are used only to support existing systems — new projects are not launched on them.</p>
+                                <p><div id="assess" style={{ display: 'inline-block', background: '#c7ba00', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Assess</div> — trial technologies and tools that are currently being evaluated. They are only used for test projects and are not used for real tasks.</p>
+                                <p><div id="trial" style={{ display: 'inline-block', background: '#009eb0', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Trial</div> — technologies and tools that have already passed the testing phase and are preparing to work in production (or are even already working there).</p>
+                                <p><div id="adopt" style={{ display: 'inline-block', background: '#5ba300', color: '#fff', padding: '2px 8px', borderRadius: 4, fontWeight: 600, marginRight: 8 }}>Adopt</div> — technologies and tools that are implemented and actively used by teams. Technologies in which Solidgate has expertise.</p>
                             </div>
                         </div>
-                        <div style={{ width: '100%', minWidth: 350, overflowX: 'auto', margin: '32px auto' }}>
+                        <div style={{ width: '100%', overflowX: 'auto', margin: '32px auto', padding: '0 40px' }}>
                             <TechRadarTabs />
                         </div>
                     </section>
