@@ -1700,21 +1700,28 @@ function InterviewGuide() {
             <section className="card">
                 <h2 className="section-title" style={{ fontSize: '1.3rem' }}>Tech Interview</h2>
                 <div style={{ marginBottom: '25px' }}>
+                    <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Preparation</h3>
+                    <p style={{ color: '#444', fontSize: '0.95rem' }}>
+                        To get prepared for the interview go trough our website: <a href="https://solidgate.com/">Solidgate.com 💚</a> and read about our product. You can also check the API documentation to get more information about the products we have. 
+                    </p>
+                </div>
+                <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Introduction</h3>
                     <p style={{ color: '#444', fontSize: '0.95rem' }}>
-                        Our technical interview process is designed to assess both your technical skills and cultural fit. We believe in creating a collaborative environment where candidates can showcase their best work.
+                        Our technical interview process is designed to assess both your technical skills and cultural fit. We believe that ambitious engineers are the ones who will help us build the future of payments. We will ask you about your previous achievements and ambitions, your learning track and progress, and also will have a comprehensive technical interview that is focused not on theoretical questions but how you apply your knowledge in to solve certain engineering problems.
+                        We also believe that programming language is just a tool, so it will not be a main focus of the interview. Engineers solve problems, not just write code. Continuous learning and improvement is a key to success.
                     </p>
                 </div>
                 <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Soft Skills Assessment</h3>
                     <p style={{ color: '#444', fontSize: '0.95rem' }}>
-                        We evaluate communication skills, problem-solving approach, teamwork, and how you handle challenges. Be prepared to discuss your previous projects, challenges you've faced, and how you've grown as a developer.
+                        We evaluate communication skills, problem-solving approach, teamwork, and how you handle challenges. Be prepared to discuss your previous projects, challenges you've faced, and how you've grown as an engineer.
                     </p>
                 </div>
                 <div style={{ marginBottom: '25px' }}>
                     <h3 style={{ color: '#5ba300', fontWeight: 600, fontSize: '1.1rem' }}>Hard Skills Assessment</h3>
                     <p style={{ color: '#444', fontSize: '0.95rem' }}>
-                        Technical evaluation includes coding exercises, system design discussions, and knowledge of relevant technologies. We focus on practical problem-solving rather than memorization.
+                        Technical evaluation includes system design discussions, and knowledge of relevant technologies, your engineering culture and sometimes Databases. We focus on practical problem-solving rather than memorization. 
                     </p>
                 </div>
                 <div style={{ marginBottom: '25px' }}>
@@ -1742,8 +1749,7 @@ function InterviewGuide() {
                             "Strong understanding of Go concurrency patterns (goroutines, channels)",
                             "Experience with Go modules and dependency management",
                             "Knowledge of Go testing frameworks and best practices",
-                            "Understanding of Go performance optimization",
-                            "Experience with popular Go frameworks (Gin, Echo, Fiber)"
+                            "Understanding of Go performance optimization"
                         ]}
                         questions={[
                             "What is Go and why was it created? Explain its design philosophy and how it addresses common programming challenges.",
@@ -1758,8 +1764,7 @@ function InterviewGuide() {
                             "Proficiency in Kotlin syntax and language features",
                             "Experience with Spring Boot and Kotlin integration",
                             "Understanding of Kotlin coroutines and async programming",
-                            "Knowledge of Kotlin testing frameworks (JUnit, MockK)",
-                            "Experience with Kotlin DSL and build tools"
+                            "Knowledge of Kotlin testing frameworks "
                         ]}
                         questions={[
                             "What is the significance of data classes in Kotlin? How do they improve code quality and reduce boilerplate compared to Java?",
@@ -1772,10 +1777,9 @@ function InterviewGuide() {
                         logo="/covers/nodejs-logo.svg"
                         requirements={[
                             "Strong JavaScript/TypeScript fundamentals",
-                            "Experience with Express.js or Fastify frameworks",
+                            "Experience with Fastify framework",
                             "Understanding of Node.js event loop and async patterns",
-                            "Knowledge of npm/yarn package management",
-                            "Experience with Node.js testing (Jest, Mocha)"
+                            "Knowledge of npm/pnpm package management"
                         ]}
                         questions={[
                             "What tasks is Node.js good for? Which projects would you NOT use it for? Explain the trade-offs and use cases.",
@@ -1788,10 +1792,9 @@ function InterviewGuide() {
                         logo="/covers/python-logo.svg"
                         requirements={[
                             "Strong Python fundamentals and best practices",
-                            "Experience with web frameworks (Django, Flask, FastAPI)",
+                            "Experience with simple web frameworks (Flask, FastAPI)",
                             "Understanding of Python async programming (asyncio)",
-                            "Knowledge of Python testing (pytest, unittest)",
-                            "Experience with data processing libraries (pandas, numpy)"
+                            "Knowledge of Python testing (pytest, unittest)"
                         ]}
                         questions={[
                             "How do you implement graceful shutdown in Python? Discuss signal handling, cleanup procedures, and best practices for production systems.",
