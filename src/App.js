@@ -1790,7 +1790,7 @@ function EngineeringLevelsTree() {
             ]
         },
         {
-            name: "Mid-Level Engineer 💪",
+            name: "Middle Engineer 💪",
             description: "Experienced engineer who can work independently on most tasks",
             characteristics: [
                 "Proficient in core technologies",
