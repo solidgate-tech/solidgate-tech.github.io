@@ -1770,6 +1770,262 @@ function CompetencyMatrix() {
   );
 }
 
+function EngineeringLevelsTree() {
+    const levels = [
+        {
+            name: "Junior Engineer 🤓",
+            description: "Entry-level engineer with basic programming skills and learning mindset",
+            characteristics: [
+                "Basic understanding of core technologies",
+                "Needs guidance for complex problems",
+                "Works on small, well-defined tasks",
+                "Learns to collaborate with team members",
+                "Receives mentorship",
+                "Communicates effectively with the team",
+                "Follows guidance on decisions",
+                "Actively learning and developing skills",
+                "No leadership responsibilities"
+            ]
+        },
+        {
+            name: "Mid-Level Engineer 💪",
+            description: "Experienced engineer who can work independently on most tasks",
+            characteristics: [
+                "Proficient in core technologies",
+                "Can solve most problems independently",
+                "Works on larger, more complex tasks",
+                "Collaborates effectively within a team",
+                "Provides mentorship to more junior engineers",
+                "Communicates effectively with stakeholders",
+                "Makes informed decisions with some autonomy",
+                "Continuously improving and expanding skills",
+                "May lead small projects or teams"
+            ]
+        },
+        {
+            name: "Senior Engineer ⭐",
+            description: "Expert engineer who can handle complex technical challenges",
+            characteristics: [
+                "Expert in core technologies and tools (only proficient answers)",
+                "Solves complex problems using appropriate solutions",
+                "Handles full project lifecycle from start to finish",
+                "Actively mentors others and leads by example",
+                "Communicates effectively at all levels, including leadership",
+                "Drives key technical decisions and provides strategic direction",
+                "Constantly seeks out new knowledge and mentors others",
+                "Leads teams, projects, or departments; influences company direction"
+            ]
+        }
+    ];
+
+    const seniorLevels = [
+        {
+            name: "Staff Engineer 🏆",
+            description: "Senior technical leader with broad organizational impact and deep technical expertise",
+            characteristics: [
+                "Expert in core technologies with deep architectural knowledge",
+                "Solves complex cross-team and cross-system problems independently",
+                "Shapes technical strategy and architecture across multiple teams",
+                "Handles full project lifecycle for complex, multi-team initiatives",
+                "Leads collaboration across departments and external stakeholders",
+                "Actively mentors senior engineers and technical leaders",
+                "Communicates effectively with C-level executives and board members",
+                "Drives strategic technical decisions that impact company direction",
+                "Constantly seeks out new knowledge and sets technical standards",
+                "Leads multiple teams or departments; shapes company technical vision"
+            ]
+        },
+        {
+            name: "Tech Lead 🎯",
+            description: "Technical leader with both technical excellence and team management responsibilities",
+            characteristics: [
+                "Expert in core technologies with strong architectural skills",
+                "Solves complex problems using innovative and appropriate solutions",
+                "Handles full project lifecycle with team coordination",
+                "Leads collaboration within team and across stakeholders",
+                "Actively mentors engineers and grows team capabilities",
+                "Communicates effectively with all levels including leadership",
+                "Drives key technical decisions and provides strategic direction",
+                "Balances technical excellence with business needs and deadlines",
+                "Manages team processes, technical delivery, and quality standards",
+                "Leads team projects and influences team technical direction"
+            ]
+        }
+    ];
+
+    return (
+        <div style={{
+            background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+            borderRadius: '16px',
+            padding: '30px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+            border: '1px solid #f1f5f9',
+            position: 'relative',
+            overflow: 'hidden'
+        }}>
+            {/* Background accent */}
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '4px',
+                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+            }} />
+            
+            <h3 style={{
+                margin: '0 0 30px 0',
+                fontSize: '28px',
+                fontWeight: '700',
+                color: '#0f172a',
+                textAlign: 'center',
+                letterSpacing: '-0.02em'
+            }}>
+                Engineering Career Levels
+            </h3>
+            
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                position: 'relative'
+            }}>
+
+                {levels.map((level, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            position: 'relative',
+                            zIndex: 2
+                        }}
+                    >
+                        <div style={{
+                            width: '60%',
+                            maxWidth: '400px',
+                            background: 'rgba(255, 255, 255, 0.95)',
+                            border: '2px solid #5ba300',
+                            borderRadius: '12px',
+                            padding: '20px',
+                            boxShadow: '0 4px 15px rgba(91, 163, 0, 0.15)',
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.02)';
+                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.25)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.15)';
+                        }}
+                        >
+                            <h4 style={{
+                                margin: '0 0 8px 0',
+                                fontSize: '18px',
+                                fontWeight: '700',
+                                color: '#5ba300',
+                                textAlign: 'center'
+                            }}>
+                                {level.name}
+                            </h4>
+                            <p style={{
+                                margin: '0 0 12px 0',
+                                fontSize: '14px',
+                                color: '#475569',
+                                textAlign: 'center',
+                                lineHeight: '1.4'
+                            }}>
+                                {level.description}
+                            </p>
+                            <ul style={{
+                                margin: '0',
+                                paddingLeft: '16px',
+                                fontSize: '13px',
+                                color: '#64748b',
+                                lineHeight: '1.4'
+                            }}>
+                                {level.characteristics.map((char, charIndex) => (
+                                    <li key={charIndex} style={{ marginBottom: '4px' }}>{char}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+
+                {/* Senior level roles (Staff and Tech Lead) side by side */}
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        position: 'relative',
+                        zIndex: 2
+                    }}
+                >
+                    {seniorLevels.map((level, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                width: '45%',
+                                background: 'rgba(255, 255, 255, 0.95)',
+                                border: `2px solid ${index === 0 ? '#5ba300' : '#4a7c59'}`,
+                                borderRadius: '12px',
+                                padding: '20px',
+                                boxShadow: `0 4px 15px rgba(${index === 0 ? '91, 163, 0' : '74, 124, 89'}, 0.15)`,
+                                transition: 'all 0.3s ease',
+                                cursor: 'pointer'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.02)';
+                                e.currentTarget.style.boxShadow = `0 6px 20px rgba(${index === 0 ? '91, 163, 0' : '74, 124, 89'}, 0.25)`;
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'scale(1)';
+                                e.currentTarget.style.boxShadow = `0 4px 15px rgba(${index === 0 ? '91, 163, 0' : '74, 124, 89'}, 0.15)`;
+                            }}
+                        >
+                            <h4 style={{
+                                margin: '0 0 8px 0',
+                                fontSize: '18px',
+                                fontWeight: '700',
+                                color: index === 0 ? '#5ba300' : '#4a7c59',
+                                textAlign: 'center'
+                            }}>
+                                {level.name}
+                            </h4>
+                            <p style={{
+                                margin: '0 0 12px 0',
+                                fontSize: '14px',
+                                color: '#475569',
+                                textAlign: 'center',
+                                lineHeight: '1.4'
+                            }}>
+                                {level.description}
+                            </p>
+                            <ul style={{
+                                margin: '0',
+                                paddingLeft: '16px',
+                                fontSize: '13px',
+                                color: '#64748b',
+                                lineHeight: '1.4'
+                            }}>
+                                {level.characteristics.map((char, charIndex) => (
+                                    <li key={charIndex} style={{ marginBottom: '4px' }}>{char}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            
+
+        </div>
+    );
+}
+
 function InterviewGuide() {
   const [currentBookIndex, setCurrentBookIndex] = useState(0);
 
@@ -1901,6 +2157,104 @@ function InterviewGuide() {
         </p>
       </section>
 
+      {/* Tech Interview Section */}
+      <section className="card">
+        <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
+          Tech Interview Plan
+        </h2>
+        <div style={{ marginBottom: "25px" }}>
+          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+            Preparation
+          </h3>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            To get prepared for the interview go trough our website:{" "}
+            <a href="https://solidgate.com/">Solidgate.com 💚</a> and read about
+            our product. You can also check the API documentation to get more
+            information about the products we have. Below we have a detailed
+            competency matrix that represents the expected competency levels for
+            our engineering roles. Also we have a detailed list of roles we have
+            in Backend engineering where we explain major responsibilities and
+            skills required for each role.
+          </p>
+        </div>
+        <div style={{ marginBottom: "25px" }}>
+          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+            1. 👋 Intro (5 min)
+          </h3>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            We'll kick things off with quick intros — who you are, who we are,
+            and what we're here to do. Before we dive in, you'll have a chance
+            to ask any questions upfront — about the role, the team, how we
+            work, or anything that helps you feel confident moving forward.
+          </p>
+        </div>
+        <div style={{ marginBottom: "25px" }}>
+          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+            2. 📂 Deep Dive into Experience (20 min)
+          </h3>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            We want to understand how you work, not just where you've worked.
+          </p>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            We'll ask about:
+          </p>
+          <ul style={{ color: "#444", fontSize: "0.95rem" }}>
+            <li>Key projects you've shipped</li>
+            <li>Technical decisions you've made (and why)</li>
+            <li>Real impact you've had on teams and products</li>
+          </ul>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            Be ready to go beyond your CV. We're interested in ownership and
+            real impact you've had on teams and products.
+          </p>
+        </div>
+        <div style={{ marginBottom: "25px" }}>
+          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+            3. 🧠 Technical Questions (60 min)
+          </h3>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            Now we go into your engineering skills. Expect questions covering the
+            topics outlined in the competence matrix section.
+          </p>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            This could be hands-on or conceptual. We're not just looking for the
+            right answer — we care about how you approach problems.
+          </p>
+        </div>
+        <div style={{ marginBottom: "25px" }}>
+          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+            4. 🏗️ Architecture Task (60 min)
+          </h3>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            If relevant for the role, we'll throw in a system design challenge.
+          </p>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            You might be asked to sketch out how you'd build something like:
+          </p>
+          <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: "20px" }}>
+            <li>A high-load payments service</li>
+            <li>A secure API for transaction processing</li>
+            <li>An internal tool for risk monitoring</li>
+          </ul>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            We want to see how you balance scalability, reliability, and speed —
+            and how you justify your tech choices.
+          </p>
+        </div>
+        <div style={{ marginBottom: "25px" }}>
+          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+            5. ✅ Wrap-Up & Next Steps (5 min)
+          </h3>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            We'll close with a short debrief and outline what's next.
+          </p>
+          <p style={{ color: "#444", fontSize: "0.95rem" }}>
+            You'll also have time to ask us anything — about the role, the team,
+            the culture, or how we build at Solidgate.
+          </p>
+        </div>
+      </section>
+
       {/* Competency Matrix Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
@@ -1914,84 +2268,17 @@ function InterviewGuide() {
         <CompetencyMatrix />
       </section>
 
-      {/* Tech Interview Section */}
+      {/* Engineering Levels Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
-          Tech Interview
+          Engineering Career Levels
         </h2>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            Preparation
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            To get prepared for the interview go trough our website:{" "}
-            <a href="https://solidgate.com/">Solidgate.com 💚</a> and read about
-            our product. You can also check the API documentation to get more
-            information about the products we have.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            Introduction
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Our technical interview process is designed to assess both your
-            technical skills and cultural fit. We believe that ambitious
-            engineers are the ones who will help us build the future of
-            payments. We will ask you about your previous achievements and
-            ambitions, your learning track and progress, and also will have a
-            comprehensive technical interview that is focused not on theoretical
-            questions but how you apply your knowledge in to solve certain
-            engineering problems. We also believe that programming language is
-            just a tool, so it will not be a main focus of the interview.
-            Engineers solve problems, not just write code. Continuous learning
-            and improvement is a key to success.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            Soft Skills Assessment
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            We evaluate communication skills, problem-solving approach,
-            teamwork, and how you handle challenges. Be prepared to discuss your
-            previous projects, challenges you've faced, and how you've grown as
-            an engineer.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            Hard Skills Assessment
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Technical evaluation includes system design discussions, and
-            knowledge of relevant technologies, your engineering culture and
-            sometimes Databases. We focus on practical problem-solving rather
-            than memorization.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            Architecture Interview (Optional)
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            For senior positions, we may conduct an additional
-            architecture-focused interview. This includes discussions about
-            system design, scalability, and architectural decision-making
-            processes.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            Test Task Discussion
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            After completing the test task, we'll have a detailed discussion
-            about your solution. Be prepared to explain your design decisions,
-            discuss potential improvements, and identify areas that could be
-            enhanced or were missing from your implementation.
-          </p>
-        </div>
+        <p style={{ color: "#444", marginBottom: 20, fontSize: "0.95rem" }}>
+          Understanding our engineering career progression helps align
+          expectations and growth opportunities. Each level represents different
+          responsibilities, technical depth, and organizational impact.
+        </p>
+        <EngineeringLevelsTree />
       </section>
 
       {/* Language-Specific Requirements Section */}
