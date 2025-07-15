@@ -1,5 +1,21 @@
 import { useState, useEffect } from "react";
 
+// Add CSS animations for consistent expandable components
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+document.head.appendChild(style);
+
 const DEFAULT_RADAR_CONFIG = {
   svg_id: "radar",
   width: 1350,
@@ -938,24 +954,40 @@ function LanguageBlock({ language, logo, requirements, questions }) {
     <div
       style={{
         background: "#fff",
-        borderRadius: 8,
-        padding: 16,
-        border: "1px solid #e5e7eb",
-        marginBottom: 8,
+        borderRadius: 12,
+        padding: 20,
+        border: "2px solid #e5e7eb",
+        marginBottom: 12,
         transition: 'all 0.3s ease',
         cursor: 'pointer',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+        boxShadow: 'none',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       onClick={() => setIsExpanded(!isExpanded)}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'scale(1.01)';
-        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        e.currentTarget.style.transform = 'scale(1.02)';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.borderColor = '#5ba300';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
-        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.borderColor = '#e5e7eb';
       }}
     >
+      {/* Background accent */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+        }}
+      />
+      
       <div
         style={{
           display: "flex",
@@ -963,20 +995,21 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           justifyContent: "space-between",
           cursor: "pointer",
           userSelect: "none",
+          marginTop: "4px",
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
             src={logo}
             alt={`${language} logo`}
-            style={{ width: 24, height: 24, marginRight: 12 }}
+            style={{ width: 28, height: 28, marginRight: 16 }}
           />
           <h4
             style={{
-              color: "#181A20",
-              fontSize: "1.1rem",
+              color: "#000000",
+              fontSize: "1.2rem",
               margin: 0,
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             {language}
@@ -984,10 +1017,11 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         </div>
         <div
           style={{
-            fontSize: "1.2rem",
-            color: "#64748b",
-            transition: "transform 0.2s ease",
+            fontSize: "1.3rem",
+            color: "#5ba300",
+            transition: "transform 0.3s ease",
             transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            fontWeight: "bold",
           }}
         >
           ▼
@@ -997,18 +1031,19 @@ function LanguageBlock({ language, logo, requirements, questions }) {
       {isExpanded && (
         <div
           style={{
-            marginTop: 12,
-            paddingTop: 12,
-            borderTop: "1px solid #f1f5f9",
+            marginTop: 16,
+            paddingTop: 16,
+            borderTop: "2px solid #f1f5f9",
+            animation: "slideDown 0.3s ease-out",
           }}
         >
-          <div style={{ marginBottom: 16 }}>
+          <div style={{ marginBottom: 20 }}>
             <h5
               style={{
-                color: "#181A20",
-                marginBottom: 8,
-                fontSize: "0.95rem",
-                fontWeight: 600,
+                color: "#0f172a",
+                marginBottom: 12,
+                fontSize: "1rem",
+                fontWeight: 700,
               }}
             >
               Requirements:
@@ -1016,14 +1051,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
             <ul
               style={{
                 color: "#475569",
-                lineHeight: "1.5",
+                lineHeight: "1.6",
                 margin: 0,
-                paddingLeft: 16,
-                fontSize: "0.9rem",
+                paddingLeft: 20,
+                fontSize: "0.95rem",
               }}
             >
               {requirements.map((req, index) => (
-                <li key={index} style={{ marginBottom: 4 }}>
+                <li key={index} style={{ marginBottom: 8 }}>
                   {req}
                 </li>
               ))}
@@ -1031,18 +1066,18 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           </div>
           <div
             style={{
-              padding: 12,
-              background: "#f8fafc",
-              borderRadius: 6,
-              border: "1px solid #e2e8f0",
+              padding: 16,
+              background: "rgba(91, 163, 0, 0.04)",
+              borderRadius: 8,
+              border: "1px solid rgba(91, 163, 0, 0.1)",
             }}
           >
             <h5
               style={{
                 color: "#5ba300",
-                marginBottom: 8,
-                fontSize: "0.95rem",
-                fontWeight: 600,
+                marginBottom: 12,
+                fontSize: "1rem",
+                fontWeight: 700,
               }}
             >
               Top Interview Questions:
@@ -1050,14 +1085,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
             <ol
               style={{
                 color: "#475569",
-                lineHeight: "1.5",
+                lineHeight: "1.6",
                 margin: 0,
-                paddingLeft: 16,
-                fontSize: "0.9rem",
+                paddingLeft: 20,
+                fontSize: "0.95rem",
               }}
             >
               {questions.map((question, index) => (
-                <li key={index} style={{ marginBottom: 6 }}>
+                <li key={index} style={{ marginBottom: 10 }}>
                   {question}
                 </li>
               ))}
@@ -1099,12 +1134,12 @@ function TechRadar({ config }) {
 
 function CompetencyMatrix() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [expandedCategory, setExpandedCategory] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -1212,6 +1247,10 @@ function CompetencyMatrix() {
     gridLines.push(gridPoints);
   }
 
+  // Helper for consistent hover/expand logic
+  const handleCategoryHover = (index) => setExpandedCategory(index);
+  const handleCategoryLeave = () => setExpandedCategory(null);
+
   return (
     <div
       style={{
@@ -1236,18 +1275,6 @@ function CompetencyMatrix() {
           maxWidth: "600px",
         }}
       >
-        {/* Background accent */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "4px",
-            background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
-          }}
-        />
-
         <h3
           style={{
             margin: isMobile ? "0 0 20px 0" : "0 0 30px 0",
@@ -1260,7 +1287,6 @@ function CompetencyMatrix() {
         >
           Competency Matrix
         </h3>
-
         <div
           style={{
             width: "100%",
@@ -1341,52 +1367,8 @@ function CompetencyMatrix() {
                     stroke="#e2e8f0"
                     strokeWidth="1"
                     style={{ transition: "all 0.15s ease" }}
-                    onMouseEnter={(e) => {
-                      e.target.style.fill = "rgba(91, 163, 0, 0.08)";
-                      e.target.style.stroke = "#5ba300";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(91, 163, 0, 0.04)";
-                        categoryDetails.style.borderColor = "#5ba300";
-                        categoryDetails.style.padding = "16px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "100px";
-                          description.style.opacity = "1";
-                          description.style.marginTop = "8px";
-                        }
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.fill = "rgba(255, 255, 255, 0.95)";
-                      e.target.style.stroke = "#e2e8f0";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(255, 255, 255, 0.9)";
-                        categoryDetails.style.borderColor = "#e2e8f0";
-                        categoryDetails.style.padding = "12px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "0";
-                          description.style.opacity = "0";
-                          description.style.marginTop = "0";
-                        }
-                      }
-                    }}
+                    onMouseEnter={() => handleCategoryHover(index)}
+                    onMouseLeave={handleCategoryLeave}
                   />
                   <text
                     x={labelX}
@@ -1400,50 +1382,8 @@ function CompetencyMatrix() {
                       fontFamily: "Inter, sans-serif",
                       transition: "all 0.15s ease",
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.fill = "#5ba300";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(91, 163, 0, 0.04)";
-                        categoryDetails.style.borderColor = "#5ba300";
-                        categoryDetails.style.padding = "16px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "100px";
-                          description.style.opacity = "1";
-                          description.style.marginTop = "8px";
-                        }
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.fill = "#334155";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(255, 255, 255, 0.9)";
-                        categoryDetails.style.borderColor = "#e2e8f0";
-                        categoryDetails.style.padding = "12px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "0";
-                          description.style.opacity = "0";
-                          description.style.marginTop = "0";
-                        }
-                      }
-                    }}
+                    onMouseEnter={() => handleCategoryHover(index)}
+                    onMouseLeave={handleCategoryLeave}
                   >
                     {categories[index].name}
                   </text>
@@ -1632,18 +1572,6 @@ function CompetencyMatrix() {
           overflow: "hidden",
         }}
       >
-        {/* Background accent */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "4px",
-            background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
-          }}
-        />
-
         <h3
           style={{
             margin: isMobile ? "0 0 20px 0" : "0 0 25px 0",
@@ -1656,7 +1584,6 @@ function CompetencyMatrix() {
         >
           Category Details
         </h3>
-
         <div
           style={{
             display: "flex",
@@ -1664,134 +1591,126 @@ function CompetencyMatrix() {
             gap: isMobile ? "12px" : "14px",
           }}
         >
-          {categories.map((category, index) => (
-            <div
-              key={`category-${index}`}
-              id={`category-${index}`}
-              style={{
-                background: "rgba(255, 255, 255, 0.9)",
-                border: "1px solid #e2e8f0",
-                borderRadius: "12px",
-                padding: isMobile ? "16px" : "12px",
-                transition: "all 0.15s ease",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(91, 163, 0, 0.04)";
-                e.currentTarget.style.borderColor = "#5ba300";
-                e.currentTarget.style.padding = "16px";
-
-                const description = document.getElementById(
-                  `description-${index}`
-                );
-                if (description) {
-                  description.style.maxHeight = "100px";
-                  description.style.opacity = "1";
-                  description.style.marginTop = "8px";
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.9)";
-                e.currentTarget.style.borderColor = "#e2e8f0";
-                e.currentTarget.style.padding = isMobile ? "16px" : "12px";
-
-                const description = document.getElementById(
-                  `description-${index}`
-                );
-                if (description) {
-                  description.style.maxHeight = "0";
-                  description.style.opacity = "0";
-                  description.style.marginTop = "0";
-                }
-              }}
-            >
+          {categories.map((category, index) => {
+            const isExpanded = expandedCategory === index;
+            return (
               <div
+                key={`category-${index}`}
+                id={`category-${index}`}
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: isMobile ? "8px" : "0",
+                  background: "rgba(255, 255, 255, 0.95)",
+                  border: isExpanded ? "2px solid #5ba300" : "2px solid #e2e8f0",
+                  borderRadius: "12px",
+                  padding: isMobile ? "20px" : "20px",
+                  transition: "all 0.3s ease",
+                  cursor: "pointer",
+                  position: "relative",
+                  overflow: "visible",
+                  boxShadow: "none",
+                  transform: isExpanded ? "scale(1.02)" : "scale(1)",
                 }}
+                onMouseEnter={() => handleCategoryHover(index)}
+                onMouseLeave={handleCategoryLeave}
               >
-                <h4
+                {/* Background accent for each expandable */}
+                <div
                   style={{
-                    margin: "0",
-                    fontSize: isMobile ? "14px" : "15px",
-                    fontWeight: "600",
-                    color: "#0f172a",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: "4px",
+                    background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px",
                   }}
-                >
-                  {category.name}
-                </h4>
+                />
                 <div
                   style={{
                     display: "flex",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    gap: "4px",
+                    marginTop: "4px",
                   }}
                 >
-                  <span
+                  <h4
                     style={{
-                      fontSize: isMobile ? "18px" : "20px",
+                      margin: "0",
+                      fontSize: isMobile ? "16px" : "18px",
                       fontWeight: "700",
-                      color: "#5ba300",
+                      color: "#000000",
                     }}
                   >
-                    {category.score}
-                  </span>
-                  <span
+                    {category.name}
+                  </h4>
+                  <div
                     style={{
-                      fontSize: isMobile ? "12px" : "13px",
-                      color: "#64748b",
-                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
                     }}
                   >
-                    /5
-                  </span>
+                    <span
+                      style={{
+                        fontSize: isMobile ? "20px" : "22px",
+                        fontWeight: "700",
+                        color: "#5ba300",
+                      }}
+                    >
+                      {category.score}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: isMobile ? "13px" : "14px",
+                        color: "#64748b",
+                        fontWeight: "500",
+                      }}
+                    >
+                      /5
+                    </span>
+                  </div>
+                </div>
+                <div
+                  id={`description-${index}`}
+                  style={{
+                    maxHeight: isExpanded ? '1000px' : '0',
+                    opacity: isExpanded ? 1 : 0,
+                    marginTop: isExpanded ? '12px' : '0',
+                    transition: 'all 0.3s ease',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <p
+                    style={{
+                      margin: "0",
+                      fontSize: isMobile ? "13px" : "14px",
+                      lineHeight: "1.6",
+                      color: "#475569",
+                    }}
+                  >
+                    {category.description}
+                  </p>
                 </div>
               </div>
-
-              <div
-                id={`description-${index}`}
-                style={{
-                  maxHeight: "0",
-                  opacity: "0",
-                  marginTop: "0",
-                  transition: "all 0.15s ease",
-                  overflow: "hidden",
-                }}
-              >
-                <p
-                  style={{
-                    margin: "0",
-                    fontSize: isMobile ? "12px" : "13px",
-                    lineHeight: "1.5",
-                    color: "#475569",
-                  }}
-                >
-                  {category.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-
         <div
           style={{
             marginTop: "25px",
-            padding: "14px",
-            background: "rgba(255, 255, 255, 0.7)",
-            borderRadius: "10px",
-            border: "1px solid #e2e8f0",
+            padding: "16px",
+            background: "rgba(91, 163, 0, 0.04)",
+            borderRadius: "12px",
+            border: "1px solid rgba(91, 163, 0, 0.1)",
           }}
         >
           <p
             style={{
               margin: "0",
-              fontSize: "12px",
-              color: "#64748b",
+              fontSize: "13px",
+              color: "#5ba300",
               textAlign: "center",
-              fontWeight: "500",
+              fontWeight: "600",
             }}
           >
             Hover over hexagon elements or category cards to expand details
@@ -1947,35 +1866,49 @@ function EngineeringLevelsTree() {
                             style={{
                                 width: '100%',
                                 background: 'rgba(255, 255, 255, 0.95)',
-                                border: `2px solid ${borderColor}`,
+                                border: '2px solid #e2e8f0',
                                 borderRadius: '12px',
-                                boxShadow: '0 4px 15px rgba(91, 163, 0, 0.15)',
+                                boxShadow: 'none',
                                 transition: 'all 0.3s ease',
                                 cursor: 'pointer',
-                                overflow: 'hidden'
+                                overflow: 'hidden',
+                                position: 'relative'
                             }}
                             onClick={() => toggleLevel(index)}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.01)';
-                                e.currentTarget.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.25)';
+                                e.currentTarget.style.transform = 'scale(1.02)';
+                                e.currentTarget.style.boxShadow = 'none';
+                                e.currentTarget.style.borderColor = '#5ba300';
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.transform = 'scale(1)';
-                                e.currentTarget.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.15)';
+                                e.currentTarget.style.boxShadow = 'none';
+                                e.currentTarget.style.borderColor = '#e2e8f0';
                             }}
                         >
+                            {/* Background accent for each level */}
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                height: '4px',
+                                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                            }} />
+                            
                             <div style={{
                                 padding: '20px',
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                alignItems: 'center'
+                                alignItems: 'center',
+                                marginTop: '4px'
                             }}>
                                 <div style={{ flex: 1 }}>
                                     <h4 style={{
                                         margin: '0 0 8px 0',
                                         fontSize: '18px',
                                         fontWeight: '700',
-                                        color: borderColor
+                                        color: '#000000'
                                     }}>
                                         {level.name}
                                     </h4>
@@ -1983,17 +1916,18 @@ function EngineeringLevelsTree() {
                                         margin: '0',
                                         fontSize: '14px',
                                         color: '#475569',
-                                        lineHeight: '1.4'
+                                        lineHeight: '1.6'
                                     }}>
                                         {level.description}
                                     </p>
                                 </div>
                                 <div style={{
-                                    fontSize: '1.2rem',
+                                    fontSize: '1.3rem',
                                     color: borderColor,
-                                    transition: 'transform 0.2s ease',
+                                    transition: 'transform 0.3s ease',
                                     transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
-                                    marginLeft: '16px'
+                                    marginLeft: '16px',
+                                    fontWeight: 'bold'
                                 }}>
                                     ▼
                                 </div>
@@ -2002,18 +1936,19 @@ function EngineeringLevelsTree() {
                         {expandedLevels[index] && (
                             <div style={{
                                 padding: '0 20px 20px 20px',
-                                borderTop: '1px solid #f1f5f9',
-                                marginTop: '8px'
+                                borderTop: '2px solid #f1f5f9',
+                                marginTop: '8px',
+                                animation: 'slideDown 0.3s ease-out'
                             }}>
                                 <ul style={{
                                     margin: '0',
-                                    paddingLeft: '16px',
+                                    paddingLeft: '20px',
                                     fontSize: '13px',
                                     color: '#64748b',
-                                    lineHeight: '1.5'
+                                    lineHeight: '1.6'
                                 }}>
                                     {level.characteristics.map((char, charIndex) => (
-                                        <li key={charIndex} style={{ marginBottom: '6px' }}>{char}</li>
+                                        <li key={charIndex} style={{ marginBottom: '8px' }}>{char}</li>
                                     ))}
                                 </ul>
                             </div>
@@ -2097,7 +2032,7 @@ function InterviewGuide() {
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "10px",
+        padding: window.innerWidth < 768 ? "0" : "10px",
       }}
     >
       <h1
@@ -2162,16 +2097,16 @@ function InterviewGuide() {
           Tech Interview Plan
         </h2>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             Preparation
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
             Start by checking out our website — <a href="https://solidgate.com/">Solidgate.com 💚</a> - and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
-            Below, you’ll find a clear breakdown of the skills we look for across engineering roles.
+            Below, you'll find a clear breakdown of the skills we look for across engineering roles.
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             1. 👋 Intro (5 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2182,7 +2117,7 @@ function InterviewGuide() {
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             2. 📂 Deep Dive into Experience (20 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2202,7 +2137,7 @@ function InterviewGuide() {
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             3. 🧠 Technical Questions (60 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2220,13 +2155,13 @@ function InterviewGuide() {
           margin: '20px 0',
           fontSize: '1.2rem',
           fontWeight: '600',
-          color: '#5ba300'
+          color: '#000000'
         }}>
           OR
         </div>
         
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             3. 🏗️ Architecture Task (60 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2246,7 +2181,7 @@ function InterviewGuide() {
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             4. ✅ Wrap-Up & Next Steps (5 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2464,83 +2399,107 @@ function InterviewGuide() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: window.innerWidth < 768 ? 10 : 20,
-            flexWrap: "wrap",
-            padding: window.innerWidth < 768 ? "0 10px" : "0",
+            gap: window.innerWidth < 768 ? "8px" : "20px",
+            padding: window.innerWidth < 768 ? "0 8px" : "0",
+            maxWidth: "100%",
+            overflow: "hidden",
           }}
         >
           <button
             onClick={prevBook}
             style={{
-              minWidth: window.innerWidth < 768 ? 40 : 50,
-              minHeight: window.innerWidth < 768 ? 40 : 50,
-              fontSize: window.innerWidth < 768 ? 18 : 24,
-              borderRadius: 8,
+              width: window.innerWidth < 768 ? "36px" : "48px",
+              height: window.innerWidth < 768 ? "36px" : "48px",
+              fontSize: window.innerWidth < 768 ? "16px" : "20px",
+              borderRadius: "50%",
               background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
               color: "white",
               border: "none",
               cursor: "pointer",
-              boxShadow: "0 4px 15px rgba(91, 163, 0, 0.3)",
-              transition: "all 0.3s ease",
+              boxShadow: "0 2px 8px rgba(91, 163, 0, 0.3)",
+              transition: "all 0.2s ease",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontWeight: "bold",
               flexShrink: 0,
+              zIndex: 10,
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = "scale(1.1)";
-              e.target.style.boxShadow = "0 6px 20px rgba(91, 163, 0, 0.4)";
+              e.target.style.transform = "scale(1.05)";
+              e.target.style.boxShadow = "0 4px 12px rgba(91, 163, 0, 0.4)";
             }}
             onMouseLeave={(e) => {
               e.target.style.transform = "scale(1)";
-              e.target.style.boxShadow = "0 4px 15px rgba(91, 163, 0, 0.3)";
+              e.target.style.boxShadow = "0 2px 8px rgba(91, 163, 0, 0.3)";
             }}
           >
             ‹
           </button>
+          
           <div
             style={{
               flex: 1,
               textAlign: "center",
-              maxWidth: window.innerWidth < 768 ? "calc(100vw - 120px)" : 500,
-              minWidth: window.innerWidth < 768 ? 200 : 280,
+              maxWidth: window.innerWidth < 768 ? "calc(100vw - 100px)" : "600px",
+              minWidth: window.innerWidth < 768 ? "200px" : "400px",
+              padding: window.innerWidth < 768 ? "0 4px" : "0 20px",
             }}
           >
             <div
               style={{
                 background: "#f7f8fa",
-                borderRadius: 16,
-                padding: window.innerWidth < 768 ? 15 : 20,
-                minHeight: window.innerWidth < 768 ? 150 : 200,
+                borderRadius: "12px",
+                padding: window.innerWidth < 768 ? "16px" : "24px",
+                minHeight: window.innerWidth < 768 ? "160px" : "220px",
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: window.innerWidth < 768 ? "row" : "column",
                 alignItems: "center",
-                gap: window.innerWidth < 768 ? 10 : 15,
-                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                gap: window.innerWidth < 768 ? "12px" : "16px",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+                border: "1px solid #e5e7eb",
               }}
             >
-              <div style={{ flex: "0 0", width: window.innerWidth < 768 ? "80px" : "120px" }}>
+              <div style={{ 
+                flexShrink: 0, 
+                width: window.innerWidth < 768 ? "60px" : "100px",
+                height: window.innerWidth < 768 ? "80px" : "140px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}>
                 <img
                   src={books[currentBookIndex].cover}
                   alt={`${books[currentBookIndex].title} cover`}
                   style={{
                     width: "100%",
-                    height: "auto",
-                    borderRadius: 8,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "6px",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                   }}
                   onError={(e) => {
                     e.target.style.display = "none";
                   }}
                 />
               </div>
-              <div style={{ flex: 1, textAlign: "center" }}>
+              <div style={{ 
+                flex: 1, 
+                textAlign: window.innerWidth < 768 ? "left" : "center",
+                minWidth: 0
+              }}>
                 <h3
                   style={{
                     color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: window.innerWidth < 768 ? "1rem" : "1.1rem",
+                    marginBottom: "6px",
+                    fontSize: window.innerWidth < 768 ? "14px" : "18px",
+                    fontWeight: "600",
+                    lineHeight: "1.3",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
                   }}
                 >
                   {books[currentBookIndex].title}
@@ -2549,17 +2508,23 @@ function InterviewGuide() {
                   style={{
                     color: "#5ba300",
                     fontStyle: "italic",
-                    marginBottom: 12,
-                    fontSize: window.innerWidth < 768 ? "0.8rem" : "0.9rem",
+                    marginBottom: "8px",
+                    fontSize: window.innerWidth < 768 ? "11px" : "14px",
+                    fontWeight: "500",
                   }}
                 >
                   by {books[currentBookIndex].authors}
                 </p>
                 <p
                   style={{
-                    color: "#444",
-                    lineHeight: "1.5",
-                    fontSize: window.innerWidth < 768 ? "0.75rem" : "0.85rem",
+                    color: "#64748b",
+                    lineHeight: "1.4",
+                    fontSize: window.innerWidth < 768 ? "12px" : "14px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: window.innerWidth < 768 ? 3 : 4,
+                    WebkitBoxOrient: "vertical",
                   }}
                 >
                   {books[currentBookIndex].description}
@@ -2568,41 +2533,43 @@ function InterviewGuide() {
             </div>
             <div
               style={{
-                marginTop: 15,
-                color: "#888",
-                fontSize: window.innerWidth < 768 ? 12 : 14,
-                fontWeight: 500,
+                marginTop: "12px",
+                color: "#94a3b8",
+                fontSize: window.innerWidth < 768 ? "11px" : "13px",
+                fontWeight: "500",
               }}
             >
               {currentBookIndex + 1} of {books.length}
             </div>
           </div>
+          
           <button
             onClick={nextBook}
             style={{
-              minWidth: window.innerWidth < 768 ? 40 : 50,
-              minHeight: window.innerWidth < 768 ? 40 : 50,
-              fontSize: window.innerWidth < 768 ? 18 : 24,
-              borderRadius: 8,
+              width: window.innerWidth < 768 ? "36px" : "48px",
+              height: window.innerWidth < 768 ? "36px" : "48px",
+              fontSize: window.innerWidth < 768 ? "16px" : "20px",
+              borderRadius: "50%",
               background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
               color: "white",
               border: "none",
               cursor: "pointer",
-              boxShadow: "0 4px 15px rgba(91, 163, 0, 0.3)",
-              transition: "all 0.3s ease",
+              boxShadow: "0 2px 8px rgba(91, 163, 0, 0.3)",
+              transition: "all 0.2s ease",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontWeight: "bold",
               flexShrink: 0,
+              zIndex: 10,
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = "scale(1.1)";
-              e.target.style.boxShadow = "0 6px 20px rgba(91, 163, 0, 0.4)";
+              e.target.style.transform = "scale(1.05)";
+              e.target.style.boxShadow = "0 4px 12px rgba(91, 163, 0, 0.4)";
             }}
             onMouseLeave={(e) => {
               e.target.style.transform = "scale(1)";
-              e.target.style.boxShadow = "0 4px 15px rgba(91, 163, 0, 0.3)";
+              e.target.style.boxShadow = "0 2px 8px rgba(91, 163, 0, 0.3)";
             }}
           >
             ›
@@ -2642,8 +2609,8 @@ function TechRadarTabs() {
           flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          gap: "24px",
-          marginBottom: "32px",
+          gap: window.innerWidth < 768 ? "16px" : "24px",
+          marginBottom: window.innerWidth < 768 ? "20px" : "32px",
         }}
       >
         <button
@@ -2715,11 +2682,19 @@ function Footer() {
 
 export function App() {
   const [hash, setHash] = useState(window.location.hash || "#home");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onHashChange = () => setHash(window.location.hash || "#home");
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    
     window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -2744,10 +2719,10 @@ export function App() {
             style={{
               width: "100%",
               background: "#fff",
-              padding: "12px 32px",
+              padding: isMobile ? "8px 16px" : "12px 32px",
               display: "flex",
               alignItems: "center",
-              gap: "16px",
+              justifyContent: "space-between",
               maxWidth: "1280px",
               margin: "0 auto",
               boxSizing: "border-box",
@@ -2757,46 +2732,114 @@ export function App() {
               src="logo_m.png"
               alt="solidgate logo"
               style={{
-                maxWidth: 120,
+                maxWidth: isMobile ? 80 : 120,
                 width: "auto",
                 height: "auto",
-                marginRight: "auto",
               }}
             />
-            <a
-              href="#home"
-              style={{
-                color: hash === "#home" ? "#5ba300" : "#181A20",
-                fontWeight: 600,
-                textDecoration: "none",
-                fontSize: "1rem",
-                padding: "4px 12px",
-                borderRadius: 6,
-                background: hash === "#home" ? "#f7f8fa" : "transparent",
-                transition: "background 0.2s",
-              }}
-            >
-              Tech Radar
-            </a>
-            <a
-              href="#interview"
-              style={{
-                color: hash === "#interview" ? "#5ba300" : "#181A20",
-                fontWeight: 600,
-                textDecoration: "none",
-                fontSize: "1rem",
-                padding: "4px 12px",
-                borderRadius: 6,
-                background: hash === "#interview" ? "#f7f8fa" : "transparent",
-                transition: "background 0.2s",
-              }}
-            >
-              Interview Guide (Backend)
-            </a>
+            
+            {isMobile ? (
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                    padding: "4px",
+                    color: "#181A20",
+                  }}
+                >
+                  ☰
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: "flex", gap: "16px" }}>
+                <a
+                  href="#home"
+                  style={{
+                    color: hash === "#home" ? "#5ba300" : "#181A20",
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    padding: "8px 16px",
+                    borderRadius: 6,
+                    background: hash === "#home" ? "#f7f8fa" : "transparent",
+                    transition: "background 0.2s",
+                  }}
+                >
+                  Tech Radar
+                </a>
+                <a
+                  href="#interview"
+                  style={{
+                    color: hash === "#interview" ? "#5ba300" : "#181A20",
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    padding: "8px 16px",
+                    borderRadius: 6,
+                    background: hash === "#interview" ? "#f7f8fa" : "transparent",
+                    transition: "background 0.2s",
+                  }}
+                >
+                  Interview Guide
+                </a>
+              </div>
+            )}
           </nav>
+          
+          {/* Mobile Menu */}
+          {isMobile && mobileMenuOpen && (
+            <div
+              style={{
+                background: "#fff",
+                borderTop: "1px solid #e5e7eb",
+                padding: "16px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
+              }}
+            >
+              <a
+                href="#home"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: hash === "#home" ? "#5ba300" : "#181A20",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "12px 16px",
+                  borderRadius: 6,
+                  background: hash === "#home" ? "#f7f8fa" : "transparent",
+                  transition: "background 0.2s",
+                }}
+              >
+                Tech Radar
+              </a>
+              <a
+                href="#interview"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: hash === "#interview" ? "#5ba300" : "#181A20",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "12px 16px",
+                  borderRadius: 6,
+                  background: hash === "#interview" ? "#f7f8fa" : "transparent",
+                  transition: "background 0.2s",
+                }}
+              >
+                Interview Guide
+              </a>
+            </div>
+          )}
         </div>
 
-        {/* Page Content */}
+              {/* Page Content */}
+      <div style={{ padding: window.innerWidth < 768 ? "16px" : "32px" }}>
         {hash === "#interview" ? (
           <InterviewGuide />
         ) : (
@@ -2805,7 +2848,7 @@ export function App() {
             <section className="card" style={{ maxWidth: "" }}>
               <div
                 style={{
-                  padding: "0 40px",
+                  padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
                 }}
               >
                 <div id="radar-description" style={{ marginBottom: 20 }}>
@@ -2891,7 +2934,7 @@ export function App() {
                 style={{
                   margin: "0 auto",
                   boxSizing: "border-box",
-                  padding: "32px 24px",
+                  padding: window.innerWidth < 768 ? "16px 8px" : "32px 24px",
                 }}
               >
                 <TechRadarTabs />
@@ -2903,6 +2946,7 @@ export function App() {
       <div id="footer">
         <Footer />
       </div>
+    </div>
     </div>
   );
 }
