@@ -1923,7 +1923,7 @@ function EngineeringLevelsTree() {
                                 </div>
                                 <div style={{
                                     fontSize: '1.3rem',
-                                    color: borderColor,
+                                    color: '#5ba300',
                                     transition: 'transform 0.3s ease',
                                     transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
                                     marginLeft: '16px',
@@ -1961,70 +1961,6 @@ function EngineeringLevelsTree() {
 }
 
 function InterviewGuide() {
-  const [currentBookIndex, setCurrentBookIndex] = useState(0);
-
-  const books = [
-    {
-      title: "Software Engineering at Google",
-      authors: "Titus Winters, Tom Manshreck & Hyrum Wright",
-      description:
-        "Comprehensive guide to software engineering practices at Google scale",
-      cover: "/covers/software-engineering-at-google.jpg",
-    },
-    {
-      title: "Accelerate: The Science of Lean Software and DevOps",
-      authors: "Nicole Forsgren PhD, Jez Humble & Gene Kim",
-      description:
-        "Research-based insights into high-performing software teams",
-      cover: "/covers/accelerate-the-science-of-lean-software-and-devops.jpg",
-    },
-    {
-      title: "Designing Data-Intensive Applications",
-      authors: "Martin Kleppmann",
-      description: "Essential guide for building scalable data systems",
-      cover: "/covers/designing-data-intensive-applications.jpg",
-    },
-    {
-      title: "Software Architecture: The Hard Parts",
-      authors: "Neal Ford, Mark Richards, Pramod Sadalage & Zhamak Dehghani",
-      description: "Practical approaches to complex architectural decisions",
-      cover: "/covers/software-architecture-the-hard-parts.jpg",
-    },
-    {
-      title: "Thinking in Systems: A Primer",
-      authors: "Donella H. Meadows",
-      description: "Understanding complex systems and their behavior",
-      cover: "/covers/thinking-in-systems-a-primer.jpg",
-    },
-    {
-      title:
-        "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
-      authors: "Robert Martin",
-      description: "Principles for creating maintainable software architecture",
-      cover:
-        "/covers/clean-architecture-a-craftsman-guide-to-software-structure-and-design.jpg",
-    },
-    {
-      title: "The Phoenix Project",
-      authors: "Gene Kim, Kevin Behr & George Spafford",
-      description: "Novel about DevOps transformation and IT management",
-      cover: "/covers/the-phoenix-project.jpg",
-    },
-    {
-      title: "SRE by Google",
-      authors: "Google",
-      description: "Site Reliability Engineering practices and principles",
-      cover: "/covers/sre-by-google.jpg",
-    },
-  ];
-
-  const nextBook = () => {
-    setCurrentBookIndex((prev) => (prev + 1) % books.length);
-  };
-
-  const prevBook = () => {
-    setCurrentBookIndex((prev) => (prev - 1 + books.length) % books.length);
-  };
 
   return (
     <div
@@ -2390,192 +2326,7 @@ function InterviewGuide() {
       </section>
 
       {/* Books Section */}
-      <section className="card">
-        <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
-          Books We Love and Recommend 💚
-        </h2>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: window.innerWidth < 768 ? "8px" : "20px",
-            padding: window.innerWidth < 768 ? "0 8px" : "0",
-            maxWidth: "100%",
-            overflow: "hidden",
-          }}
-        >
-          <button
-            onClick={prevBook}
-            style={{
-              width: window.innerWidth < 768 ? "36px" : "48px",
-              height: window.innerWidth < 768 ? "36px" : "48px",
-              fontSize: window.innerWidth < 768 ? "16px" : "20px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-              boxShadow: "0 2px 8px rgba(91, 163, 0, 0.3)",
-              transition: "all 0.2s ease",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: "bold",
-              flexShrink: 0,
-              zIndex: 10,
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "scale(1.05)";
-              e.target.style.boxShadow = "0 4px 12px rgba(91, 163, 0, 0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "scale(1)";
-              e.target.style.boxShadow = "0 2px 8px rgba(91, 163, 0, 0.3)";
-            }}
-          >
-            ‹
-          </button>
-          
-          <div
-            style={{
-              flex: 1,
-              textAlign: "center",
-              maxWidth: window.innerWidth < 768 ? "calc(100vw - 100px)" : "600px",
-              minWidth: window.innerWidth < 768 ? "200px" : "400px",
-              padding: window.innerWidth < 768 ? "0 4px" : "0 20px",
-            }}
-          >
-            <div
-              style={{
-                background: "#f7f8fa",
-                borderRadius: "12px",
-                padding: window.innerWidth < 768 ? "16px" : "24px",
-                minHeight: window.innerWidth < 768 ? "160px" : "220px",
-                display: "flex",
-                flexDirection: window.innerWidth < 768 ? "row" : "column",
-                alignItems: "center",
-                gap: window.innerWidth < 768 ? "12px" : "16px",
-                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                border: "1px solid #e5e7eb",
-              }}
-            >
-              <div style={{ 
-                flexShrink: 0, 
-                width: window.innerWidth < 768 ? "60px" : "100px",
-                height: window.innerWidth < 768 ? "80px" : "140px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}>
-                <img
-                  src={books[currentBookIndex].cover}
-                  alt={`${books[currentBookIndex].title} cover`}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "6px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                  }}
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                />
-              </div>
-              <div style={{ 
-                flex: 1, 
-                textAlign: window.innerWidth < 768 ? "left" : "center",
-                minWidth: 0
-              }}>
-                <h3
-                  style={{
-                    color: "#181A20",
-                    marginBottom: "6px",
-                    fontSize: window.innerWidth < 768 ? "14px" : "18px",
-                    fontWeight: "600",
-                    lineHeight: "1.3",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                  }}
-                >
-                  {books[currentBookIndex].title}
-                </h3>
-                <p
-                  style={{
-                    color: "#5ba300",
-                    fontStyle: "italic",
-                    marginBottom: "8px",
-                    fontSize: window.innerWidth < 768 ? "11px" : "14px",
-                    fontWeight: "500",
-                  }}
-                >
-                  by {books[currentBookIndex].authors}
-                </p>
-                <p
-                  style={{
-                    color: "#64748b",
-                    lineHeight: "1.4",
-                    fontSize: window.innerWidth < 768 ? "12px" : "14px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: window.innerWidth < 768 ? 3 : 4,
-                    WebkitBoxOrient: "vertical",
-                  }}
-                >
-                  {books[currentBookIndex].description}
-                </p>
-              </div>
-            </div>
-            <div
-              style={{
-                marginTop: "12px",
-                color: "#94a3b8",
-                fontSize: window.innerWidth < 768 ? "11px" : "13px",
-                fontWeight: "500",
-              }}
-            >
-              {currentBookIndex + 1} of {books.length}
-            </div>
-          </div>
-          
-          <button
-            onClick={nextBook}
-            style={{
-              width: window.innerWidth < 768 ? "36px" : "48px",
-              height: window.innerWidth < 768 ? "36px" : "48px",
-              fontSize: window.innerWidth < 768 ? "16px" : "20px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-              boxShadow: "0 2px 8px rgba(91, 163, 0, 0.3)",
-              transition: "all 0.2s ease",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: "bold",
-              flexShrink: 0,
-              zIndex: 10,
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "scale(1.05)";
-              e.target.style.boxShadow = "0 4px 12px rgba(91, 163, 0, 0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "scale(1)";
-              e.target.style.boxShadow = "0 2px 8px rgba(91, 163, 0, 0.3)";
-            }}
-          >
-            ›
-          </button>
-        </div>
-      </section>
+      <BookList />
 
       {/* Quote Section */}
       <section
@@ -2596,6 +2347,199 @@ function InterviewGuide() {
         </blockquote>
       </section>
     </div>
+  );
+}
+
+function BookList() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const books = [
+    {
+      title: "Software Engineering at Google",
+      authors: "Titus Winters, Tom Manshreck & Hyrum Wright",
+      description:
+        "Comprehensive guide to software engineering practices at Google scale",
+      cover: "/covers/software-engineering-at-google.jpg",
+    },
+    {
+      title: "Accelerate: The Science of Lean Software and DevOps",
+      authors: "Nicole Forsgren PhD, Jez Humble & Gene Kim",
+      description:
+        "Research-based insights into high-performing software teams",
+      cover: "/covers/accelerate-the-science-of-lean-software-and-devops.jpg",
+    },
+    {
+      title: "Designing Data-Intensive Applications",
+      authors: "Martin Kleppmann",
+      description: "Essential guide for building scalable data systems",
+      cover: "/covers/designing-data-intensive-applications.jpg",
+    },
+    {
+      title: "Software Architecture: The Hard Parts",
+      authors: "Neal Ford, Mark Richards, Pramod Sadalage & Zhamak Dehghani",
+      description: "Practical approaches to complex architectural decisions",
+      cover: "/covers/software-architecture-the-hard-parts.jpg",
+    },
+    {
+      title: "Thinking in Systems: A Primer",
+      authors: "Donella H. Meadows",
+      description: "Understanding complex systems and their behavior",
+      cover: "/covers/thinking-in-systems-a-primer.jpg",
+    },
+    {
+      title:
+        "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
+      authors: "Robert Martin",
+      description: "Principles for creating maintainable software architecture",
+      cover:
+        "/covers/clean-architecture-a-craftsman-guide-to-software-structure-and-design.jpg",
+    },
+    {
+      title: "The Phoenix Project",
+      authors: "Gene Kim, Kevin Behr & George Spafford",
+      description: "Novel about DevOps transformation and IT management",
+      cover: "/covers/the-phoenix-project.jpg",
+    },
+    {
+      title: "SRE by Google",
+      authors: "Google",
+      description: "Site Reliability Engineering practices and principles",
+      cover: "/covers/sre-by-google.jpg",
+    },
+  ];
+
+  return (
+    <section className="card">
+      <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
+        Books We Love and Recommend 💚
+      </h2>
+      
+      {/* Book Grid */}
+      <div
+        style={{
+          display: isMobile ? "flex" : "grid",
+          flexDirection: isMobile ? "column" : "unset",
+          gridTemplateColumns: isMobile 
+            ? "unset" 
+            : "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "24px",
+          marginTop: "24px",
+        }}
+      >
+        {books.map((book, index) => (
+          <div
+            key={index}
+            style={{
+              background: "#fff",
+              borderRadius: "16px",
+              padding: isMobile ? "20px" : "24px",
+              border: "1px solid #e2e8f0",
+              transition: "all 0.3s ease",
+              position: "relative",
+              overflow: "hidden",
+              display: isMobile ? "flex" : "block",
+              alignItems: isMobile ? "center" : "unset",
+              gap: isMobile ? "20px" : "unset",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-4px)";
+              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.15)";
+              e.currentTarget.style.borderColor = "#5ba300";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)";
+              e.currentTarget.style.borderColor = "#e2e8f0";
+            }}
+          >
+            {/* Book Cover */}
+            <div
+              style={{
+                width: isMobile ? "100px" : "160px",
+                height: isMobile ? "140px" : "240px",
+                borderRadius: "12px",
+                overflow: "hidden",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src={book.cover}
+                alt={`${book.title} cover`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+            </div>
+            
+            {/* Book Info */}
+            <div style={{ 
+              textAlign: isMobile ? "left" : "center",
+              flex: 1,
+              minWidth: 0,
+            }}>
+              <h3
+                style={{
+                  color: "#181A20",
+                  marginBottom: "8px",
+                  fontSize: isMobile ? "16px" : "18px",
+                  fontWeight: "700",
+                  lineHeight: "1.3",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                {book.title}
+              </h3>
+              
+              <p
+                style={{
+                  color: "#5ba300",
+                  fontSize: isMobile ? "13px" : "14px",
+                  fontWeight: "500",
+                  fontStyle: "italic",
+                  marginBottom: "12px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                by {book.authors}
+              </p>
+              
+              <p
+                style={{
+                  color: "#64748b",
+                  fontSize: isMobile ? "13px" : "14px",
+                  lineHeight: "1.5",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: isMobile ? 4 : 3,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                {book.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
