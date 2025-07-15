@@ -1597,18 +1597,18 @@ function CompetencyMatrix() {
               <div
                 key={`category-${index}`}
                 id={`category-${index}`}
-                style={{
-                  background: "rgba(255, 255, 255, 0.95)",
-                  border: isExpanded ? "2px solid #5ba300" : "2px solid #e2e8f0",
-                  borderRadius: "12px",
-                  padding: isMobile ? "20px" : "20px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer",
-                  position: "relative",
-                  overflow: "visible",
-                  boxShadow: "none",
-                  transform: isExpanded ? "scale(1.02)" : "scale(1)",
-                }}
+                                  style={{
+                    background: "rgba(255, 255, 255, 0.95)",
+                    border: isExpanded ? "2px solid #5ba300" : "2px solid #e2e8f0",
+                    borderRadius: "12px",
+                    padding: isMobile ? "20px" : "20px",
+                    transition: "all 0.5s ease",
+                    cursor: "pointer",
+                    position: "relative",
+                    overflow: "visible",
+                    boxShadow: "none",
+                    transform: isExpanded ? "scale(1.02)" : "scale(1)",
+                  }}
                 onMouseEnter={() => handleCategoryHover(index)}
                 onMouseLeave={handleCategoryLeave}
               >
@@ -1676,7 +1676,7 @@ function CompetencyMatrix() {
                     maxHeight: isExpanded ? '1000px' : '0',
                     opacity: isExpanded ? 1 : 0,
                     marginTop: isExpanded ? '12px' : '0',
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.5s ease',
                     overflow: 'hidden',
                   }}
                 >
@@ -2784,7 +2784,7 @@ export function App() {
                     transition: "background 0.2s",
                   }}
                 >
-                  Interview Guide
+                  Interview Guide (Backend)
                 </a>
               </div>
             )}
@@ -2832,7 +2832,7 @@ export function App() {
                   transition: "background 0.2s",
                 }}
               >
-                Interview Guide
+                Interview Guide (Backend)
               </a>
             </div>
           )}
