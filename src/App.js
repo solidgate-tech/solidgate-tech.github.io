@@ -1080,13 +1080,13 @@ function CompetencyMatrix() {
       name: "Engineering culture",
       score: 4,
       description:
-        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software.",
+        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
     },
     {
       name: "Architecture skills",
       score: 3,
       description:
-        "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems.",
+        "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems, also knowledge of event-driven architecture.",
     },
     {
       name: "Programming language",
@@ -1098,7 +1098,7 @@ function CompetencyMatrix() {
       name: "Databases",
       score: 3,
       description:
-        "Knowledge of database design, query optimization, and data modeling. Includes understanding of SQL, NoSQL databases, and data access patterns.",
+        "Knowledge of database design, query optimization, and data modeling. Includes understanding of SQL, SQL optimization, database internals.",
     },
     {
       name: "DevOps",
@@ -1110,7 +1110,7 @@ function CompetencyMatrix() {
       name: "Testing",
       score: 5,
       description:
-        "Expertise in testing methodologies including unit testing, integration testing, and automated testing. Includes understanding of test-driven development and quality assurance practices.",
+        "Expertise in testing methodologies including unit testing, integration testing, and automated testing. Includes understanding of test-driven development and quality assurance practices, or using advanced techniques like fuzz testing or mutation testing.",
     },
   ];
 
@@ -1897,63 +1897,75 @@ function EngineeringLevelsTree() {
                 position: 'relative'
             }}>
 
-                {levels.map((level, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            width: '100%',
-                            background: 'rgba(255, 255, 255, 0.95)',
-                            border: '2px solid #5ba300',
-                            borderRadius: '12px',
-                            boxShadow: '0 4px 15px rgba(91, 163, 0, 0.15)',
-                            transition: 'all 0.3s ease',
-                            cursor: 'pointer',
-                            overflow: 'hidden'
-                        }}
-                        onClick={() => toggleLevel(index)}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.01)';
-                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.25)';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'scale(1)';
-                            e.currentTarget.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.15)';
-                        }}
-                    >
-                        <div style={{
-                            padding: '20px',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                        }}>
-                            <div style={{ flex: 1 }}>
-                                <h4 style={{
-                                    margin: '0 0 8px 0',
-                                    fontSize: '18px',
-                                    fontWeight: '700',
-                                    color: '#5ba300'
-                                }}>
-                                    {level.name}
-                                </h4>
-                                <p style={{
-                                    margin: '0',
-                                    fontSize: '14px',
-                                    color: '#475569',
-                                    lineHeight: '1.4'
-                                }}>
-                                    {level.description}
-                                </p>
-                            </div>
+                {levels.map((level, index) => {
+                    // Create gradient border colors from light green to dark green
+                    const borderColors = [
+                        '#5ba300', // Junior - lightest green
+                        '#4a7c59', // Mid-Level
+                        '#3d6b4a', // Senior
+                        '#2f5a3b', // Staff
+                        '#21492c'  // Tech Lead - darkest green
+                    ];
+                    
+                    const borderColor = borderColors[index];
+                    
+                    return (
+                        <div
+                            key={index}
+                            style={{
+                                width: '100%',
+                                background: 'rgba(255, 255, 255, 0.95)',
+                                border: `2px solid ${borderColor}`,
+                                borderRadius: '12px',
+                                boxShadow: '0 4px 15px rgba(91, 163, 0, 0.15)',
+                                transition: 'all 0.3s ease',
+                                cursor: 'pointer',
+                                overflow: 'hidden'
+                            }}
+                            onClick={() => toggleLevel(index)}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.01)';
+                                e.currentTarget.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.25)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'scale(1)';
+                                e.currentTarget.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.15)';
+                            }}
+                        >
                             <div style={{
-                                fontSize: '1.2rem',
-                                color: '#64748b',
-                                transition: 'transform 0.2s ease',
-                                transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
-                                marginLeft: '16px'
+                                padding: '20px',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
                             }}>
-                                ▼
+                                <div style={{ flex: 1 }}>
+                                    <h4 style={{
+                                        margin: '0 0 8px 0',
+                                        fontSize: '18px',
+                                        fontWeight: '700',
+                                        color: borderColor
+                                    }}>
+                                        {level.name}
+                                    </h4>
+                                    <p style={{
+                                        margin: '0',
+                                        fontSize: '14px',
+                                        color: '#475569',
+                                        lineHeight: '1.4'
+                                    }}>
+                                        {level.description}
+                                    </p>
+                                </div>
+                                <div style={{
+                                    fontSize: '1.2rem',
+                                    color: borderColor,
+                                    transition: 'transform 0.2s ease',
+                                    transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    marginLeft: '16px'
+                                }}>
+                                    ▼
+                                </div>
                             </div>
-                        </div>
 
                         {expandedLevels[index] && (
                             <div style={{
@@ -1975,7 +1987,7 @@ function EngineeringLevelsTree() {
                             </div>
                         )}
                     </div>
-                ))}
+                )})}
             </div>
         </div>
     );
@@ -2060,7 +2072,7 @@ function InterviewGuide() {
         className="section-title"
         style={{ textAlign: "center", marginBottom: 30, fontSize: "1.8rem" }}
       >
-        Interview Guide(Backend)
+        Interview Guide (Backend)
       </h1>
 
       {/* About Solidgate Section */}
@@ -2122,14 +2134,8 @@ function InterviewGuide() {
             Preparation
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            To get prepared for the interview go trough our website:{" "}
-            <a href="https://solidgate.com/">Solidgate.com 💚</a> and read about
-            our product. You can also check the API documentation to get more
-            information about the products we have. Below we have a detailed
-            competency matrix that represents the expected competency levels for
-            our engineering roles. Also we have a detailed list of roles we have
-            in Backend engineering where we explain major responsibilities and
-            skills required for each role.
+            Start by checking out our website — <a href="https://solidgate.com/">Solidgate.com 💚</a> - and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+            Below, you’ll find a clear breakdown of the skills we look for across engineering roles.
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
@@ -2176,9 +2182,20 @@ function InterviewGuide() {
             right answer — we care about how you approach problems.
           </p>
         </div>
+        
+        <div style={{ 
+          textAlign: 'center', 
+          margin: '20px 0',
+          fontSize: '1.2rem',
+          fontWeight: '600',
+          color: '#5ba300'
+        }}>
+          OR
+        </div>
+        
         <div style={{ marginBottom: "25px" }}>
           <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            4. 🏗️ Architecture Task (60 min)
+            3. 🏗️ Architecture Task (60 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
             If relevant for the role, we'll throw in a system design challenge.
@@ -2198,7 +2215,7 @@ function InterviewGuide() {
         </div>
         <div style={{ marginBottom: "25px" }}>
           <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            5. ✅ Wrap-Up & Next Steps (5 min)
+            4. ✅ Wrap-Up & Next Steps (5 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
             We'll close with a short debrief and outline what's next.
@@ -2739,7 +2756,7 @@ export function App() {
                 transition: "background 0.2s",
               }}
             >
-              Interview Guide(Backend)
+              Interview Guide (Backend)
             </a>
           </nav>
         </div>
