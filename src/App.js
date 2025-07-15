@@ -1771,6 +1771,8 @@ function CompetencyMatrix() {
 }
 
 function EngineeringLevelsTree() {
+    const [expandedLevels, setExpandedLevels] = useState({});
+
     const levels = [
         {
             name: "Junior Engineer 🤓",
@@ -1815,10 +1817,7 @@ function EngineeringLevelsTree() {
                 "Constantly seeks out new knowledge and mentors others",
                 "Leads teams, projects, or departments; influences company direction"
             ]
-        }
-    ];
-
-    const seniorLevels = [
+        },
         {
             name: "Staff Engineer 🏆",
             description: "Senior technical leader with broad organizational impact and deep technical expertise",
@@ -1852,6 +1851,13 @@ function EngineeringLevelsTree() {
             ]
         }
     ];
+
+    const toggleLevel = (index) => {
+        setExpandedLevels(prev => ({
+            ...prev,
+            [index]: !prev[index]
+        }));
+    };
 
     return (
         <div style={{
@@ -1887,7 +1893,7 @@ function EngineeringLevelsTree() {
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '20px',
+                gap: '16px',
                 position: 'relative'
             }}>
 
@@ -1895,133 +1901,82 @@ function EngineeringLevelsTree() {
                     <div
                         key={index}
                         style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            position: 'relative',
-                            zIndex: 2
-                        }}
-                    >
-                        <div style={{
-                            width: '60%',
-                            maxWidth: '400px',
+                            width: '100%',
                             background: 'rgba(255, 255, 255, 0.95)',
                             border: '2px solid #5ba300',
                             borderRadius: '12px',
-                            padding: '20px',
                             boxShadow: '0 4px 15px rgba(91, 163, 0, 0.15)',
                             transition: 'all 0.3s ease',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            overflow: 'hidden'
                         }}
+                        onClick={() => toggleLevel(index)}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.02)';
+                            e.currentTarget.style.transform = 'scale(1.01)';
                             e.currentTarget.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.25)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'scale(1)';
                             e.currentTarget.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.15)';
                         }}
-                        >
-                            <h4 style={{
-                                margin: '0 0 8px 0',
-                                fontSize: '18px',
-                                fontWeight: '700',
-                                color: '#5ba300',
-                                textAlign: 'center'
-                            }}>
-                                {level.name}
-                            </h4>
-                            <p style={{
-                                margin: '0 0 12px 0',
-                                fontSize: '14px',
-                                color: '#475569',
-                                textAlign: 'center',
-                                lineHeight: '1.4'
-                            }}>
-                                {level.description}
-                            </p>
-                            <ul style={{
-                                margin: '0',
-                                paddingLeft: '16px',
-                                fontSize: '13px',
+                    >
+                        <div style={{
+                            padding: '20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}>
+                            <div style={{ flex: 1 }}>
+                                <h4 style={{
+                                    margin: '0 0 8px 0',
+                                    fontSize: '18px',
+                                    fontWeight: '700',
+                                    color: '#5ba300'
+                                }}>
+                                    {level.name}
+                                </h4>
+                                <p style={{
+                                    margin: '0',
+                                    fontSize: '14px',
+                                    color: '#475569',
+                                    lineHeight: '1.4'
+                                }}>
+                                    {level.description}
+                                </p>
+                            </div>
+                            <div style={{
+                                fontSize: '1.2rem',
                                 color: '#64748b',
-                                lineHeight: '1.4'
+                                transition: 'transform 0.2s ease',
+                                transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
+                                marginLeft: '16px'
                             }}>
-                                {level.characteristics.map((char, charIndex) => (
-                                    <li key={charIndex} style={{ marginBottom: '4px' }}>{char}</li>
-                                ))}
-                            </ul>
+                                ▼
+                            </div>
                         </div>
+
+                        {expandedLevels[index] && (
+                            <div style={{
+                                padding: '0 20px 20px 20px',
+                                borderTop: '1px solid #f1f5f9',
+                                marginTop: '8px'
+                            }}>
+                                <ul style={{
+                                    margin: '0',
+                                    paddingLeft: '16px',
+                                    fontSize: '13px',
+                                    color: '#64748b',
+                                    lineHeight: '1.5'
+                                }}>
+                                    {level.characteristics.map((char, charIndex) => (
+                                        <li key={charIndex} style={{ marginBottom: '6px' }}>{char}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 ))}
-
-                {/* Senior level roles (Staff and Tech Lead) side by side */}
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        position: 'relative',
-                        zIndex: 2
-                    }}
-                >
-                    {seniorLevels.map((level, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                width: '45%',
-                                background: 'rgba(255, 255, 255, 0.95)',
-                                border: `2px solid ${index === 0 ? '#5ba300' : '#4a7c59'}`,
-                                borderRadius: '12px',
-                                padding: '20px',
-                                boxShadow: `0 4px 15px rgba(${index === 0 ? '91, 163, 0' : '74, 124, 89'}, 0.15)`,
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer'
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.02)';
-                                e.currentTarget.style.boxShadow = `0 6px 20px rgba(${index === 0 ? '91, 163, 0' : '74, 124, 89'}, 0.25)`;
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'scale(1)';
-                                e.currentTarget.style.boxShadow = `0 4px 15px rgba(${index === 0 ? '91, 163, 0' : '74, 124, 89'}, 0.15)`;
-                            }}
-                        >
-                            <h4 style={{
-                                margin: '0 0 8px 0',
-                                fontSize: '18px',
-                                fontWeight: '700',
-                                color: index === 0 ? '#5ba300' : '#4a7c59',
-                                textAlign: 'center'
-                            }}>
-                                {level.name}
-                            </h4>
-                            <p style={{
-                                margin: '0 0 12px 0',
-                                fontSize: '14px',
-                                color: '#475569',
-                                textAlign: 'center',
-                                lineHeight: '1.4'
-                            }}>
-                                {level.description}
-                            </p>
-                            <ul style={{
-                                margin: '0',
-                                paddingLeft: '16px',
-                                fontSize: '13px',
-                                color: '#64748b',
-                                lineHeight: '1.4'
-                            }}>
-                                {level.characteristics.map((char, charIndex) => (
-                                    <li key={charIndex} style={{ marginBottom: '4px' }}>{char}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
             </div>
-            
-
         </div>
     );
 }
@@ -2105,7 +2060,7 @@ function InterviewGuide() {
         className="section-title"
         style={{ textAlign: "center", marginBottom: 30, fontSize: "1.8rem" }}
       >
-        Interview Guide
+        Interview Guide(Backend)
       </h1>
 
       {/* About Solidgate Section */}
@@ -2784,7 +2739,7 @@ export function App() {
                 transition: "background 0.2s",
               }}
             >
-              Interview Guide
+              Interview Guide(Backend)
             </a>
           </nav>
         </div>
