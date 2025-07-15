@@ -629,6 +629,14 @@ const RADAR_CONFIG = {
         moved: 0,
       },
       {
+        label: "Node.js",
+        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
         label: "Kotlin",
         quadrant: 0,
         ring: 0,
@@ -725,6 +733,38 @@ const RADAR_CONFIG = {
         moved: 1,
       },
       {
+        label: "Fastify",
+        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "Loki",
+        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 0, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "RabbitMQ",
+        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "SQS",
+        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
         label: "Shell",
         quadrant: 0,
         ring: 3,
@@ -755,12 +795,6 @@ const RADAR_CONFIG = {
         moved: 0,
       },
       {
-        label: "Kubernetes",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
         label: "Docker",
         quadrant: 1,
         ring: 0,
@@ -777,18 +811,6 @@ const RADAR_CONFIG = {
         quadrant: 1,
         ring: 0,
         moved: 0,
-      },
-      {
-        label: "Helm",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "ArgoCD",
-        quadrant: 1,
-        ring: 0,
-        moved: 1,
       },
       {
         label: "PostgreSQL",
@@ -809,17 +831,18 @@ const RADAR_CONFIG = {
         moved: 0,
       },
       {
-        label: "ClickHouse",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
         label: "Elasticsearch",
         quadrant: 2,
         ring: 0,
         moved: 0,
       },
+      {
+        label: "OpenSearch",
+        quadrant: 2,
+        ring: 0,
+        moved: 0,
+      },
+      
       {
         label: "MongoDB",
         quadrant: 2,
@@ -1639,8 +1662,6 @@ function CompetencyMatrix() {
             display: "flex",
             flexDirection: "column",
             gap: isMobile ? "12px" : "14px",
-            maxHeight: isMobile ? "400px" : "none",
-            overflowY: isMobile ? "auto" : "visible",
           }}
         >
           {categories.map((category, index) => (
