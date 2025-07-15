@@ -2423,49 +2423,41 @@ function BookList() {
       {/* Book Grid */}
       <div
         style={{
-          display: isMobile ? "flex" : "grid",
-          flexDirection: isMobile ? "column" : "unset",
-          gridTemplateColumns: isMobile 
-            ? "unset" 
-            : "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "24px",
-          marginTop: "24px",
+          display: "grid",
+          gap: 15,
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
         }}
       >
         {books.map((book, index) => (
           <div
             key={index}
             style={{
-              background: "#fff",
-              borderRadius: "16px",
-              padding: isMobile ? "20px" : "24px",
-              border: "1px solid #e2e8f0",
-              transition: "all 0.3s ease",
-              position: "relative",
-              overflow: "hidden",
-              display: isMobile ? "flex" : "block",
-              alignItems: isMobile ? "center" : "unset",
-              gap: isMobile ? "20px" : "unset",
+              background: "#f7f8fa",
+              borderRadius: 12,
+              padding: 20,
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-4px)";
-              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.15)";
-              e.currentTarget.style.borderColor = "#5ba300";
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.background = "#e8f5e8";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)";
-              e.currentTarget.style.borderColor = "#e2e8f0";
+              e.currentTarget.style.background = "#f7f8fa";
             }}
           >
             {/* Book Cover */}
             <div
               style={{
-                width: isMobile ? "100px" : "160px",
-                height: isMobile ? "140px" : "240px",
-                borderRadius: "12px",
+                width: "60px",
+                height: "80px",
+                borderRadius: "6px",
                 overflow: "hidden",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                 flexShrink: 0,
               }}
             >
@@ -2484,17 +2476,12 @@ function BookList() {
             </div>
             
             {/* Book Info */}
-            <div style={{ 
-              textAlign: isMobile ? "left" : "center",
-              flex: 1,
-              minWidth: 0,
-            }}>
-              <h3
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h4
                 style={{
                   color: "#181A20",
-                  marginBottom: "8px",
-                  fontSize: isMobile ? "16px" : "18px",
-                  fontWeight: "700",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
                   lineHeight: "1.3",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -2504,35 +2491,31 @@ function BookList() {
                 }}
               >
                 {book.title}
-              </h3>
+              </h4>
               
-              <p
-                style={{
-                  color: "#5ba300",
-                  fontSize: isMobile ? "13px" : "14px",
-                  fontWeight: "500",
-                  fontStyle: "italic",
-                  marginBottom: "12px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
+              <p style={{ 
+                color: "#5ba300", 
+                fontWeight: 500, 
+                fontSize: 13,
+                fontStyle: "italic",
+                marginBottom: 4,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}>
                 by {book.authors}
               </p>
               
-              <p
-                style={{
-                  color: "#64748b",
-                  fontSize: isMobile ? "13px" : "14px",
-                  lineHeight: "1.5",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: isMobile ? 4 : 3,
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
+              <p style={{ 
+                color: "#64748b", 
+                fontSize: 12,
+                lineHeight: "1.4",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              }}>
                 {book.description}
               </p>
             </div>
