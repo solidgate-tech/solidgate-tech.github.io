@@ -919,6 +919,18 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         padding: 16,
         border: "1px solid #e5e7eb",
         marginBottom: 8,
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+      }}
+      onClick={() => setIsExpanded(!isExpanded)}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'scale(1.01)';
+        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'scale(1)';
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
       }}
     >
       <div
@@ -929,7 +941,6 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           cursor: "pointer",
           userSelect: "none",
         }}
-        onClick={() => setIsExpanded(!isExpanded)}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
@@ -2432,16 +2443,17 @@ function InterviewGuide() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: 20,
+            gap: window.innerWidth < 768 ? 10 : 20,
             flexWrap: "wrap",
+            padding: window.innerWidth < 768 ? "0 10px" : "0",
           }}
         >
           <button
             onClick={prevBook}
             style={{
-              minWidth: 50,
-              minHeight: 50,
-              fontSize: 24,
+              minWidth: window.innerWidth < 768 ? 40 : 50,
+              minHeight: window.innerWidth < 768 ? 40 : 50,
+              fontSize: window.innerWidth < 768 ? 18 : 24,
               borderRadius: 8,
               background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
               color: "white",
@@ -2453,6 +2465,7 @@ function InterviewGuide() {
               alignItems: "center",
               justifyContent: "center",
               fontWeight: "bold",
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = "scale(1.1)";
@@ -2469,24 +2482,24 @@ function InterviewGuide() {
             style={{
               flex: 1,
               textAlign: "center",
-              maxWidth: 500,
-              minWidth: 280,
+              maxWidth: window.innerWidth < 768 ? "calc(100vw - 120px)" : 500,
+              minWidth: window.innerWidth < 768 ? 200 : 280,
             }}
           >
             <div
               style={{
                 background: "#f7f8fa",
                 borderRadius: 16,
-                padding: 20,
-                minHeight: 200,
+                padding: window.innerWidth < 768 ? 15 : 20,
+                minHeight: window.innerWidth < 768 ? 150 : 200,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: 15,
+                gap: window.innerWidth < 768 ? 10 : 15,
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
               }}
             >
-              <div style={{ flex: "0 0 120px" }}>
+              <div style={{ flex: "0 0", width: window.innerWidth < 768 ? "80px" : "120px" }}>
                 <img
                   src={books[currentBookIndex].cover}
                   alt={`${books[currentBookIndex].title} cover`}
@@ -2506,7 +2519,7 @@ function InterviewGuide() {
                   style={{
                     color: "#181A20",
                     marginBottom: 8,
-                    fontSize: "1.1rem",
+                    fontSize: window.innerWidth < 768 ? "1rem" : "1.1rem",
                   }}
                 >
                   {books[currentBookIndex].title}
@@ -2516,7 +2529,7 @@ function InterviewGuide() {
                     color: "#5ba300",
                     fontStyle: "italic",
                     marginBottom: 12,
-                    fontSize: "0.9rem",
+                    fontSize: window.innerWidth < 768 ? "0.8rem" : "0.9rem",
                   }}
                 >
                   by {books[currentBookIndex].authors}
@@ -2525,7 +2538,7 @@ function InterviewGuide() {
                   style={{
                     color: "#444",
                     lineHeight: "1.5",
-                    fontSize: "0.85rem",
+                    fontSize: window.innerWidth < 768 ? "0.75rem" : "0.85rem",
                   }}
                 >
                   {books[currentBookIndex].description}
@@ -2536,7 +2549,7 @@ function InterviewGuide() {
               style={{
                 marginTop: 15,
                 color: "#888",
-                fontSize: 14,
+                fontSize: window.innerWidth < 768 ? 12 : 14,
                 fontWeight: 500,
               }}
             >
@@ -2546,9 +2559,9 @@ function InterviewGuide() {
           <button
             onClick={nextBook}
             style={{
-              minWidth: 50,
-              minHeight: 50,
-              fontSize: 24,
+              minWidth: window.innerWidth < 768 ? 40 : 50,
+              minHeight: window.innerWidth < 768 ? 40 : 50,
+              fontSize: window.innerWidth < 768 ? 18 : 24,
               borderRadius: 8,
               background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
               color: "white",
@@ -2560,6 +2573,7 @@ function InterviewGuide() {
               alignItems: "center",
               justifyContent: "center",
               fontWeight: "bold",
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = "scale(1.1)";
