@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   background: #fff;
   color: #222;
   min-height: 100vh;
@@ -23,33 +23,27 @@ body {
 }
 
 #adopt {
-  display:inline;
+  display: inline;
   color: #5ba300;
   font-weight: bold;
 }
 
 #trial {
-  display:inline;
+  display: inline;
   color: #009eb0;
   font-weight: bold;
 }
 
 #assess {
-  display:inline;
+  display: inline;
   color: #c7ba00;
   font-weight: bold;
 }
 
 #hold {
-  display:inline;
+  display: inline;
   color: #e09b96;
   font-weight: bold;
-}
-
-#radar-container {
-  width: 100vw;
-  resize: both;
-  overflow: auto;
 }
 
 #logo {
@@ -66,9 +60,14 @@ body {
 
 /* --- Solidgate.com inspired styles --- */
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  color: #181A20;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  color: #181a20;
   font-weight: 700;
   margin-top: 0;
 }
@@ -76,14 +75,15 @@ h1, h2, h3, h4, h5, h6 {
 .card {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(24,26,32,0.08);
+  box-shadow: 0 4px 24px rgba(24, 26, 32, 0.08);
   padding: 2rem;
   margin-bottom: 2rem;
   text-align: left;
 }
 
-.button, button {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+.button,
+button {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   background: #5ba300;
   color: #fff;
   border: none;
@@ -93,14 +93,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(91,163,0,0.08);
+  box-shadow: 0 2px 8px rgba(91, 163, 0, 0.08);
 }
-.button:hover, button:hover {
+.button:hover,
+button:hover {
   background: #489000;
 }
 
 .section-title {
-  color: #181A20;
+  color: #181a20;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
