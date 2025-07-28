@@ -26,10 +26,10 @@ const DEFAULT_RADAR_CONFIG = {
     inactive: "#ddd",
   },
   quadrants: [
-    { name: "Language & Frameworks" },
+    { name: "Languages & Frameworks" },
     { name: "Platform & Infrastructure" },
-    { name: "Data management" },
-    { name: "Techniques & Tools" },
+    { name: "Data Management" },
+    { name: "Techniques, Tools & AI" },
   ],
   rings: [
     { name: "ADOPT", color: "#5ba300" },
@@ -45,920 +45,144 @@ const RADAR_CONFIG = {
   2023: {
     ...DEFAULT_RADAR_CONFIG,
     date: 2023.09,
-    title: "Tech radar 2023",
+    title: "Tech Radar 2023",
     entries: [
-      {
-        label: "Go",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Kotlin",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "PHP",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Symfony",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Ktor",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Spring",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Echo v4",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Gorm",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Go PGX",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "React",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "TypeScript",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Javascript",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Hugo",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Astro",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Redux",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Python",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Task.dev",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Shell",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Make",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "VictoriaMetrics",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Grafana",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Airflow",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "K8S",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 2, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "OpenTelemetry",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 2, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Nexus",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Grafana On Call",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Docker",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Nginx",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS Fargate",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS ECS",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Terraform",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Npm",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Yarn",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Sentry(frontend only)",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Vite",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Nx",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "PNPm",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Gitlab",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "GitlabCI",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Jenkins",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Kibana",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Fluent",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Vector",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Loki",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "RabbitMQ",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Amazon MSK(Kafka)",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS Aurora",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS S3",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "DBT",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Redshift",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "PostgreSQL",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Redis",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Memcached",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Elasticsearch",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "OpenSearch",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "C4 model",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "ADR",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Structurizr",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Scrum",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "On call",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Functional testing",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Unit testing",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "BDD",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Conventional commits",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Buf(gRPC)",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Buf(gRPC) registry",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "golangci-lint",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "OpenApi",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Jira",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Confluence",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Github Copilot",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Blue-green deploy",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 2, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "GitOps",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
+      // Languages & Frameworks
+      { label: "Go", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Kotlin", quadrant: 0, ring: 0, moved: 0 },
+      { label: "PHP", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Symfony", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Ktor", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Spring", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Echo v4", quadrant: 0, ring: 3, moved: -1 },
+      { label: "GORM", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Go PGX", quadrant: 0, ring: 0, moved: 1 },
+      { label: "React", quadrant: 0, ring: 0, moved: 0 },
+      { label: "TypeScript", quadrant: 0, ring: 0, moved: 0 },
+      { label: "JavaScript", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Hugo", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Astro", quadrant: 0, ring: 1, moved: 1 },
+      { label: "Redux", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Python", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Task", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Shell", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Make", quadrant: 0, ring: 3, moved: -1 },
+      // Platform & Infrastructure
+      { label: "VictoriaMetrics", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Apache Airflow", quadrant: 1, ring: 0, moved: 0 },
+      { label: "K8S", quadrant: 1, ring: 2, moved: 0 },
+      { label: "OpenTelemetry", quadrant: 1, ring: 2, moved: 0 },
+      { label: "Nexus", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana OnCall", quadrant: 1, ring: 1, moved: 0 },
+      { label: "Docker", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Nginx", quadrant: 1, ring: 0, moved: 0 },
+      { label: "AWS Fargate", quadrant: 1, ring: 0, moved: 0 },
+      { label: "AWS ECS", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Terraform", quadrant: 1, ring: 0, moved: 1 },
+      { label: "npm", quadrant: 1, ring: 3, moved: -1 },
+      { label: "yarn", quadrant: 1, ring: 3, moved: -1 },
+      { label: "Sentry (frontend only)", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Vite", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Nx", quadrant: 1, ring: 0, moved: 0 },
+      { label: "pnpm", quadrant: 1, ring: 1, moved: 1 },
+      { label: "GitLab", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab CI/CD", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Jenkins", quadrant: 1, ring: 3, moved: -1 },
+      { label: "Kibana", quadrant: 1, ring: 3, moved: -1 },
+      // Data Management
+      { label: "Fluent", quadrant: 2, ring: 3, moved: -1 },
+      { label: "Vector", quadrant: 2, ring: 1, moved: 1 },
+      { label: "Loki", quadrant: 2, ring: 1, moved: 1 },
+      { label: "RabbitMQ", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Amazon MSK (Kafka)", quadrant: 2, ring: 1, moved: 1 },
+      { label: "AWS Aurora", quadrant: 2, ring: 0, moved: 0 },
+      { label: "AWS S3", quadrant: 2, ring: 0, moved: 0 },
+      { label: "DBT", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redshift", quadrant: 2, ring: 0, moved: 0 },
+      { label: "PostgreSQL", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redis", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Memcached", quadrant: 2, ring: 3, moved: -1 },
+      { label: "ElasticSearch", quadrant: 2, ring: 3, moved: -1 },
+      { label: "OpenSearch", quadrant: 2, ring: 3, moved: -1 },
+      // Techniques, Tools & AI
+      { label: "ADR", quadrant: 3, ring: 1, moved: 1 },
+      { label: "Structurizr", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Scrum", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Grafana OnCall", quadrant: 3, ring: 1, moved: 1 },
+      { label: "BDD (Behavior-Driven Development)", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
+      { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
+      { label: "OpenAPI", quadrant: 3, ring: 3, moved: -1 },
+      { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
+      { label: "GitHub Copilot", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Blue-Green Deployment", quadrant: 3, ring: 2, moved: 0 },
+      { label: "GitOps", quadrant: 3, ring: 1, moved: 1 },
     ],
   },
   2025: {
     ...DEFAULT_RADAR_CONFIG,
     date: 2025.01,
-    title: "Tech radar 2025",
+    title: "Tech Radar 2025",
     entries: [
-      {
-        label: "Go",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Node.js",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Kotlin",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "PHP",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Symfony",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Ktor",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Spring",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Echo v4",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Gorm",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Go PGX",
-        quadrant: 0,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "React",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "TypeScript",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Javascript",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Hugo",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Astro",
-        quadrant: 0,
-        ring: 1,
-        moved: 1,
-      },
-      {
-        label: "Redux",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Python",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Task.dev",
-        quadrant: 0,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "Fastify",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Loki",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Gitlab",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-            {
-        label: "GitlabCI",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "RabbitMQ",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "SQS",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Shell",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Make",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "VictoriaMetrics",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Grafana",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Airflow",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Docker",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "AWS",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Terraform",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "PostgreSQL",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Redis",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Kafka",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Elasticsearch",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "OpenSearch",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      
-      {
-        label: "MongoDB",
-        quadrant: 2,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "MySQL",
-        quadrant: 2,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Unit testing",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "TBD(trunk based development)",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Conventional commits",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Buf(gRPC)",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "Buf(gRPC) registry",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "golangci-lint",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "OpenApi",
-        quadrant: 3,
-        ring: 3,
-        moved: 0,
-      },
-      {
-        label: "Jira",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Confluence",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Github Copilot",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "Blue-green deploy",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "GitOps",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
+      // Languages & Frameworks
+      { label: "Go", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Kotlin", quadrant: 0, ring: 0, moved: 0 },
+      { label: "PHP", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Symfony", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Ktor", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Spring", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Echo v4", quadrant: 0, ring: 3, moved: -1 },
+      { label: "GORM", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Go PGX", quadrant: 0, ring: 0, moved: 1 },
+      { label: "React", quadrant: 0, ring: 0, moved: 0 },
+      { label: "TypeScript", quadrant: 0, ring: 0, moved: 0 },
+      { label: "JavaScript", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Hugo", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Astro", quadrant: 0, ring: 1, moved: 1 },
+      { label: "Redux", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Python", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Task", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Fastify", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Shell", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Make", quadrant: 0, ring: 3, moved: -1 },
+      // Platform & Infrastructure
+      { label: "Loki", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab CI/CD", quadrant: 1, ring: 0, moved: 0 },
+      { label: "VictoriaMetrics", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Apache Airflow", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Docker", quadrant: 1, ring: 0, moved: 0 },
+      { label: "AWS", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Terraform", quadrant: 1, ring: 0, moved: 0 },
+      // Data Management
+      { label: "RabbitMQ", quadrant: 2, ring: 0, moved: 1 },
+      { label: "SQS", quadrant: 2, ring: 0, moved: 1 },
+      { label: "PostgreSQL", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redis", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Kafka", quadrant: 2, ring: 0, moved: 0 },
+      { label: "ElasticSearch", quadrant: 2, ring: 0, moved: 0 },
+      { label: "OpenSearch", quadrant: 2, ring: 0, moved: 0 },
+      { label: "MongoDB", quadrant: 2, ring: 3, moved: -1 },
+      { label: "MySQL", quadrant: 2, ring: 3, moved: -1 },
+      // Techniques, Tools & AI
+      { label: "TBD (Trunk Based Development)", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
+      { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
+      { label: "OpenAPI", quadrant: 3, ring: 3, moved: 0 },
+      { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Github Copilot", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Blue-green deploy", quadrant: 3, ring: 0, moved: 1 },
+      { label: "GitOps", quadrant: 3, ring: 0, moved: 1 },
+      { label: "ChatGPT", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Gemini", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Cursor", quadrant: 3, ring: 1, moved: 2 },
+      { label: "CodeRabbit", quadrant: 3, ring: 0, moved: 2 },
     ],
   },
 };
@@ -1003,7 +227,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
         }}
       />
-      
+
       <div
         style={{
           display: "flex",
@@ -1845,7 +1069,7 @@ function EngineeringLevelsTree() {
                 height: '4px',
                 background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
             }} />
-            
+
             <h3 style={{
                 margin: '0 0 30px 0',
                 fontSize: '28px',
@@ -1856,7 +1080,7 @@ function EngineeringLevelsTree() {
             }}>
                 Engineering Career Levels
             </h3>
-            
+
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -1873,9 +1097,9 @@ function EngineeringLevelsTree() {
                         '#2f5a3b', // Staff
                         '#21492c'  // Tech Lead - darkest green
                     ];
-                    
+
                     const borderColor = borderColors[index];
-                    
+
                     return (
                         <div
                             key={index}
@@ -1911,7 +1135,7 @@ function EngineeringLevelsTree() {
                                 height: '4px',
                                 background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
                             }} />
-                            
+
                             <div style={{
                                 padding: '20px',
                                 display: 'flex',
@@ -2101,9 +1325,9 @@ function InterviewGuide() {
             right answer — we care about how you approach problems.
           </p>
         </div>
-        
-        <div style={{ 
-          textAlign: 'center', 
+
+        <div style={{
+          textAlign: 'center',
           margin: '20px 0',
           fontSize: '1.2rem',
           fontWeight: '600',
@@ -2111,7 +1335,7 @@ function InterviewGuide() {
         }}>
           OR
         </div>
-        
+
         <div style={{ marginBottom: "25px" }}>
           <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             3. 🏗️ Architecture Task (60 min)
@@ -2435,7 +1659,7 @@ function BookList() {
       <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
         Books We Love and Recommend 💚
       </h2>
-      
+
       {/* Book Grid */}
       <div
         style={{
@@ -2490,7 +1714,7 @@ function BookList() {
                 }}
               />
             </div>
-            
+
             {/* Book Info */}
             <div style={{ flex: 1, minWidth: 0 }}>
               <h4
@@ -2508,10 +1732,10 @@ function BookList() {
               >
                 {book.title}
               </h4>
-              
-              <p style={{ 
-                color: "#5ba300", 
-                fontWeight: 500, 
+
+              <p style={{
+                color: "#5ba300",
+                fontWeight: 500,
                 fontSize: 13,
                 fontStyle: "italic",
                 marginBottom: 4,
@@ -2521,9 +1745,9 @@ function BookList() {
               }}>
                 by {book.authors}
               </p>
-              
-              <p style={{ 
-                color: "#64748b", 
+
+              <p style={{
+                color: "#64748b",
                 fontSize: 12,
                 lineHeight: "1.4",
                 overflow: "hidden",
@@ -2631,7 +1855,7 @@ export function App() {
   useEffect(() => {
     const onHashChange = () => setHash(window.location.hash || "#home");
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-    
+
     window.addEventListener("hashchange", onHashChange);
     window.addEventListener("resize", handleResize);
     return () => {
@@ -2680,7 +1904,7 @@ export function App() {
                 height: "auto",
               }}
             />
-            
+
             {isMobile ? (
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <button
@@ -2732,7 +1956,7 @@ export function App() {
               </div>
             )}
           </nav>
-          
+
           {/* Mobile Menu */}
           {isMobile && mobileMenuOpen && (
             <div
