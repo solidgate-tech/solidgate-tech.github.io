@@ -1,5 +1,21 @@
 import { useState, useEffect } from "react";
 
+// Add CSS animations for consistent expandable components
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+document.head.appendChild(style);
+
 const DEFAULT_RADAR_CONFIG = {
   svg_id: "radar",
   width: 1350,
@@ -629,6 +645,14 @@ const RADAR_CONFIG = {
         moved: 0,
       },
       {
+        label: "Node.js",
+        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
         label: "Kotlin",
         quadrant: 0,
         ring: 0,
@@ -725,6 +749,54 @@ const RADAR_CONFIG = {
         moved: 1,
       },
       {
+        label: "Fastify",
+        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "Loki",
+        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 0, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "Gitlab",
+        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 0, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+            {
+        label: "GitlabCI",
+        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 0, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "RabbitMQ",
+        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
+        label: "SQS",
+        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
+        ring: 0, // 0,1,2,3 (starting from inside)
+        moved: 1, // -1 = moved out (triangle pointing down)
+        //  0 = not moved (circle)
+        //  1 = moved in  (triangle pointing up)
+      },
+      {
         label: "Shell",
         quadrant: 0,
         ring: 3,
@@ -755,12 +827,6 @@ const RADAR_CONFIG = {
         moved: 0,
       },
       {
-        label: "Kubernetes",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
         label: "Docker",
         quadrant: 1,
         ring: 0,
@@ -777,18 +843,6 @@ const RADAR_CONFIG = {
         quadrant: 1,
         ring: 0,
         moved: 0,
-      },
-      {
-        label: "Helm",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "ArgoCD",
-        quadrant: 1,
-        ring: 0,
-        moved: 1,
       },
       {
         label: "PostgreSQL",
@@ -809,17 +863,18 @@ const RADAR_CONFIG = {
         moved: 0,
       },
       {
-        label: "ClickHouse",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
         label: "Elasticsearch",
         quadrant: 2,
         ring: 0,
         moved: 0,
       },
+      {
+        label: "OpenSearch",
+        quadrant: 2,
+        ring: 0,
+        moved: 0,
+      },
+      
       {
         label: "MongoDB",
         quadrant: 2,
@@ -915,12 +970,40 @@ function LanguageBlock({ language, logo, requirements, questions }) {
     <div
       style={{
         background: "#fff",
-        borderRadius: 8,
-        padding: 16,
-        border: "1px solid #e5e7eb",
-        marginBottom: 8,
+        borderRadius: 12,
+        padding: 20,
+        border: "2px solid #e5e7eb",
+        marginBottom: 12,
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        boxShadow: 'none',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      onClick={() => setIsExpanded(!isExpanded)}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'scale(1.02)';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.borderColor = '#5ba300';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'scale(1)';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.borderColor = '#e5e7eb';
       }}
     >
+      {/* Background accent */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+        }}
+      />
+      
       <div
         style={{
           display: "flex",
@@ -928,21 +1011,21 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           justifyContent: "space-between",
           cursor: "pointer",
           userSelect: "none",
+          marginTop: "4px",
         }}
-        onClick={() => setIsExpanded(!isExpanded)}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
             src={logo}
             alt={`${language} logo`}
-            style={{ width: 24, height: 24, marginRight: 12 }}
+            style={{ width: 28, height: 28, marginRight: 16 }}
           />
           <h4
             style={{
-              color: "#181A20",
-              fontSize: "1.1rem",
+              color: "#000000",
+              fontSize: "1.2rem",
               margin: 0,
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             {language}
@@ -950,10 +1033,11 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         </div>
         <div
           style={{
-            fontSize: "1.2rem",
-            color: "#64748b",
-            transition: "transform 0.2s ease",
+            fontSize: "1.3rem",
+            color: "#5ba300",
+            transition: "transform 0.3s ease",
             transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            fontWeight: "bold",
           }}
         >
           ▼
@@ -963,18 +1047,19 @@ function LanguageBlock({ language, logo, requirements, questions }) {
       {isExpanded && (
         <div
           style={{
-            marginTop: 12,
-            paddingTop: 12,
-            borderTop: "1px solid #f1f5f9",
+            marginTop: 16,
+            paddingTop: 16,
+            borderTop: "2px solid #f1f5f9",
+            animation: "slideDown 0.3s ease-out",
           }}
         >
-          <div style={{ marginBottom: 16 }}>
+          <div style={{ marginBottom: 20 }}>
             <h5
               style={{
-                color: "#181A20",
-                marginBottom: 8,
-                fontSize: "0.95rem",
-                fontWeight: 600,
+                color: "#0f172a",
+                marginBottom: 12,
+                fontSize: "1rem",
+                fontWeight: 700,
               }}
             >
               Requirements:
@@ -982,14 +1067,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
             <ul
               style={{
                 color: "#475569",
-                lineHeight: "1.5",
+                lineHeight: "1.6",
                 margin: 0,
-                paddingLeft: 16,
-                fontSize: "0.9rem",
+                paddingLeft: 20,
+                fontSize: "0.95rem",
               }}
             >
               {requirements.map((req, index) => (
-                <li key={index} style={{ marginBottom: 4 }}>
+                <li key={index} style={{ marginBottom: 8 }}>
                   {req}
                 </li>
               ))}
@@ -997,18 +1082,18 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           </div>
           <div
             style={{
-              padding: 12,
-              background: "#f8fafc",
-              borderRadius: 6,
-              border: "1px solid #e2e8f0",
+              padding: 16,
+              background: "rgba(91, 163, 0, 0.04)",
+              borderRadius: 8,
+              border: "1px solid rgba(91, 163, 0, 0.1)",
             }}
           >
             <h5
               style={{
                 color: "#5ba300",
-                marginBottom: 8,
-                fontSize: "0.95rem",
-                fontWeight: 600,
+                marginBottom: 12,
+                fontSize: "1rem",
+                fontWeight: 700,
               }}
             >
               Top Interview Questions:
@@ -1016,14 +1101,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
             <ol
               style={{
                 color: "#475569",
-                lineHeight: "1.5",
+                lineHeight: "1.6",
                 margin: 0,
-                paddingLeft: 16,
-                fontSize: "0.9rem",
+                paddingLeft: 20,
+                fontSize: "0.95rem",
               }}
             >
               {questions.map((question, index) => (
-                <li key={index} style={{ marginBottom: 6 }}>
+                <li key={index} style={{ marginBottom: 10 }}>
                   {question}
                 </li>
               ))}
@@ -1065,12 +1150,12 @@ function TechRadar({ config }) {
 
 function CompetencyMatrix() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [expandedCategory, setExpandedCategory] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -1080,13 +1165,13 @@ function CompetencyMatrix() {
       name: "Engineering culture",
       score: 4,
       description:
-        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software.",
+        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
     },
     {
       name: "Architecture skills",
       score: 3,
       description:
-        "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems.",
+        "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems, also knowledge of event-driven architecture.",
     },
     {
       name: "Programming language",
@@ -1098,7 +1183,7 @@ function CompetencyMatrix() {
       name: "Databases",
       score: 3,
       description:
-        "Knowledge of database design, query optimization, and data modeling. Includes understanding of SQL, NoSQL databases, and data access patterns.",
+        "Knowledge of database design, query optimization, and data modeling. Includes understanding of SQL, SQL optimization, database internals.",
     },
     {
       name: "DevOps",
@@ -1110,7 +1195,7 @@ function CompetencyMatrix() {
       name: "Testing",
       score: 5,
       description:
-        "Expertise in testing methodologies including unit testing, integration testing, and automated testing. Includes understanding of test-driven development and quality assurance practices.",
+        "Expertise in testing methodologies including unit testing, integration testing, and automated testing. Includes understanding of test-driven development and quality assurance practices, or using advanced techniques like fuzz testing or mutation testing.",
     },
   ];
 
@@ -1178,6 +1263,10 @@ function CompetencyMatrix() {
     gridLines.push(gridPoints);
   }
 
+  // Helper for consistent hover/expand logic
+  const handleCategoryHover = (index) => setExpandedCategory(index);
+  const handleCategoryLeave = () => setExpandedCategory(null);
+
   return (
     <div
       style={{
@@ -1202,18 +1291,6 @@ function CompetencyMatrix() {
           maxWidth: "600px",
         }}
       >
-        {/* Background accent */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "4px",
-            background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
-          }}
-        />
-
         <h3
           style={{
             margin: isMobile ? "0 0 20px 0" : "0 0 30px 0",
@@ -1226,7 +1303,6 @@ function CompetencyMatrix() {
         >
           Competency Matrix
         </h3>
-
         <div
           style={{
             width: "100%",
@@ -1307,52 +1383,8 @@ function CompetencyMatrix() {
                     stroke="#e2e8f0"
                     strokeWidth="1"
                     style={{ transition: "all 0.15s ease" }}
-                    onMouseEnter={(e) => {
-                      e.target.style.fill = "rgba(91, 163, 0, 0.08)";
-                      e.target.style.stroke = "#5ba300";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(91, 163, 0, 0.04)";
-                        categoryDetails.style.borderColor = "#5ba300";
-                        categoryDetails.style.padding = "16px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "100px";
-                          description.style.opacity = "1";
-                          description.style.marginTop = "8px";
-                        }
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.fill = "rgba(255, 255, 255, 0.95)";
-                      e.target.style.stroke = "#e2e8f0";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(255, 255, 255, 0.9)";
-                        categoryDetails.style.borderColor = "#e2e8f0";
-                        categoryDetails.style.padding = "12px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "0";
-                          description.style.opacity = "0";
-                          description.style.marginTop = "0";
-                        }
-                      }
-                    }}
+                    onMouseEnter={() => handleCategoryHover(index)}
+                    onMouseLeave={handleCategoryLeave}
                   />
                   <text
                     x={labelX}
@@ -1366,50 +1398,8 @@ function CompetencyMatrix() {
                       fontFamily: "Inter, sans-serif",
                       transition: "all 0.15s ease",
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.fill = "#5ba300";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(91, 163, 0, 0.04)";
-                        categoryDetails.style.borderColor = "#5ba300";
-                        categoryDetails.style.padding = "16px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "100px";
-                          description.style.opacity = "1";
-                          description.style.marginTop = "8px";
-                        }
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.fill = "#334155";
-
-                      const categoryDetails = document.getElementById(
-                        `category-${index}`
-                      );
-                      if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(255, 255, 255, 0.9)";
-                        categoryDetails.style.borderColor = "#e2e8f0";
-                        categoryDetails.style.padding = "12px";
-
-                        const description = document.getElementById(
-                          `description-${index}`
-                        );
-                        if (description) {
-                          description.style.maxHeight = "0";
-                          description.style.opacity = "0";
-                          description.style.marginTop = "0";
-                        }
-                      }
-                    }}
+                    onMouseEnter={() => handleCategoryHover(index)}
+                    onMouseLeave={handleCategoryLeave}
                   >
                     {categories[index].name}
                   </text>
@@ -1598,18 +1588,6 @@ function CompetencyMatrix() {
           overflow: "hidden",
         }}
       >
-        {/* Background accent */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "4px",
-            background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
-          }}
-        />
-
         <h3
           style={{
             margin: isMobile ? "0 0 20px 0" : "0 0 25px 0",
@@ -1622,144 +1600,133 @@ function CompetencyMatrix() {
         >
           Category Details
         </h3>
-
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             gap: isMobile ? "12px" : "14px",
-            maxHeight: isMobile ? "400px" : "none",
-            overflowY: isMobile ? "auto" : "visible",
           }}
         >
-          {categories.map((category, index) => (
-            <div
-              key={`category-${index}`}
-              id={`category-${index}`}
-              style={{
-                background: "rgba(255, 255, 255, 0.9)",
-                border: "1px solid #e2e8f0",
-                borderRadius: "12px",
-                padding: isMobile ? "16px" : "12px",
-                transition: "all 0.15s ease",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(91, 163, 0, 0.04)";
-                e.currentTarget.style.borderColor = "#5ba300";
-                e.currentTarget.style.padding = "16px";
-
-                const description = document.getElementById(
-                  `description-${index}`
-                );
-                if (description) {
-                  description.style.maxHeight = "100px";
-                  description.style.opacity = "1";
-                  description.style.marginTop = "8px";
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.9)";
-                e.currentTarget.style.borderColor = "#e2e8f0";
-                e.currentTarget.style.padding = isMobile ? "16px" : "12px";
-
-                const description = document.getElementById(
-                  `description-${index}`
-                );
-                if (description) {
-                  description.style.maxHeight = "0";
-                  description.style.opacity = "0";
-                  description.style.marginTop = "0";
-                }
-              }}
-            >
+          {categories.map((category, index) => {
+            const isExpanded = expandedCategory === index;
+            return (
               <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: isMobile ? "8px" : "0",
-                }}
-              >
-                <h4
-                  style={{
-                    margin: "0",
-                    fontSize: isMobile ? "14px" : "15px",
-                    fontWeight: "600",
-                    color: "#0f172a",
+                key={`category-${index}`}
+                id={`category-${index}`}
+                                  style={{
+                    background: "rgba(255, 255, 255, 0.95)",
+                    border: isExpanded ? "2px solid #5ba300" : "2px solid #e2e8f0",
+                    borderRadius: "12px",
+                    padding: isMobile ? "20px" : "20px",
+                    transition: "all 0.5s ease",
+                    cursor: "pointer",
+                    position: "relative",
+                    overflow: "visible",
+                    boxShadow: "none",
+                    transform: isExpanded ? "scale(1.02)" : "scale(1)",
                   }}
-                >
-                  {category.name}
-                </h4>
+                onMouseEnter={() => handleCategoryHover(index)}
+                onMouseLeave={handleCategoryLeave}
+              >
+                {/* Background accent for each expandable */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: "4px",
+                    background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
+                    borderTopLeftRadius: "10px",
+                    borderTopRightRadius: "10px",
+                  }}
+                />
                 <div
                   style={{
                     display: "flex",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    gap: "4px",
+                    marginTop: "4px",
                   }}
                 >
-                  <span
+                  <h4
                     style={{
-                      fontSize: isMobile ? "18px" : "20px",
+                      margin: "0",
+                      fontSize: isMobile ? "16px" : "18px",
                       fontWeight: "700",
-                      color: "#5ba300",
+                      color: "#000000",
                     }}
                   >
-                    {category.score}
-                  </span>
-                  <span
+                    {category.name}
+                  </h4>
+                  <div
                     style={{
-                      fontSize: isMobile ? "12px" : "13px",
-                      color: "#64748b",
-                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
                     }}
                   >
-                    /5
-                  </span>
+                    <span
+                      style={{
+                        fontSize: isMobile ? "20px" : "22px",
+                        fontWeight: "700",
+                        color: "#5ba300",
+                      }}
+                    >
+                      {category.score}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: isMobile ? "13px" : "14px",
+                        color: "#64748b",
+                        fontWeight: "500",
+                      }}
+                    >
+                      /5
+                    </span>
+                  </div>
+                </div>
+                <div
+                  id={`description-${index}`}
+                  style={{
+                    maxHeight: isExpanded ? '1000px' : '0',
+                    opacity: isExpanded ? 1 : 0,
+                    marginTop: isExpanded ? '12px' : '0',
+                    transition: 'all 0.5s ease',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <p
+                    style={{
+                      margin: "0",
+                      fontSize: isMobile ? "13px" : "14px",
+                      lineHeight: "1.6",
+                      color: "#475569",
+                    }}
+                  >
+                    {category.description}
+                  </p>
                 </div>
               </div>
-
-              <div
-                id={`description-${index}`}
-                style={{
-                  maxHeight: "0",
-                  opacity: "0",
-                  marginTop: "0",
-                  transition: "all 0.15s ease",
-                  overflow: "hidden",
-                }}
-              >
-                <p
-                  style={{
-                    margin: "0",
-                    fontSize: isMobile ? "12px" : "13px",
-                    lineHeight: "1.5",
-                    color: "#475569",
-                  }}
-                >
-                  {category.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-
         <div
           style={{
             marginTop: "25px",
-            padding: "14px",
-            background: "rgba(255, 255, 255, 0.7)",
-            borderRadius: "10px",
-            border: "1px solid #e2e8f0",
+            padding: "16px",
+            background: "rgba(91, 163, 0, 0.04)",
+            borderRadius: "12px",
+            border: "1px solid rgba(91, 163, 0, 0.1)",
           }}
         >
           <p
             style={{
               margin: "0",
-              fontSize: "12px",
-              color: "#64748b",
+              fontSize: "13px",
+              color: "#5ba300",
               textAlign: "center",
-              fontWeight: "500",
+              fontWeight: "600",
             }}
           >
             Hover over hexagon elements or category cards to expand details
@@ -1790,7 +1757,7 @@ function EngineeringLevelsTree() {
             ]
         },
         {
-            name: "Mid-Level Engineer 💪",
+            name: "Middle Engineer 💪",
             description: "Experienced engineer who can work independently on most tasks",
             characteristics: [
                 "Proficient in core technologies",
@@ -1897,155 +1864,119 @@ function EngineeringLevelsTree() {
                 position: 'relative'
             }}>
 
-                {levels.map((level, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            width: '100%',
-                            background: 'rgba(255, 255, 255, 0.95)',
-                            border: '2px solid #5ba300',
-                            borderRadius: '12px',
-                            boxShadow: '0 4px 15px rgba(91, 163, 0, 0.15)',
-                            transition: 'all 0.3s ease',
-                            cursor: 'pointer',
-                            overflow: 'hidden'
-                        }}
-                        onClick={() => toggleLevel(index)}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.01)';
-                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(91, 163, 0, 0.25)';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'scale(1)';
-                            e.currentTarget.style.boxShadow = '0 4px 15px rgba(91, 163, 0, 0.15)';
-                        }}
-                    >
-                        <div style={{
-                            padding: '20px',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                        }}>
-                            <div style={{ flex: 1 }}>
-                                <h4 style={{
-                                    margin: '0 0 8px 0',
-                                    fontSize: '18px',
-                                    fontWeight: '700',
-                                    color: '#5ba300'
-                                }}>
-                                    {level.name}
-                                </h4>
-                                <p style={{
-                                    margin: '0',
-                                    fontSize: '14px',
-                                    color: '#475569',
-                                    lineHeight: '1.4'
-                                }}>
-                                    {level.description}
-                                </p>
-                            </div>
+                {levels.map((level, index) => {
+                    // Create gradient border colors from light green to dark green
+                    const borderColors = [
+                        '#5ba300', // Junior - lightest green
+                        '#4a7c59', // Mid-Level
+                        '#3d6b4a', // Senior
+                        '#2f5a3b', // Staff
+                        '#21492c'  // Tech Lead - darkest green
+                    ];
+                    
+                    const borderColor = borderColors[index];
+                    
+                    return (
+                        <div
+                            key={index}
+                            style={{
+                                width: '100%',
+                                background: 'rgba(255, 255, 255, 0.95)',
+                                border: '2px solid #e2e8f0',
+                                borderRadius: '12px',
+                                boxShadow: 'none',
+                                transition: 'all 0.3s ease',
+                                cursor: 'pointer',
+                                overflow: 'hidden',
+                                position: 'relative'
+                            }}
+                            onClick={() => toggleLevel(index)}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.02)';
+                                e.currentTarget.style.boxShadow = 'none';
+                                e.currentTarget.style.borderColor = '#5ba300';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'scale(1)';
+                                e.currentTarget.style.boxShadow = 'none';
+                                e.currentTarget.style.borderColor = '#e2e8f0';
+                            }}
+                        >
+                            {/* Background accent for each level */}
                             <div style={{
-                                fontSize: '1.2rem',
-                                color: '#64748b',
-                                transition: 'transform 0.2s ease',
-                                transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
-                                marginLeft: '16px'
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                height: '4px',
+                                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                            }} />
+                            
+                            <div style={{
+                                padding: '20px',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginTop: '4px'
                             }}>
-                                ▼
+                                <div style={{ flex: 1 }}>
+                                    <h4 style={{
+                                        margin: '0 0 8px 0',
+                                        fontSize: '18px',
+                                        fontWeight: '700',
+                                        color: '#000000'
+                                    }}>
+                                        {level.name}
+                                    </h4>
+                                    <p style={{
+                                        margin: '0',
+                                        fontSize: '14px',
+                                        color: '#475569',
+                                        lineHeight: '1.6'
+                                    }}>
+                                        {level.description}
+                                    </p>
+                                </div>
+                                <div style={{
+                                    fontSize: '1.3rem',
+                                    color: '#5ba300',
+                                    transition: 'transform 0.3s ease',
+                                    transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    marginLeft: '16px',
+                                    fontWeight: 'bold'
+                                }}>
+                                    ▼
+                                </div>
                             </div>
-                        </div>
 
                         {expandedLevels[index] && (
                             <div style={{
                                 padding: '0 20px 20px 20px',
-                                borderTop: '1px solid #f1f5f9',
-                                marginTop: '8px'
+                                borderTop: '2px solid #f1f5f9',
+                                marginTop: '8px',
+                                animation: 'slideDown 0.3s ease-out'
                             }}>
                                 <ul style={{
                                     margin: '0',
-                                    paddingLeft: '16px',
+                                    paddingLeft: '20px',
                                     fontSize: '13px',
                                     color: '#64748b',
-                                    lineHeight: '1.5'
+                                    lineHeight: '1.6'
                                 }}>
                                     {level.characteristics.map((char, charIndex) => (
-                                        <li key={charIndex} style={{ marginBottom: '6px' }}>{char}</li>
+                                        <li key={charIndex} style={{ marginBottom: '8px' }}>{char}</li>
                                     ))}
                                 </ul>
                             </div>
                         )}
                     </div>
-                ))}
+                )})}
             </div>
         </div>
     );
 }
 
 function InterviewGuide() {
-  const [currentBookIndex, setCurrentBookIndex] = useState(0);
-
-  const books = [
-    {
-      title: "Software Engineering at Google",
-      authors: "Titus Winters, Tom Manshreck & Hyrum Wright",
-      description:
-        "Comprehensive guide to software engineering practices at Google scale",
-      cover: "/covers/software-engineering-at-google.jpg",
-    },
-    {
-      title: "Accelerate: The Science of Lean Software and DevOps",
-      authors: "Nicole Forsgren PhD, Jez Humble & Gene Kim",
-      description:
-        "Research-based insights into high-performing software teams",
-      cover: "/covers/accelerate-the-science-of-lean-software-and-devops.jpg",
-    },
-    {
-      title: "Designing Data-Intensive Applications",
-      authors: "Martin Kleppmann",
-      description: "Essential guide for building scalable data systems",
-      cover: "/covers/designing-data-intensive-applications.jpg",
-    },
-    {
-      title: "Software Architecture: The Hard Parts",
-      authors: "Neal Ford, Mark Richards, Pramod Sadalage & Zhamak Dehghani",
-      description: "Practical approaches to complex architectural decisions",
-      cover: "/covers/software-architecture-the-hard-parts.jpg",
-    },
-    {
-      title: "Thinking in Systems: A Primer",
-      authors: "Donella H. Meadows",
-      description: "Understanding complex systems and their behavior",
-      cover: "/covers/thinking-in-systems-a-primer.jpg",
-    },
-    {
-      title:
-        "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
-      authors: "Robert Martin",
-      description: "Principles for creating maintainable software architecture",
-      cover:
-        "/covers/clean-architecture-a-craftsman-guide-to-software-structure-and-design.jpg",
-    },
-    {
-      title: "The Phoenix Project",
-      authors: "Gene Kim, Kevin Behr & George Spafford",
-      description: "Novel about DevOps transformation and IT management",
-      cover: "/covers/the-phoenix-project.jpg",
-    },
-    {
-      title: "SRE by Google",
-      authors: "Google",
-      description: "Site Reliability Engineering practices and principles",
-      cover: "/covers/sre-by-google.jpg",
-    },
-  ];
-
-  const nextBook = () => {
-    setCurrentBookIndex((prev) => (prev + 1) % books.length);
-  };
-
-  const prevBook = () => {
-    setCurrentBookIndex((prev) => (prev - 1 + books.length) % books.length);
-  };
 
   return (
     <div
@@ -2053,14 +1984,14 @@ function InterviewGuide() {
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "10px",
+        padding: window.innerWidth < 768 ? "0" : "10px",
       }}
     >
       <h1
         className="section-title"
         style={{ textAlign: "center", marginBottom: 30, fontSize: "1.8rem" }}
       >
-        Interview Guide(Backend)
+        Interview Guide (Backend)
       </h1>
 
       {/* About Solidgate Section */}
@@ -2118,22 +2049,16 @@ function InterviewGuide() {
           Tech Interview Plan
         </h2>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             Preparation
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            To get prepared for the interview go trough our website:{" "}
-            <a href="https://solidgate.com/">Solidgate.com 💚</a> and read about
-            our product. You can also check the API documentation to get more
-            information about the products we have. Below we have a detailed
-            competency matrix that represents the expected competency levels for
-            our engineering roles. Also we have a detailed list of roles we have
-            in Backend engineering where we explain major responsibilities and
-            skills required for each role.
+            Start by checking out our website — <a href="https://solidgate.com/">Solidgate.com 💚</a> - and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+            Below, you'll find a clear breakdown of the skills we look for across engineering roles.
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             1. 👋 Intro (5 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2144,7 +2069,7 @@ function InterviewGuide() {
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             2. 📂 Deep Dive into Experience (20 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2164,7 +2089,7 @@ function InterviewGuide() {
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             3. 🧠 Technical Questions (60 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
@@ -2176,9 +2101,20 @@ function InterviewGuide() {
             right answer — we care about how you approach problems.
           </p>
         </div>
+        
+        <div style={{ 
+          textAlign: 'center', 
+          margin: '20px 0',
+          fontSize: '1.2rem',
+          fontWeight: '600',
+          color: '#000000'
+        }}>
+          OR
+        </div>
+        
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            4. 🏗️ Architecture Task (60 min)
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+            3. 🏗️ Architecture Task (60 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
             If relevant for the role, we'll throw in a system design challenge.
@@ -2197,8 +2133,8 @@ function InterviewGuide() {
           </p>
         </div>
         <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#5ba300", fontWeight: 600, fontSize: "1.1rem" }}>
-            5. ✅ Wrap-Up & Next Steps (5 min)
+          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+            4. ✅ Wrap-Up & Next Steps (5 min)
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
             We'll close with a short debrief and outline what's next.
@@ -2406,157 +2342,7 @@ function InterviewGuide() {
       </section>
 
       {/* Books Section */}
-      <section className="card">
-        <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
-          Books We Love and Recommend 💚
-        </h2>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 20,
-            flexWrap: "wrap",
-          }}
-        >
-          <button
-            onClick={prevBook}
-            style={{
-              minWidth: 50,
-              minHeight: 50,
-              fontSize: 24,
-              borderRadius: 8,
-              background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-              boxShadow: "0 4px 15px rgba(91, 163, 0, 0.3)",
-              transition: "all 0.3s ease",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: "bold",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "scale(1.1)";
-              e.target.style.boxShadow = "0 6px 20px rgba(91, 163, 0, 0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "scale(1)";
-              e.target.style.boxShadow = "0 4px 15px rgba(91, 163, 0, 0.3)";
-            }}
-          >
-            ‹
-          </button>
-          <div
-            style={{
-              flex: 1,
-              textAlign: "center",
-              maxWidth: 500,
-              minWidth: 280,
-            }}
-          >
-            <div
-              style={{
-                background: "#f7f8fa",
-                borderRadius: 16,
-                padding: 20,
-                minHeight: 200,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 15,
-                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-              }}
-            >
-              <div style={{ flex: "0 0 120px" }}>
-                <img
-                  src={books[currentBookIndex].cover}
-                  alt={`${books[currentBookIndex].title} cover`}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: 8,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                  }}
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                />
-              </div>
-              <div style={{ flex: 1, textAlign: "center" }}>
-                <h3
-                  style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  {books[currentBookIndex].title}
-                </h3>
-                <p
-                  style={{
-                    color: "#5ba300",
-                    fontStyle: "italic",
-                    marginBottom: 12,
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  by {books[currentBookIndex].authors}
-                </p>
-                <p
-                  style={{
-                    color: "#444",
-                    lineHeight: "1.5",
-                    fontSize: "0.85rem",
-                  }}
-                >
-                  {books[currentBookIndex].description}
-                </p>
-              </div>
-            </div>
-            <div
-              style={{
-                marginTop: 15,
-                color: "#888",
-                fontSize: 14,
-                fontWeight: 500,
-              }}
-            >
-              {currentBookIndex + 1} of {books.length}
-            </div>
-          </div>
-          <button
-            onClick={nextBook}
-            style={{
-              minWidth: 50,
-              minHeight: 50,
-              fontSize: 24,
-              borderRadius: 8,
-              background: "linear-gradient(135deg, #5ba300 0%, #489000 100%)",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-              boxShadow: "0 4px 15px rgba(91, 163, 0, 0.3)",
-              transition: "all 0.3s ease",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: "bold",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "scale(1.1)";
-              e.target.style.boxShadow = "0 6px 20px rgba(91, 163, 0, 0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "scale(1)";
-              e.target.style.boxShadow = "0 4px 15px rgba(91, 163, 0, 0.3)";
-            }}
-          >
-            ›
-          </button>
-        </div>
-      </section>
+      <BookList />
 
       {/* Quote Section */}
       <section
@@ -2580,6 +2366,182 @@ function InterviewGuide() {
   );
 }
 
+function BookList() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const books = [
+    {
+      title: "Software Engineering at Google",
+      authors: "Titus Winters, Tom Manshreck & Hyrum Wright",
+      description:
+        "Comprehensive guide to software engineering practices at Google scale",
+      cover: "/covers/software-engineering-at-google.jpg",
+    },
+    {
+      title: "Accelerate: The Science of Lean Software and DevOps",
+      authors: "Nicole Forsgren PhD, Jez Humble & Gene Kim",
+      description:
+        "Research-based insights into high-performing software teams",
+      cover: "/covers/accelerate-the-science-of-lean-software-and-devops.jpg",
+    },
+    {
+      title: "Designing Data-Intensive Applications",
+      authors: "Martin Kleppmann",
+      description: "Essential guide for building scalable data systems",
+      cover: "/covers/designing-data-intensive-applications.jpg",
+    },
+    {
+      title: "Software Architecture: The Hard Parts",
+      authors: "Neal Ford, Mark Richards, Pramod Sadalage & Zhamak Dehghani",
+      description: "Practical approaches to complex architectural decisions",
+      cover: "/covers/software-architecture-the-hard-parts.jpg",
+    },
+    {
+      title: "Thinking in Systems: A Primer",
+      authors: "Donella H. Meadows",
+      description: "Understanding complex systems and their behavior",
+      cover: "/covers/thinking-in-systems-a-primer.jpg",
+    },
+    {
+      title:
+        "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
+      authors: "Robert Martin",
+      description: "Principles for creating maintainable software architecture",
+      cover:
+        "/covers/clean-architecture-a-craftsman-guide-to-software-structure-and-design.jpg",
+    },
+    {
+      title: "The Phoenix Project",
+      authors: "Gene Kim, Kevin Behr & George Spafford",
+      description: "Novel about DevOps transformation and IT management",
+      cover: "/covers/the-phoenix-project.jpg",
+    },
+    {
+      title: "SRE by Google",
+      authors: "Google",
+      description: "Site Reliability Engineering practices and principles",
+      cover: "/covers/sre-by-google.jpg",
+    },
+  ];
+
+  return (
+    <section className="card">
+      <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
+        Books We Love and Recommend 💚
+      </h2>
+      
+      {/* Book Grid */}
+      <div
+        style={{
+          display: "grid",
+          gap: 15,
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        }}
+      >
+        {books.map((book, index) => (
+          <div
+            key={index}
+            style={{
+              background: "#f7f8fa",
+              borderRadius: 12,
+              padding: 20,
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.background = "#e8f5e8";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.background = "#f7f8fa";
+            }}
+          >
+            {/* Book Cover */}
+            <div
+              style={{
+                width: "60px",
+                height: "80px",
+                borderRadius: "6px",
+                overflow: "hidden",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src={book.cover}
+                alt={`${book.title} cover`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+            </div>
+            
+            {/* Book Info */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  lineHeight: "1.3",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                {book.title}
+              </h4>
+              
+              <p style={{ 
+                color: "#5ba300", 
+                fontWeight: 500, 
+                fontSize: 13,
+                fontStyle: "italic",
+                marginBottom: 4,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}>
+                by {book.authors}
+              </p>
+              
+              <p style={{ 
+                color: "#64748b", 
+                fontSize: 12,
+                lineHeight: "1.4",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              }}>
+                {book.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function TechRadarTabs() {
   const [selected, setSelected] = useState("2025");
   return (
@@ -2590,8 +2552,8 @@ function TechRadarTabs() {
           flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          gap: "24px",
-          marginBottom: "32px",
+          gap: window.innerWidth < 768 ? "16px" : "24px",
+          marginBottom: window.innerWidth < 768 ? "20px" : "32px",
         }}
       >
         <button
@@ -2663,11 +2625,19 @@ function Footer() {
 
 export function App() {
   const [hash, setHash] = useState(window.location.hash || "#home");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onHashChange = () => setHash(window.location.hash || "#home");
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    
     window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -2692,10 +2662,10 @@ export function App() {
             style={{
               width: "100%",
               background: "#fff",
-              padding: "12px 32px",
+              padding: isMobile ? "8px 16px" : "12px 32px",
               display: "flex",
               alignItems: "center",
-              gap: "16px",
+              justifyContent: "space-between",
               maxWidth: "1280px",
               margin: "0 auto",
               boxSizing: "border-box",
@@ -2705,46 +2675,114 @@ export function App() {
               src="logo_m.png"
               alt="solidgate logo"
               style={{
-                maxWidth: 120,
+                maxWidth: isMobile ? 80 : 120,
                 width: "auto",
                 height: "auto",
-                marginRight: "auto",
               }}
             />
-            <a
-              href="#home"
-              style={{
-                color: hash === "#home" ? "#5ba300" : "#181A20",
-                fontWeight: 600,
-                textDecoration: "none",
-                fontSize: "1rem",
-                padding: "4px 12px",
-                borderRadius: 6,
-                background: hash === "#home" ? "#f7f8fa" : "transparent",
-                transition: "background 0.2s",
-              }}
-            >
-              Tech Radar
-            </a>
-            <a
-              href="#interview"
-              style={{
-                color: hash === "#interview" ? "#5ba300" : "#181A20",
-                fontWeight: 600,
-                textDecoration: "none",
-                fontSize: "1rem",
-                padding: "4px 12px",
-                borderRadius: 6,
-                background: hash === "#interview" ? "#f7f8fa" : "transparent",
-                transition: "background 0.2s",
-              }}
-            >
-              Interview Guide(Backend)
-            </a>
+            
+            {isMobile ? (
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                    padding: "4px",
+                    color: "#181A20",
+                  }}
+                >
+                  ☰
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: "flex", gap: "16px" }}>
+                <a
+                  href="#home"
+                  style={{
+                    color: hash === "#home" ? "#5ba300" : "#181A20",
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    padding: "8px 16px",
+                    borderRadius: 6,
+                    background: hash === "#home" ? "#f7f8fa" : "transparent",
+                    transition: "background 0.2s",
+                  }}
+                >
+                  Tech Radar
+                </a>
+                <a
+                  href="#interview"
+                  style={{
+                    color: hash === "#interview" ? "#5ba300" : "#181A20",
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    padding: "8px 16px",
+                    borderRadius: 6,
+                    background: hash === "#interview" ? "#f7f8fa" : "transparent",
+                    transition: "background 0.2s",
+                  }}
+                >
+                  Interview Guide (Backend)
+                </a>
+              </div>
+            )}
           </nav>
+          
+          {/* Mobile Menu */}
+          {isMobile && mobileMenuOpen && (
+            <div
+              style={{
+                background: "#fff",
+                borderTop: "1px solid #e5e7eb",
+                padding: "16px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
+              }}
+            >
+              <a
+                href="#home"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: hash === "#home" ? "#5ba300" : "#181A20",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "12px 16px",
+                  borderRadius: 6,
+                  background: hash === "#home" ? "#f7f8fa" : "transparent",
+                  transition: "background 0.2s",
+                }}
+              >
+                Tech Radar
+              </a>
+              <a
+                href="#interview"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: hash === "#interview" ? "#5ba300" : "#181A20",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "12px 16px",
+                  borderRadius: 6,
+                  background: hash === "#interview" ? "#f7f8fa" : "transparent",
+                  transition: "background 0.2s",
+                }}
+              >
+                Interview Guide (Backend)
+              </a>
+            </div>
+          )}
         </div>
 
-        {/* Page Content */}
+              {/* Page Content */}
+      <div style={{ padding: window.innerWidth < 768 ? "16px" : "32px" }}>
         {hash === "#interview" ? (
           <InterviewGuide />
         ) : (
@@ -2753,7 +2791,7 @@ export function App() {
             <section className="card" style={{ maxWidth: "" }}>
               <div
                 style={{
-                  padding: "0 40px",
+                  padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
                 }}
               >
                 <div id="radar-description" style={{ marginBottom: 20 }}>
@@ -2839,7 +2877,7 @@ export function App() {
                 style={{
                   margin: "0 auto",
                   boxSizing: "border-box",
-                  padding: "32px 24px",
+                  padding: window.innerWidth < 768 ? "16px 8px" : "32px 24px",
                 }}
               >
                 <TechRadarTabs />
@@ -2851,6 +2889,7 @@ export function App() {
       <div id="footer">
         <Footer />
       </div>
+    </div>
     </div>
   );
 }
