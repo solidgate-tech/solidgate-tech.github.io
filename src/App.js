@@ -16,6 +16,21 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+const getLastUpdated = (lastUpdateDate) => {
+  const lastUpdate = new Date(lastUpdateDate);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  lastUpdate.setHours(0, 0, 0, 0);
+
+  const diffTime = today.getTime() - lastUpdate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) return "Last updated today";
+  if (diffDays === 1) return "Last updated 1 day ago";
+  if (diffDays < 0) return "Last updated today";
+  return `Last updated ${diffDays} days ago`;
+};
+
 const DEFAULT_RADAR_CONFIG = {
   svg_id: "radar",
   width: 1350,
@@ -32,10 +47,10 @@ const DEFAULT_RADAR_CONFIG = {
     { name: "Techniques, Tools & AI" },
   ],
   rings: [
-    { name: "ADOPT", color: "#5ba300" },
-    { name: "TRIAL", color: "#009eb0" },
-    { name: "ASSESS", color: "#c7ba00" },
-    { name: "HOLD", color: "#e09b96" },
+    { name: "ADOPT", color: "#06a872" },
+    { name: "TRIAL", color: "#A26CE6" },
+    { name: "ASSESS", color: "#005FBB" },
+    { name: "HOLD", color: "#7A7A7A" },
   ],
   print_layout: true,
   links_in_new_tabs: true,
@@ -44,7 +59,7 @@ const DEFAULT_RADAR_CONFIG = {
 const RADAR_CONFIG = {
   2023: {
     ...DEFAULT_RADAR_CONFIG,
-    date: 2023.09,
+    date: "Last updated 09.2023",
     title: "Tech Radar 2023",
     entries: [
       // Languages & Frameworks
@@ -110,7 +125,7 @@ const RADAR_CONFIG = {
       { label: "Structurizr", quadrant: 3, ring: 0, moved: 0 },
       { label: "Scrum", quadrant: 3, ring: 0, moved: 0 },
       { label: "Grafana OnCall", quadrant: 3, ring: 1, moved: 1 },
-      { label: "BDD (Behavior-Driven Development)", quadrant: 3, ring: 0, moved: 0 },
+      { label: "BDD", quadrant: 3, ring: 0, moved: 0 },
       { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
       { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
       { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
@@ -122,9 +137,9 @@ const RADAR_CONFIG = {
       { label: "GitOps", quadrant: 3, ring: 1, moved: 1 },
     ],
   },
-  2025: {
+    2025: {
     ...DEFAULT_RADAR_CONFIG,
-    date: 2025.01,
+    date: getLastUpdated('2025-07-28'),
     title: "Tech Radar 2025",
     entries: [
       // Languages & Frameworks
@@ -169,7 +184,7 @@ const RADAR_CONFIG = {
       { label: "MongoDB", quadrant: 2, ring: 3, moved: -1 },
       { label: "MySQL", quadrant: 2, ring: 3, moved: -1 },
       // Techniques, Tools & AI
-      { label: "TBD (Trunk Based Development)", quadrant: 3, ring: 0, moved: 0 },
+      { label: "TBD", quadrant: 3, ring: 0, moved: 0 },
       { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
       { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
       { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
@@ -177,7 +192,7 @@ const RADAR_CONFIG = {
       { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
       { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
       { label: "Github Copilot", quadrant: 3, ring: 0, moved: 1 },
-      { label: "Blue-green deploy", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Blue-Green Deployment", quadrant: 3, ring: 0, moved: 1 },
       { label: "GitOps", quadrant: 3, ring: 0, moved: 1 },
       { label: "ChatGPT", quadrant: 3, ring: 0, moved: 0 },
       { label: "Gemini", quadrant: 3, ring: 0, moved: 0 },
@@ -366,7 +381,7 @@ function TechRadar({ config }) {
           margin: "0 auto",
         }}
       >
-        <svg id="radar" style={{ display: "block", flex: "0 0 auto" }}></svg>
+        <svg id="radar" style={{ display: "block", flex: "0 0 auto", minHeight: "925px" }}></svg>
       </div>
     </div>
   );
@@ -386,19 +401,19 @@ function CompetencyMatrix() {
 
   const categories = [
     {
-      name: "Engineering culture",
+      name: "Engineering Culture",
       score: 4,
       description:
         "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
     },
     {
-      name: "Architecture skills",
+      name: "Architecture Skills",
       score: 3,
       description:
         "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems, also knowledge of event-driven architecture.",
     },
     {
-      name: "Programming language",
+      name: "Programming Language",
       score: 5,
       description:
         "Proficiency in programming languages, frameworks, and tools relevant to the role. Includes understanding of language-specific features, best practices, and ecosystem knowledge.",
@@ -1211,13 +1226,6 @@ function InterviewGuide() {
         padding: window.innerWidth < 768 ? "0" : "10px",
       }}
     >
-      <h1
-        className="section-title"
-        style={{ textAlign: "center", marginBottom: 30, fontSize: "1.8rem" }}
-      >
-        Interview Guide (Backend)
-      </h1>
-
       {/* About Solidgate Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
@@ -1249,7 +1257,7 @@ function InterviewGuide() {
             marginBottom: "15px",
           }}
         >
-          At Solidgate, we work with <strong>engineers</strong>, not just
+          At Solidgate, we work with <span style={{ fontWeight: 600 }}>engineers</span>, not just
           developers. Solidgate engineers don't maintain systems — they design
           them. We build the architecture behind seamless global payments,
           trusted by 150+ digital leaders. They take a holistic approach to
@@ -1277,7 +1285,7 @@ function InterviewGuide() {
             Preparation
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Start by checking out our website — <a href="https://solidgate.com/">Solidgate.com 💚</a> - and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+            Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
             Below, you'll find a clear breakdown of the skills we look for across engineering roles.
           </p>
         </div>
@@ -1570,20 +1578,23 @@ function InterviewGuide() {
 
       {/* Quote Section */}
       <section
-        className="card"
-        style={{ background: "#f7f8fa", textAlign: "center" }}
+        style={{
+          "background": "#f7f8fa",
+          "textAlign": "center",
+          "borderRadius": "14px",
+          "padding": "2rem",
+          "marginBottom": "3rem",
+      }}
       >
         <blockquote
           style={{
             margin: 0,
-            fontSize: "1.1rem",
-            fontWeight: 700,
+            fontSize: "1rem",
+            fontWeight: 500,
             color: "#181A20",
-            letterSpacing: "-0.5px",
           }}
         >
-          We don't work on tasks we deliver high-quality product for our
-          customers, so in Solidgate we highly value DevOps and Lean approaches
+          We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.
         </blockquote>
       </section>
     </div>
@@ -1695,7 +1706,7 @@ function BookList() {
               style={{
                 width: "60px",
                 height: "80px",
-                borderRadius: "6px",
+                borderRadius: "4px",
                 overflow: "hidden",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                 flexShrink: 0,
@@ -1736,9 +1747,8 @@ function BookList() {
               <p style={{
                 color: "#5ba300",
                 fontWeight: 500,
-                fontSize: 13,
-                fontStyle: "italic",
-                marginBottom: 4,
+                fontSize: "0.8rem",
+                marginBottom: 20,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
@@ -1748,7 +1758,7 @@ function BookList() {
 
               <p style={{
                 color: "#64748b",
-                fontSize: 12,
+                fontSize: "0.8rem",
                 lineHeight: "1.4",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -1773,25 +1783,58 @@ function TechRadarTabs() {
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          gap: window.innerWidth < 768 ? "16px" : "24px",
-          marginBottom: window.innerWidth < 768 ? "20px" : "32px",
+          marginBottom: "2rem",
+        }}
+      >
+        <div
+          style={{
+            display: "inline-flex",
+            width: "fit-content",
+            boxSizing: "content-box",
+            alignItems: "center",
+            border: "1px solid #E0E0E0",
+            borderRadius: "6px",
+            background: "#ffffff",
+            boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         }}
       >
         <button
           onClick={() => setSelected("2023")}
           style={{
-            padding: "10px 20px",
-            background: selected === "2023" ? "#5ba300" : "#eee",
-            color: selected === "2023" ? "#fff" : "#333",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             border: "none",
-            borderRadius: 4,
+              borderRadius: "4px",
+              background: selected === "2023" ? "#E1EFFC" : "#ffffff",
+              color: "#111827",
+              height: "calc(2rem - 2px)",
+              padding: "4px 16px",
+              fontSize: "14px",
+              lineHeight: "20px",
+              fontWeight: "500",
             cursor: "pointer",
-            fontWeight: "bold",
-            fontSize: 16,
-            minWidth: 80,
+              zIndex: selected === "2023" ? 1 : "auto",
+              outline: selected === "2023" ? "2px solid #0072E0" : "none",
+              flex: "1 1 auto",
+              minWidth: "80px",
+            }}
+            onMouseEnter={(e) => {
+              if (selected !== "2023") {
+                e.target.style.background = "#F5F5F5";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selected !== "2023") {
+                e.target.style.background = "#ffffff";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (selected !== "2023") {
+                e.target.style.background = "#d1d5db";
+              }
           }}
         >
           2023
@@ -1799,19 +1842,43 @@ function TechRadarTabs() {
         <button
           onClick={() => setSelected("2025")}
           style={{
-            padding: "10px 20px",
-            background: selected === "2025" ? "#5ba300" : "#eee",
-            color: selected === "2025" ? "#fff" : "#333",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             border: "none",
-            borderRadius: 4,
+              borderRadius: "4px",
+              background: selected === "2025" ? "#E1EFFC" : "#ffffff",
+              color: "#111827",
+              height: "calc(2rem - 2px)",
+              padding: "4px 16px",
+              fontSize: "14px",
+              lineHeight: "20px",
+              fontWeight: "500",
             cursor: "pointer",
-            fontWeight: "bold",
-            fontSize: 16,
-            minWidth: 80,
+              zIndex: selected === "2025" ? 1 : "auto",
+              outline: selected === "2025" ? "2px solid #0072E0" : "none",
+              flex: "1 1 auto",
+              minWidth: "80px",
+            }}
+            onMouseEnter={(e) => {
+              if (selected !== "2025") {
+                e.target.style.background = "#F5F5F5";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selected !== "2025") {
+                e.target.style.background = "#ffffff";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (selected !== "2025") {
+                e.target.style.background = "#d1d5db";
+              }
           }}
         >
           2025
         </button>
+        </div>
       </div>
       <TechRadar key={selected} config={RADAR_CONFIG[selected]} />
     </div>
@@ -1827,21 +1894,15 @@ function Footer() {
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        fontSize: "1.1rem",
+        fontSize: "1rem",
         lineHeight: "1.6",
         gap: "8px",
       }}
     >
-      <div style={{ fontWeight: 500 }}>
-        Made by backend developer for developers! With love 💚!
-      </div>
-      <div>
-        <a
-          href="https://jobs.dou.ua/companies/solidgate/vacancies/"
-          style={{ color: "#5ba300", textDecoration: "none", fontWeight: 500 }}
-        >
-          Solidgate is hiring!
-        </a>
+      <div style={{
+        fontWeight: 400,
+      }}>
+        Built by backend developers, for developers — with love! 💚
       </div>
     </div>
   );
@@ -1875,43 +1936,81 @@ export function App() {
         {/* Navigation Bar */}
         <div
           style={{
-            borderBottom: "1px solid #e5e7eb",
             position: "sticky",
             top: 0,
             zIndex: 100,
-            marginBottom: 32,
           }}
         >
           <nav
             style={{
               width: "100%",
               background: "#fff",
-              padding: isMobile ? "8px 16px" : "12px 32px",
+              padding: isMobile ? "8px 16px" : "26px 32px",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               maxWidth: "1280px",
               margin: "0 auto",
               boxSizing: "border-box",
+              position: "relative",
             }}
           >
+            <a
+              href="https://solidgate.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+          >
             <img
-              src="logo_m.png"
-              alt="solidgate logo"
+                src="logo.svg"
+              alt="Solidgate logo"
               style={{
-                maxWidth: isMobile ? 80 : 120,
+                maxWidth: 120,
                 width: "auto",
                 height: "auto",
+                cursor: "pointer",
               }}
             />
+            </a>
 
             {isMobile ? (
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <a
+                  href="https://solidgate.teamtailor.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: "#E4F0EC",
+                    color: "#105547",
+                    textDecoration: "none",
+                    padding: "6px 16px",
+                    borderRadius: "20px",
+                    fontSize: "0.9rem",
+                    fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#105547";
+                    e.target.style.color = "#E4F0EC";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "#E4F0EC";
+                    e.target.style.color = "#105547";
+                  }}
+                >
+                  We're hiring!
+                </a>
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   style={{
                     background: "none",
                     border: "none",
+                    boxShadow: "none",
                     fontSize: "24px",
                     cursor: "pointer",
                     padding: "4px",
@@ -1921,39 +2020,73 @@ export function App() {
                   ☰
                 </button>
               </div>
-            ) : (
-              <div style={{ display: "flex", gap: "16px" }}>
+                        ) : (
+              <>
+                <div style={{ display: "flex", gap: "16px", position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
+                  <a
+                    href="#home"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: hash === "#home" ? 500 : 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "4px 12px",
+                      position: "relative",
+                    }}
+                  >
+                    <span style={{ fontWeight: 500, visibility: "hidden", position: "absolute" }}>
+                      Tech Radar
+                    </span>
+                    Tech Radar
+                  </a>
+                  <a
+                    href="#interview"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: hash === "#interview" ? 500 : 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "4px 12px",
+                      position: "relative",
+                    }}
+                  >
+                    <span style={{ fontWeight: 500, visibility: "hidden", position: "absolute" }}>
+                      Interview Guide (Backend)
+                    </span>
+                    Interview Guide (Backend)
+                  </a>
+                </div>
                 <a
-                  href="#home"
+                  href="https://solidgate.teamtailor.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    color: hash === "#home" ? "#5ba300" : "#181A20",
-                    fontWeight: 600,
+                    background: "#E4F0EC",
+                    color: "#105547",
                     textDecoration: "none",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: 6,
-                    background: hash === "#home" ? "#f7f8fa" : "transparent",
-                    transition: "background 0.2s",
+                    padding: "6px 16px",
+                    borderRadius: "20px",
+                    fontSize: "0.9rem",
+                    fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#105547";
+                    e.target.style.color = "#E4F0EC";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "#E4F0EC";
+                    e.target.style.color = "#105547";
                   }}
                 >
-                  Tech Radar
+                  We're hiring!
                 </a>
-                <a
-                  href="#interview"
-                  style={{
-                    color: hash === "#interview" ? "#5ba300" : "#181A20",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: 6,
-                    background: hash === "#interview" ? "#f7f8fa" : "transparent",
-                    transition: "background 0.2s",
-                  }}
-                >
-                  Interview Guide (Backend)
-                </a>
-              </div>
+              </>
             )}
           </nav>
 
@@ -1973,8 +2106,8 @@ export function App() {
                 href="#home"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  color: hash === "#home" ? "#5ba300" : "#181A20",
-                  fontWeight: 600,
+                  color: "#26282C",
+                  fontWeight: hash === "#home" ? 600 : 400,
                   textDecoration: "none",
                   fontSize: "1rem",
                   padding: "12px 16px",
@@ -1989,8 +2122,8 @@ export function App() {
                 href="#interview"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  color: hash === "#interview" ? "#5ba300" : "#181A20",
-                  fontWeight: 600,
+                  color: "#26282C",
+                  fontWeight: hash === "#interview" ? 600 : 400,
                   textDecoration: "none",
                   fontSize: "1rem",
                   padding: "12px 16px",
@@ -2006,105 +2139,90 @@ export function App() {
         </div>
 
               {/* Page Content */}
-      <div style={{ padding: window.innerWidth < 768 ? "16px" : "32px" }}>
+      <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
         {hash === "#interview" ? (
           <InterviewGuide />
         ) : (
           <>
             {/* TechRadar Section ONLY */}
-            <section className="card" style={{ maxWidth: "" }}>
-              <div
-                style={{
-                  padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
-                }}
-              >
-                <div id="radar-description" style={{ marginBottom: 20 }}>
+            <section style={{
+              "background": "#fff",
+              "padding": "2rem",
+              "textAlign": "center",
+
+            }}>
+              <TechRadarTabs />
+              <div style={{
+                padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
+              }}>
                   <p>
                     <div
                       id="hold"
                       style={{
                         display: "inline-block",
-                        background: "#e09b96",
-                        color: "#fff",
+                        background: "#F5F5F5",
+                        color: "#525252",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Hold
                     </div>{" "}
-                    — in this category, we have expertise, but the mentioned
-                    tools are used only to support existing systems — new
-                    projects are not launched on them.
+                    — Tools we know well but only use to support existing systems. Not used for new projects.
                   </p>
                   <p>
                     <div
                       id="assess"
                       style={{
                         display: "inline-block",
-                        background: "#c7ba00",
-                        color: "#fff",
+                        background: "#CADCED",
+                        color: "#14416C",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Assess
                     </div>{" "}
-                    — trial technologies and tools that are currently being
-                    evaluated. They are only used for test projects and are not
-                    used for real tasks.
+                    — Technologies under evaluation, used only in test environments, not for real tasks.
                   </p>
                   <p>
                     <div
                       id="trial"
                       style={{
                         display: "inline-block",
-                        background: "#009eb0",
-                        color: "#fff",
+                        background: "#DBC0F0",
+                        color: "#4D1D74",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Trial
                     </div>{" "}
-                    — technologies and tools that have already passed the
-                    testing phase and are preparing to work in production (or
-                    are even already working there).
+                    — Tools that have passed testing and are being prepared (or already used) in production.
                   </p>
                   <p>
                     <div
                       id="adopt"
                       style={{
                         display: "inline-block",
-                        background: "#5ba300",
-                        color: "#fff",
+                        background: "#E4F0EC",
+                        color: "#105547",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Adopt
                     </div>{" "}
-                    — technologies and tools that are implemented and actively
-                    used by teams. Technologies in which Solidgate has
-                    expertise.
+                    — Fully implemented tools actively used by teams. We have solid expertise with these.
                   </p>
-                </div>
-              </div>
-              <div
-                style={{
-                  margin: "0 auto",
-                  boxSizing: "border-box",
-                  padding: window.innerWidth < 768 ? "16px 8px" : "32px 24px",
-                }}
-              >
-                <TechRadarTabs />
               </div>
             </section>
           </>

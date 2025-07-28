@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: "Onest", Arial, Helvetica, sans-serif;
   background: #fff;
   color: #222;
   min-height: 100vh;
@@ -66,7 +66,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: "Onest", Arial, Helvetica, sans-serif;
   color: #181a20;
   font-weight: 700;
   margin-top: 0;
@@ -74,16 +74,15 @@ h6 {
 
 .card {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(24, 26, 32, 0.08);
+  border-radius: 14px;
   padding: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: left;
 }
 
 .button,
 button {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: "Onest", Arial, Helvetica, sans-serif;
   background: #5ba300;
   color: #fff;
   border: none;
@@ -128,4 +127,9 @@ button:hover {
 .media-block:hover {
   transform: translateY(-2px);
   background: #e8f5e8;
+}
+
+/* Radar font styling */
+#radar text {
+  font-family: "Onest", Arial, Helvetica, sans-serif !important;
 }
