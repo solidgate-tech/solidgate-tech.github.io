@@ -16,6 +16,21 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+const getLastUpdated = (lastUpdateDate) => {
+  const lastUpdate = new Date(lastUpdateDate);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  lastUpdate.setHours(0, 0, 0, 0);
+
+  const diffTime = today.getTime() - lastUpdate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) return "Last updated today";
+  if (diffDays === 1) return "Last updated 1 day ago";
+  if (diffDays < 0) return "Last updated today";
+  return `Last updated ${diffDays} days ago`;
+};
+
 const DEFAULT_RADAR_CONFIG = {
   svg_id: "radar",
   width: 1350,
@@ -26,16 +41,16 @@ const DEFAULT_RADAR_CONFIG = {
     inactive: "#ddd",
   },
   quadrants: [
-    { name: "Language & Frameworks" },
+    { name: "Languages & Frameworks" },
     { name: "Platform & Infrastructure" },
-    { name: "Data management" },
-    { name: "Techniques & Tools" },
+    { name: "Data Management" },
+    { name: "Techniques, Tools & AI" },
   ],
   rings: [
-    { name: "ADOPT", color: "#5ba300" },
-    { name: "TRIAL", color: "#009eb0" },
-    { name: "ASSESS", color: "#c7ba00" },
-    { name: "HOLD", color: "#e09b96" },
+    { name: "ADOPT", color: "#06a872" },
+    { name: "TRIAL", color: "#A26CE6" },
+    { name: "ASSESS", color: "#005FBB" },
+    { name: "HOLD", color: "#7A7A7A" },
   ],
   print_layout: true,
   links_in_new_tabs: true,
@@ -44,921 +59,146 @@ const DEFAULT_RADAR_CONFIG = {
 const RADAR_CONFIG = {
   2023: {
     ...DEFAULT_RADAR_CONFIG,
-    date: 2023.09,
-    title: "Tech radar 2023",
+    date: "Last updated 09.2023",
+    title: "Tech Radar 2023",
     entries: [
-      {
-        label: "Go",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Kotlin",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "PHP",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Symfony",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Ktor",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Spring",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Echo v4",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Gorm",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Go PGX",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "React",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "TypeScript",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Javascript",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Hugo",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Astro",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Redux",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Python",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Task.dev",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Shell",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Make",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "VictoriaMetrics",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Grafana",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Airflow",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "K8S",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 2, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "OpenTelemetry",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 2, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Nexus",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Grafana On Call",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Docker",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Nginx",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS Fargate",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS ECS",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Terraform",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Npm",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Yarn",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Sentry(frontend only)",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Vite",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Nx",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "PNPm",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Gitlab",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "GitlabCI",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Jenkins",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Kibana",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Fluent",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Vector",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Loki",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "RabbitMQ",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Amazon MSK(Kafka)",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS Aurora",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "AWS S3",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "DBT",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Redshift",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "PostgreSQL",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Redis",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Memcached",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Elasticsearch",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "OpenSearch",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "C4 model",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "ADR",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Structurizr",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Scrum",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "On call",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Functional testing",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Unit testing",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "BDD",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Conventional commits",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Buf(gRPC)",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Buf(gRPC) registry",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "golangci-lint",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "OpenApi",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 3, // 0,1,2,3 (starting from inside)
-        moved: -1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Jira",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Confluence",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Github Copilot",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Blue-green deploy",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 2, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "GitOps",
-        quadrant: 3, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 1, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
+      // Languages & Frameworks
+      { label: "Go", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Kotlin", quadrant: 0, ring: 0, moved: 0 },
+      { label: "PHP", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Symfony", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Ktor", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Spring", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Echo v4", quadrant: 0, ring: 3, moved: -1 },
+      { label: "GORM", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Go PGX", quadrant: 0, ring: 0, moved: 1 },
+      { label: "React", quadrant: 0, ring: 0, moved: 0 },
+      { label: "TypeScript", quadrant: 0, ring: 0, moved: 0 },
+      { label: "JavaScript", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Hugo", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Astro", quadrant: 0, ring: 1, moved: 1 },
+      { label: "Redux", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Python", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Task", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Shell", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Make", quadrant: 0, ring: 3, moved: -1 },
+      // Platform & Infrastructure
+      { label: "VictoriaMetrics", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Apache Airflow", quadrant: 1, ring: 0, moved: 0 },
+      { label: "K8S", quadrant: 1, ring: 2, moved: 0 },
+      { label: "OpenTelemetry", quadrant: 1, ring: 2, moved: 0 },
+      { label: "Nexus", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana OnCall", quadrant: 1, ring: 1, moved: 0 },
+      { label: "Docker", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Nginx", quadrant: 1, ring: 0, moved: 0 },
+      { label: "AWS Fargate", quadrant: 1, ring: 0, moved: 0 },
+      { label: "AWS ECS", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Terraform", quadrant: 1, ring: 0, moved: 1 },
+      { label: "npm", quadrant: 1, ring: 3, moved: -1 },
+      { label: "yarn", quadrant: 1, ring: 3, moved: -1 },
+      { label: "Sentry (frontend only)", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Vite", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Nx", quadrant: 1, ring: 0, moved: 0 },
+      { label: "pnpm", quadrant: 1, ring: 1, moved: 1 },
+      { label: "GitLab", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab CI/CD", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Jenkins", quadrant: 1, ring: 3, moved: -1 },
+      { label: "Kibana", quadrant: 1, ring: 3, moved: -1 },
+      // Data Management
+      { label: "Fluent", quadrant: 2, ring: 3, moved: -1 },
+      { label: "Vector", quadrant: 2, ring: 1, moved: 1 },
+      { label: "Loki", quadrant: 2, ring: 1, moved: 1 },
+      { label: "RabbitMQ", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Amazon MSK (Kafka)", quadrant: 2, ring: 1, moved: 1 },
+      { label: "AWS Aurora", quadrant: 2, ring: 0, moved: 0 },
+      { label: "AWS S3", quadrant: 2, ring: 0, moved: 0 },
+      { label: "DBT", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redshift", quadrant: 2, ring: 0, moved: 0 },
+      { label: "PostgreSQL", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redis", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Memcached", quadrant: 2, ring: 3, moved: -1 },
+      { label: "ElasticSearch", quadrant: 2, ring: 3, moved: -1 },
+      { label: "OpenSearch", quadrant: 2, ring: 3, moved: -1 },
+      // Techniques, Tools & AI
+      { label: "ADR", quadrant: 3, ring: 1, moved: 1 },
+      { label: "Structurizr", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Scrum", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Grafana OnCall", quadrant: 3, ring: 1, moved: 1 },
+      { label: "BDD", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
+      { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
+      { label: "OpenAPI", quadrant: 3, ring: 3, moved: -1 },
+      { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
+      { label: "GitHub Copilot", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Blue-Green Deployment", quadrant: 3, ring: 2, moved: 0 },
+      { label: "GitOps", quadrant: 3, ring: 1, moved: 1 },
     ],
   },
-  2025: {
+    2025: {
     ...DEFAULT_RADAR_CONFIG,
-    date: 2025.01,
-    title: "Tech radar 2025",
+    date: getLastUpdated('2025-07-28'),
+    title: "Tech Radar 2025",
     entries: [
-      {
-        label: "Go",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Node.js",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Kotlin",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "PHP",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Symfony",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Ktor",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Spring",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Echo v4",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Gorm",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Go PGX",
-        quadrant: 0,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "React",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "TypeScript",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Javascript",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Hugo",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Astro",
-        quadrant: 0,
-        ring: 1,
-        moved: 1,
-      },
-      {
-        label: "Redux",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Python",
-        quadrant: 0,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Task.dev",
-        quadrant: 0,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "Fastify",
-        quadrant: 0, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Loki",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Gitlab",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-            {
-        label: "GitlabCI",
-        quadrant: 1, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 0, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "RabbitMQ",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "SQS",
-        quadrant: 2, // 0,1,2,3 (counting clockwise, starting from bottom right)
-        ring: 0, // 0,1,2,3 (starting from inside)
-        moved: 1, // -1 = moved out (triangle pointing down)
-        //  0 = not moved (circle)
-        //  1 = moved in  (triangle pointing up)
-      },
-      {
-        label: "Shell",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Make",
-        quadrant: 0,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "VictoriaMetrics",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Grafana",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Airflow",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Docker",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "AWS",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Terraform",
-        quadrant: 1,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "PostgreSQL",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Redis",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Kafka",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Elasticsearch",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "OpenSearch",
-        quadrant: 2,
-        ring: 0,
-        moved: 0,
-      },
-      
-      {
-        label: "MongoDB",
-        quadrant: 2,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "MySQL",
-        quadrant: 2,
-        ring: 3,
-        moved: -1,
-      },
-      {
-        label: "Unit testing",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "TBD(trunk based development)",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Conventional commits",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Buf(gRPC)",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "Buf(gRPC) registry",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "golangci-lint",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "OpenApi",
-        quadrant: 3,
-        ring: 3,
-        moved: 0,
-      },
-      {
-        label: "Jira",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Confluence",
-        quadrant: 3,
-        ring: 0,
-        moved: 0,
-      },
-      {
-        label: "Github Copilot",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "Blue-green deploy",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
-      {
-        label: "GitOps",
-        quadrant: 3,
-        ring: 0,
-        moved: 1,
-      },
+      // Languages & Frameworks
+      { label: "Go", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Kotlin", quadrant: 0, ring: 0, moved: 0 },
+      { label: "PHP", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Symfony", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Ktor", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Spring", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Echo v4", quadrant: 0, ring: 3, moved: -1 },
+      { label: "GORM", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Go PGX", quadrant: 0, ring: 0, moved: 1 },
+      { label: "React", quadrant: 0, ring: 0, moved: 0 },
+      { label: "TypeScript", quadrant: 0, ring: 0, moved: 0 },
+      { label: "JavaScript", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Hugo", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Astro", quadrant: 0, ring: 1, moved: 1 },
+      { label: "Redux", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Python", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Task", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Fastify", quadrant: 0, ring: 0, moved: 1 },
+      { label: "Shell", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Make", quadrant: 0, ring: 3, moved: -1 },
+      // Platform & Infrastructure
+      { label: "Loki", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab CI/CD", quadrant: 1, ring: 0, moved: 0 },
+      { label: "VictoriaMetrics", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Apache Airflow", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Docker", quadrant: 1, ring: 0, moved: 0 },
+      { label: "AWS", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Terraform", quadrant: 1, ring: 0, moved: 0 },
+      // Data Management
+      { label: "RabbitMQ", quadrant: 2, ring: 0, moved: 1 },
+      { label: "SQS", quadrant: 2, ring: 0, moved: 1 },
+      { label: "PostgreSQL", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redis", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Kafka", quadrant: 2, ring: 0, moved: 0 },
+      { label: "ElasticSearch", quadrant: 2, ring: 0, moved: 0 },
+      { label: "OpenSearch", quadrant: 2, ring: 0, moved: 0 },
+      { label: "MongoDB", quadrant: 2, ring: 3, moved: -1 },
+      { label: "MySQL", quadrant: 2, ring: 3, moved: -1 },
+      // Techniques, Tools & AI
+      { label: "TBD", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
+      { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
+      { label: "bufbuild/protovalidate", quadrant: 3, ring: 1, moved: 1 },
+      { label: "OpenAPI", quadrant: 3, ring: 3, moved: 0 },
+      { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Github Copilot", quadrant: 3, ring: 0, moved: 1 },
+      { label: "Blue-Green Deployment", quadrant: 3, ring: 0, moved: 1 },
+      { label: "GitOps", quadrant: 3, ring: 0, moved: 1 },
+      { label: "ChatGPT", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Gemini", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Cursor", quadrant: 3, ring: 1, moved: 2 },
+      { label: "CodeRabbit", quadrant: 3, ring: 0, moved: 2 },
     ],
   },
 };
@@ -984,7 +224,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'scale(1.02)';
         e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = '#5ba300';
+        e.currentTarget.style.borderColor = '#00816A';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
@@ -1000,10 +240,12 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           left: 0,
           right: 0,
           height: '4px',
-          background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+          background: '#3B9A83',
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12
         }}
       />
-      
+
       <div
         style={{
           display: "flex",
@@ -1018,7 +260,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           <img
             src={logo}
             alt={`${language} logo`}
-            style={{ width: 28, height: 28, marginRight: 16 }}
+            style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
           />
           <h4
             style={{
@@ -1033,14 +275,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         </div>
         <div
           style={{
-            fontSize: "1.3rem",
-            color: "#5ba300",
+            fontSize: "1.6rem",
+            color: "#00816A",
             transition: "transform 0.3s ease",
-            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-            fontWeight: "bold",
+            transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+            fontWeight: "400",
           }}
         >
-          ▼
+          ›
         </div>
       </div>
 
@@ -1083,14 +325,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           <div
             style={{
               padding: 16,
-              background: "rgba(91, 163, 0, 0.04)",
+              background: "rgba(0, 129, 106, 0.04)",
               borderRadius: 8,
-              border: "1px solid rgba(91, 163, 0, 0.1)",
+              border: "1px solid rgba(0, 129, 106, 0.1)",
             }}
           >
             <h5
               style={{
-                color: "#5ba300",
+                color: "#00816A",
                 marginBottom: 12,
                 fontSize: "1rem",
                 fontWeight: 700,
@@ -1142,7 +384,7 @@ function TechRadar({ config }) {
           margin: "0 auto",
         }}
       >
-        <svg id="radar" style={{ display: "block", flex: "0 0 auto" }}></svg>
+        <svg id="radar" style={{ display: "block", flex: "0 0 auto", minHeight: "925px" }}></svg>
       </div>
     </div>
   );
@@ -1162,19 +404,19 @@ function CompetencyMatrix() {
 
   const categories = [
     {
-      name: "Engineering culture",
+      name: "Engineering Culture",
       score: 4,
       description:
         "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
     },
     {
-      name: "Architecture skills",
+      name: "Architecture Skills",
       score: 3,
       description:
         "Ability to design scalable system architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of microservices, monoliths, and distributed systems, also knowledge of event-driven architecture.",
     },
     {
-      name: "Programming language",
+      name: "Programming Language",
       score: 5,
       description:
         "Proficiency in programming languages, frameworks, and tools relevant to the role. Includes understanding of language-specific features, best practices, and ecosystem knowledge.",
@@ -1328,8 +570,8 @@ function CompetencyMatrix() {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#5ba300" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#4a7c59" stopOpacity="0.25" />
+                <stop offset="0%" stopColor="#00816A" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#3B9A83" stopOpacity="0.25" />
               </linearGradient>
               <linearGradient
                 id="gridGradient"
@@ -1374,9 +616,9 @@ function CompetencyMatrix() {
               return (
                 <g key={`label-${index}`} style={{ cursor: "pointer" }}>
                   <rect
-                    x={labelX - 70}
+                    x={labelX - 85}
                     y={labelY - 15}
-                    width="140"
+                    width="170"
                     height="30"
                     rx="15"
                     fill="rgba(255, 255, 255, 0.95)"
@@ -1426,7 +668,7 @@ function CompetencyMatrix() {
                     cy={scoreY}
                     r="14"
                     fill="white"
-                    stroke="#5ba300"
+                    stroke="#00816A"
                     strokeWidth="2.5"
                     style={{ transition: "all 0.15s ease" }}
                     onMouseEnter={(e) => {
@@ -1436,18 +678,17 @@ function CompetencyMatrix() {
                         `category-${index}`
                       );
                       if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(91, 163, 0, 0.04)";
-                        categoryDetails.style.borderColor = "#5ba300";
+                        categoryDetails.style.background = "#E4F0EC";
+                        categoryDetails.style.borderColor = '#00816A';
                         categoryDetails.style.padding = "16px";
 
                         const description = document.getElementById(
                           `description-${index}`
                         );
                         if (description) {
-                          description.style.maxHeight = "100px";
+                          description.style.maxHeight = "1000px";
                           description.style.opacity = "1";
-                          description.style.marginTop = "8px";
+                          description.style.marginTop = "12px";
                         }
                       }
                     }}
@@ -1458,10 +699,9 @@ function CompetencyMatrix() {
                         `category-${index}`
                       );
                       if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(255, 255, 255, 0.9)";
+                        categoryDetails.style.background = "#FAFAFA";
                         categoryDetails.style.borderColor = "#e2e8f0";
-                        categoryDetails.style.padding = "12px";
+                        categoryDetails.style.padding = "20px";
 
                         const description = document.getElementById(
                           `description-${index}`
@@ -1497,7 +737,7 @@ function CompetencyMatrix() {
             <path
               d={createDataPath(dataPoints)}
               fill="url(#dataGradient)"
-              stroke="#5ba300"
+              stroke="#00816A"
               strokeWidth="2.5"
               opacity="0.9"
             />
@@ -1509,7 +749,7 @@ function CompetencyMatrix() {
                   cx={point.x}
                   cy={point.y}
                   r="7"
-                  fill="#5ba300"
+                  fill="#00816A"
                   stroke="white"
                   strokeWidth="2.5"
                   style={{ transition: "all 0.15s ease" }}
@@ -1520,18 +760,17 @@ function CompetencyMatrix() {
                       `category-${index}`
                     );
                     if (categoryDetails) {
-                      categoryDetails.style.background =
-                        "rgba(91, 163, 0, 0.04)";
-                      categoryDetails.style.borderColor = "#5ba300";
+                      categoryDetails.style.background = "#E4F0EC";
+                      categoryDetails.style.borderColor = '#00816A';
                       categoryDetails.style.padding = "16px";
 
                       const description = document.getElementById(
                         `description-${index}`
                       );
                       if (description) {
-                        description.style.maxHeight = "100px";
+                        description.style.maxHeight = "1000px";
                         description.style.opacity = "1";
-                        description.style.marginTop = "8px";
+                        description.style.marginTop = "12px";
                       }
                     }
                   }}
@@ -1542,10 +781,9 @@ function CompetencyMatrix() {
                       `category-${index}`
                     );
                     if (categoryDetails) {
-                      categoryDetails.style.background =
-                        "rgba(255, 255, 255, 0.9)";
+                      categoryDetails.style.background = "#FAFAFA";
                       categoryDetails.style.borderColor = "#e2e8f0";
-                      categoryDetails.style.padding = "12px";
+                      categoryDetails.style.padding = "20px";
 
                       const description = document.getElementById(
                         `description-${index}`
@@ -1566,7 +804,7 @@ function CompetencyMatrix() {
               cx={centerX}
               cy={centerY}
               r="5"
-              fill="#5ba300"
+              fill="#00816A"
               stroke="white"
               strokeWidth="2"
             />
@@ -1615,7 +853,7 @@ function CompetencyMatrix() {
                 id={`category-${index}`}
                                   style={{
                     background: "rgba(255, 255, 255, 0.95)",
-                    border: isExpanded ? "2px solid #5ba300" : "2px solid #e2e8f0",
+                    border: isExpanded ? "2px solid #00816A" : "2px solid #e2e8f0",
                     borderRadius: "12px",
                     padding: isMobile ? "20px" : "20px",
                     transition: "all 0.5s ease",
@@ -1636,9 +874,9 @@ function CompetencyMatrix() {
                     left: 0,
                     right: 0,
                     height: "4px",
-                    background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
+                    background: '#3B9A83',
+                    borderTopLeftRadius: 12,
+                    borderTopRightRadius: 12,
                   }}
                 />
                 <div
@@ -1670,7 +908,7 @@ function CompetencyMatrix() {
                       style={{
                         fontSize: isMobile ? "20px" : "22px",
                         fontWeight: "700",
-                        color: "#5ba300",
+                        color: "#00816A",
                       }}
                     >
                       {category.score}
@@ -1715,7 +953,7 @@ function CompetencyMatrix() {
           style={{
             marginTop: "25px",
             padding: "16px",
-            background: "rgba(91, 163, 0, 0.04)",
+            background: "#F5F5F5",
             borderRadius: "12px",
             border: "1px solid rgba(91, 163, 0, 0.1)",
           }}
@@ -1723,10 +961,10 @@ function CompetencyMatrix() {
           <p
             style={{
               margin: "0",
-              fontSize: "13px",
-              color: "#5ba300",
+              fontSize: "0.9rem",
+              color: "#666666",
               textAlign: "center",
-              fontWeight: "600",
+              fontWeight: "500",
             }}
           >
             Hover over hexagon elements or category cards to expand details
@@ -1843,9 +1081,11 @@ function EngineeringLevelsTree() {
                 left: 0,
                 right: 0,
                 height: '4px',
-                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                background: '#3B9A83',
+                borderTopLeftRadius: '16px',
+                borderTopRightRadius: '16px'
             }} />
-            
+
             <h3 style={{
                 margin: '0 0 30px 0',
                 fontSize: '28px',
@@ -1856,7 +1096,7 @@ function EngineeringLevelsTree() {
             }}>
                 Engineering Career Levels
             </h3>
-            
+
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -1865,17 +1105,6 @@ function EngineeringLevelsTree() {
             }}>
 
                 {levels.map((level, index) => {
-                    // Create gradient border colors from light green to dark green
-                    const borderColors = [
-                        '#5ba300', // Junior - lightest green
-                        '#4a7c59', // Mid-Level
-                        '#3d6b4a', // Senior
-                        '#2f5a3b', // Staff
-                        '#21492c'  // Tech Lead - darkest green
-                    ];
-                    
-                    const borderColor = borderColors[index];
-                    
                     return (
                         <div
                             key={index}
@@ -1894,7 +1123,7 @@ function EngineeringLevelsTree() {
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.transform = 'scale(1.02)';
                                 e.currentTarget.style.boxShadow = 'none';
-                                e.currentTarget.style.borderColor = '#5ba300';
+                                e.currentTarget.style.borderColor = '#00816A';
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.transform = 'scale(1)';
@@ -1909,9 +1138,11 @@ function EngineeringLevelsTree() {
                                 left: 0,
                                 right: 0,
                                 height: '4px',
-                                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                                background: '#3B9A83',
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 12
                             }} />
-                            
+
                             <div style={{
                                 padding: '20px',
                                 display: 'flex',
@@ -1938,14 +1169,14 @@ function EngineeringLevelsTree() {
                                     </p>
                                 </div>
                                 <div style={{
-                                    fontSize: '1.3rem',
-                                    color: '#5ba300',
+                                    fontSize: '1.6rem',
+                                    color: '#00816A',
                                     transition: 'transform 0.3s ease',
-                                    transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transform: expandedLevels[index] ? 'rotate(90deg)' : 'rotate(0deg)',
                                     marginLeft: '16px',
-                                    fontWeight: 'bold'
+                                    fontWeight: '400'
                                 }}>
-                                    ▼
+                                    ›
                                 </div>
                             </div>
 
@@ -1987,13 +1218,6 @@ function InterviewGuide() {
         padding: window.innerWidth < 768 ? "0" : "10px",
       }}
     >
-      <h1
-        className="section-title"
-        style={{ textAlign: "center", marginBottom: 30, fontSize: "1.8rem" }}
-      >
-        Interview Guide (Backend)
-      </h1>
-
       {/* About Solidgate Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
@@ -2025,7 +1249,7 @@ function InterviewGuide() {
             marginBottom: "15px",
           }}
         >
-          At Solidgate, we work with <strong>engineers</strong>, not just
+          At Solidgate, we work with <span style={{ fontWeight: 600 }}>engineers</span>, not just
           developers. Solidgate engineers don't maintain systems — they design
           them. We build the architecture behind seamless global payments,
           trusted by 150+ digital leaders. They take a holistic approach to
@@ -2053,7 +1277,7 @@ function InterviewGuide() {
             Preparation
           </h3>
           <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Start by checking out our website — <a href="https://solidgate.com/">Solidgate.com 💚</a> - and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+            Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
             Below, you'll find a clear breakdown of the skills we look for across engineering roles.
           </p>
         </div>
@@ -2101,9 +1325,9 @@ function InterviewGuide() {
             right answer — we care about how you approach problems.
           </p>
         </div>
-        
-        <div style={{ 
-          textAlign: 'center', 
+
+        <div style={{
+          textAlign: 'center',
           margin: '20px 0',
           fontSize: '1.2rem',
           fontWeight: '600',
@@ -2111,7 +1335,7 @@ function InterviewGuide() {
         }}>
           OR
         </div>
-        
+
         <div style={{ marginBottom: "25px" }}>
           <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
             3. 🏗️ Architecture Task (60 min)
@@ -2269,7 +1493,7 @@ function InterviewGuide() {
               >
                 Чи варто деплоїтись у п'ятницю
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Сергій Сафонов, Tech Lead
               </p>
             </div>
@@ -2291,7 +1515,7 @@ function InterviewGuide() {
                 $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
                 фінтех
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Макс Багінський, Head of Engineering
               </p>
             </div>
@@ -2312,7 +1536,7 @@ function InterviewGuide() {
               >
                 Як стати джуном, якого найматимуть
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Владислав Павленко, Go Engineer
               </p>
             </div>
@@ -2333,7 +1557,7 @@ function InterviewGuide() {
               >
                 Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Сергій Сафонов, Tech Lead
               </p>
             </div>
@@ -2346,20 +1570,23 @@ function InterviewGuide() {
 
       {/* Quote Section */}
       <section
-        className="card"
-        style={{ background: "#f7f8fa", textAlign: "center" }}
+        style={{
+          "background": "#f7f8fa",
+          "textAlign": "center",
+          "borderRadius": "14px",
+          "padding": "2rem",
+          "marginBottom": "3rem",
+      }}
       >
         <blockquote
           style={{
             margin: 0,
-            fontSize: "1.1rem",
-            fontWeight: 700,
+            fontSize: "1rem",
+            fontWeight: 500,
             color: "#181A20",
-            letterSpacing: "-0.5px",
           }}
         >
-          We don't work on tasks we deliver high-quality product for our
-          customers, so in Solidgate we highly value DevOps and Lean approaches
+          We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.
         </blockquote>
       </section>
     </div>
@@ -2435,7 +1662,7 @@ function BookList() {
       <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
         Books We Love and Recommend 💚
       </h2>
-      
+
       {/* Book Grid */}
       <div
         style={{
@@ -2454,16 +1681,28 @@ function BookList() {
               cursor: "pointer",
               transition: "all 0.2s ease",
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               gap: "16px",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.background = "#e8f5e8";
+              e.currentTarget.style.background = "#E4F0EC";
+              // Rotate the book cover randomly left or right
+              const bookCover = e.currentTarget.querySelector('div');
+              if (bookCover) {
+                const randomDirection = Math.random() > 0.5 ? 1 : -1;
+                const randomAngle = (Math.random() * 3 + 2) * randomDirection; // 2-5 degrees
+                bookCover.style.transform = `rotate(${randomAngle}deg)`;
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.background = "#f7f8fa";
+              e.currentTarget.style.background = "#FAFAFA";
+              // Reset book cover rotation
+              const bookCover = e.currentTarget.querySelector('div');
+              if (bookCover) {
+                bookCover.style.transform = "rotate(0deg)";
+              }
             }}
           >
             {/* Book Cover */}
@@ -2471,10 +1710,11 @@ function BookList() {
               style={{
                 width: "60px",
                 height: "80px",
-                borderRadius: "6px",
+                borderRadius: "4px",
                 overflow: "hidden",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                 flexShrink: 0,
+                transition: "transform 0.3s ease",
               }}
             >
               <img
@@ -2490,13 +1730,13 @@ function BookList() {
                 }}
               />
             </div>
-            
+
             {/* Book Info */}
             <div style={{ flex: 1, minWidth: 0 }}>
               <h4
                 style={{
                   color: "#181A20",
-                  marginBottom: 8,
+                  marginBottom: 4,
                   fontSize: "0.95rem",
                   lineHeight: "1.3",
                   overflow: "hidden",
@@ -2508,23 +1748,25 @@ function BookList() {
               >
                 {book.title}
               </h4>
-              
-              <p style={{ 
-                color: "#5ba300", 
-                fontWeight: 500, 
-                fontSize: 13,
-                fontStyle: "italic",
-                marginBottom: 4,
+
+              <p style={{
+                color: "#00816A",
+                fontWeight: 500,
+                fontSize: "0.8rem",
+                marginBottom: 12,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                lineHeight: "1.3",
               }}>
                 by {book.authors}
               </p>
-              
-              <p style={{ 
-                color: "#64748b", 
-                fontSize: 12,
+
+              <p style={{
+                color: "#64748b",
+                fontSize: "0.8rem",
                 lineHeight: "1.4",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -2549,25 +1791,58 @@ function TechRadarTabs() {
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          gap: window.innerWidth < 768 ? "16px" : "24px",
-          marginBottom: window.innerWidth < 768 ? "20px" : "32px",
+          marginBottom: "2rem",
+        }}
+      >
+        <div
+          style={{
+            display: "inline-flex",
+            width: "fit-content",
+            boxSizing: "content-box",
+            alignItems: "center",
+            border: "1px solid #E0E0E0",
+            borderRadius: "6px",
+            background: "#ffffff",
+            boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         }}
       >
         <button
           onClick={() => setSelected("2023")}
           style={{
-            padding: "10px 20px",
-            background: selected === "2023" ? "#5ba300" : "#eee",
-            color: selected === "2023" ? "#fff" : "#333",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             border: "none",
-            borderRadius: 4,
+              borderRadius: "4px",
+              background: selected === "2023" ? "#E1EFFC" : "#ffffff",
+              color: "#111827",
+              height: "calc(2rem - 2px)",
+              padding: "4px 16px",
+              fontSize: "14px",
+              lineHeight: "20px",
+              fontWeight: "500",
             cursor: "pointer",
-            fontWeight: "bold",
-            fontSize: 16,
-            minWidth: 80,
+              zIndex: selected === "2023" ? 1 : "auto",
+              outline: selected === "2023" ? "2px solid #0072E0" : "none",
+              flex: "1 1 auto",
+              minWidth: "80px",
+            }}
+            onMouseEnter={(e) => {
+              if (selected !== "2023") {
+                e.target.style.background = "#F5F5F5";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selected !== "2023") {
+                e.target.style.background = "#ffffff";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (selected !== "2023") {
+                e.target.style.background = "#d1d5db";
+              }
           }}
         >
           2023
@@ -2575,19 +1850,43 @@ function TechRadarTabs() {
         <button
           onClick={() => setSelected("2025")}
           style={{
-            padding: "10px 20px",
-            background: selected === "2025" ? "#5ba300" : "#eee",
-            color: selected === "2025" ? "#fff" : "#333",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             border: "none",
-            borderRadius: 4,
+              borderRadius: "4px",
+              background: selected === "2025" ? "#E1EFFC" : "#ffffff",
+              color: "#111827",
+              height: "calc(2rem - 2px)",
+              padding: "4px 16px",
+              fontSize: "14px",
+              lineHeight: "20px",
+              fontWeight: "500",
             cursor: "pointer",
-            fontWeight: "bold",
-            fontSize: 16,
-            minWidth: 80,
+              zIndex: selected === "2025" ? 1 : "auto",
+              outline: selected === "2025" ? "2px solid #0072E0" : "none",
+              flex: "1 1 auto",
+              minWidth: "80px",
+            }}
+            onMouseEnter={(e) => {
+              if (selected !== "2025") {
+                e.target.style.background = "#F5F5F5";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selected !== "2025") {
+                e.target.style.background = "#ffffff";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (selected !== "2025") {
+                e.target.style.background = "#d1d5db";
+              }
           }}
         >
           2025
         </button>
+        </div>
       </div>
       <TechRadar key={selected} config={RADAR_CONFIG[selected]} />
     </div>
@@ -2603,21 +1902,15 @@ function Footer() {
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        fontSize: "1.1rem",
+        fontSize: "1rem",
         lineHeight: "1.6",
         gap: "8px",
       }}
     >
-      <div style={{ fontWeight: 500 }}>
-        Made by backend developer for developers! With love 💚!
-      </div>
-      <div>
-        <a
-          href="https://jobs.dou.ua/companies/solidgate/vacancies/"
-          style={{ color: "#5ba300", textDecoration: "none", fontWeight: 500 }}
-        >
-          Solidgate is hiring!
-        </a>
+      <div style={{
+        fontWeight: 400,
+      }}>
+        Built by backend developers, for developers — with love! 💚
       </div>
     </div>
   );
@@ -2631,7 +1924,7 @@ export function App() {
   useEffect(() => {
     const onHashChange = () => setHash(window.location.hash || "#home");
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-    
+
     window.addEventListener("hashchange", onHashChange);
     window.addEventListener("resize", handleResize);
     return () => {
@@ -2651,43 +1944,81 @@ export function App() {
         {/* Navigation Bar */}
         <div
           style={{
-            borderBottom: "1px solid #e5e7eb",
             position: "sticky",
             top: 0,
             zIndex: 100,
-            marginBottom: 32,
           }}
         >
           <nav
             style={{
               width: "100%",
               background: "#fff",
-              padding: isMobile ? "8px 16px" : "12px 32px",
+              padding: isMobile ? "8px 16px" : "26px 32px",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               maxWidth: "1280px",
               margin: "0 auto",
               boxSizing: "border-box",
+              position: "relative",
             }}
           >
+            <a
+              href="https://solidgate.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+          >
             <img
-              src="logo_m.png"
-              alt="solidgate logo"
+                src="logo.svg"
+              alt="Solidgate logo"
               style={{
-                maxWidth: isMobile ? 80 : 120,
+                maxWidth: 120,
                 width: "auto",
                 height: "auto",
+                cursor: "pointer",
               }}
             />
-            
+            </a>
+
             {isMobile ? (
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <a
+                  href="https://solidgate.teamtailor.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: "#E4F0EC",
+                    color: "#105547",
+                    textDecoration: "none",
+                    padding: "6px 16px",
+                    borderRadius: "20px",
+                    fontSize: "0.9rem",
+                    fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#105547";
+                    e.target.style.color = "#E4F0EC";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "#E4F0EC";
+                    e.target.style.color = "#105547";
+                  }}
+                >
+                  We're hiring!
+                </a>
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   style={{
                     background: "none",
                     border: "none",
+                    boxShadow: "none",
                     fontSize: "24px",
                     cursor: "pointer",
                     padding: "4px",
@@ -2697,42 +2028,106 @@ export function App() {
                   ☰
                 </button>
               </div>
-            ) : (
-              <div style={{ display: "flex", gap: "16px" }}>
+                        ) : (
+              <>
+                <div style={{ display: "flex", gap: "16px", position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
+                  <a
+                    href="#home"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#home" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#home") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#home") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#home") {
+                        e.target.style.background = "#d1d5db";
+                      }
+                    }}
+                  >
+                    Tech Radar
+                  </a>
+                  <a
+                    href="#interview"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#interview") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#interview") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#interview") {
+                        e.target.style.background = "#d1d5db";
+                      }
+                    }}
+                  >
+                    Interview Guide (Backend)
+                  </a>
+                </div>
                 <a
-                  href="#home"
+                  href="https://solidgate.teamtailor.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    color: hash === "#home" ? "#5ba300" : "#181A20",
-                    fontWeight: 600,
+                    background: "#E4F0EC",
+                    color: "#105547",
                     textDecoration: "none",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: 6,
-                    background: hash === "#home" ? "#f7f8fa" : "transparent",
-                    transition: "background 0.2s",
+                    padding: "6px 16px",
+                    borderRadius: "20px",
+                    fontSize: "0.9rem",
+                    fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#105547";
+                    e.target.style.color = "#E4F0EC";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "#E4F0EC";
+                    e.target.style.color = "#105547";
                   }}
                 >
-                  Tech Radar
+                  We're hiring!
                 </a>
-                <a
-                  href="#interview"
-                  style={{
-                    color: hash === "#interview" ? "#5ba300" : "#181A20",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    fontSize: "1rem",
-                    padding: "8px 16px",
-                    borderRadius: 6,
-                    background: hash === "#interview" ? "#f7f8fa" : "transparent",
-                    transition: "background 0.2s",
-                  }}
-                >
-                  Interview Guide (Backend)
-                </a>
-              </div>
+              </>
             )}
           </nav>
-          
+
           {/* Mobile Menu */}
           {isMobile && mobileMenuOpen && (
             <div
@@ -2749,14 +2144,30 @@ export function App() {
                 href="#home"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  color: hash === "#home" ? "#5ba300" : "#181A20",
-                  fontWeight: 600,
+                  color: "#26282C",
+                  fontWeight: 400,
                   textDecoration: "none",
                   fontSize: "1rem",
-                  padding: "12px 16px",
-                  borderRadius: 6,
-                  background: hash === "#home" ? "#f7f8fa" : "transparent",
-                  transition: "background 0.2s",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                                        background: hash === "#home" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#home") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#home") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#home") {
+                    e.target.style.background = "#d1d5db";
+                  }
                 }}
               >
                 Tech Radar
@@ -2765,14 +2176,30 @@ export function App() {
                 href="#interview"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  color: hash === "#interview" ? "#5ba300" : "#181A20",
-                  fontWeight: 600,
+                  color: "#26282C",
+                  fontWeight: 400,
                   textDecoration: "none",
                   fontSize: "1rem",
-                  padding: "12px 16px",
-                  borderRadius: 6,
-                  background: hash === "#interview" ? "#f7f8fa" : "transparent",
-                  transition: "background 0.2s",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                                        background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#interview") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#interview") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#interview") {
+                    e.target.style.background = "#d1d5db";
+                  }
                 }}
               >
                 Interview Guide (Backend)
@@ -2782,105 +2209,90 @@ export function App() {
         </div>
 
               {/* Page Content */}
-      <div style={{ padding: window.innerWidth < 768 ? "16px" : "32px" }}>
+      <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
         {hash === "#interview" ? (
           <InterviewGuide />
         ) : (
           <>
             {/* TechRadar Section ONLY */}
-            <section className="card" style={{ maxWidth: "" }}>
-              <div
-                style={{
-                  padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
-                }}
-              >
-                <div id="radar-description" style={{ marginBottom: 20 }}>
+            <section style={{
+              "background": "#fff",
+              "padding": "2rem",
+              "textAlign": "center",
+
+            }}>
+              <TechRadarTabs />
+              <div style={{
+                padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
+              }}>
                   <p>
                     <div
                       id="hold"
                       style={{
                         display: "inline-block",
-                        background: "#e09b96",
-                        color: "#fff",
+                        background: "#F5F5F5",
+                        color: "#525252",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Hold
                     </div>{" "}
-                    — in this category, we have expertise, but the mentioned
-                    tools are used only to support existing systems — new
-                    projects are not launched on them.
+                    — Tools we know well but only use to support existing systems. Not used for new projects.
                   </p>
                   <p>
                     <div
                       id="assess"
                       style={{
                         display: "inline-block",
-                        background: "#c7ba00",
-                        color: "#fff",
+                        background: "#CADCED",
+                        color: "#14416C",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Assess
                     </div>{" "}
-                    — trial technologies and tools that are currently being
-                    evaluated. They are only used for test projects and are not
-                    used for real tasks.
+                    — Technologies under evaluation, used only in test environments, not for real tasks.
                   </p>
                   <p>
                     <div
                       id="trial"
                       style={{
                         display: "inline-block",
-                        background: "#009eb0",
-                        color: "#fff",
+                        background: "#DBC0F0",
+                        color: "#4D1D74",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Trial
                     </div>{" "}
-                    — technologies and tools that have already passed the
-                    testing phase and are preparing to work in production (or
-                    are even already working there).
+                    — Tools that have passed testing and are being prepared (or already used) in production.
                   </p>
                   <p>
                     <div
                       id="adopt"
                       style={{
                         display: "inline-block",
-                        background: "#5ba300",
-                        color: "#fff",
+                        background: "#E4F0EC",
+                        color: "#105547",
                         padding: "2px 8px",
                         borderRadius: 4,
-                        fontWeight: 600,
+                        fontWeight: 500,
                         marginRight: 8,
                       }}
                     >
                       Adopt
                     </div>{" "}
-                    — technologies and tools that are implemented and actively
-                    used by teams. Technologies in which Solidgate has
-                    expertise.
+                    — Fully implemented tools actively used by teams. We have solid expertise with these.
                   </p>
-                </div>
-              </div>
-              <div
-                style={{
-                  margin: "0 auto",
-                  boxSizing: "border-box",
-                  padding: window.innerWidth < 768 ? "16px 8px" : "32px 24px",
-                }}
-              >
-                <TechRadarTabs />
               </div>
             </section>
           </>
