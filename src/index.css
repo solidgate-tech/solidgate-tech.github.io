@@ -22,36 +22,6 @@ body {
   color: #222;
 }
 
-#adopt {
-  display: inline;
-  color: #5ba300;
-  font-weight: bold;
-}
-
-#trial {
-  display: inline;
-  color: #009eb0;
-  font-weight: bold;
-}
-
-#assess {
-  display: inline;
-  color: #c7ba00;
-  font-weight: bold;
-}
-
-#hold {
-  display: inline;
-  color: #e09b96;
-  font-weight: bold;
-}
-
-#logo {
-  margin: 2vw;
-  width: 100vw;
-  max-width: 300px;
-}
-
 #footer {
   margin-bottom: 3vw;
   font-size: 12px;
@@ -78,6 +48,7 @@ h6 {
   padding: 2rem;
   margin-bottom: 1rem;
   text-align: left;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .button,
@@ -117,7 +88,7 @@ button:hover {
 
 /* Media blocks hover effect */
 .media-block {
-  background: #f7f8fa;
+  background: #FAFAFA;
   border-radius: 12px;
   padding: 20px;
   cursor: pointer;
@@ -126,7 +97,7 @@ button:hover {
 
 .media-block:hover {
   transform: translateY(-2px);
-  background: #e8f5e8;
+  background: #E4F0EC;
 }
 
 /* Radar font styling */

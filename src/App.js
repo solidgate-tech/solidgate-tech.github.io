@@ -188,6 +188,7 @@ const RADAR_CONFIG = {
       { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 1 },
       { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 1 },
       { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
+      { label: "bufbuild/protovalidate", quadrant: 3, ring: 1, moved: 1 },
       { label: "OpenAPI", quadrant: 3, ring: 3, moved: 0 },
       { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
       { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
@@ -223,7 +224,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'scale(1.02)';
         e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = '#5ba300';
+        e.currentTarget.style.borderColor = '#00816A';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
@@ -239,7 +240,9 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           left: 0,
           right: 0,
           height: '4px',
-          background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+          background: '#3B9A83',
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12
         }}
       />
 
@@ -257,7 +260,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           <img
             src={logo}
             alt={`${language} logo`}
-            style={{ width: 28, height: 28, marginRight: 16 }}
+            style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
           />
           <h4
             style={{
@@ -272,14 +275,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         </div>
         <div
           style={{
-            fontSize: "1.3rem",
-            color: "#5ba300",
+            fontSize: "1.6rem",
+            color: "#00816A",
             transition: "transform 0.3s ease",
-            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-            fontWeight: "bold",
+            transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+            fontWeight: "400",
           }}
         >
-          ▼
+          ›
         </div>
       </div>
 
@@ -322,14 +325,14 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           <div
             style={{
               padding: 16,
-              background: "rgba(91, 163, 0, 0.04)",
+              background: "rgba(0, 129, 106, 0.04)",
               borderRadius: 8,
-              border: "1px solid rgba(91, 163, 0, 0.1)",
+              border: "1px solid rgba(0, 129, 106, 0.1)",
             }}
           >
             <h5
               style={{
-                color: "#5ba300",
+                color: "#00816A",
                 marginBottom: 12,
                 fontSize: "1rem",
                 fontWeight: 700,
@@ -567,8 +570,8 @@ function CompetencyMatrix() {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#5ba300" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#4a7c59" stopOpacity="0.25" />
+                <stop offset="0%" stopColor="#00816A" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#3B9A83" stopOpacity="0.25" />
               </linearGradient>
               <linearGradient
                 id="gridGradient"
@@ -613,9 +616,9 @@ function CompetencyMatrix() {
               return (
                 <g key={`label-${index}`} style={{ cursor: "pointer" }}>
                   <rect
-                    x={labelX - 70}
+                    x={labelX - 85}
                     y={labelY - 15}
-                    width="140"
+                    width="170"
                     height="30"
                     rx="15"
                     fill="rgba(255, 255, 255, 0.95)"
@@ -665,7 +668,7 @@ function CompetencyMatrix() {
                     cy={scoreY}
                     r="14"
                     fill="white"
-                    stroke="#5ba300"
+                    stroke="#00816A"
                     strokeWidth="2.5"
                     style={{ transition: "all 0.15s ease" }}
                     onMouseEnter={(e) => {
@@ -675,18 +678,17 @@ function CompetencyMatrix() {
                         `category-${index}`
                       );
                       if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(91, 163, 0, 0.04)";
-                        categoryDetails.style.borderColor = "#5ba300";
+                        categoryDetails.style.background = "#E4F0EC";
+                        categoryDetails.style.borderColor = '#00816A';
                         categoryDetails.style.padding = "16px";
 
                         const description = document.getElementById(
                           `description-${index}`
                         );
                         if (description) {
-                          description.style.maxHeight = "100px";
+                          description.style.maxHeight = "1000px";
                           description.style.opacity = "1";
-                          description.style.marginTop = "8px";
+                          description.style.marginTop = "12px";
                         }
                       }
                     }}
@@ -697,10 +699,9 @@ function CompetencyMatrix() {
                         `category-${index}`
                       );
                       if (categoryDetails) {
-                        categoryDetails.style.background =
-                          "rgba(255, 255, 255, 0.9)";
+                        categoryDetails.style.background = "#FAFAFA";
                         categoryDetails.style.borderColor = "#e2e8f0";
-                        categoryDetails.style.padding = "12px";
+                        categoryDetails.style.padding = "20px";
 
                         const description = document.getElementById(
                           `description-${index}`
@@ -736,7 +737,7 @@ function CompetencyMatrix() {
             <path
               d={createDataPath(dataPoints)}
               fill="url(#dataGradient)"
-              stroke="#5ba300"
+              stroke="#00816A"
               strokeWidth="2.5"
               opacity="0.9"
             />
@@ -748,7 +749,7 @@ function CompetencyMatrix() {
                   cx={point.x}
                   cy={point.y}
                   r="7"
-                  fill="#5ba300"
+                  fill="#00816A"
                   stroke="white"
                   strokeWidth="2.5"
                   style={{ transition: "all 0.15s ease" }}
@@ -759,18 +760,17 @@ function CompetencyMatrix() {
                       `category-${index}`
                     );
                     if (categoryDetails) {
-                      categoryDetails.style.background =
-                        "rgba(91, 163, 0, 0.04)";
-                      categoryDetails.style.borderColor = "#5ba300";
+                      categoryDetails.style.background = "#E4F0EC";
+                      categoryDetails.style.borderColor = '#00816A';
                       categoryDetails.style.padding = "16px";
 
                       const description = document.getElementById(
                         `description-${index}`
                       );
                       if (description) {
-                        description.style.maxHeight = "100px";
+                        description.style.maxHeight = "1000px";
                         description.style.opacity = "1";
-                        description.style.marginTop = "8px";
+                        description.style.marginTop = "12px";
                       }
                     }
                   }}
@@ -781,10 +781,9 @@ function CompetencyMatrix() {
                       `category-${index}`
                     );
                     if (categoryDetails) {
-                      categoryDetails.style.background =
-                        "rgba(255, 255, 255, 0.9)";
+                      categoryDetails.style.background = "#FAFAFA";
                       categoryDetails.style.borderColor = "#e2e8f0";
-                      categoryDetails.style.padding = "12px";
+                      categoryDetails.style.padding = "20px";
 
                       const description = document.getElementById(
                         `description-${index}`
@@ -805,7 +804,7 @@ function CompetencyMatrix() {
               cx={centerX}
               cy={centerY}
               r="5"
-              fill="#5ba300"
+              fill="#00816A"
               stroke="white"
               strokeWidth="2"
             />
@@ -854,7 +853,7 @@ function CompetencyMatrix() {
                 id={`category-${index}`}
                                   style={{
                     background: "rgba(255, 255, 255, 0.95)",
-                    border: isExpanded ? "2px solid #5ba300" : "2px solid #e2e8f0",
+                    border: isExpanded ? "2px solid #00816A" : "2px solid #e2e8f0",
                     borderRadius: "12px",
                     padding: isMobile ? "20px" : "20px",
                     transition: "all 0.5s ease",
@@ -875,9 +874,9 @@ function CompetencyMatrix() {
                     left: 0,
                     right: 0,
                     height: "4px",
-                    background: "linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)",
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
+                    background: '#3B9A83',
+                    borderTopLeftRadius: 12,
+                    borderTopRightRadius: 12,
                   }}
                 />
                 <div
@@ -909,7 +908,7 @@ function CompetencyMatrix() {
                       style={{
                         fontSize: isMobile ? "20px" : "22px",
                         fontWeight: "700",
-                        color: "#5ba300",
+                        color: "#00816A",
                       }}
                     >
                       {category.score}
@@ -954,7 +953,7 @@ function CompetencyMatrix() {
           style={{
             marginTop: "25px",
             padding: "16px",
-            background: "rgba(91, 163, 0, 0.04)",
+            background: "#F5F5F5",
             borderRadius: "12px",
             border: "1px solid rgba(91, 163, 0, 0.1)",
           }}
@@ -962,10 +961,10 @@ function CompetencyMatrix() {
           <p
             style={{
               margin: "0",
-              fontSize: "13px",
-              color: "#5ba300",
+              fontSize: "0.9rem",
+              color: "#666666",
               textAlign: "center",
-              fontWeight: "600",
+              fontWeight: "500",
             }}
           >
             Hover over hexagon elements or category cards to expand details
@@ -1082,7 +1081,9 @@ function EngineeringLevelsTree() {
                 left: 0,
                 right: 0,
                 height: '4px',
-                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                background: '#3B9A83',
+                borderTopLeftRadius: '16px',
+                borderTopRightRadius: '16px'
             }} />
 
             <h3 style={{
@@ -1104,17 +1105,6 @@ function EngineeringLevelsTree() {
             }}>
 
                 {levels.map((level, index) => {
-                    // Create gradient border colors from light green to dark green
-                    const borderColors = [
-                        '#5ba300', // Junior - lightest green
-                        '#4a7c59', // Mid-Level
-                        '#3d6b4a', // Senior
-                        '#2f5a3b', // Staff
-                        '#21492c'  // Tech Lead - darkest green
-                    ];
-
-                    const borderColor = borderColors[index];
-
                     return (
                         <div
                             key={index}
@@ -1133,7 +1123,7 @@ function EngineeringLevelsTree() {
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.transform = 'scale(1.02)';
                                 e.currentTarget.style.boxShadow = 'none';
-                                e.currentTarget.style.borderColor = '#5ba300';
+                                e.currentTarget.style.borderColor = '#00816A';
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.transform = 'scale(1)';
@@ -1148,7 +1138,9 @@ function EngineeringLevelsTree() {
                                 left: 0,
                                 right: 0,
                                 height: '4px',
-                                background: 'linear-gradient(90deg, #5ba300 0%, #4a7c59 100%)'
+                                background: '#3B9A83',
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 12
                             }} />
 
                             <div style={{
@@ -1177,14 +1169,14 @@ function EngineeringLevelsTree() {
                                     </p>
                                 </div>
                                 <div style={{
-                                    fontSize: '1.3rem',
-                                    color: '#5ba300',
+                                    fontSize: '1.6rem',
+                                    color: '#00816A',
                                     transition: 'transform 0.3s ease',
-                                    transform: expandedLevels[index] ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transform: expandedLevels[index] ? 'rotate(90deg)' : 'rotate(0deg)',
                                     marginLeft: '16px',
-                                    fontWeight: 'bold'
+                                    fontWeight: '400'
                                 }}>
-                                    ▼
+                                    ›
                                 </div>
                             </div>
 
@@ -1501,7 +1493,7 @@ function InterviewGuide() {
               >
                 Чи варто деплоїтись у п'ятницю
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Сергій Сафонов, Tech Lead
               </p>
             </div>
@@ -1523,7 +1515,7 @@ function InterviewGuide() {
                 $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
                 фінтех
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Макс Багінський, Head of Engineering
               </p>
             </div>
@@ -1544,7 +1536,7 @@ function InterviewGuide() {
               >
                 Як стати джуном, якого найматимуть
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Владислав Павленко, Go Engineer
               </p>
             </div>
@@ -1565,7 +1557,7 @@ function InterviewGuide() {
               >
                 Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
               </h4>
-              <p style={{ color: "#5ba300", fontWeight: 500, fontSize: 13 }}>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
                 Сергій Сафонов, Tech Lead
               </p>
             </div>
@@ -1689,16 +1681,28 @@ function BookList() {
               cursor: "pointer",
               transition: "all 0.2s ease",
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               gap: "16px",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.background = "#e8f5e8";
+              e.currentTarget.style.background = "#E4F0EC";
+              // Rotate the book cover randomly left or right
+              const bookCover = e.currentTarget.querySelector('div');
+              if (bookCover) {
+                const randomDirection = Math.random() > 0.5 ? 1 : -1;
+                const randomAngle = (Math.random() * 3 + 2) * randomDirection; // 2-5 degrees
+                bookCover.style.transform = `rotate(${randomAngle}deg)`;
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.background = "#f7f8fa";
+              e.currentTarget.style.background = "#FAFAFA";
+              // Reset book cover rotation
+              const bookCover = e.currentTarget.querySelector('div');
+              if (bookCover) {
+                bookCover.style.transform = "rotate(0deg)";
+              }
             }}
           >
             {/* Book Cover */}
@@ -1710,6 +1714,7 @@ function BookList() {
                 overflow: "hidden",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                 flexShrink: 0,
+                transition: "transform 0.3s ease",
               }}
             >
               <img
@@ -1731,7 +1736,7 @@ function BookList() {
               <h4
                 style={{
                   color: "#181A20",
-                  marginBottom: 8,
+                  marginBottom: 4,
                   fontSize: "0.95rem",
                   lineHeight: "1.3",
                   overflow: "hidden",
@@ -1745,13 +1750,16 @@ function BookList() {
               </h4>
 
               <p style={{
-                color: "#5ba300",
+                color: "#00816A",
                 fontWeight: 500,
                 fontSize: "0.8rem",
-                marginBottom: 20,
+                marginBottom: 12,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                lineHeight: "1.3",
               }}>
                 by {book.authors}
               </p>
@@ -2027,32 +2035,62 @@ export function App() {
                     href="#home"
                     style={{
                       color: "#26282C",
-                      fontWeight: hash === "#home" ? 500 : 400,
+                      fontWeight: 400,
                       textDecoration: "none",
                       fontSize: "1rem",
-                      padding: "4px 12px",
-                      position: "relative",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#home" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#home") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#home") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#home") {
+                        e.target.style.background = "#d1d5db";
+                      }
                     }}
                   >
-                    <span style={{ fontWeight: 500, visibility: "hidden", position: "absolute" }}>
-                      Tech Radar
-                    </span>
                     Tech Radar
                   </a>
                   <a
                     href="#interview"
                     style={{
                       color: "#26282C",
-                      fontWeight: hash === "#interview" ? 500 : 400,
+                      fontWeight: 400,
                       textDecoration: "none",
                       fontSize: "1rem",
-                      padding: "4px 12px",
-                      position: "relative",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#interview") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#interview") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#interview") {
+                        e.target.style.background = "#d1d5db";
+                      }
                     }}
                   >
-                    <span style={{ fontWeight: 500, visibility: "hidden", position: "absolute" }}>
-                      Interview Guide (Backend)
-                    </span>
                     Interview Guide (Backend)
                   </a>
                 </div>
@@ -2107,13 +2145,29 @@ export function App() {
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
                   color: "#26282C",
-                  fontWeight: hash === "#home" ? 600 : 400,
+                  fontWeight: 400,
                   textDecoration: "none",
                   fontSize: "1rem",
-                  padding: "12px 16px",
-                  borderRadius: 6,
-                  background: hash === "#home" ? "#f7f8fa" : "transparent",
-                  transition: "background 0.2s",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                                        background: hash === "#home" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#home") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#home") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#home") {
+                    e.target.style.background = "#d1d5db";
+                  }
                 }}
               >
                 Tech Radar
@@ -2123,13 +2177,29 @@ export function App() {
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
                   color: "#26282C",
-                  fontWeight: hash === "#interview" ? 600 : 400,
+                  fontWeight: 400,
                   textDecoration: "none",
                   fontSize: "1rem",
-                  padding: "12px 16px",
-                  borderRadius: 6,
-                  background: hash === "#interview" ? "#f7f8fa" : "transparent",
-                  transition: "background 0.2s",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                                        background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#interview") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#interview") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#interview") {
+                    e.target.style.background = "#d1d5db";
+                  }
                 }}
               >
                 Interview Guide (Backend)
