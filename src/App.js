@@ -14,6 +14,182 @@ style.textContent = `
       transform: translateY(0);
     }
   }
+  @keyframes flyHeartLeftRight {
+    0% {
+      left: -100px;
+      top: 50%;
+      opacity: 0;
+      transform: translateY(-50%) scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+    100% {
+      left: calc(100% + 100px);
+      top: 50%;
+      opacity: 0;
+      transform: translateY(-50%) scale(0.5);
+    }
+  }
+  @keyframes flyHeartRightLeft {
+    0% {
+      left: calc(100% + 100px);
+      top: 50%;
+      opacity: 0;
+      transform: translateY(-50%) scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+    100% {
+      left: -100px;
+      top: 50%;
+      opacity: 0;
+      transform: translateY(-50%) scale(0.5);
+    }
+  }
+  @keyframes flyHeartTopBottom {
+    0% {
+      top: -100px;
+      left: 50%;
+      opacity: 0;
+      transform: translateX(-50%) scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    100% {
+      top: calc(100% + 100px);
+      left: 50%;
+      opacity: 0;
+      transform: translateX(-50%) scale(0.5);
+    }
+  }
+  @keyframes flyHeartBottomTop {
+    0% {
+      top: calc(100% + 100px);
+      left: 50%;
+      opacity: 0;
+      transform: translateX(-50%) scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    100% {
+      top: -100px;
+      left: 50%;
+      opacity: 0;
+      transform: translateX(-50%) scale(0.5);
+    }
+  }
+  @keyframes flyHeartTopLeftBottomRight {
+    0% {
+      top: -100px;
+      left: -100px;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      top: calc(100% + 100px);
+      left: calc(100% + 100px);
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+  @keyframes flyHeartTopRightBottomLeft {
+    0% {
+      top: -100px;
+      left: calc(100% + 100px);
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      top: calc(100% + 100px);
+      left: -100px;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+  @keyframes flyHeartBottomLeftTopRight {
+    0% {
+      top: calc(100% + 100px);
+      left: -100px;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      top: -100px;
+      left: calc(100% + 100px);
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+  @keyframes flyHeartBottomRightTopLeft {
+    0% {
+      top: calc(100% + 100px);
+      left: calc(100% + 100px);
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    10% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      top: -100px;
+      left: -100px;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
 `;
 document.head.appendChild(style);
 
@@ -1357,6 +1533,48 @@ function EngineeringLevelsTree() {
 
 function InterviewGuide() {
   const [activeTab, setActiveTab] = useState("backend");
+  const [tabClickCount, setTabClickCount] = useState(0);
+  const [showFlyingHeart, setShowFlyingHeart] = useState(false);
+  const [heartDirection, setHeartDirection] = useState(null);
+
+  // Reset click count after 2 seconds of inactivity
+  useEffect(() => {
+    if (tabClickCount > 0) {
+      const timer = setTimeout(() => {
+        setTabClickCount(0);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [tabClickCount]);
+
+  // Handle tab click with counter
+  const handleTabClick = (tab) => {
+    const newCount = tabClickCount + 1;
+    setTabClickCount(newCount);
+    setActiveTab(tab);
+
+    if (newCount >= 5) {
+      // Random direction: 0-7 for 8 directions
+      const directions = [
+        'left-right',    // 0: left to right
+        'right-left',    // 1: right to left
+        'top-bottom',    // 2: top to bottom
+        'bottom-top',    // 3: bottom to top
+        'top-left-bottom-right', // 4: diagonal top-left to bottom-right
+        'top-right-bottom-left', // 5: diagonal top-right to bottom-left
+        'bottom-left-top-right', // 6: diagonal bottom-left to top-right
+        'bottom-right-top-left'  // 7: diagonal bottom-right to top-left
+      ];
+      const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+      setHeartDirection(randomDirection);
+      setShowFlyingHeart(true);
+      setTabClickCount(0);
+      setTimeout(() => {
+        setShowFlyingHeart(false);
+        setHeartDirection(null);
+      }, 1500);
+    }
+  };
 
   return (
     <div
@@ -1365,8 +1583,24 @@ function InterviewGuide() {
         maxWidth: 1200,
         margin: "0 auto",
         padding: window.innerWidth < 768 ? "0" : "10px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Flying Heart Animation */}
+      {showFlyingHeart && heartDirection && (
+        <div
+          style={{
+            position: "fixed",
+            fontSize: "48px",
+            zIndex: 9999,
+            animation: `flyHeart${heartDirection.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('')} 1.5s ease-out forwards`,
+            pointerEvents: "none",
+          }}
+        >
+          💚
+        </div>
+      )}
       {/* About Solidgate Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
@@ -1430,7 +1664,7 @@ function InterviewGuide() {
           marginBottom: "24px",
         }}>
           <button
-            onClick={() => setActiveTab("backend")}
+            onClick={() => handleTabClick("backend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1446,7 +1680,7 @@ function InterviewGuide() {
             Backend
           </button>
           <button
-            onClick={() => setActiveTab("frontend")}
+            onClick={() => handleTabClick("frontend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1462,7 +1696,7 @@ function InterviewGuide() {
             Frontend
           </button>
           <button
-            onClick={() => setActiveTab("infrastructure")}
+            onClick={() => handleTabClick("infrastructure")}
             style={{
               padding: "8px 20px",
               border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1759,7 +1993,7 @@ function InterviewGuide() {
           engineering roles. Each category is scored from 0 to 5, where 5
           represents maximum competency.
         </p>
-        <CompetencyMatrix activeTab={activeTab} setActiveTab={setActiveTab} />
+        <CompetencyMatrix activeTab={activeTab} setActiveTab={handleTabClick} />
       </section>
 
       {/* Engineering Levels Section */}
@@ -1789,7 +2023,7 @@ function InterviewGuide() {
           marginBottom: "24px",
         }}>
           <button
-            onClick={() => setActiveTab("backend")}
+            onClick={() => handleTabClick("backend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1805,7 +2039,7 @@ function InterviewGuide() {
             Backend
           </button>
           <button
-            onClick={() => setActiveTab("frontend")}
+            onClick={() => handleTabClick("frontend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1821,7 +2055,7 @@ function InterviewGuide() {
             Frontend
           </button>
           <button
-            onClick={() => setActiveTab("infrastructure")}
+            onClick={() => handleTabClick("infrastructure")}
             style={{
               padding: "8px 20px",
               border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
