@@ -393,10 +393,9 @@ function TechRadar({ config }) {
   );
 }
 
-function CompetencyMatrix() {
+function CompetencyMatrix({ activeTab, setActiveTab }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [expandedCategory, setExpandedCategory] = useState(null);
-  const [activeTab, setActiveTab] = useState("backend");
 
   useEffect(() => {
     const handleResize = () => {
@@ -1357,8 +1356,7 @@ function EngineeringLevelsTree() {
 }
 
 function InterviewGuide() {
-  const [techInterviewTab, setTechInterviewTab] = useState("backend");
-  const [languageTab, setLanguageTab] = useState("backend");
+  const [activeTab, setActiveTab] = useState("backend");
 
   return (
     <div
@@ -1432,13 +1430,13 @@ function InterviewGuide() {
           marginBottom: "24px",
         }}>
           <button
-            onClick={() => setTechInterviewTab("backend")}
+            onClick={() => setActiveTab("backend")}
             style={{
               padding: "8px 20px",
-              border: techInterviewTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: techInterviewTab === "backend" ? "#E4F0EC" : "transparent",
-              color: techInterviewTab === "backend" ? "#00816A" : "#64748b",
-              fontWeight: techInterviewTab === "backend" ? 600 : 400,
+              border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: activeTab === "backend" ? "#E4F0EC" : "transparent",
+              color: activeTab === "backend" ? "#00816A" : "#64748b",
+              fontWeight: activeTab === "backend" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
@@ -1448,13 +1446,13 @@ function InterviewGuide() {
             Backend
           </button>
           <button
-            onClick={() => setTechInterviewTab("frontend")}
+            onClick={() => setActiveTab("frontend")}
             style={{
               padding: "8px 20px",
-              border: techInterviewTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: techInterviewTab === "frontend" ? "#E4F0EC" : "transparent",
-              color: techInterviewTab === "frontend" ? "#00816A" : "#64748b",
-              fontWeight: techInterviewTab === "frontend" ? 600 : 400,
+              border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
+              color: activeTab === "frontend" ? "#00816A" : "#64748b",
+              fontWeight: activeTab === "frontend" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
@@ -1464,13 +1462,13 @@ function InterviewGuide() {
             Frontend
           </button>
           <button
-            onClick={() => setTechInterviewTab("infrastructure")}
+            onClick={() => setActiveTab("infrastructure")}
             style={{
               padding: "8px 20px",
-              border: techInterviewTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: techInterviewTab === "infrastructure" ? "#E4F0EC" : "transparent",
-              color: techInterviewTab === "infrastructure" ? "#00816A" : "#64748b",
-              fontWeight: techInterviewTab === "infrastructure" ? 600 : 400,
+              border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
+              fontWeight: activeTab === "infrastructure" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
@@ -1482,7 +1480,7 @@ function InterviewGuide() {
         </div>
 
         {/* Tab Content */}
-        {techInterviewTab === "backend" && (
+        {activeTab === "backend" && (
           <div>
             <div style={{ marginBottom: "25px" }}>
               <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
@@ -1584,7 +1582,7 @@ function InterviewGuide() {
           </div>
         )}
 
-        {techInterviewTab === "frontend" && (
+        {activeTab === "frontend" && (
           <div>
             <div style={{ marginBottom: "25px" }}>
               <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
@@ -1677,7 +1675,7 @@ function InterviewGuide() {
           </div>
         )}
 
-        {techInterviewTab === "infrastructure" && (
+        {activeTab === "infrastructure" && (
           <div>
             <div style={{ marginBottom: "25px" }}>
               <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
@@ -1761,7 +1759,7 @@ function InterviewGuide() {
           engineering roles. Each category is scored from 0 to 5, where 5
           represents maximum competency.
         </p>
-        <CompetencyMatrix />
+        <CompetencyMatrix activeTab={activeTab} setActiveTab={setActiveTab} />
       </section>
 
       {/* Engineering Levels Section */}
@@ -1791,13 +1789,13 @@ function InterviewGuide() {
           marginBottom: "24px",
         }}>
           <button
-            onClick={() => setLanguageTab("backend")}
+            onClick={() => setActiveTab("backend")}
             style={{
               padding: "8px 20px",
-              border: languageTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: languageTab === "backend" ? "#E4F0EC" : "transparent",
-              color: languageTab === "backend" ? "#00816A" : "#64748b",
-              fontWeight: languageTab === "backend" ? 600 : 400,
+              border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: activeTab === "backend" ? "#E4F0EC" : "transparent",
+              color: activeTab === "backend" ? "#00816A" : "#64748b",
+              fontWeight: activeTab === "backend" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
@@ -1807,13 +1805,13 @@ function InterviewGuide() {
             Backend
           </button>
           <button
-            onClick={() => setLanguageTab("frontend")}
+            onClick={() => setActiveTab("frontend")}
             style={{
               padding: "8px 20px",
-              border: languageTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: languageTab === "frontend" ? "#E4F0EC" : "transparent",
-              color: languageTab === "frontend" ? "#00816A" : "#64748b",
-              fontWeight: languageTab === "frontend" ? 600 : 400,
+              border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
+              color: activeTab === "frontend" ? "#00816A" : "#64748b",
+              fontWeight: activeTab === "frontend" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
@@ -1823,13 +1821,13 @@ function InterviewGuide() {
             Frontend
           </button>
           <button
-            onClick={() => setLanguageTab("infrastructure")}
+            onClick={() => setActiveTab("infrastructure")}
             style={{
               padding: "8px 20px",
-              border: languageTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: languageTab === "infrastructure" ? "#E4F0EC" : "transparent",
-              color: languageTab === "infrastructure" ? "#00816A" : "#64748b",
-              fontWeight: languageTab === "infrastructure" ? 600 : 400,
+              border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
+              fontWeight: activeTab === "infrastructure" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
@@ -1841,7 +1839,7 @@ function InterviewGuide() {
         </div>
 
         {/* Tab Content */}
-        {languageTab === "backend" && (
+        {activeTab === "backend" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             <LanguageBlock
               language="Go"
@@ -1906,7 +1904,7 @@ function InterviewGuide() {
           </div>
         )}
 
-        {languageTab === "frontend" && (
+        {activeTab === "frontend" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             <LanguageBlock
               language="JavaScript"
@@ -1944,11 +1942,11 @@ function InterviewGuide() {
           </div>
         )}
 
-        {languageTab === "infrastructure" && (
+        {activeTab === "infrastructure" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             <LanguageBlock
               language="AWS Cloud"
-              logo=""
+              logo="/covers/aws-logo.svg"
               requirements={[
                 "Strong knowledge of core AWS Services (networking, compute, storage, databases, monitoring)",
                 "Experience in building fault-tolerant and scalable systems",
@@ -1962,7 +1960,7 @@ function InterviewGuide() {
             />
             <LanguageBlock
               language="Infrastructure as a Code"
-              logo=""
+              logo="/covers/terraform-logo.svg"
               requirements={[
                 "Proficiency in Terraform syntax and language features",
                 "Experience in building complex multi-account/env infrastructures using IaaC",
@@ -1977,7 +1975,7 @@ function InterviewGuide() {
             />
             <LanguageBlock
               language="DBA"
-              logo=""
+              logo="/covers/postgres-logo.svg"
               requirements={[
                 "Understanding of SQL syntax and principles",
                 "Knowledge of how Postgres operates, administration and clustering",
@@ -1993,7 +1991,7 @@ function InterviewGuide() {
             />
             <LanguageBlock
               language="Observability"
-              logo=""
+              logo="/covers/observability-logo.png"
               requirements={[
                 "General understanding of how monitoring and alerting works",
                 "Proficiency in building durable observability systems",
@@ -2009,7 +2007,7 @@ function InterviewGuide() {
             />
             <LanguageBlock
               language="SDLC"
-              logo=""
+              logo="/covers/sdlc-logo.svg"
               requirements={[
                 "Proficiency in designing and operating end-to-end CI/CD",
                 "Understanding of release management and deployment hygiene",
