@@ -23,7 +23,10 @@ export function TestimonialCard({
         border: "1px solid #e5e7eb",
         borderRadius: 12,
         background: "#fff",
-        marginBottom: 16,
+        flex: "1 1 0",
+        minWidth: "280px",
+        maxWidth: "100%",
+        boxSizing: "border-box",
       }}
     >
       <div

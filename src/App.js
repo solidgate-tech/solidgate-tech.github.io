@@ -258,11 +258,13 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src={logo}
-            alt={`${language} logo`}
-            style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
-          />
+          {logo && logo.trim() !== "" && (
+            <img
+              src={logo}
+              alt={`${language} logo`}
+              style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
+            />
+          )}
           <h4
             style={{
               color: "#000000",
@@ -394,6 +396,7 @@ function TechRadar({ config }) {
 function CompetencyMatrix() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [expandedCategory, setExpandedCategory] = useState(null);
+  const [activeTab, setActiveTab] = useState("backend");
 
   useEffect(() => {
     const handleResize = () => {
@@ -403,7 +406,7 @@ function CompetencyMatrix() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const categories = [
+  const backendCategories = [
     {
       name: "Engineering Culture",
       score: 4,
@@ -441,6 +444,92 @@ function CompetencyMatrix() {
         "Expertise in testing methodologies including unit testing, integration testing, and automated testing. Includes understanding of test-driven development and quality assurance practices, or using advanced techniques like fuzz testing or mutation testing.",
     },
   ];
+
+  const frontendCategories = [
+    {
+      name: "Engineering Culture",
+      score: 4,
+      description:
+        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
+    },
+    {
+      name: "Architecture Skills",
+      score: 3,
+      description:
+        "Ability to design scalable frontend architectures, make technical decisions, and understand trade-offs between different architectural patterns. Includes knowledge of component architecture, state management, and frontend architectural patterns.",
+    },
+    {
+      name: "Programming Language",
+      score: 5,
+      description:
+        "Proficiency in programming languages, frameworks, and tools relevant to the role. Includes understanding of language-specific features, best practices, and ecosystem knowledge.",
+    },
+    {
+      name: "Core Web Technologies",
+      score: 4,
+      description:
+        "Deep understanding of browser APIs, rendering pipeline, DOM manipulation, and modern web standards. Includes knowledge of HTML, CSS, JavaScript fundamentals, and browser performance optimization.",
+    },
+    {
+      name: "FrontOps",
+      score: 3,
+      description:
+        "Understanding of frontend CI/CD pipelines, build tools, bundling strategies, and deployment practices. Includes knowledge of modern frontend tooling, performance optimization, and frontend infrastructure.",
+    },
+    {
+      name: "Testing",
+      score: 4,
+      description:
+        "Expertise in frontend testing methodologies including unit testing, component testing, integration testing, and E2E testing. Includes understanding of testing frameworks, testing best practices, and quality assurance for frontend applications.",
+    },
+  ];
+
+  const infrastructureCategories = [
+    {
+      name: "Engineering Culture",
+      score: 4,
+      description:
+        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
+    },
+    {
+      name: "AWS Cloud",
+      score: 4,
+      description:
+        "Strong knowledge of core AWS Services (networking, compute, storage, databases, monitoring). Experience in building fault-tolerant and scalable systems. Understanding of Well-Architected Framework.",
+    },
+    {
+      name: "Infrastructure as a Code",
+      score: 4,
+      description:
+        "Core knowledge of principles for creating automated, consistent and version-controlled environment provisioning using specialized tools, emphasizing reproducibility, scalability and security.",
+    },
+    {
+      name: "Observability",
+      score: 4,
+      description:
+        "Knowledge of building robust monitoring systems to ensure reliability and performance, focused on proactive issue detection, data-driven insights and continuous improvement.",
+    },
+    {
+      name: "SDLC",
+      score: 4,
+      description:
+        "Understanding of the Software Development Life Cycle (SDLC), from planning and design to deployment and maintenance. Emphasizes structured processes, clear documentation, and continuous improvement. Includes knowledge of agile and iterative models, ensuring features are delivered efficiently, reliably, and with long-term maintainability in mind.",
+    },
+    {
+      name: "Databases",
+      score: 4,
+      description:
+        "Understanding of SQL syntax and principles. Knowledge of how Postgres operates, administration and clustering. Basic understanding of DB schema management. Proficiency in RDS (monitoring, patch management, capacity planning, integration with other AWS tools).",
+    },
+    {
+      name: "Security",
+      score: 3,
+      description:
+        "Understanding of security by design principles, OWASP framework and general best practices for least privilege approach, encryption, vulnerability management and risk mitigation.",
+    },
+  ];
+
+  const categories = activeTab === "backend" ? backendCategories : activeTab === "frontend" ? frontendCategories : infrastructureCategories;
 
   const maxScore = 5;
   const radius = 140;
@@ -511,41 +600,99 @@ function CompetencyMatrix() {
   const handleCategoryLeave = () => setExpandedCategory(null);
 
   return (
-    <div
-      style={{
+    <div>
+      {/* Tabs */}
+      <div style={{
         display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        gap: isMobile ? "20px" : "40px",
-        alignItems: isMobile ? "center" : "flex-start",
-      }}
-    >
-      {/* Competency Matrix */}
-      <div
-        style={{
-          textAlign: "center",
-          background: "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
-          borderRadius: "16px",
-          padding: isMobile ? "20px" : "40px",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-          border: "1px solid #f1f5f9",
-          position: "relative",
-          overflow: "hidden",
-          width: "100%",
-          maxWidth: "600px",
-        }}
-      >
-        <h3
+        justifyContent: "center",
+        gap: "16px",
+        marginBottom: "24px",
+      }}>
+        <button
+          onClick={() => setActiveTab("backend")}
           style={{
-            margin: isMobile ? "0 0 20px 0" : "0 0 30px 0",
-            fontSize: isMobile ? "24px" : "28px",
-            fontWeight: "700",
-            color: "#0f172a",
-            textAlign: "center",
-            letterSpacing: "-0.02em",
+            padding: "8px 20px",
+            border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            background: activeTab === "backend" ? "#E4F0EC" : "transparent",
+            color: activeTab === "backend" ? "#00816A" : "#64748b",
+            fontWeight: activeTab === "backend" ? 600 : 400,
+            fontSize: "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
           }}
         >
-          Competency Matrix
-        </h3>
+          Backend
+        </button>
+        <button
+          onClick={() => setActiveTab("frontend")}
+          style={{
+            padding: "8px 20px",
+            border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
+            color: activeTab === "frontend" ? "#00816A" : "#64748b",
+            fontWeight: activeTab === "frontend" ? 600 : 400,
+            fontSize: "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+          }}
+        >
+          Frontend
+        </button>
+        <button
+          onClick={() => setActiveTab("infrastructure")}
+          style={{
+            padding: "8px 20px",
+            border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+            color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
+            fontWeight: activeTab === "infrastructure" ? 600 : 400,
+            fontSize: "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+          }}
+        >
+          Infrastructure
+        </button>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          gap: isMobile ? "20px" : "40px",
+          alignItems: isMobile ? "center" : "flex-start",
+        }}
+      >
+        {/* Competency Matrix */}
+        <div
+          style={{
+            textAlign: "center",
+            background: "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
+            borderRadius: "16px",
+            padding: isMobile ? "20px" : "40px",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+            border: "1px solid #f1f5f9",
+            position: "relative",
+            overflow: "hidden",
+            width: "100%",
+            maxWidth: "600px",
+          }}
+        >
+          <h3
+            style={{
+              margin: isMobile ? "0 0 20px 0" : "0 0 30px 0",
+              fontSize: isMobile ? "24px" : "28px",
+              fontWeight: "700",
+              color: "#0f172a",
+              textAlign: "center",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Competency Matrix
+          </h3>
         <div
           style={{
             width: "100%",
@@ -972,6 +1119,7 @@ function CompetencyMatrix() {
           </p>
         </div>
       </div>
+      </div>
     </div>
   );
 }
@@ -1209,6 +1357,8 @@ function EngineeringLevelsTree() {
 }
 
 function InterviewGuide() {
+  const [techInterviewTab, setTechInterviewTab] = useState("backend");
+  const [languageTab, setLanguageTab] = useState("backend");
 
   return (
     <div
@@ -1273,102 +1423,330 @@ function InterviewGuide() {
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
           Tech Interview Plan
         </h2>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-            Preparation
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
-            Below, you'll find a clear breakdown of the skills we look for across engineering roles.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-            1. 👋 Intro (5 min)
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            We'll kick things off with quick intros — who you are, who we are,
-            and what we're here to do. Before we dive in, you'll have a chance
-            to ask any questions upfront — about the role, the team, how we
-            work, or anything that helps you feel confident moving forward.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-            2. 📂 Deep Dive into Experience (20 min)
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            We want to understand how you work, not just where you've worked.
-          </p>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            We'll ask about:
-          </p>
-          <ul style={{ color: "#444", fontSize: "0.95rem" }}>
-            <li>Key projects you've shipped</li>
-            <li>Technical decisions you've made (and why)</li>
-            <li>Real impact you've had on teams and products</li>
-          </ul>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Be ready to go beyond your CV. We're interested in ownership and
-            real impact you've had on teams and products.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-            3. 🧠 Technical Questions (60 min)
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            Now we go into your engineering skills. Expect questions covering the
-            topics outlined in the competence matrix section.
-          </p>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            This could be hands-on or conceptual. We're not just looking for the
-            right answer — we care about how you approach problems.
-          </p>
-        </div>
-
+        
+        {/* Tabs */}
         <div style={{
-          textAlign: 'center',
-          margin: '20px 0',
-          fontSize: '1.2rem',
-          fontWeight: '600',
-          color: '#000000'
+          display: "flex",
+          justifyContent: "center",
+          gap: "16px",
+          marginBottom: "24px",
         }}>
-          OR
+          <button
+            onClick={() => setTechInterviewTab("backend")}
+            style={{
+              padding: "8px 20px",
+              border: techInterviewTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: techInterviewTab === "backend" ? "#E4F0EC" : "transparent",
+              color: techInterviewTab === "backend" ? "#00816A" : "#64748b",
+              fontWeight: techInterviewTab === "backend" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Backend
+          </button>
+          <button
+            onClick={() => setTechInterviewTab("frontend")}
+            style={{
+              padding: "8px 20px",
+              border: techInterviewTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: techInterviewTab === "frontend" ? "#E4F0EC" : "transparent",
+              color: techInterviewTab === "frontend" ? "#00816A" : "#64748b",
+              fontWeight: techInterviewTab === "frontend" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Frontend
+          </button>
+          <button
+            onClick={() => setTechInterviewTab("infrastructure")}
+            style={{
+              padding: "8px 20px",
+              border: techInterviewTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: techInterviewTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: techInterviewTab === "infrastructure" ? "#00816A" : "#64748b",
+              fontWeight: techInterviewTab === "infrastructure" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Infrastructure
+          </button>
         </div>
 
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-            3. 🏗️ Architecture Task (60 min)
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            If relevant for the role, we'll throw in a system design challenge.
-          </p>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            You might be asked to sketch out how you'd build something like:
-          </p>
-          <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: "20px" }}>
-            <li>A high-load payments service</li>
-            <li>A secure API for transaction processing</li>
-            <li>An internal tool for risk monitoring</li>
-          </ul>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            We want to see how you balance scalability, reliability, and speed —
-            and how you justify your tech choices.
-          </p>
-        </div>
-        <div style={{ marginBottom: "25px" }}>
-          <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-            4. ✅ Wrap-Up & Next Steps (5 min)
-          </h3>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            We'll close with a short debrief and outline what's next.
-          </p>
-          <p style={{ color: "#444", fontSize: "0.95rem" }}>
-            You'll also have time to ask us anything — about the role, the team,
-            the culture, or how we build at Solidgate.
-          </p>
-        </div>
+        {/* Tab Content */}
+        {techInterviewTab === "backend" && (
+          <div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                Preparation
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                1. 👋 Intro (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll kick things off with quick intros — who you are, who we are,
+                and what we're here to do. Before we dive in, you'll have a chance
+                to ask any questions upfront — about the role, the team, how we
+                work, or anything that helps you feel confident moving forward.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                2. 📂 Deep Dive into Experience (20 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We want to understand how you work, not just where you've worked.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll ask about:
+              </p>
+              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
+                <li>Key projects you've shipped</li>
+                <li>Technical decisions you've made (and why)</li>
+                <li>Real impact you've had on teams and products</li>
+              </ul>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Be ready to go beyond your CV. We're interested in ownership and
+                real impact you've had on teams and products.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                3. 🧠 Technical Questions (60 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Now we go into your engineering skills. Expect questions covering the
+                topics outlined in the competence matrix section.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                This could be hands-on or conceptual. We're not just looking for the
+                right answer — we care about how you approach problems.
+              </p>
+            </div>
+
+            <div style={{
+              textAlign: 'center',
+              margin: '20px 0',
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#000000'
+            }}>
+              OR
+            </div>
+
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                3. 🏗️ Architecture Task (60 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                If relevant for the role, we'll throw in a system design challenge.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                You might be asked to sketch out how you'd build something like:
+              </p>
+              <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: "20px" }}>
+                <li>A high-load payments service</li>
+                <li>A secure API for transaction processing</li>
+                <li>An internal tool for risk monitoring</li>
+              </ul>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We want to see how you balance scalability, reliability, and speed —
+                and how you justify your tech choices.
+              </p>
+            </div>
+            
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                4. ✅ Wrap-Up & Next Steps (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll close with a short debrief and outline what's next.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                You'll also have time to ask us anything — about the role, the team,
+                the culture, or how we build at Solidgate.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {techInterviewTab === "frontend" && (
+          <div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                Preparation
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
+              </p>
+            </div>
+            
+            <div style={{ 
+              marginBottom: "25px",
+              padding: "16px",
+              background: "#FFF4E6",
+              border: "1px solid #FFE0B2",
+              borderRadius: "8px",
+            }}>
+              <p style={{ margin: "0 0 12px 0", color: "#E65100", fontWeight: 600, fontSize: "0.95rem" }}>
+                ⚠️ Additional Stage – Frontend Roles Only
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: "8px" }}>
+                Before the technical interview, Front-End Engineer candidates go through an additional step:
+              </p>
+              <p style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "12px 0 8px 0" }}>
+                Tech Screen (React live-coding) (30 min)
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
+                A real-time coding session focused on React fundamentals and problem-solving.
+              </p>
+            </div>
+
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                1. 👋 Intro (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll kick things off with quick intros — who you are, who we are,
+                and what we're here to do. Before we dive in, you'll have a chance
+                to ask any questions upfront — about the role, the team, how we
+                work, or anything that helps you feel confident moving forward.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                2. 📂 Deep Dive into Experience (20 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We want to understand how you work, not just where you've worked.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll ask about:
+              </p>
+              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
+                <li>Key projects you've shipped</li>
+                <li>Technical decisions you've made (and why)</li>
+                <li>Real impact you've had on teams and products</li>
+              </ul>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Be ready to go beyond your CV. We're interested in ownership and
+                real impact you've had on teams and products.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                3. 🧠 Technical Questions (60 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Now we go into your engineering skills. Expect questions covering the
+                topics outlined in the competence matrix section.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                This could be hands-on or conceptual. We're not just looking for the
+                right answer — we care about how you approach problems.
+              </p>
+            </div>
+            
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                4. ✅ Wrap-Up & Next Steps (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll close with a short debrief and outline what's next.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                You'll also have time to ask us anything — about the role, the team,
+                the culture, or how we build at Solidgate.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {techInterviewTab === "infrastructure" && (
+          <div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                Preparation
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                1. 👋 Intro (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll kick things off with quick intros — who you are, who we are,
+                and what we're here to do. Before we dive in, you'll have a chance
+                to ask any questions upfront — about the role, the team, how we
+                work, or anything that helps you feel confident moving forward.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                2. 📂 Deep Dive into Experience (20 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We want to understand how you work, not just where you've worked.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll ask about:
+              </p>
+              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
+                <li>Key projects you've shipped</li>
+                <li>Technical decisions you've made (and why)</li>
+                <li>Real impact you've had on teams and products</li>
+              </ul>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Be ready to go beyond your CV. We're interested in ownership and
+                real impact you've had on teams and products.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                3. 🧠 Technical Questions (60 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Now we go into your engineering skills. Expect questions covering the
+                topics outlined in the competence matrix section.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                This could be hands-on or conceptual. We're not just looking for the
+                right answer — we care about how you approach problems.
+              </p>
+            </div>
+            
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                4. ✅ Wrap-Up & Next Steps (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll close with a short debrief and outline what's next.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                You'll also have time to ask us anything — about the role, the team,
+                the culture, or how we build at Solidgate.
+              </p>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Testimonials Section moved closer to Books */}
@@ -1404,68 +1782,247 @@ function InterviewGuide() {
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
           Language-Specific Requirements
         </h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          <LanguageBlock
-            language="Go"
-            logo="/covers/go-logo.svg"
-            requirements={[
-              "Strong understanding of Go concurrency patterns (goroutines, channels)",
-              "Experience with Go modules and dependency management",
-              "Knowledge of Go testing frameworks and best practices",
-              "Understanding of Go performance optimization",
-            ]}
-            questions={[
-              "What is Go and why was it created? Explain its design philosophy and how it addresses common programming challenges.",
-              "What is a slice in Go? How does it differ from arrays, and what are the implications for memory management?",
-              "Explain Go's concurrency model. How do goroutines and channels work together, and what are the best practices for avoiding race conditions?",
-            ]}
-          />
-          <LanguageBlock
-            language="Kotlin"
-            logo="/covers/kotlin-logo.svg"
-            requirements={[
-              "Proficiency in Kotlin syntax and language features",
-              "Experience with Spring Boot and Kotlin integration",
-              "Understanding of Kotlin coroutines and async programming",
-              "Knowledge of Kotlin testing frameworks ",
-            ]}
-            questions={[
-              "What is the significance of data classes in Kotlin? How do they improve code quality and reduce boilerplate compared to Java?",
-              "How does Kotlin ensure type safety? Explain the null safety system and how it prevents common runtime errors.",
-              "What are the advantages of using Kotlin over Java? Discuss interoperability, syntax improvements, and modern language features.",
-            ]}
-          />
-          <LanguageBlock
-            language="Node.js"
-            logo="/covers/nodejs-logo.svg"
-            requirements={[
-              "Strong JavaScript/TypeScript fundamentals",
-              "Experience with Fastify framework",
-              "Understanding of Node.js event loop and async patterns",
-              "Knowledge of npm/pnpm package management",
-            ]}
-            questions={[
-              "What tasks is Node.js good for? Which projects would you NOT use it for? Explain the trade-offs and use cases.",
-              "Explain in detail how the Event Loop works in Node.js. How can you use it effectively and what are common pitfalls?",
-              "How can you handle a large task consisting of small subtasks without blocking the event loop? Discuss strategies and best practices.",
-            ]}
-          />
-          <LanguageBlock
-            language="Python"
-            logo="/covers/python-logo.svg"
-            requirements={[
-              "Strong Python fundamentals and best practices",
-              "Experience with simple web frameworks (Flask, FastAPI)",
-              "Understanding of Python async programming (asyncio)",
-              "Knowledge of Python testing (pytest, unittest)",
-            ]}
-            questions={[
-              "How do you implement graceful shutdown in Python? Discuss signal handling, cleanup procedures, and best practices for production systems.",
-              "Explain the Global Interpreter Lock (GIL). Is it bad? What are its implications for multithreading vs multiprocessing?",
-              "Concurrency vs Parallelism in Python: what does Python provide? In which cases should you use threading, multiprocessing, or asyncio?",
-            ]}
-          />
+        
+        {/* Tabs */}
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "16px",
+          marginBottom: "24px",
+        }}>
+          <button
+            onClick={() => setLanguageTab("backend")}
+            style={{
+              padding: "8px 20px",
+              border: languageTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: languageTab === "backend" ? "#E4F0EC" : "transparent",
+              color: languageTab === "backend" ? "#00816A" : "#64748b",
+              fontWeight: languageTab === "backend" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Backend
+          </button>
+          <button
+            onClick={() => setLanguageTab("frontend")}
+            style={{
+              padding: "8px 20px",
+              border: languageTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: languageTab === "frontend" ? "#E4F0EC" : "transparent",
+              color: languageTab === "frontend" ? "#00816A" : "#64748b",
+              fontWeight: languageTab === "frontend" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Frontend
+          </button>
+          <button
+            onClick={() => setLanguageTab("infrastructure")}
+            style={{
+              padding: "8px 20px",
+              border: languageTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: languageTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: languageTab === "infrastructure" ? "#00816A" : "#64748b",
+              fontWeight: languageTab === "infrastructure" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Infrastructure
+          </button>
         </div>
+
+        {/* Tab Content */}
+        {languageTab === "backend" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <LanguageBlock
+              language="Go"
+              logo="/covers/go-logo.svg"
+              requirements={[
+                "Strong understanding of Go concurrency patterns (goroutines, channels)",
+                "Experience with Go modules and dependency management",
+                "Knowledge of Go testing frameworks and best practices",
+                "Understanding of Go performance optimization",
+              ]}
+              questions={[
+                "What is Go and why was it created? Explain its design philosophy and how it addresses common programming challenges.",
+                "What is a slice in Go? How does it differ from arrays, and what are the implications for memory management?",
+                "Explain Go's concurrency model. How do goroutines and channels work together, and what are the best practices for avoiding race conditions?",
+              ]}
+            />
+            <LanguageBlock
+              language="Kotlin"
+              logo="/covers/kotlin-logo.svg"
+              requirements={[
+                "Proficiency in Kotlin syntax and language features",
+                "Experience with Spring Boot and Kotlin integration",
+                "Understanding of Kotlin coroutines and async programming",
+                "Knowledge of Kotlin testing frameworks ",
+              ]}
+              questions={[
+                "What is the significance of data classes in Kotlin? How do they improve code quality and reduce boilerplate compared to Java?",
+                "How does Kotlin ensure type safety? Explain the null safety system and how it prevents common runtime errors.",
+                "What are the advantages of using Kotlin over Java? Discuss interoperability, syntax improvements, and modern language features.",
+              ]}
+            />
+            <LanguageBlock
+              language="Node.js"
+              logo="/covers/nodejs-logo.svg"
+              requirements={[
+                "Strong JavaScript/TypeScript fundamentals",
+                "Experience with Fastify framework",
+                "Understanding of Node.js event loop and async patterns",
+                "Knowledge of npm/pnpm package management",
+              ]}
+              questions={[
+                "What tasks is Node.js good for? Which projects would you NOT use it for? Explain the trade-offs and use cases.",
+                "Explain in detail how the Event Loop works in Node.js. How can you use it effectively and what are common pitfalls?",
+                "How can you handle a large task consisting of small subtasks without blocking the event loop? Discuss strategies and best practices.",
+              ]}
+            />
+            <LanguageBlock
+              language="Python"
+              logo="/covers/python-logo.svg"
+              requirements={[
+                "Strong Python fundamentals and best practices",
+                "Experience with simple web frameworks (Flask, FastAPI)",
+                "Understanding of Python async programming (asyncio)",
+                "Knowledge of Python testing (pytest, unittest)",
+              ]}
+              questions={[
+                "How do you implement graceful shutdown in Python? Discuss signal handling, cleanup procedures, and best practices for production systems.",
+                "Explain the Global Interpreter Lock (GIL). Is it bad? What are its implications for multithreading vs multiprocessing?",
+                "Concurrency vs Parallelism in Python: what does Python provide? In which cases should you use threading, multiprocessing, or asyncio?",
+              ]}
+            />
+          </div>
+        )}
+
+        {languageTab === "frontend" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <LanguageBlock
+              language="JavaScript"
+              logo="/covers/js-logo.svg"
+              requirements={[
+                "Strong TypeScript & JavaScript fundamentals",
+                "Solid understanding of browser APIs, rendering pipeline & networking",
+                "Awareness of web security best practices",
+                "Production experience with React",
+              ]}
+              questions={[
+                "How would our codebases look if JSON.parse returned unknown instead of any?",
+                "You're tasked with improving landing page loading speed — what's the first thing you do? And the last?",
+                "What are the most common frontend attack vectors and how do you mitigate them?",
+              ]}
+            />
+            <LanguageBlock
+              language="TypeScript"
+              logo="/covers/ts-logo.svg"
+              requirements={[
+                "Core concepts: Primitive types, interfaces, structural typing, utility types, generics",
+                "Type manipulation: Conditional types, mapped types, template literals, infer, function overloads",
+                "Effective TypeScript: Type inference, narrowing, guards & assertions",
+                "TypeScript in React: Using built-in React types, typing children, refs, and generic components with forwardRef / memo",
+                "Full type-safety in practice: API & networking layer, error boundaries & error handling strategies",
+                "Sanitising & validating user input",
+                "Ecosystem & tooling: Linting & static analysis, project config, compilation, bundling",
+              ]}
+              questions={[
+                "What's the difference between any and unknown?",
+                "Why does JSON.parse() return any? How would you make it more type-safe?",
+                "How would you write a generic type that converts \"a,b,c,d\" into \"a\" | \"b\" | \"c\" | \"d\"?",
+              ]}
+            />
+          </div>
+        )}
+
+        {languageTab === "infrastructure" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <LanguageBlock
+              language="AWS Cloud"
+              logo=""
+              requirements={[
+                "Strong knowledge of core AWS Services (networking, compute, storage, databases, monitoring)",
+                "Experience in building fault-tolerant and scalable systems",
+                "Understanding of Well-Architected Framework",
+              ]}
+              questions={[
+                "How would you design a global, low-latency API on AWS, and which components would you use to route and fail over traffic between regions?",
+                "How would you design a multi-AZ VPC layout for microservices—covering ingress, egress, and high availability?",
+                "How would you design an event-driven image/media processing pipeline—from S3 upload through processing to delivery—so it's reliable and scalable?",
+              ]}
+            />
+            <LanguageBlock
+              language="Infrastructure as a Code"
+              logo=""
+              requirements={[
+                "Proficiency in Terraform syntax and language features",
+                "Experience in building complex multi-account/env infrastructures using IaaC",
+                "Knowledge of safe change promotion",
+              ]}
+              questions={[
+                "What's your strategy for safe replacements (ALB, ASG, RDS) to avoid downtime?",
+                "How do you manage change control: who can apply, what gets blocked, and how are risky plans approved?",
+                "How do you ensure RDS secrets and other sensitive data don't land in state files?",
+                "What's your org-wide drift detection approach across many workspaces?",
+              ]}
+            />
+            <LanguageBlock
+              language="DBA"
+              logo=""
+              requirements={[
+                "Understanding of SQL syntax and principles",
+                "Knowledge of how Postgres operates, administration and clustering",
+                "Basic understanding of DB schema management",
+                "Proficiency in RDS (monitoring, patch management, capacity planning, integration with other AWS tools)",
+              ]}
+              questions={[
+                "How would you choose between Aurora PostgreSQL and RDS PostgreSQL?",
+                "When and how would you partition a time-series table?",
+                "Explain Multi-AZ & failover behavior and what the app must handle",
+                "Safely deploy a schema change on a large table (e.g., ADD COLUMN NOT NULL DEFAULT, big index).",
+              ]}
+            />
+            <LanguageBlock
+              language="Observability"
+              logo=""
+              requirements={[
+                "General understanding of how monitoring and alerting works",
+                "Proficiency in building durable observability systems",
+                "Understanding of how to efficiently monitor system vitals",
+                "Understanding of SLA, SLO, SLI",
+              ]}
+              questions={[
+                "What signals and SLIs would you instrument for a user-facing API?",
+                "High-cardinality metrics are exploding in VictoriaMetrics/Prometheus—what do you do?",
+                "How do you validate that alerts are actionable and reduce noise over time?",
+                "Observability costs doubled—how do you cut cost without losing visibility?",
+              ]}
+            />
+            <LanguageBlock
+              language="SDLC"
+              logo=""
+              requirements={[
+                "Proficiency in designing and operating end-to-end CI/CD",
+                "Understanding of release management and deployment hygiene",
+                "Knowledge of delivery performance and pipeline efficiency",
+              ]}
+              questions={[
+                "How do you auto-rollback a bad deploy without paging a human?",
+                "What quality gates belong in a modern CI pipeline?",
+                "How do you make builds reproducible and promotable across dev→stg→prod?",
+              ]}
+            />
+          </div>
+        )}
       </section>
 
       {/* Recommendations Section */}
@@ -1481,6 +2038,202 @@ function InterviewGuide() {
           }}
         >
           <a
+            href="https://www.youtube.com/watch?v=Dz0JS8fVN6M"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
+                  >
+                    <path
+                      d="M7 5L3 2V8L7 5Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                Як 50 інженерів роблять 1000 деплоїв на місяць | DOU Day 2025
+              </h4>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                Макс Багінський, Head of engineering
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://www.youtube.com/watch?v=B6pO8SkaSUY"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
+                  >
+                    <path
+                      d="M7 5L3 2V8L7 5Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                Challenge: Unbreakable Payment Form
+              </h4>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                Лев Давидов Tech Lead(FE Guild Master)
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://www.youtube.com/watch?v=bfUboflKmf0"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
+                  >
+                    <path
+                      d="M7 5L3 2V8L7 5Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                Реальність керування 100+ «керованими» базами даних RDS Postgres
+              </h4>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                Микита Глушак, Head of Infrastructure
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://youtu.be/Ax4BEp3ArO4?si=tKDDnCv_fHmAStlq"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
+                  >
+                    <path
+                      d="M7 5L3 2V8L7 5Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                Надійність систем за налаштованого CI/CD
+              </h4>
+              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                Сергій Сафонов, ex-Tech Lead
+              </p>
+            </div>
+          </a>
+          <a
             href="https://dou.ua/forums/topic/54148"
             target="_blank"
             rel="noopener noreferrer"
@@ -1492,12 +2245,68 @@ function InterviewGuide() {
                   color: "#181A20",
                   marginBottom: 8,
                   fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    background: "#00816A",
+                    borderRadius: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                  </div>
+                </span>
                 Чи варто деплоїтись у п'ятницю
               </h4>
               <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Сергій Сафонов, Tech Lead
+                Сергій Сафонов, ex-Tech Lead
               </p>
             </div>
           </a>
@@ -1513,8 +2322,64 @@ function InterviewGuide() {
                   color: "#181A20",
                   marginBottom: 8,
                   fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    background: "#00816A",
+                    borderRadius: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                  </div>
+                </span>
                 $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
                 фінтех
               </h4>
@@ -1535,8 +2400,64 @@ function InterviewGuide() {
                   color: "#181A20",
                   marginBottom: 8,
                   fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    background: "#00816A",
+                    borderRadius: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                  </div>
+                </span>
                 Як стати джуном, якого найматимуть
               </h4>
               <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
@@ -1556,12 +2477,68 @@ function InterviewGuide() {
                   color: "#181A20",
                   marginBottom: 8,
                   fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    background: "#00816A",
+                    borderRadius: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#00816A",
+                      }}
+                    />
+                  </div>
+                </span>
                 Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
               </h4>
               <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Сергій Сафонов, Tech Lead
+                Сергій Сафонов, ex-Tech Lead
               </p>
             </div>
           </a>
@@ -1662,6 +2639,12 @@ function BookList() {
       authors: "Google",
       description: "Site Reliability Engineering practices and principles",
       cover: "/covers/sre-by-google.jpg",
+    },
+    {
+      title: "TypeScript Cookbook",
+      authors: "Stefan Baumgartner",
+      description: "Comprehensive guide to TypeScript patterns, type manipulation, and advanced techniques",
+      cover: "/covers/ts-cookbook.jpg",
     },
   ];
 
@@ -2099,7 +3082,7 @@ export function App() {
                       }
                     }}
                   >
-                    Interview Guide (Backend)
+                    Interview Guide
                   </a>
                 </div>
                 <a
@@ -2210,7 +3193,7 @@ export function App() {
                   }
                 }}
               >
-                Interview Guide (Backend)
+                Interview Guide
               </a>
             </div>
           )}

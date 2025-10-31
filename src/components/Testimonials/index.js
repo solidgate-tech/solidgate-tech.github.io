@@ -33,8 +33,9 @@ export function Testimonials() {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          gap: 12,
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: 16,
         }}
       >
         {/* 1. Vlad */}
