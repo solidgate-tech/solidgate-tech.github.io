@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Testimonials } from "./components/Testimonials";
 
 // Add CSS animations for consistent expandable components
 const style = document.createElement('style');
@@ -1370,6 +1371,8 @@ function InterviewGuide() {
         </div>
       </section>
 
+      {/* Testimonials Section moved closer to Books */}
+
       {/* Competency Matrix Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
@@ -1563,6 +1566,11 @@ function InterviewGuide() {
             </div>
           </a>
         </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="card">
+        <Testimonials />
       </section>
 
       {/* Books Section */}
@@ -1910,7 +1918,7 @@ function Footer() {
       <div style={{
         fontWeight: 400,
       }}>
-        Built by backend developers, for developers — with love! 💚
+        Built by backend engineers, for engineers — with love! 💚
       </div>
     </div>
   );
@@ -2295,6 +2303,7 @@ export function App() {
                   </p>
               </div>
             </section>
+            
           </>
         )}
       </div>
