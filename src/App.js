@@ -258,11 +258,13 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src={logo}
-            alt={`${language} logo`}
-            style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
-          />
+          {logo && logo.trim() !== "" && (
+            <img
+              src={logo}
+              alt={`${language} logo`}
+              style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
+            />
+          )}
           <h4
             style={{
               color: "#000000",
@@ -424,7 +426,7 @@ function CompetencyMatrix() {
         "Proficiency in programming languages, frameworks, and tools relevant to the role. Includes understanding of language-specific features, best practices, and ecosystem knowledge.",
     },
     {
-      name: "Databases (for Backend only)",
+      name: "Databases",
       score: 3,
       description:
         "Knowledge of database design, query optimization, and data modeling. Includes understanding of SQL, SQL optimization, database internals.",
@@ -482,7 +484,52 @@ function CompetencyMatrix() {
     },
   ];
 
-  const categories = activeTab === "backend" ? backendCategories : frontendCategories;
+  const infrastructureCategories = [
+    {
+      name: "Engineering Culture",
+      score: 4,
+      description:
+        "Understanding of engineering principles, code quality standards, testing practices, and collaborative development workflows. Includes knowledge of agile methodologies, code reviews, and best practices for maintainable software. We work on features, not on fixing bugs.",
+    },
+    {
+      name: "AWS Cloud",
+      score: 4,
+      description:
+        "Strong knowledge of core AWS Services (networking, compute, storage, databases, monitoring). Experience in building fault-tolerant and scalable systems. Understanding of Well-Architected Framework.",
+    },
+    {
+      name: "Infrastructure as a Code",
+      score: 4,
+      description:
+        "Core knowledge of principles for creating automated, consistent and version-controlled environment provisioning using specialized tools, emphasizing reproducibility, scalability and security.",
+    },
+    {
+      name: "Observability",
+      score: 4,
+      description:
+        "Knowledge of building robust monitoring systems to ensure reliability and performance, focused on proactive issue detection, data-driven insights and continuous improvement.",
+    },
+    {
+      name: "SDLC",
+      score: 4,
+      description:
+        "Understanding of the Software Development Life Cycle (SDLC), from planning and design to deployment and maintenance. Emphasizes structured processes, clear documentation, and continuous improvement. Includes knowledge of agile and iterative models, ensuring features are delivered efficiently, reliably, and with long-term maintainability in mind.",
+    },
+    {
+      name: "Databases",
+      score: 4,
+      description:
+        "Understanding of SQL syntax and principles. Knowledge of how Postgres operates, administration and clustering. Basic understanding of DB schema management. Proficiency in RDS (monitoring, patch management, capacity planning, integration with other AWS tools).",
+    },
+    {
+      name: "Security",
+      score: 3,
+      description:
+        "Understanding of security by design principles, OWASP framework and general best practices for least privilege approach, encryption, vulnerability management and risk mitigation.",
+    },
+  ];
+
+  const categories = activeTab === "backend" ? backendCategories : activeTab === "frontend" ? frontendCategories : infrastructureCategories;
 
   const maxScore = 5;
   const radius = 140;
@@ -592,6 +639,22 @@ function CompetencyMatrix() {
           }}
         >
           Frontend
+        </button>
+        <button
+          onClick={() => setActiveTab("infrastructure")}
+          style={{
+            padding: "8px 20px",
+            border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+            color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
+            fontWeight: activeTab === "infrastructure" ? 600 : 400,
+            fontSize: "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+          }}
+        >
+          Infrastructure
         </button>
       </div>
 
@@ -1400,6 +1463,22 @@ function InterviewGuide() {
           >
             Frontend
           </button>
+          <button
+            onClick={() => setTechInterviewTab("infrastructure")}
+            style={{
+              padding: "8px 20px",
+              border: techInterviewTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: techInterviewTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: techInterviewTab === "infrastructure" ? "#00816A" : "#64748b",
+              fontWeight: techInterviewTab === "infrastructure" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Infrastructure
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -1597,6 +1676,77 @@ function InterviewGuide() {
             </div>
           </div>
         )}
+
+        {techInterviewTab === "infrastructure" && (
+          <div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                Preparation
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                1. 👋 Intro (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll kick things off with quick intros — who you are, who we are,
+                and what we're here to do. Before we dive in, you'll have a chance
+                to ask any questions upfront — about the role, the team, how we
+                work, or anything that helps you feel confident moving forward.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                2. 📂 Deep Dive into Experience (20 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We want to understand how you work, not just where you've worked.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll ask about:
+              </p>
+              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
+                <li>Key projects you've shipped</li>
+                <li>Technical decisions you've made (and why)</li>
+                <li>Real impact you've had on teams and products</li>
+              </ul>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Be ready to go beyond your CV. We're interested in ownership and
+                real impact you've had on teams and products.
+              </p>
+            </div>
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                3. 🧠 Technical Questions (60 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                Now we go into your engineering skills. Expect questions covering the
+                topics outlined in the competence matrix section.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                This could be hands-on or conceptual. We're not just looking for the
+                right answer — we care about how you approach problems.
+              </p>
+            </div>
+            
+            <div style={{ marginBottom: "25px" }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
+                4. ✅ Wrap-Up & Next Steps (5 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                We'll close with a short debrief and outline what's next.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                You'll also have time to ask us anything — about the role, the team,
+                the culture, or how we build at Solidgate.
+              </p>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Testimonials Section moved closer to Books */}
@@ -1671,6 +1821,22 @@ function InterviewGuide() {
             }}
           >
             Frontend
+          </button>
+          <button
+            onClick={() => setLanguageTab("infrastructure")}
+            style={{
+              padding: "8px 20px",
+              border: languageTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              background: languageTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: languageTab === "infrastructure" ? "#00816A" : "#64748b",
+              fontWeight: languageTab === "infrastructure" ? 600 : 400,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Infrastructure
           </button>
         </div>
 
@@ -1773,6 +1939,86 @@ function InterviewGuide() {
                 "What's the difference between any and unknown?",
                 "Why does JSON.parse() return any? How would you make it more type-safe?",
                 "How would you write a generic type that converts \"a,b,c,d\" into \"a\" | \"b\" | \"c\" | \"d\"?",
+              ]}
+            />
+          </div>
+        )}
+
+        {languageTab === "infrastructure" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <LanguageBlock
+              language="AWS Cloud"
+              logo=""
+              requirements={[
+                "Strong knowledge of core AWS Services (networking, compute, storage, databases, monitoring)",
+                "Experience in building fault-tolerant and scalable systems",
+                "Understanding of Well-Architected Framework",
+              ]}
+              questions={[
+                "How would you design a global, low-latency API on AWS, and which components would you use to route and fail over traffic between regions?",
+                "How would you design a multi-AZ VPC layout for microservices—covering ingress, egress, and high availability?",
+                "How would you design an event-driven image/media processing pipeline—from S3 upload through processing to delivery—so it's reliable and scalable?",
+              ]}
+            />
+            <LanguageBlock
+              language="Infrastructure as a Code"
+              logo=""
+              requirements={[
+                "Proficiency in Terraform syntax and language features",
+                "Experience in building complex multi-account/env infrastructures using IaaC",
+                "Knowledge of safe change promotion",
+              ]}
+              questions={[
+                "What's your strategy for safe replacements (ALB, ASG, RDS) to avoid downtime?",
+                "How do you manage change control: who can apply, what gets blocked, and how are risky plans approved?",
+                "How do you ensure RDS secrets and other sensitive data don't land in state files?",
+                "What's your org-wide drift detection approach across many workspaces?",
+              ]}
+            />
+            <LanguageBlock
+              language="DBA"
+              logo=""
+              requirements={[
+                "Understanding of SQL syntax and principles",
+                "Knowledge of how Postgres operates, administration and clustering",
+                "Basic understanding of DB schema management",
+                "Proficiency in RDS (monitoring, patch management, capacity planning, integration with other AWS tools)",
+              ]}
+              questions={[
+                "How would you choose between Aurora PostgreSQL and RDS PostgreSQL?",
+                "When and how would you partition a time-series table?",
+                "Explain Multi-AZ & failover behavior and what the app must handle",
+                "Safely deploy a schema change on a large table (e.g., ADD COLUMN NOT NULL DEFAULT, big index).",
+              ]}
+            />
+            <LanguageBlock
+              language="Observability"
+              logo=""
+              requirements={[
+                "General understanding of how monitoring and alerting works",
+                "Proficiency in building durable observability systems",
+                "Understanding of how to efficiently monitor system vitals",
+                "Understanding of SLA, SLO, SLI",
+              ]}
+              questions={[
+                "What signals and SLIs would you instrument for a user-facing API?",
+                "High-cardinality metrics are exploding in VictoriaMetrics/Prometheus—what do you do?",
+                "How do you validate that alerts are actionable and reduce noise over time?",
+                "Observability costs doubled—how do you cut cost without losing visibility?",
+              ]}
+            />
+            <LanguageBlock
+              language="SDLC"
+              logo=""
+              requirements={[
+                "Proficiency in designing and operating end-to-end CI/CD",
+                "Understanding of release management and deployment hygiene",
+                "Knowledge of delivery performance and pipeline efficiency",
+              ]}
+              questions={[
+                "How do you auto-rollback a bad deploy without paging a human?",
+                "What quality gates belong in a modern CI pipeline?",
+                "How do you make builds reproducible and promotable across dev→stg→prod?",
               ]}
             />
           </div>
