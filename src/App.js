@@ -2966,11 +2966,11 @@ function TheTeam() {
       icon: "🧪"
     },
     {
-      title: "⚡ We MUST be Reliability Obsessed",
+      title: "🧱 We MUST be Reliability Obsessed",
       description: "Reliability is the most important feature. We can have a thousand features, but none of them will work if our system fails.",
-      color: "#66BB6A",
-      gradient: "linear-gradient(135deg, #E4F0EC 0%, #C8E6D5 100%)",
-      icon: "⚡"
+      color: "#8B4513",
+      gradient: "linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 100%)",
+      icon: "🧱"
     }
   ];
 
@@ -3074,9 +3074,12 @@ function TheTeam() {
               "#2196F3": { dark: "#0D47A1", medium: "#1565C0" },
               "#FF9800": { dark: "#E65100", medium: "#E65100" },
               "#9C27B0": { dark: "#6A1B9A", medium: "#7B1FA2" },
-              "#66BB6A": { dark: "#4A9F8A", medium: "#5BA892" }
+              "#66BB6A": { dark: "#4A9F8A", medium: "#5BA892" },
+              "#8B4513": { dark: "#654321", medium: "#7A4F2E" }
             };
             const colors = colorVars[value.color] || { dark: value.color, medium: value.color };
+            
+            const isReliabilityObsessed = value.title.includes("Reliability Obsessed");
             
             return (
               <div
@@ -3089,7 +3092,8 @@ function TheTeam() {
                   transition: "all 0.3s ease",
                   position: "relative",
                   overflow: "hidden",
-                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
+                  gridColumn: isReliabilityObsessed ? (isMobile ? "1 / -1" : "1 / -1") : "auto"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
@@ -3113,7 +3117,15 @@ function TheTeam() {
                   {value.icon}
                 </div>
                 
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+                <div style={{ 
+                  display: "flex", 
+                  flexDirection: isMobile && isReliabilityObsessed ? "column" : "row",
+                  alignItems: isMobile && isReliabilityObsessed ? "flex-start" : "center",
+                  gap: 12, 
+                  marginBottom: 16, 
+                  position: "relative", 
+                  zIndex: 1 
+                }}>
                   <div style={{
                     width: "48px",
                     height: "48px",
@@ -3132,14 +3144,16 @@ function TheTeam() {
                   </h3>
                   {value.title.includes("Reliability Obsessed") && (
                     <>
-                      <div style={{
-                        fontSize: "24px",
-                        color: colors.dark,
-                        opacity: 0.6,
-                        margin: "0 16px"
-                      }}>
-                        →
-                      </div>
+                      {!isMobile && (
+                        <div style={{
+                          fontSize: "24px",
+                          color: colors.dark,
+                          opacity: 0.6,
+                          margin: "0 16px"
+                        }}>
+                          →
+                        </div>
+                      )}
                       <a
                         href="https://status.solidgate.com/"
                         target="_blank"
@@ -3147,9 +3161,9 @@ function TheTeam() {
                         style={{
                           textDecoration: "none",
                           display: "flex",
-                          alignItems: "center",
-                          gap: 8,
-                          padding: "8px 16px",
+                          flexDirection: "column",
+                          gap: 6,
+                          padding: "12px 16px",
                           background: "white",
                           borderRadius: "8px",
                           border: `2px solid ${value.color}`,
@@ -3157,23 +3171,63 @@ function TheTeam() {
                           fontSize: "0.85rem",
                           fontWeight: 600,
                           transition: "all 0.2s ease",
-                          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+                          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                          minWidth: isMobile ? "100%" : "140px",
+                          alignItems: "center",
+                          width: isMobile ? "100%" : "auto"
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background = value.color;
                           e.currentTarget.style.color = "white";
                           e.currentTarget.style.transform = "translateX(-2px)";
+                          const uptimeGoal = e.currentTarget.querySelector('[data-uptime-goal]');
+                          const uptimeText = e.currentTarget.querySelector('[data-uptime-text]');
+                          if (uptimeGoal) uptimeGoal.style.color = "white";
+                          if (uptimeText) uptimeText.style.color = "white";
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.background = "white";
                           e.currentTarget.style.color = colors.dark;
                           e.currentTarget.style.transform = "translateX(0)";
+                          const uptimeGoal = e.currentTarget.querySelector('[data-uptime-goal]');
+                          const uptimeText = e.currentTarget.querySelector('[data-uptime-text]');
+                          if (uptimeGoal) uptimeGoal.style.color = colors.medium;
+                          if (uptimeText) uptimeText.style.color = colors.dark;
                         }}
                       >
-                        <span>Status page</span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 2H3C2.44772 2 2 2.44772 2 3V9M10 2L6 6M10 2V6M10 2H6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <span>Status page</span>
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 2H3C2.44772 2 2 2.44772 2 3V9M10 2L6 6M10 2V6M10 2H6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                        <div 
+                          data-uptime-goal
+                          style={{ 
+                            fontSize: "0.75rem", 
+                            fontWeight: 700, 
+                            color: colors.medium,
+                            textAlign: "center",
+                            marginTop: 2,
+                            transition: "color 0.2s ease"
+                          }}
+                        >
+                          UPTIME Goal: 99.99%
+                        </div>
+                        <div 
+                          data-uptime-text
+                          style={{ 
+                            fontSize: "0.7rem", 
+                            fontWeight: 400, 
+                            color: colors.dark,
+                            opacity: 0.8,
+                            textAlign: "center",
+                            fontStyle: "italic",
+                            transition: "color 0.2s ease"
+                          }}
+                        >
+                          every <span style={{ textDecoration: "line-through" }}>second</span> payment matters
+                        </div>
                       </a>
                     </>
                   )}
@@ -3825,7 +3879,7 @@ export function App() {
                     Minds Behind the Code
                   </a>
                   <a
-                    href="#the-team"
+                    href="#more-about-us"
                     style={{
                       color: "#26282C",
                       fontWeight: 400,
@@ -3833,27 +3887,27 @@ export function App() {
                       fontSize: "1rem",
                       padding: "8px 16px",
                       borderRadius: "8px",
-                      background: hash === "#the-team" ? "#E1EFFC" : "#ffffff",
+                      background: hash === "#more-about-us" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                     }}
                     onMouseEnter={(e) => {
-                      if (hash !== "#the-team") {
+                      if (hash !== "#more-about-us") {
                         e.target.style.background = "#F5F5F5";
                       }
                     }}
                     onMouseLeave={(e) => {
-                      if (hash !== "#the-team") {
+                      if (hash !== "#more-about-us") {
                         e.target.style.background = "#ffffff";
                       }
                     }}
                     onMouseDown={(e) => {
-                      if (hash !== "#the-team") {
+                      if (hash !== "#more-about-us") {
                         e.target.style.background = "#d1d5db";
                       }
                     }}
                   >
-                    The Team
+                    Knowledge Vault
                   </a>
                 </div>
                 <a
@@ -3999,7 +4053,7 @@ export function App() {
                 Minds Behind the Code
               </a>
               <a
-                href="#the-team"
+                href="#more-about-us"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
                   color: "#26282C",
@@ -4008,27 +4062,27 @@ export function App() {
                   fontSize: "1rem",
                   padding: "8px 16px",
                   borderRadius: "8px",
-                  background: hash === "#the-team" ? "#E1EFFC" : "#ffffff",
+                  background: hash === "#more-about-us" ? "#E1EFFC" : "#ffffff",
                   border: "2px solid transparent",
                   transition: "all 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
-                  if (hash !== "#the-team") {
+                  if (hash !== "#more-about-us") {
                     e.target.style.background = "#F5F5F5";
                   }
                 }}
                 onMouseLeave={(e) => {
-                  if (hash !== "#the-team") {
+                  if (hash !== "#more-about-us") {
                     e.target.style.background = "#ffffff";
                   }
                 }}
                 onMouseDown={(e) => {
-                  if (hash !== "#the-team") {
+                  if (hash !== "#more-about-us") {
                     e.target.style.background = "#d1d5db";
                   }
                 }}
               >
-                The Team
+                More About us
               </a>
             </div>
           )}
@@ -4039,9 +4093,9 @@ export function App() {
         {hash === "#interview" ? (
           <InterviewGuide />
         ) : hash === "#minds-behind-code" ? (
-          <MindsBehindTheCode />
-        ) : hash === "#the-team" ? (
           <TheTeam />
+        ) : hash === "#more-about-us" ? (
+          <MindsBehindTheCode />
         ) : (
           <>
             {/* TechRadar Section ONLY */}
