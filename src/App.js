@@ -104,6 +104,126 @@ style.textContent = `
       transform: translate(-200px, 0) scale(0.8);
     }
   }
+  @keyframes sparkle1 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(60px, -80px) scale(0.3);
+    }
+  }
+  @keyframes sparkle2 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-60px, -80px) scale(0.3);
+    }
+  }
+  @keyframes sparkle3 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(60px, 80px) scale(0.3);
+    }
+  }
+  @keyframes sparkle4 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-60px, 80px) scale(0.3);
+    }
+  }
+  @keyframes sparkle5 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(90px, -30px) scale(0.3);
+    }
+  }
+  @keyframes sparkle6 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-90px, -30px) scale(0.3);
+    }
+  }
+  @keyframes sparkle7 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(90px, 30px) scale(0.3);
+    }
+  }
+  @keyframes sparkle8 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-90px, 30px) scale(0.3);
+    }
+  }
+  @keyframes sparkle9 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(40px, -100px) scale(0.3);
+    }
+  }
+  @keyframes sparkle10 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-40px, -100px) scale(0.3);
+    }
+  }
+  @keyframes sparkle11 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(40px, 100px) scale(0.3);
+    }
+  }
+  @keyframes sparkle12 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-40px, 100px) scale(0.3);
+    }
+  }
 `;
 document.head.appendChild(style);
 
@@ -1510,6 +1630,14 @@ function InterviewGuide() {
   const [tabClickCount, setTabClickCount] = useState(0);
   const [fireworkPosition, setFireworkPosition] = useState(null);
   const [showFirework, setShowFirework] = useState(false);
+  const [showTechInterview, setShowTechInterview] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Reset click count after 2 seconds of inactivity
   useEffect(() => {
@@ -1607,338 +1735,721 @@ function InterviewGuide() {
         </p>
       </section>
 
-      {/* Tech Interview Section */}
+      {/* Hiring Process Plan Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
-          Tech Interview Plan
+          🚀 Our Hiring Process
         </h2>
-        
-        {/* Tabs */}
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "16px",
-          marginBottom: "24px",
-        }}>
-          <button
-            onClick={() => handleTabClick("backend")}
-            style={{
-              padding: "8px 20px",
-              border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: activeTab === "backend" ? "#E4F0EC" : "transparent",
-              color: activeTab === "backend" ? "#00816A" : "#64748b",
-              fontWeight: activeTab === "backend" ? 600 : 400,
-              fontSize: "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-            }}
-          >
-            Backend
-          </button>
-          <button
-            onClick={() => handleTabClick("frontend")}
-            style={{
-              padding: "8px 20px",
-              border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
-              color: activeTab === "frontend" ? "#00816A" : "#64748b",
-              fontWeight: activeTab === "frontend" ? 600 : 400,
-              fontSize: "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-            }}
-          >
-            Frontend
-          </button>
-          <button
-            onClick={() => handleTabClick("infrastructure")}
-            style={{
-              padding: "8px 20px",
-              border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
-              background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
-              color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
-              fontWeight: activeTab === "infrastructure" ? 600 : 400,
-              fontSize: "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-            }}
-          >
-            Infrastructure
-          </button>
-        </div>
+        <p style={{ color: "#444", marginBottom: 30, fontSize: "0.95rem", lineHeight: "1.6" }}>
+          We move fast. We stay transparent. We evaluate impact and thinking — not buzzwords.
+        </p>
 
-        {/* Tab Content */}
-        {activeTab === "backend" && (
-          <div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                Preparation
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
-                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                1. 👋 Intro (5 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll kick things off with quick intros — who you are, who we are,
-                and what we're here to do. Before we dive in, you'll have a chance
-                to ask any questions upfront — about the role, the team, how we
-                work, or anything that helps you feel confident moving forward.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                2. 📂 Deep Dive into Experience (20 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We want to understand how you work, not just where you've worked.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll ask about:
-              </p>
-              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
-                <li>Key projects you've shipped</li>
-                <li>Technical decisions you've made (and why)</li>
-                <li>Real impact you've had on teams and products</li>
-              </ul>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Be ready to go beyond your CV. We're interested in ownership and
-                real impact you've had on teams and products.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                3. 🧠 Technical Questions (60 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Now we go into your engineering skills. Expect questions covering the
-                topics outlined in the competence matrix section.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                This could be hands-on or conceptual. We're not just looking for the
-                right answer — we care about how you approach problems.
-              </p>
-            </div>
-
-            <div style={{
-              textAlign: 'center',
-              margin: '20px 0',
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: '#000000'
-            }}>
-              OR
-            </div>
-
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                3. 🏗️ Architecture Task (60 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                If relevant for the role, we'll throw in a system design challenge.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                You might be asked to sketch out how you'd build something like:
-              </p>
-              <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: "20px" }}>
-                <li>A high-load payments service</li>
-                <li>A secure API for transaction processing</li>
-                <li>An internal tool for risk monitoring</li>
-              </ul>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We want to see how you balance scalability, reliability, and speed —
-                and how you justify your tech choices.
-              </p>
-            </div>
-            
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                4. ✅ Wrap-Up & Next Steps (5 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll close with a short debrief and outline what's next.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                You'll also have time to ask us anything — about the role, the team,
-                the culture, or how we build at Solidgate.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "frontend" && (
-          <div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                Preparation
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
-                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
-              </p>
-            </div>
-            
+        {/* Step 1 */}
+        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
             <div style={{ 
-              marginBottom: "25px",
-              padding: "16px",
-              background: "#FFF4E6",
-              border: "1px solid #FFE0B2",
-              borderRadius: "8px",
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#00816A", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
             }}>
-              <p style={{ margin: "0 0 12px 0", color: "#E65100", fontWeight: 600, fontSize: "0.95rem" }}>
-                ⚠️ Additional Stage – Frontend Roles Only
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: "8px" }}>
-                Before the technical interview, Front-End Engineer candidates go through an additional step:
-              </p>
-              <p style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "12px 0 8px 0" }}>
-                Tech Screen (React live-coding) (30 min)
+              1
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+                🔍 Recruiter Screening (30–45 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: 8 }}>
+                First alignment.
               </p>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                A real-time coding session focused on React fundamentals and problem-solving.
+                Talent team learns your story, expectations, goals, motivation + comp range.
               </p>
-            </div>
-
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                1. 👋 Intro (5 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll kick things off with quick intros — who you are, who we are,
-                and what we're here to do. Before we dive in, you'll have a chance
-                to ask any questions upfront — about the role, the team, how we
-                work, or anything that helps you feel confident moving forward.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                2. 📂 Deep Dive into Experience (20 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We want to understand how you work, not just where you've worked.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll ask about:
-              </p>
-              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
-                <li>Key projects you've shipped</li>
-                <li>Technical decisions you've made (and why)</li>
-                <li>Real impact you've had on teams and products</li>
-              </ul>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Be ready to go beyond your CV. We're interested in ownership and
-                real impact you've had on teams and products.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                3. 🧠 Technical Questions (60 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Now we go into your engineering skills. Expect questions covering the
-                topics outlined in the competence matrix section.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                This could be hands-on or conceptual. We're not just looking for the
-                right answer — we care about how you approach problems.
-              </p>
-            </div>
-            
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                4. ✅ Wrap-Up & Next Steps (5 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll close with a short debrief and outline what's next.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                You'll also have time to ask us anything — about the role, the team,
-                the culture, or how we build at Solidgate.
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: "8px 0 0 0" }}>
+                You get signal on role, team, product and direction.
               </p>
             </div>
           </div>
-        )}
+        </div>
 
-        {activeTab === "infrastructure" && (
-          <div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                Preparation
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
-                Below, you'll find a clear breakdown of the skills we look for across engineering roles.
-              </p>
+        {/* Step 2 - Frontend Tech Screen (Frontend Only) */}
+        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ 
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#FF9800", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
+            }}>
+              2
             </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                1. 👋 Intro (5 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll kick things off with quick intros — who you are, who we are,
-                and what we're here to do. Before we dive in, you'll have a chance
-                to ask any questions upfront — about the role, the team, how we
-                work, or anything that helps you feel confident moving forward.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                2. 📂 Deep Dive into Experience (20 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We want to understand how you work, not just where you've worked.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll ask about:
-              </p>
-              <ul style={{ color: "#444", fontSize: "0.95rem" }}>
-                <li>Key projects you've shipped</li>
-                <li>Technical decisions you've made (and why)</li>
-                <li>Real impact you've had on teams and products</li>
-              </ul>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Be ready to go beyond your CV. We're interested in ownership and
-                real impact you've had on teams and products.
-              </p>
-            </div>
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                3. 🧠 Technical Questions (60 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                Now we go into your engineering skills. Expect questions covering the
-                topics outlined in the competence matrix section.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                This could be hands-on or conceptual. We're not just looking for the
-                right answer — we care about how you approach problems.
-              </p>
-            </div>
-            
-            <div style={{ marginBottom: "25px" }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem" }}>
-                4. ✅ Wrap-Up & Next Steps (5 min)
-              </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                We'll close with a short debrief and outline what's next.
-              </p>
-              <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                You'll also have time to ask us anything — about the role, the team,
-                the culture, or how we build at Solidgate.
+            <div style={{ flex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: 0 }}>
+                  💻 Tech Screen (React live-coding) (30 min)
+                </h3>
+                <span style={{
+                  padding: "4px 8px",
+                  background: "#FFF4E6",
+                  color: "#E65100",
+                  borderRadius: "4px",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  border: "1px solid #FFE0B2"
+                }}>
+                  Frontend Only
+                </span>
+              </div>
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
+                A real-time coding session focused on React fundamentals and problem-solving. Before the technical interview, Front-End Engineer candidates go through this additional step.
               </p>
             </div>
           </div>
-        )}
+        </div>
+
+        {/* Step 3 - Technical Interview */}
+        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ 
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#00816A", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
+            }}>
+              3
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+                ⚙️ Technical Interview (~1.5 hours)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: 12 }}>
+                Deep dive into how you engineer, reason and make decisions.
+              </p>
+              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: 16 }}>
+                Architecture thinking, trade-offs, problem solving, clarity of thought.
+              </p>
+
+              <button
+                onClick={() => setShowTechInterview(!showTechInterview)}
+                style={{
+                  padding: "10px 20px",
+                  border: "2px solid #00816A",
+                  background: showTechInterview ? "#E4F0EC" : "transparent",
+                  color: "#00816A",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  cursor: "pointer",
+                  borderRadius: "6px",
+                  transition: "all 0.2s ease",
+                  width: "100%",
+                  textAlign: "left",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center"
+                }}
+                onMouseEnter={(e) => {
+                  if (!showTechInterview) {
+                    e.currentTarget.style.background = "#F0F9F7";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!showTechInterview) {
+                    e.currentTarget.style.background = "transparent";
+                  }
+                }}
+              >
+                <span>{showTechInterview ? "▼" : "▶"} Tech Interview Plan</span>
+                <span style={{ fontSize: "0.85rem", fontWeight: 400 }}>
+                  {showTechInterview ? "Hide details" : "Show details"}
+                </span>
+              </button>
+              {showTechInterview && (
+                <div style={{ 
+                  marginTop: 20, 
+                  padding: 20, 
+                  background: "#F9FAFB", 
+                  borderRadius: "8px",
+                  border: "1px solid #e2e8f0"
+                }}>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                      Preparation
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none", color: "#00816A"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+                      Below, you'll find a clear breakdown of the skills we look for across engineering roles.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                      1. 👋 Intro (5 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      We'll kick things off with quick intros — who you are, who we are,
+                      and what we're here to do. Before we dive in, you'll have a chance
+                      to ask any questions upfront — about the role, the team, how we
+                      work, or anything that helps you feel confident moving forward.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                      2. 📂 Deep Dive into Experience (20 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      We want to understand how you work, not just where you've worked.
+                    </p>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      We'll ask about:
+                    </p>
+                    <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: 20 }}>
+                      <li>Key projects you've shipped</li>
+                      <li>Technical decisions you've made (and why)</li>
+                      <li>Real impact you've had on teams and products</li>
+                    </ul>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      Be ready to go beyond your CV. We're interested in ownership and
+                      real impact you've had on teams and products.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                      3. 🧠 Technical Questions (60 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      Now we go into your engineering skills. Expect questions covering the
+                      topics outlined in the competence matrix section.
+                    </p>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      This could be hands-on or conceptual. We're not just looking for the
+                      right answer — we care about how you approach problems.
+                    </p>
+                  </div>
+                  <div style={{
+                    textAlign: 'center',
+                    margin: '20px 0',
+                    fontSize: '1.1rem',
+                    fontWeight: '600',
+                    color: '#000000'
+                  }}>
+                    OR
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                      3. 🏗️ Architecture Task (60 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      If relevant for the role, we'll throw in a system design challenge.
+                    </p>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      You might be asked to sketch out how you'd build something like:
+                    </p>
+                    <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: 20 }}>
+                      <li>A high-load payments service</li>
+                      <li>A secure API for transaction processing</li>
+                      <li>An internal tool for risk monitoring</li>
+                    </ul>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      We want to see how you balance scalability, reliability, and speed —
+                      and how you justify your tech choices.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                      4. ✅ Wrap-Up & Next Steps (5 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      We'll close with a short debrief and outline what's next.
+                    </p>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      You'll also have time to ask us anything — about the role, the team,
+                      the culture, or how we build at Solidgate.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Step 4 */}
+        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ 
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#00816A", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
+            }}>
+              4
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+                🤝 Soft Skills Interview (~1.5 hours)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
+                We evaluate leadership behaviors, ownership, communication, feedback culture, and collaboration patterns. Usually with the Head of Engineering or the Engineering Managers.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 5 */}
+        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ 
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#00816A", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
+            }}>
+              5
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+                📈 Bar-Raising Interview (1–1.5 hours)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
+                Independent calibration. We check if you increase our bar — not just match it. Focus on long-term potential and cultural contribution. Held by the CEO.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 6 */}
+        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ 
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#00816A", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
+            }}>
+              6
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+                ✅ Final Alignment Call (15 min)
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
+                We align on offer details, expectations, timeline and final signals from both sides.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 7 */}
+        <div style={{ marginBottom: 0 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ 
+              width: "40px", 
+              height: "40px", 
+              borderRadius: "50%", 
+              background: "#00816A", 
+              color: "white", 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              fontWeight: 600,
+              flexShrink: 0
+            }}>
+              7
+            </div>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+                💚 Offer Signed
+              </h3>
+              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
+                And you join one of the strongest fintech engineering teams in the world.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Testimonials Section moved closer to Books */}
+      {/* Team Structure Section */}
+      <section className="card">
+        <h2 className="section-title" style={{ fontSize: "1.3rem", marginBottom: 30 }}>
+          Team Structure
+        </h2>
+        
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+          gap: 24,
+          position: "relative"
+        }}>
+          {/* Platform Stream */}
+          <div style={{
+            padding: 28,
+            background: "linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%)",
+            borderRadius: "16px",
+            border: "3px solid #4CAF50",
+            transition: "all 0.3s ease",
+            position: "relative",
+            overflow: "hidden",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+            e.currentTarget.style.boxShadow = "0 8px 16px rgba(76, 175, 80, 0.2)";
+            e.currentTarget.style.borderColor = "#2E7D32";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0) scale(1)";
+            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+            e.currentTarget.style.borderColor = "#4CAF50";
+          }}
+          >
+            {/* Decorative icon */}
+            <div style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              fontSize: "48px",
+              opacity: 0.15,
+              transform: "rotate(-15deg)"
+            }}>
+              🏗️
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+              <div style={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "12px",
+                background: "#4CAF50",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "24px",
+                flexShrink: 0
+              }}>
+                🏗️
+              </div>
+              <h3 style={{ color: "#1B5E20", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
+                Platform Stream
+              </h3>
+            </div>
+            
+            <p style={{ color: "#2E7D32", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              Builds the core platform that every product team runs on.
+            </p>
+            
+            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
+              <li>Standardised service patterns, frameworks, and shared primitives</li>
+              <li>Scalable, secure, high-performance defaults</li>
+              <li>Enable product teams to focus on product outcomes instead of platform complexity</li>
+            </ul>
+            
+            <p style={{ color: "#2E7D32", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              Platform sets the baseline and architectural direction, so everything we build compounds.
+            </p>
+            
+            <div style={{ marginTop: 20, paddingTop: 16, borderTop: "2px solid rgba(76, 175, 80, 0.3)", position: "relative", zIndex: 1 }}>
+              <p style={{ color: "#1B5E20", fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                Teams
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {["Frontend Platform", "Backend Platform", "Data Platform"].map((team, idx) => (
+                  <span key={idx} style={{
+                    padding: "6px 12px",
+                    background: "#4CAF50",
+                    color: "white",
+                    borderRadius: "20px",
+                    fontSize: "0.8rem",
+                    fontWeight: 600,
+                    boxShadow: "0 2px 4px rgba(76, 175, 80, 0.3)"
+                  }}>
+                    {team}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Payments Stream */}
+          <div style={{
+            padding: 28,
+            background: "linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%)",
+            borderRadius: "16px",
+            border: "3px solid #2196F3",
+            transition: "all 0.3s ease",
+            position: "relative",
+            overflow: "hidden",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+            e.currentTarget.style.boxShadow = "0 8px 16px rgba(33, 150, 243, 0.2)";
+            e.currentTarget.style.borderColor = "#1565C0";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0) scale(1)";
+            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+            e.currentTarget.style.borderColor = "#2196F3";
+          }}
+          >
+            <div style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              fontSize: "48px",
+              opacity: 0.15,
+              transform: "rotate(-15deg)"
+            }}>
+              💳
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+              <div style={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "12px",
+                background: "#2196F3",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "24px",
+                flexShrink: 0
+              }}>
+                💳
+              </div>
+              <h3 style={{ color: "#0D47A1", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
+                Payments Stream
+              </h3>
+            </div>
+            
+            <p style={{ color: "#1565C0", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              Builds the core product — the payment engine.
+            </p>
+            
+            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
+              <li>Orchestration logic</li>
+              <li>Gateway and payment method integrations</li>
+              <li>Global payment routing</li>
+              <li>Merchant + developer integration experience</li>
+            </ul>
+            
+            <p style={{ color: "#1565C0", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              This is where we win or lose milliseconds, conversion, margin and scale.
+            </p>
+            
+            <div style={{ marginTop: 20, paddingTop: 16, borderTop: "2px solid rgba(33, 150, 243, 0.3)", position: "relative", zIndex: 1 }}>
+              <p style={{ color: "#0D47A1", fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                Teams
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {["Core", "Orchestration", "Integrations", "Connectivity"].map((team, idx) => (
+                  <span key={idx} style={{
+                    padding: "6px 12px",
+                    background: "#2196F3",
+                    color: "white",
+                    borderRadius: "20px",
+                    fontSize: "0.8rem",
+                    fontWeight: 600,
+                    boxShadow: "0 2px 4px rgba(33, 150, 243, 0.3)"
+                  }}>
+                    {team}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Infra Stream */}
+          <div style={{
+            padding: 28,
+            background: "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)",
+            borderRadius: "16px",
+            border: "3px solid #FF9800",
+            transition: "all 0.3s ease",
+            position: "relative",
+            overflow: "hidden",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+            e.currentTarget.style.boxShadow = "0 8px 16px rgba(255, 152, 0, 0.2)";
+            e.currentTarget.style.borderColor = "#E65100";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0) scale(1)";
+            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+            e.currentTarget.style.borderColor = "#FF9800";
+          }}
+          >
+            <div style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              fontSize: "48px",
+              opacity: 0.15,
+              transform: "rotate(-15deg)"
+            }}>
+              ⚙️
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+              <div style={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "12px",
+                background: "#FF9800",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "24px",
+                flexShrink: 0
+              }}>
+                ⚙️
+              </div>
+              <h3 style={{ color: "#E65100", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
+                Infra Stream
+              </h3>
+            </div>
+            
+            <p style={{ color: "#E65100", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              Keeps everything fast, reliable and shippable.
+            </p>
+            
+            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
+              <li>Infra, CI/CD, runtime performance, cost optimisation</li>
+              <li>Monitoring, security and tooling</li>
+              <li>Automation everywhere</li>
+            </ul>
+            
+            <p style={{ color: "#E65100", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              Infra is the force multiplier: less manual work, safer velocity.
+            </p>
+          </div>
+
+          {/* Value Added Services */}
+          <div style={{
+            padding: 28,
+            background: "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)",
+            borderRadius: "16px",
+            border: "3px solid #9C27B0",
+            transition: "all 0.3s ease",
+            position: "relative",
+            overflow: "hidden",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+            e.currentTarget.style.boxShadow = "0 8px 16px rgba(156, 39, 176, 0.2)";
+            e.currentTarget.style.borderColor = "#6A1B9A";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0) scale(1)";
+            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+            e.currentTarget.style.borderColor = "#9C27B0";
+          }}
+          >
+            <div style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              fontSize: "48px",
+              opacity: 0.15,
+              transform: "rotate(-15deg)"
+            }}>
+              💎
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+              <div style={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "12px",
+                background: "#9C27B0",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "24px",
+                flexShrink: 0
+              }}>
+                💎
+              </div>
+              <h3 style={{ color: "#6A1B9A", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
+                Value Added Services
+              </h3>
+            </div>
+            
+            <p style={{ color: "#7B1FA2", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              Build products that extend revenue and create a competitive edge.
+            </p>
+            
+            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
+              <li>Risk & fraud systems</li>
+              <li>Treasury</li>
+              <li>Finance Engineering</li>
+              <li>Billing/Subscriptions</li>
+              <li>Launch team accelerating merchant go-live</li>
+            </ul>
+            
+            <p style={{ color: "#7B1FA2", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
+              This stream turns "payments processor" into "financial infrastructure".
+            </p>
+            
+            <div style={{ marginTop: 20, paddingTop: 16, borderTop: "2px solid rgba(156, 39, 176, 0.3)", position: "relative", zIndex: 1 }}>
+              <p style={{ color: "#6A1B9A", fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                Teams
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {["Risk Systems", "Banking", "Finance Engineering", "Billing", "Launch"].map((team, idx) => (
+                  <span key={idx} style={{
+                    padding: "6px 12px",
+                    background: "#9C27B0",
+                    color: "white",
+                    borderRadius: "20px",
+                    fontSize: "0.8rem",
+                    fontWeight: 600,
+                    boxShadow: "0 2px 4px rgba(156, 39, 176, 0.3)"
+                  }}>
+                    {team}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Competency Matrix Section */}
       <section className="card">
@@ -2213,525 +2724,538 @@ function InterviewGuide() {
           </div>
         )}
       </section>
+    </div>
+  );
+}
 
-      {/* Recommendations Section */}
+function MindsBehindTheCode() {
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 1200,
+        margin: "0 auto",
+        padding: window.innerWidth < 768 ? "0" : "10px",
+      }}
+    >
+      {/* Our Engineers on Media */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
           Our Engineers on Media
         </h2>
-        <div
-          style={{
-            display: "grid",
-            gap: 15,
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
-        >
-          <a
-            href="https://www.youtube.com/watch?v=Dz0JS8fVN6M"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
+          <div
+            style={{
+              display: "grid",
+              gap: 15,
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            }}
           >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
+            <a
+              href="https://www.youtube.com/watch?v=Dz0JS8fVN6M"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    background: "#FF0000",
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
+                    gap: "8px",
                   }}
                 >
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                    fill="none"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <path
-                      d="M7 5L3 2V8L7 5Z"
-                      fill="white"
-                    />
-                  </svg>
-                </span>
-                Як 50 інженерів роблять 1000 деплоїв на місяць | DOU Day 2025
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Макс Багінський, Head of engineering
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://www.youtube.com/watch?v=B6pO8SkaSUY"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    background: "#FF0000",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                    fill="none"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <path
-                      d="M7 5L3 2V8L7 5Z"
-                      fill="white"
-                    />
-                  </svg>
-                </span>
-                Challenge: Unbreakable Payment Form
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Лев Давидов Tech Lead(FE Guild Master)
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://www.youtube.com/watch?v=bfUboflKmf0"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    background: "#FF0000",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                    fill="none"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <path
-                      d="M7 5L3 2V8L7 5Z"
-                      fill="white"
-                    />
-                  </svg>
-                </span>
-                Реальність керування 100+ «керованими» базами даних RDS Postgres
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Микита Глушак, Head of Infrastructure
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://youtu.be/Ax4BEp3ArO4?si=tKDDnCv_fHmAStlq"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    background: "#FF0000",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                    fill="none"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <path
-                      d="M7 5L3 2V8L7 5Z"
-                      fill="white"
-                    />
-                  </svg>
-                </span>
-                Надійність систем за налаштованого CI/CD
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Сергій Сафонов, ex-Tech Lead
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://dou.ua/forums/topic/54148"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#00816A",
-                    borderRadius: "4px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <div
+                  <span
                     style={{
-                      width: "12px",
-                      height: "12px",
-                      background: "white",
-                      borderRadius: "2px",
-                      position: "relative",
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "50%",
+                      background: "#FF0000",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      style={{ marginLeft: "2px" }}
+                    >
+                      <path
+                        d="M7 5L3 2V8L7 5Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                  Як 50 інженерів роблять 1000 деплоїв на місяць | DOU Day 2025
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Макс Багінський, Head of engineering
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=B6pO8SkaSUY"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
+                  style={{
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "50%",
+                      background: "#FF0000",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      style={{ marginLeft: "2px" }}
+                    >
+                      <path
+                        d="M7 5L3 2V8L7 5Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                  Challenge: Unbreakable Payment Form
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Лев Давидов Tech Lead(FE Guild Master)
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=bfUboflKmf0"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
+                  style={{
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "50%",
+                      background: "#FF0000",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      style={{ marginLeft: "2px" }}
+                    >
+                      <path
+                        d="M7 5L3 2V8L7 5Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                  Реальність керування 100+ «керованими» базами даних RDS Postgres
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Микита Глушак, Head of Infrastructure
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://youtu.be/Ax4BEp3ArO4?si=tKDDnCv_fHmAStlq"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
+                  style={{
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "50%",
+                      background: "#FF0000",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      style={{ marginLeft: "2px" }}
+                    >
+                      <path
+                        d="M7 5L3 2V8L7 5Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                  Надійність систем за налаштованого CI/CD
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Сергій Сафонов, ex-Tech Lead
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://dou.ua/forums/topic/54148"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
+                  style={{
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      background: "#00816A",
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
                     }}
                   >
                     <div
                       style={{
-                        position: "absolute",
-                        top: "2px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
+                        width: "12px",
+                        height: "12px",
+                        background: "white",
+                        borderRadius: "2px",
+                        position: "relative",
                       }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "4px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "6px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                  </div>
-                </span>
-                Чи варто деплоїтись у п'ятницю
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Сергій Сафонов, ex-Tech Lead
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://dou.ua/forums/topic/50318/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "4px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                    </div>
+                  </span>
+                  Чи варто деплоїтись у п'ятницю
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Сергій Сафонов, ex-Tech Lead
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://dou.ua/forums/topic/50318/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#00816A",
-                    borderRadius: "4px",
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
+                    gap: "8px",
                   }}
                 >
-                  <div
+                  <span
                     style={{
-                      width: "12px",
-                      height: "12px",
-                      background: "white",
-                      borderRadius: "2px",
-                      position: "relative",
+                      width: "20px",
+                      height: "20px",
+                      background: "#00816A",
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
                     }}
                   >
                     <div
                       style={{
-                        position: "absolute",
-                        top: "2px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
+                        width: "12px",
+                        height: "12px",
+                        background: "white",
+                        borderRadius: "2px",
+                        position: "relative",
                       }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "4px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "6px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                  </div>
-                </span>
-                $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
-                фінтех
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Макс Багінський, Head of Engineering
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://dou.ua/forums/topic/53604"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "4px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                    </div>
+                  </span>
+                  $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
+                  фінтех
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Макс Багінський, Head of Engineering
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://dou.ua/forums/topic/53604"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#00816A",
-                    borderRadius: "4px",
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
+                    gap: "8px",
                   }}
                 >
-                  <div
+                  <span
                     style={{
-                      width: "12px",
-                      height: "12px",
-                      background: "white",
-                      borderRadius: "2px",
-                      position: "relative",
+                      width: "20px",
+                      height: "20px",
+                      background: "#00816A",
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
                     }}
                   >
                     <div
                       style={{
-                        position: "absolute",
-                        top: "2px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
+                        width: "12px",
+                        height: "12px",
+                        background: "white",
+                        borderRadius: "2px",
+                        position: "relative",
                       }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "4px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "6px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                  </div>
-                </span>
-                Як стати джуном, якого найматимуть
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Владислав Павленко, Go Engineer
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://dou.ua/forums/topic/51033/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="media-block">
-              <h4
-                style={{
-                  color: "#181A20",
-                  marginBottom: 8,
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
-              >
-                <span
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "4px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                    </div>
+                  </span>
+                  Як стати джуном, якого найматимуть
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Владислав Павленко, Go Engineer
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://dou.ua/forums/topic/51033/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#00816A",
-                    borderRadius: "4px",
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
+                    gap: "8px",
                   }}
                 >
-                  <div
+                  <span
                     style={{
-                      width: "12px",
-                      height: "12px",
-                      background: "white",
-                      borderRadius: "2px",
-                      position: "relative",
+                      width: "20px",
+                      height: "20px",
+                      background: "#00816A",
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
                     }}
                   >
                     <div
                       style={{
-                        position: "absolute",
-                        top: "2px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
+                        width: "12px",
+                        height: "12px",
+                        background: "white",
+                        borderRadius: "2px",
+                        position: "relative",
                       }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "4px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "6px",
-                        left: "2px",
-                        right: "2px",
-                        height: "1px",
-                        background: "#00816A",
-                      }}
-                    />
-                  </div>
-                </span>
-                Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
-              </h4>
-              <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
-                Сергій Сафонов, ex-Tech Lead
-              </p>
-            </div>
-          </a>
-        </div>
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "4px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#00816A",
+                        }}
+                      />
+                    </div>
+                  </span>
+                  Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
+                </h4>
+                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                  Сергій Сафонов, ex-Tech Lead
+                </p>
+              </div>
+            </a>
+          </div>
       </section>
 
       {/* Testimonials Section */}
@@ -2740,41 +3264,17 @@ function InterviewGuide() {
       </section>
 
       {/* Books Section */}
-      <BookList />
-
-      {/* Quote Section */}
-      <section
-        style={{
-          "background": "#f7f8fa",
-          "textAlign": "center",
-          "borderRadius": "14px",
-          "padding": "2rem",
-          "marginBottom": "3rem",
-      }}
-      >
-        <blockquote
-          style={{
-            margin: 0,
-            fontSize: "1rem",
-            fontWeight: 500,
-            color: "#181A20",
-          }}
-        >
-          We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.
-        </blockquote>
+      <section className="card">
+        <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
+          Books We Love and Recommend 💚
+        </h2>
+        <BookList />
       </section>
     </div>
   );
 }
 
 function BookList() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const books = [
     {
@@ -2838,11 +3338,7 @@ function BookList() {
   ];
 
   return (
-    <section className="card">
-      <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
-        Books We Love and Recommend 💚
-      </h2>
-
+    <>
       {/* Book Grid */}
       <div
         style={{
@@ -2960,7 +3456,7 @@ function BookList() {
           </div>
         ))}
       </div>
-    </section>
+    </>
   );
 }
 
@@ -3273,6 +3769,37 @@ export function App() {
                   >
                     Interview Guide
                   </a>
+                  <a
+                    href="#minds-behind-code"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#minds-behind-code") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#minds-behind-code") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#minds-behind-code") {
+                        e.target.style.background = "#d1d5db";
+                      }
+                    }}
+                  >
+                    Minds Behind the Code
+                  </a>
                 </div>
                 <a
                   href="https://solidgate.teamtailor.com/"
@@ -3384,6 +3911,38 @@ export function App() {
               >
                 Interview Guide
               </a>
+              <a
+                href="#minds-behind-code"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: "#26282C",
+                  fontWeight: 400,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                  background: hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#minds-behind-code") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#minds-behind-code") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#minds-behind-code") {
+                    e.target.style.background = "#d1d5db";
+                  }
+                }}
+              >
+                Minds Behind the Code
+              </a>
             </div>
           )}
         </div>
@@ -3392,6 +3951,8 @@ export function App() {
       <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
         {hash === "#interview" ? (
           <InterviewGuide />
+        ) : hash === "#minds-behind-code" ? (
+          <MindsBehindTheCode />
         ) : (
           <>
             {/* TechRadar Section ONLY */}
@@ -3479,6 +4040,36 @@ export function App() {
           </>
         )}
       </div>
+
+      {/* Quote Section - Footer for all tabs */}
+      <div style={{ 
+        width: "100%", 
+        maxWidth: 1200, 
+        margin: "0 auto", 
+        padding: window.innerWidth < 768 ? "16px" : "10px" 
+      }}>
+        <section
+          style={{
+            background: "#f7f8fa",
+            textAlign: "center",
+            borderRadius: "14px",
+            padding: "2rem",
+            marginBottom: "3rem",
+          }}
+        >
+          <blockquote
+            style={{
+              margin: 0,
+              fontSize: "1rem",
+              fontWeight: 500,
+              color: "#181A20",
+            }}
+          >
+            We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.
+          </blockquote>
+        </section>
+      </div>
+
       <div id="footer">
         <Footer />
       </div>
