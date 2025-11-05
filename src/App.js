@@ -258,7 +258,7 @@ const DEFAULT_RADAR_CONFIG = {
     { name: "Techniques, Tools & AI" },
   ],
   rings: [
-    { name: "ADOPT", color: "#06a872" },
+    { name: "ADOPT", color: "#66BB6A" },
     { name: "TRIAL", color: "#A26CE6" },
     { name: "ASSESS", color: "#005FBB" },
     { name: "HOLD", color: "#7A7A7A" },
@@ -435,7 +435,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'scale(1.02)';
         e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = '#00816A';
+        e.currentTarget.style.borderColor = '#66BB6A';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'scale(1)';
@@ -451,7 +451,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           left: 0,
           right: 0,
           height: '4px',
-          background: '#3B9A83',
+          background: '#66BB6A',
           borderTopLeftRadius: 12,
           borderTopRightRadius: 12
         }}
@@ -489,7 +489,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         <div
           style={{
             fontSize: "1.6rem",
-            color: "#00816A",
+            color: "#66BB6A",
             transition: "transform 0.3s ease",
             transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
             fontWeight: "400",
@@ -545,7 +545,7 @@ function LanguageBlock({ language, logo, requirements, questions }) {
           >
             <h5
               style={{
-                color: "#00816A",
+                color: "#66BB6A",
                 marginBottom: 12,
                 fontSize: "1rem",
                 fontWeight: 700,
@@ -821,9 +821,9 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
           onClick={() => setActiveTab("backend")}
           style={{
             padding: "8px 20px",
-            border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
             background: activeTab === "backend" ? "#E4F0EC" : "transparent",
-            color: activeTab === "backend" ? "#00816A" : "#64748b",
+            color: activeTab === "backend" ? "#66BB6A" : "#64748b",
             fontWeight: activeTab === "backend" ? 600 : 400,
             fontSize: "0.95rem",
             cursor: "pointer",
@@ -837,9 +837,9 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
           onClick={() => setActiveTab("frontend")}
           style={{
             padding: "8px 20px",
-            border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
             background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
-            color: activeTab === "frontend" ? "#00816A" : "#64748b",
+            color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
             fontWeight: activeTab === "frontend" ? 600 : 400,
             fontSize: "0.95rem",
             cursor: "pointer",
@@ -853,9 +853,9 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
           onClick={() => setActiveTab("infrastructure")}
           style={{
             padding: "8px 20px",
-            border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+            border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
             background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
-            color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
+            color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
             fontWeight: activeTab === "infrastructure" ? 600 : 400,
             fontSize: "0.95rem",
             cursor: "pointer",
@@ -927,8 +927,8 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#00816A" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#3B9A83" stopOpacity="0.25" />
+                <stop offset="0%" stopColor="#66BB6A" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#66BB6A" stopOpacity="0.25" />
               </linearGradient>
               <linearGradient
                 id="gridGradient"
@@ -1025,7 +1025,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                     cy={scoreY}
                     r="14"
                     fill="white"
-                    stroke="#00816A"
+                    stroke="#66BB6A"
                     strokeWidth="2.5"
                     style={{ transition: "all 0.15s ease" }}
                     onMouseEnter={(e) => {
@@ -1036,7 +1036,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                       );
                       if (categoryDetails) {
                         categoryDetails.style.background = "#E4F0EC";
-                        categoryDetails.style.borderColor = '#00816A';
+                        categoryDetails.style.borderColor = '#66BB6A';
                         categoryDetails.style.padding = "16px";
 
                         const description = document.getElementById(
@@ -1094,7 +1094,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
             <path
               d={createDataPath(dataPoints)}
               fill="url(#dataGradient)"
-              stroke="#00816A"
+              stroke="#66BB6A"
               strokeWidth="2.5"
               opacity="0.9"
             />
@@ -1106,7 +1106,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                   cx={point.x}
                   cy={point.y}
                   r="7"
-                  fill="#00816A"
+                  fill="#66BB6A"
                   stroke="white"
                   strokeWidth="2.5"
                   style={{ transition: "all 0.15s ease" }}
@@ -1118,7 +1118,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                     );
                     if (categoryDetails) {
                       categoryDetails.style.background = "#E4F0EC";
-                      categoryDetails.style.borderColor = '#00816A';
+                      categoryDetails.style.borderColor = '#66BB6A';
                       categoryDetails.style.padding = "16px";
 
                       const description = document.getElementById(
@@ -1161,7 +1161,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
               cx={centerX}
               cy={centerY}
               r="5"
-              fill="#00816A"
+              fill="#66BB6A"
               stroke="white"
               strokeWidth="2"
             />
@@ -1210,7 +1210,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                 id={`category-${index}`}
                                   style={{
                     background: "rgba(255, 255, 255, 0.95)",
-                    border: isExpanded ? "2px solid #00816A" : "2px solid #e2e8f0",
+                    border: isExpanded ? "2px solid #66BB6A" : "2px solid #e2e8f0",
                     borderRadius: "12px",
                     padding: isMobile ? "20px" : "20px",
                     transition: "all 0.5s ease",
@@ -1231,7 +1231,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                     left: 0,
                     right: 0,
                     height: "4px",
-                    background: '#3B9A83',
+                    background: '#66BB6A',
                     borderTopLeftRadius: 12,
                     borderTopRightRadius: 12,
                   }}
@@ -1265,7 +1265,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                       style={{
                         fontSize: isMobile ? "20px" : "22px",
                         fontWeight: "700",
-                        color: "#00816A",
+                        color: "#66BB6A",
                       }}
                     >
                       {category.score}
@@ -1439,7 +1439,7 @@ function EngineeringLevelsTree() {
                 left: 0,
                 right: 0,
                 height: '4px',
-                background: '#3B9A83',
+                background: '#66BB6A',
                 borderTopLeftRadius: '16px',
                 borderTopRightRadius: '16px'
             }} />
@@ -1481,7 +1481,7 @@ function EngineeringLevelsTree() {
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.transform = 'scale(1.02)';
                                 e.currentTarget.style.boxShadow = 'none';
-                                e.currentTarget.style.borderColor = '#00816A';
+                                e.currentTarget.style.borderColor = '#66BB6A';
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.transform = 'scale(1)';
@@ -1496,7 +1496,7 @@ function EngineeringLevelsTree() {
                                 left: 0,
                                 right: 0,
                                 height: '4px',
-                                background: '#3B9A83',
+                                background: '#66BB6A',
                                 borderTopLeftRadius: 12,
                                 borderTopRightRadius: 12
                             }} />
@@ -1528,7 +1528,7 @@ function EngineeringLevelsTree() {
                                 </div>
                                 <div style={{
                                     fontSize: '1.6rem',
-                                    color: '#00816A',
+                                    color: '#66BB6A',
                                     transition: 'transform 0.3s ease',
                                     transform: expandedLevels[index] ? 'rotate(90deg)' : 'rotate(0deg)',
                                     marginLeft: '16px',
@@ -1751,7 +1751,7 @@ function InterviewGuide() {
               width: "40px", 
               height: "40px", 
               borderRadius: "50%", 
-              background: "#00816A", 
+              background: "#66BB6A", 
               color: "white", 
               display: "flex", 
               alignItems: "center", 
@@ -1826,7 +1826,7 @@ function InterviewGuide() {
               width: "40px", 
               height: "40px", 
               borderRadius: "50%", 
-              background: "#00816A", 
+              background: "#66BB6A", 
               color: "white", 
               display: "flex", 
               alignItems: "center", 
@@ -1851,9 +1851,9 @@ function InterviewGuide() {
                 onClick={() => setShowTechInterview(!showTechInterview)}
                 style={{
                   padding: "10px 20px",
-                  border: "2px solid #00816A",
+                  border: "2px solid #66BB6A",
                   background: showTechInterview ? "#E4F0EC" : "transparent",
-                  color: "#00816A",
+                  color: "#66BB6A",
                   fontWeight: 600,
                   fontSize: "0.9rem",
                   cursor: "pointer",
@@ -1894,7 +1894,7 @@ function InterviewGuide() {
                       Preparation
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none", color: "#00816A"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
+                      Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none", color: "#66BB6A"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
                       Below, you'll find a clear breakdown of the skills we look for across engineering roles.
                     </p>
                   </div>
@@ -1996,7 +1996,7 @@ function InterviewGuide() {
               width: "40px", 
               height: "40px", 
               borderRadius: "50%", 
-              background: "#00816A", 
+              background: "#66BB6A", 
               color: "white", 
               display: "flex", 
               alignItems: "center", 
@@ -2024,7 +2024,7 @@ function InterviewGuide() {
               width: "40px", 
               height: "40px", 
               borderRadius: "50%", 
-              background: "#00816A", 
+              background: "#66BB6A", 
               color: "white", 
               display: "flex", 
               alignItems: "center", 
@@ -2052,7 +2052,7 @@ function InterviewGuide() {
               width: "40px", 
               height: "40px", 
               borderRadius: "50%", 
-              background: "#00816A", 
+              background: "#66BB6A", 
               color: "white", 
               display: "flex", 
               alignItems: "center", 
@@ -2080,7 +2080,7 @@ function InterviewGuide() {
               width: "40px", 
               height: "40px", 
               borderRadius: "50%", 
-              background: "#00816A", 
+              background: "#66BB6A", 
               color: "white", 
               display: "flex", 
               alignItems: "center", 
@@ -2097,355 +2097,6 @@ function InterviewGuide() {
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
                 And you join one of the strongest fintech engineering teams in the world.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Structure Section */}
-      <section className="card">
-        <h2 className="section-title" style={{ fontSize: "1.3rem", marginBottom: 30 }}>
-          Team Structure
-        </h2>
-        
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
-          gap: 24,
-          position: "relative"
-        }}>
-          {/* Platform Stream */}
-          <div style={{
-            padding: 28,
-            background: "linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%)",
-            borderRadius: "16px",
-            border: "3px solid #4CAF50",
-            transition: "all 0.3s ease",
-            position: "relative",
-            overflow: "hidden",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
-            e.currentTarget.style.boxShadow = "0 8px 16px rgba(76, 175, 80, 0.2)";
-            e.currentTarget.style.borderColor = "#2E7D32";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0) scale(1)";
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
-            e.currentTarget.style.borderColor = "#4CAF50";
-          }}
-          >
-            {/* Decorative icon */}
-            <div style={{
-              position: "absolute",
-              top: 20,
-              right: 20,
-              fontSize: "48px",
-              opacity: 0.15,
-              transform: "rotate(-15deg)"
-            }}>
-              🏗️
-            </div>
-            
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
-              <div style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "12px",
-                background: "#4CAF50",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                flexShrink: 0
-              }}>
-                🏗️
-              </div>
-              <h3 style={{ color: "#1B5E20", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
-                Platform Stream
-              </h3>
-            </div>
-            
-            <p style={{ color: "#2E7D32", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              Builds the core platform that every product team runs on.
-            </p>
-            
-            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
-              <li>Standardised service patterns, frameworks, and shared primitives</li>
-              <li>Scalable, secure, high-performance defaults</li>
-              <li>Enable product teams to focus on product outcomes instead of platform complexity</li>
-            </ul>
-            
-            <p style={{ color: "#2E7D32", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              Platform sets the baseline and architectural direction, so everything we build compounds.
-            </p>
-            
-            <div style={{ marginTop: 20, paddingTop: 16, borderTop: "2px solid rgba(76, 175, 80, 0.3)", position: "relative", zIndex: 1 }}>
-              <p style={{ color: "#1B5E20", fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                Teams
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["Frontend Platform", "Backend Platform", "Data Platform"].map((team, idx) => (
-                  <span key={idx} style={{
-                    padding: "6px 12px",
-                    background: "#4CAF50",
-                    color: "white",
-                    borderRadius: "20px",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    boxShadow: "0 2px 4px rgba(76, 175, 80, 0.3)"
-                  }}>
-                    {team}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Payments Stream */}
-          <div style={{
-            padding: 28,
-            background: "linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%)",
-            borderRadius: "16px",
-            border: "3px solid #2196F3",
-            transition: "all 0.3s ease",
-            position: "relative",
-            overflow: "hidden",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
-            e.currentTarget.style.boxShadow = "0 8px 16px rgba(33, 150, 243, 0.2)";
-            e.currentTarget.style.borderColor = "#1565C0";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0) scale(1)";
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
-            e.currentTarget.style.borderColor = "#2196F3";
-          }}
-          >
-            <div style={{
-              position: "absolute",
-              top: 20,
-              right: 20,
-              fontSize: "48px",
-              opacity: 0.15,
-              transform: "rotate(-15deg)"
-            }}>
-              💳
-            </div>
-            
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
-              <div style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "12px",
-                background: "#2196F3",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                flexShrink: 0
-              }}>
-                💳
-              </div>
-              <h3 style={{ color: "#0D47A1", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
-                Payments Stream
-              </h3>
-            </div>
-            
-            <p style={{ color: "#1565C0", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              Builds the core product — the payment engine.
-            </p>
-            
-            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
-              <li>Orchestration logic</li>
-              <li>Gateway and payment method integrations</li>
-              <li>Global payment routing</li>
-              <li>Merchant + developer integration experience</li>
-            </ul>
-            
-            <p style={{ color: "#1565C0", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              This is where we win or lose milliseconds, conversion, margin and scale.
-            </p>
-            
-            <div style={{ marginTop: 20, paddingTop: 16, borderTop: "2px solid rgba(33, 150, 243, 0.3)", position: "relative", zIndex: 1 }}>
-              <p style={{ color: "#0D47A1", fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                Teams
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["Core", "Orchestration", "Integrations", "Connectivity"].map((team, idx) => (
-                  <span key={idx} style={{
-                    padding: "6px 12px",
-                    background: "#2196F3",
-                    color: "white",
-                    borderRadius: "20px",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    boxShadow: "0 2px 4px rgba(33, 150, 243, 0.3)"
-                  }}>
-                    {team}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Infra Stream */}
-          <div style={{
-            padding: 28,
-            background: "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)",
-            borderRadius: "16px",
-            border: "3px solid #FF9800",
-            transition: "all 0.3s ease",
-            position: "relative",
-            overflow: "hidden",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
-            e.currentTarget.style.boxShadow = "0 8px 16px rgba(255, 152, 0, 0.2)";
-            e.currentTarget.style.borderColor = "#E65100";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0) scale(1)";
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
-            e.currentTarget.style.borderColor = "#FF9800";
-          }}
-          >
-            <div style={{
-              position: "absolute",
-              top: 20,
-              right: 20,
-              fontSize: "48px",
-              opacity: 0.15,
-              transform: "rotate(-15deg)"
-            }}>
-              ⚙️
-            </div>
-            
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
-              <div style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "12px",
-                background: "#FF9800",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                flexShrink: 0
-              }}>
-                ⚙️
-              </div>
-              <h3 style={{ color: "#E65100", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
-                Infra Stream
-              </h3>
-            </div>
-            
-            <p style={{ color: "#E65100", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              Keeps everything fast, reliable and shippable.
-            </p>
-            
-            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
-              <li>Infra, CI/CD, runtime performance, cost optimisation</li>
-              <li>Monitoring, security and tooling</li>
-              <li>Automation everywhere</li>
-            </ul>
-            
-            <p style={{ color: "#E65100", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              Infra is the force multiplier: less manual work, safer velocity.
-            </p>
-          </div>
-
-          {/* Value Added Services */}
-          <div style={{
-            padding: 28,
-            background: "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)",
-            borderRadius: "16px",
-            border: "3px solid #9C27B0",
-            transition: "all 0.3s ease",
-            position: "relative",
-            overflow: "hidden",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
-            e.currentTarget.style.boxShadow = "0 8px 16px rgba(156, 39, 176, 0.2)";
-            e.currentTarget.style.borderColor = "#6A1B9A";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0) scale(1)";
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
-            e.currentTarget.style.borderColor = "#9C27B0";
-          }}
-          >
-            <div style={{
-              position: "absolute",
-              top: 20,
-              right: 20,
-              fontSize: "48px",
-              opacity: 0.15,
-              transform: "rotate(-15deg)"
-            }}>
-              💎
-            </div>
-            
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
-              <div style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "12px",
-                background: "#9C27B0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                flexShrink: 0
-              }}>
-                💎
-              </div>
-              <h3 style={{ color: "#6A1B9A", fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
-                Value Added Services
-              </h3>
-            </div>
-            
-            <p style={{ color: "#7B1FA2", fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              Build products that extend revenue and create a competitive edge.
-            </p>
-            
-            <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
-              <li>Risk & fraud systems</li>
-              <li>Treasury</li>
-              <li>Finance Engineering</li>
-              <li>Billing/Subscriptions</li>
-              <li>Launch team accelerating merchant go-live</li>
-            </ul>
-            
-            <p style={{ color: "#7B1FA2", fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
-              This stream turns "payments processor" into "financial infrastructure".
-            </p>
-            
-            <div style={{ marginTop: 20, paddingTop: 16, borderTop: "2px solid rgba(156, 39, 176, 0.3)", position: "relative", zIndex: 1 }}>
-              <p style={{ color: "#6A1B9A", fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                Teams
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["Risk Systems", "Banking", "Finance Engineering", "Billing", "Launch"].map((team, idx) => (
-                  <span key={idx} style={{
-                    padding: "6px 12px",
-                    background: "#9C27B0",
-                    color: "white",
-                    borderRadius: "20px",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    boxShadow: "0 2px 4px rgba(156, 39, 176, 0.3)"
-                  }}>
-                    {team}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
@@ -2494,9 +2145,9 @@ function InterviewGuide() {
             onClick={() => handleTabClick("backend")}
             style={{
               padding: "8px 20px",
-              border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
               background: activeTab === "backend" ? "#E4F0EC" : "transparent",
-              color: activeTab === "backend" ? "#00816A" : "#64748b",
+              color: activeTab === "backend" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "backend" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
@@ -2510,9 +2161,9 @@ function InterviewGuide() {
             onClick={() => handleTabClick("frontend")}
             style={{
               padding: "8px 20px",
-              border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
               background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
-              color: activeTab === "frontend" ? "#00816A" : "#64748b",
+              color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "frontend" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
@@ -2526,9 +2177,9 @@ function InterviewGuide() {
             onClick={() => handleTabClick("infrastructure")}
             style={{
               padding: "8px 20px",
-              border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
+              border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
               background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
-              color: activeTab === "infrastructure" ? "#00816A" : "#64748b",
+              color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "infrastructure" ? 600 : 400,
               fontSize: "0.95rem",
               cursor: "pointer",
@@ -2794,7 +2445,7 @@ function MindsBehindTheCode() {
                   </span>
                   Як 50 інженерів роблять 1000 деплоїв на місяць | DOU Day 2025
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Макс Багінський, Head of engineering
                 </p>
               </div>
@@ -2843,7 +2494,7 @@ function MindsBehindTheCode() {
                   </span>
                   Challenge: Unbreakable Payment Form
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Лев Давидов Tech Lead(FE Guild Master)
                 </p>
               </div>
@@ -2892,7 +2543,7 @@ function MindsBehindTheCode() {
                   </span>
                   Реальність керування 100+ «керованими» базами даних RDS Postgres
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Микита Глушак, Head of Infrastructure
                 </p>
               </div>
@@ -2941,7 +2592,7 @@ function MindsBehindTheCode() {
                   </span>
                   Надійність систем за налаштованого CI/CD
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Сергій Сафонов, ex-Tech Lead
                 </p>
               </div>
@@ -2967,7 +2618,7 @@ function MindsBehindTheCode() {
                     style={{
                       width: "20px",
                       height: "20px",
-                      background: "#00816A",
+                      background: "#66BB6A",
                       borderRadius: "4px",
                       display: "flex",
                       alignItems: "center",
@@ -2991,7 +2642,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3001,7 +2652,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3011,14 +2662,14 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                     </div>
                   </span>
                   Чи варто деплоїтись у п'ятницю
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Сергій Сафонов, ex-Tech Lead
                 </p>
               </div>
@@ -3044,7 +2695,7 @@ function MindsBehindTheCode() {
                     style={{
                       width: "20px",
                       height: "20px",
-                      background: "#00816A",
+                      background: "#66BB6A",
                       borderRadius: "4px",
                       display: "flex",
                       alignItems: "center",
@@ -3068,7 +2719,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3078,7 +2729,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3088,7 +2739,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                     </div>
@@ -3096,7 +2747,7 @@ function MindsBehindTheCode() {
                   $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
                   фінтех
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Макс Багінський, Head of Engineering
                 </p>
               </div>
@@ -3122,7 +2773,7 @@ function MindsBehindTheCode() {
                     style={{
                       width: "20px",
                       height: "20px",
-                      background: "#00816A",
+                      background: "#66BB6A",
                       borderRadius: "4px",
                       display: "flex",
                       alignItems: "center",
@@ -3146,7 +2797,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3156,7 +2807,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3166,14 +2817,14 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                     </div>
                   </span>
                   Як стати джуном, якого найматимуть
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Владислав Павленко, Go Engineer
                 </p>
               </div>
@@ -3199,7 +2850,7 @@ function MindsBehindTheCode() {
                     style={{
                       width: "20px",
                       height: "20px",
-                      background: "#00816A",
+                      background: "#66BB6A",
                       borderRadius: "4px",
                       display: "flex",
                       alignItems: "center",
@@ -3223,7 +2874,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3233,7 +2884,7 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                       <div
@@ -3243,14 +2894,14 @@ function MindsBehindTheCode() {
                           left: "2px",
                           right: "2px",
                           height: "1px",
-                          background: "#00816A",
+                          background: "#66BB6A",
                         }}
                       />
                     </div>
                   </span>
                   Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
                 </h4>
-                <p style={{ color: "#00816A", fontWeight: 500, fontSize: 13 }}>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
                   Сергій Сафонов, ex-Tech Lead
                 </p>
               </div>
@@ -3269,6 +2920,379 @@ function MindsBehindTheCode() {
           Books We Love and Recommend 💚
         </h2>
         <BookList />
+      </section>
+    </div>
+  );
+}
+
+function TheTeam() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const engineeringValues = [
+    {
+      title: "📦 Work in Small Batches",
+      description: "Slice work into pieces that can be completed in a week or less. We use Trunk-Based Development to deliver incremental value continuously, reducing risk and accelerating delivery.",
+      color: "#66BB6A",
+      gradient: "linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%)",
+      icon: "📦"
+    },
+    {
+      title: "👁️ Make Flow of Work Visible",
+      description: "Full visibility from business processes to customer delivery. Everyone knows the status of products and features at every stage.",
+      color: "#2196F3",
+      gradient: "linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%)",
+      icon: "👁️"
+    },
+    {
+      title: "💬 Gather & Implement Customer Feedback",
+      description: "More information from clients → better customer satisfaction → better product.",
+      color: "#FF9800",
+      gradient: "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)",
+      icon: "💬"
+    },
+    {
+      title: "🧪 Team Experimentation",
+      description: "Developers explore new ideas and adjust specs autonomously. This accelerates innovation when combined with small batches, customer feedback, and workflow transparency.",
+      color: "#9C27B0",
+      gradient: "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)",
+      icon: "🧪"
+    },
+    {
+      title: "⚡ We MUST be Reliability Obsessed",
+      description: "Reliability is the most important feature. We can have a thousand features, but none of them will work if our system fails.",
+      color: "#66BB6A",
+      gradient: "linear-gradient(135deg, #E4F0EC 0%, #C8E6D5 100%)",
+      icon: "⚡"
+    }
+  ];
+
+  const streams = [
+    {
+      title: "Platform Stream",
+      description: "Builds the core platform that every product team runs on.",
+      points: [
+        "Standardised service patterns, frameworks, and shared primitives",
+        "Scalable, secure, high-performance defaults",
+        "Enable product teams to focus on product outcomes instead of platform complexity"
+      ],
+      quote: "Platform sets the baseline and architectural direction, so everything we build compounds.",
+      teams: ["Frontend Platform", "Backend Platform", "Data Platform"],
+      color: "#66BB6A",
+      darkColor: "#4A9F8A",
+      mediumColor: "#5BA892",
+      gradient: "linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%)",
+      icon: "🏗️"
+    },
+    {
+      title: "Payments Stream",
+      description: "Builds the core product — the payment engine.",
+      points: [
+        "Orchestration logic",
+        "Gateway and payment method integrations",
+        "Global payment routing",
+        "Merchant + developer integration experience"
+      ],
+      quote: "This is where we win or lose milliseconds, conversion, margin and scale.",
+      teams: ["Core", "Orchestration", "Integrations", "Connectivity"],
+      color: "#2196F3",
+      darkColor: "#0D47A1",
+      mediumColor: "#1565C0",
+      gradient: "linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%)",
+      icon: "💳"
+    },
+    {
+      title: "Infra Stream",
+      description: "Keeps everything fast, reliable and shippable.",
+      points: [
+        "Infra, CI/CD, runtime performance, cost optimisation",
+        "Monitoring, security and tooling",
+        "Automation everywhere"
+      ],
+      quote: "Infra is the force multiplier: less manual work, safer velocity.",
+      teams: [],
+      color: "#FF9800",
+      darkColor: "#E65100",
+      mediumColor: "#E65100",
+      gradient: "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)",
+      icon: "⚙️"
+    },
+    {
+      title: "Value Added Services",
+      description: "Build products that extend revenue and create a competitive edge.",
+      points: [
+        "Risk & fraud systems",
+        "Treasury",
+        "Finance Engineering",
+        "Billing/Subscriptions",
+        "Launch team accelerating merchant go-live"
+      ],
+      quote: "This stream turns \"payments processor\" into \"financial infrastructure\".",
+      teams: ["Risk Systems", "Banking", "Finance Engineering", "Billing", "Launch"],
+      color: "#9C27B0",
+      darkColor: "#6A1B9A",
+      mediumColor: "#7B1FA2",
+      gradient: "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)",
+      icon: "💎"
+    }
+  ];
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 1200,
+        margin: "0 auto",
+        padding: window.innerWidth < 768 ? "0" : "10px",
+      }}
+    >
+      {/* Engineering Values Section */}
+      <section className="card">
+        <h2 className="section-title" style={{ fontSize: "1.3rem", marginBottom: 30 }}>
+          Engineering Values
+        </h2>
+        <p style={{ color: "#444", marginBottom: 30, fontSize: "0.95rem", lineHeight: "1.6" }}>
+          These principles guide how we build, ship, and improve.
+        </p>
+
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+          gap: 24,
+          position: "relative"
+        }}>
+          {engineeringValues.map((value, idx) => {
+            const colorVars = {
+              "#4CAF50": { dark: "#4A9F8A", medium: "#5BA892" },
+              "#2196F3": { dark: "#0D47A1", medium: "#1565C0" },
+              "#FF9800": { dark: "#E65100", medium: "#E65100" },
+              "#9C27B0": { dark: "#6A1B9A", medium: "#7B1FA2" },
+              "#66BB6A": { dark: "#4A9F8A", medium: "#5BA892" }
+            };
+            const colors = colorVars[value.color] || { dark: value.color, medium: value.color };
+            
+            return (
+              <div
+                key={idx}
+                style={{
+                  padding: 28,
+                  background: value.gradient,
+                  borderRadius: "16px",
+                  border: `3px solid ${value.color}`,
+                  transition: "all 0.3s ease",
+                  position: "relative",
+                  overflow: "hidden",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+                  e.currentTarget.style.boxShadow = `0 8px 16px ${value.color}33`;
+                  e.currentTarget.style.borderColor = colors.dark;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
+                  e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+                  e.currentTarget.style.borderColor = value.color;
+                }}
+              >
+                <div style={{
+                  position: "absolute",
+                  top: 20,
+                  right: 20,
+                  fontSize: "48px",
+                  opacity: 0.15,
+                  transform: "rotate(-15deg)"
+                }}>
+                  {value.icon}
+                </div>
+                
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+                  <div style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "12px",
+                    background: value.color,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "24px",
+                    flexShrink: 0
+                  }}>
+                    {value.icon}
+                  </div>
+                  <h3 style={{ color: colors.dark, fontWeight: 700, fontSize: "1.3rem", margin: 0, flex: 1 }}>
+                    {value.title.split(' ').slice(1).join(' ')}
+                  </h3>
+                  {value.title.includes("Reliability Obsessed") && (
+                    <>
+                      <div style={{
+                        fontSize: "24px",
+                        color: colors.dark,
+                        opacity: 0.6,
+                        margin: "0 16px"
+                      }}>
+                        →
+                      </div>
+                      <a
+                        href="https://status.solidgate.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          textDecoration: "none",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                          padding: "8px 16px",
+                          background: "white",
+                          borderRadius: "8px",
+                          border: `2px solid ${value.color}`,
+                          color: colors.dark,
+                          fontSize: "0.85rem",
+                          fontWeight: 600,
+                          transition: "all 0.2s ease",
+                          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = value.color;
+                          e.currentTarget.style.color = "white";
+                          e.currentTarget.style.transform = "translateX(-2px)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "white";
+                          e.currentTarget.style.color = colors.dark;
+                          e.currentTarget.style.transform = "translateX(0)";
+                        }}
+                      >
+                        <span>Status page</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 2H3C2.44772 2 2 2.44772 2 3V9M10 2L6 6M10 2V6M10 2H6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </a>
+                    </>
+                  )}
+                </div>
+                
+                <p style={{ color: colors.medium, fontSize: "0.95rem", lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+                  {value.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Team Structure Section */}
+      <section className="card">
+        <h2 className="section-title" style={{ fontSize: "1.3rem", marginBottom: 30 }}>
+          Team Structure
+        </h2>
+        
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+          gap: 24,
+          position: "relative"
+        }}>
+          {streams.map((stream, idx) => (
+            <div
+              key={idx}
+              style={{
+                padding: 28,
+                background: stream.gradient,
+                borderRadius: "16px",
+                border: `3px solid ${stream.color}`,
+                transition: "all 0.3s ease",
+                position: "relative",
+                overflow: "hidden",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+                e.currentTarget.style.boxShadow = `0 8px 16px ${stream.color}33`;
+                e.currentTarget.style.borderColor = stream.darkColor;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(1)";
+                e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+                e.currentTarget.style.borderColor = stream.color;
+              }}
+            >
+              <div style={{
+                position: "absolute",
+                top: 20,
+                right: 20,
+                fontSize: "48px",
+                opacity: 0.15,
+                transform: "rotate(-15deg)"
+              }}>
+                {stream.icon}
+              </div>
+              
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
+                <div style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "12px",
+                  background: stream.color,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "24px",
+                  flexShrink: 0
+                }}>
+                  {stream.icon}
+                </div>
+                <h3 style={{ color: stream.darkColor, fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
+                  {stream.title}
+                </h3>
+              </div>
+              
+              <p style={{ color: stream.mediumColor, fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+                {stream.description}
+              </p>
+              
+              <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
+                {stream.points.map((point, pIdx) => (
+                  <li key={pIdx}>{point}</li>
+                ))}
+              </ul>
+              
+              <p style={{ color: stream.mediumColor, fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
+                {stream.quote}
+              </p>
+              
+              {stream.teams.length > 0 && (
+                <div style={{ marginTop: 20, paddingTop: 16, borderTop: `2px solid ${stream.color}4D`, position: "relative", zIndex: 1 }}>
+                  <p style={{ color: stream.darkColor, fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                    Teams
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {stream.teams.map((team, tIdx) => (
+                      <span key={tIdx} style={{
+                        padding: "6px 12px",
+                        background: stream.color,
+                        color: "white",
+                        borderRadius: "20px",
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        boxShadow: `0 2px 4px ${stream.color}4D`
+                      }}>
+                        {team}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
@@ -3426,7 +3450,7 @@ function BookList() {
               </h4>
 
               <p style={{
-                color: "#00816A",
+                color: "#66BB6A",
                 fontWeight: 500,
                 fontSize: "0.8rem",
                 marginBottom: 12,
@@ -3665,7 +3689,7 @@ export function App() {
                   rel="noopener noreferrer"
                   style={{
                     background: "#E4F0EC",
-                    color: "#105547",
+                    color: "#4A9F8A",
                     textDecoration: "none",
                     padding: "6px 16px",
                     borderRadius: "20px",
@@ -3679,12 +3703,12 @@ export function App() {
                     cursor: "pointer",
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = "#105547";
+                    e.target.style.background = "#4A9F8A";
                     e.target.style.color = "#E4F0EC";
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.background = "#E4F0EC";
-                    e.target.style.color = "#105547";
+                    e.target.style.color = "#4A9F8A";
                   }}
                 >
                   We're hiring!
@@ -3800,6 +3824,37 @@ export function App() {
                   >
                     Minds Behind the Code
                   </a>
+                  <a
+                    href="#the-team"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#the-team" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#the-team") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#the-team") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#the-team") {
+                        e.target.style.background = "#d1d5db";
+                      }
+                    }}
+                  >
+                    The Team
+                  </a>
                 </div>
                 <a
                   href="https://solidgate.teamtailor.com/"
@@ -3807,7 +3862,7 @@ export function App() {
                   rel="noopener noreferrer"
                   style={{
                     background: "#E4F0EC",
-                    color: "#105547",
+                    color: "#4A9F8A",
                     textDecoration: "none",
                     padding: "6px 16px",
                     borderRadius: "20px",
@@ -3821,12 +3876,12 @@ export function App() {
                     cursor: "pointer",
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = "#105547";
+                    e.target.style.background = "#4A9F8A";
                     e.target.style.color = "#E4F0EC";
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.background = "#E4F0EC";
-                    e.target.style.color = "#105547";
+                    e.target.style.color = "#4A9F8A";
                   }}
                 >
                   We're hiring!
@@ -3943,6 +3998,38 @@ export function App() {
               >
                 Minds Behind the Code
               </a>
+              <a
+                href="#the-team"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: "#26282C",
+                  fontWeight: 400,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                  background: hash === "#the-team" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#the-team") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#the-team") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#the-team") {
+                    e.target.style.background = "#d1d5db";
+                  }
+                }}
+              >
+                The Team
+              </a>
             </div>
           )}
         </div>
@@ -3953,6 +4040,8 @@ export function App() {
           <InterviewGuide />
         ) : hash === "#minds-behind-code" ? (
           <MindsBehindTheCode />
+        ) : hash === "#the-team" ? (
+          <TheTeam />
         ) : (
           <>
             {/* TechRadar Section ONLY */}
@@ -4023,7 +4112,7 @@ export function App() {
                       style={{
                         display: "inline-block",
                         background: "#E4F0EC",
-                        color: "#105547",
+                        color: "#4A9F8A",
                         padding: "2px 8px",
                         borderRadius: 4,
                         fontWeight: 500,
