@@ -3140,7 +3140,10 @@ function TheTeam() {
                   gap: 12, 
                   marginBottom: 16, 
                   position: "relative", 
-                  zIndex: 1 
+                  zIndex: 1,
+                  width: "100%",
+                  boxSizing: "border-box",
+                  overflow: "hidden"
                 }}>
                   <div style={{
                     width: "48px",
@@ -3155,7 +3158,16 @@ function TheTeam() {
                   }}>
                     {value.icon}
                   </div>
-                  <h3 style={{ color: colors.dark, fontWeight: 700, fontSize: "1.3rem", margin: 0, flex: 1 }}>
+                  <h3 style={{ 
+                    color: colors.dark, 
+                    fontWeight: 700, 
+                    fontSize: isMobile && isReliabilityObsessed ? "1.1rem" : "1.3rem", 
+                    margin: 0, 
+                    flex: 1,
+                    wordWrap: "break-word",
+                    overflowWrap: "break-word",
+                    maxWidth: "100%"
+                  }}>
                     {value.title.split(' ').slice(1).join(' ')}
                   </h3>
                   {value.title.includes("Reliability Obsessed") && (
@@ -3179,18 +3191,21 @@ function TheTeam() {
                           display: "flex",
                           flexDirection: "column",
                           gap: 6,
-                          padding: "12px 16px",
+                          padding: isMobile ? "10px 12px" : "12px 16px",
                           background: "white",
                           borderRadius: "8px",
                           border: `2px solid ${value.color}`,
                           color: colors.dark,
-                          fontSize: "0.85rem",
+                          fontSize: isMobile ? "0.8rem" : "0.85rem",
                           fontWeight: 600,
                           transition: "all 0.2s ease",
                           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                          minWidth: isMobile ? "100%" : "140px",
+                          minWidth: isMobile ? "0" : "140px",
+                          maxWidth: isMobile ? "100%" : "auto",
                           alignItems: "center",
-                          width: isMobile ? "100%" : "auto"
+                          width: isMobile ? "100%" : "auto",
+                          boxSizing: "border-box",
+                          flexShrink: isMobile ? 1 : 0
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background = value.color;
@@ -3220,12 +3235,15 @@ function TheTeam() {
                         <div 
                           data-uptime-goal
                           style={{ 
-                            fontSize: "0.75rem", 
+                            fontSize: isMobile ? "0.7rem" : "0.75rem", 
                             fontWeight: 700, 
                             color: colors.medium,
                             textAlign: "center",
                             marginTop: 2,
-                            transition: "color 0.2s ease"
+                            transition: "color 0.2s ease",
+                            wordWrap: "break-word",
+                            overflowWrap: "break-word",
+                            maxWidth: "100%"
                           }}
                         >
                           UPTIME Goal: 99.99%
@@ -3233,13 +3251,16 @@ function TheTeam() {
                         <div 
                           data-uptime-text
                           style={{ 
-                            fontSize: "0.7rem", 
+                            fontSize: isMobile ? "0.65rem" : "0.7rem", 
                             fontWeight: 400, 
                             color: colors.dark,
                             opacity: 0.8,
                             textAlign: "center",
                             fontStyle: "italic",
-                            transition: "color 0.2s ease"
+                            transition: "color 0.2s ease",
+                            wordWrap: "break-word",
+                            overflowWrap: "break-word",
+                            maxWidth: "100%"
                           }}
                         >
                           every <span style={{ textDecoration: "line-through" }}>second</span> payment matters
@@ -3813,6 +3834,7 @@ export function App() {
                       background: hash === "#home" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
+                      textAlign: "center",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#home") {
@@ -3844,6 +3866,7 @@ export function App() {
                       background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
+                      textAlign: "center",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#interview") {
@@ -3875,6 +3898,7 @@ export function App() {
                       background: hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
+                      textAlign: "center",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#minds-behind-code") {
@@ -3906,6 +3930,7 @@ export function App() {
                       background: hash === "#more-about-us" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
+                      textAlign: "center",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#more-about-us") {
@@ -3982,9 +4007,10 @@ export function App() {
                   fontSize: "1rem",
                   padding: "8px 16px",
                   borderRadius: "8px",
-                                        background: hash === "#home" ? "#E1EFFC" : "#ffffff",
+                  background: hash === "#home" ? "#E1EFFC" : "#ffffff",
                   border: "2px solid transparent",
                   transition: "all 0.2s ease",
+                  textAlign: "center",
                 }}
                 onMouseEnter={(e) => {
                   if (hash !== "#home") {
@@ -4014,9 +4040,10 @@ export function App() {
                   fontSize: "1rem",
                   padding: "8px 16px",
                   borderRadius: "8px",
-                                        background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
+                  background: hash === "#interview" ? "#E1EFFC" : "#ffffff",
                   border: "2px solid transparent",
                   transition: "all 0.2s ease",
+                  textAlign: "center",
                 }}
                 onMouseEnter={(e) => {
                   if (hash !== "#interview") {
@@ -4049,6 +4076,7 @@ export function App() {
                   background: hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
                   border: "2px solid transparent",
                   transition: "all 0.2s ease",
+                  textAlign: "center",
                 }}
                 onMouseEnter={(e) => {
                   if (hash !== "#minds-behind-code") {
@@ -4081,6 +4109,7 @@ export function App() {
                   background: hash === "#more-about-us" ? "#E1EFFC" : "#ffffff",
                   border: "2px solid transparent",
                   transition: "all 0.2s ease",
+                  textAlign: "center",
                 }}
                 onMouseEnter={(e) => {
                   if (hash !== "#more-about-us") {
