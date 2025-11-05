@@ -14,6 +14,96 @@ style.textContent = `
       transform: translateY(0);
     }
   }
+  @keyframes explode {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+    }
+  }
+  @keyframes heartExplode1 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(200px, -150px) scale(0.8);
+    }
+  }
+  @keyframes heartExplode2 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-200px, -150px) scale(0.8);
+    }
+  }
+  @keyframes heartExplode3 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(200px, 150px) scale(0.8);
+    }
+  }
+  @keyframes heartExplode4 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-200px, 150px) scale(0.8);
+    }
+  }
+  @keyframes heartExplode5 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0, -200px) scale(0.8);
+    }
+  }
+  @keyframes heartExplode6 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0, 200px) scale(0.8);
+    }
+  }
+  @keyframes heartExplode7 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(200px, 0) scale(0.8);
+    }
+  }
+  @keyframes heartExplode8 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-200px, 0) scale(0.8);
+    }
+  }
 `;
 document.head.appendChild(style);
 
@@ -1355,8 +1445,103 @@ function EngineeringLevelsTree() {
     );
 }
 
+function FireworkExplosion({ position }) {
+  const [phase, setPhase] = useState("flying");
+  const [currentPos, setCurrentPos] = useState({ x: 50, y: 50 });
+
+  useEffect(() => {
+    // Start flying to random position
+    const flyTimer = setTimeout(() => {
+      setCurrentPos({ x: position.x, y: position.y });
+    }, 10);
+
+    // Phase 1: Heart flies to position (0.5s)
+    const explodeTimer = setTimeout(() => {
+      setPhase("exploding");
+    }, 510);
+
+    return () => {
+      clearTimeout(flyTimer);
+      clearTimeout(explodeTimer);
+    };
+  }, [position]);
+
+  return (
+    <>
+      {/* Main heart flying from center to explosion position */}
+      <div
+        style={{
+          position: "fixed",
+          left: `${currentPos.x}%`,
+          top: `${currentPos.y}%`,
+          fontSize: "48px",
+          zIndex: 9999,
+          transition: phase === "flying" ? "left 0.5s ease-out, top 0.5s ease-out" : "opacity 0.1s ease-out, transform 0.1s ease-out",
+          pointerEvents: "none",
+          transform: phase === "exploding" ? "translate(-50%, -50%) scale(0)" : "translate(-50%, -50%)",
+          opacity: phase === "exploding" ? 0 : 1,
+        }}
+      >
+        💚
+      </div>
+      {/* Exploding hearts - appear when main heart reaches position */}
+      {phase === "exploding" && Array.from({ length: 8 }).map((_, i) => (
+        <div
+          key={i}
+          style={{
+            position: "fixed",
+            left: position.x + "%",
+            top: position.y + "%",
+            fontSize: "32px",
+            zIndex: 9999,
+            animation: `heartExplode${i + 1} 0.8s ease-out forwards`,
+            pointerEvents: "none",
+          }}
+        >
+          💚
+        </div>
+      ))}
+    </>
+  );
+}
+
 function InterviewGuide() {
   const [activeTab, setActiveTab] = useState("backend");
+  const [tabClickCount, setTabClickCount] = useState(0);
+  const [fireworkPosition, setFireworkPosition] = useState(null);
+  const [showFirework, setShowFirework] = useState(false);
+
+  // Reset click count after 2 seconds of inactivity
+  useEffect(() => {
+    if (tabClickCount > 0) {
+      const timer = setTimeout(() => {
+        setTabClickCount(0);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [tabClickCount]);
+
+  // Handle tab click with counter
+  const handleTabClick = (tab) => {
+    const newCount = tabClickCount + 1;
+    setTabClickCount(newCount);
+    setActiveTab(tab);
+
+    if (newCount >= 5) {
+      // Random position for firework explosion
+      const randomX = Math.random() * 100; // 0-100%
+      const randomY = Math.random() * 100; // 0-100%
+      setFireworkPosition({ x: randomX, y: randomY });
+      setShowFirework(true);
+      setTabClickCount(0);
+      
+      // Clean up after animation completes (0.5s fly + 0.8s explode)
+      setTimeout(() => {
+        setShowFirework(false);
+        setFireworkPosition(null);
+      }, 1300);
+    }
+  };
 
   return (
     <div
@@ -1365,8 +1550,14 @@ function InterviewGuide() {
         maxWidth: 1200,
         margin: "0 auto",
         padding: window.innerWidth < 768 ? "0" : "10px",
+        position: "relative",
+        overflow: "visible",
       }}
     >
+      {/* Firework Effect */}
+      {showFirework && fireworkPosition && (
+        <FireworkExplosion position={fireworkPosition} />
+      )}
       {/* About Solidgate Section */}
       <section className="card">
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
@@ -1430,7 +1621,7 @@ function InterviewGuide() {
           marginBottom: "24px",
         }}>
           <button
-            onClick={() => setActiveTab("backend")}
+            onClick={() => handleTabClick("backend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1446,7 +1637,7 @@ function InterviewGuide() {
             Backend
           </button>
           <button
-            onClick={() => setActiveTab("frontend")}
+            onClick={() => handleTabClick("frontend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1462,7 +1653,7 @@ function InterviewGuide() {
             Frontend
           </button>
           <button
-            onClick={() => setActiveTab("infrastructure")}
+            onClick={() => handleTabClick("infrastructure")}
             style={{
               padding: "8px 20px",
               border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1759,7 +1950,7 @@ function InterviewGuide() {
           engineering roles. Each category is scored from 0 to 5, where 5
           represents maximum competency.
         </p>
-        <CompetencyMatrix activeTab={activeTab} setActiveTab={setActiveTab} />
+        <CompetencyMatrix activeTab={activeTab} setActiveTab={handleTabClick} />
       </section>
 
       {/* Engineering Levels Section */}
@@ -1789,7 +1980,7 @@ function InterviewGuide() {
           marginBottom: "24px",
         }}>
           <button
-            onClick={() => setActiveTab("backend")}
+            onClick={() => handleTabClick("backend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "backend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1805,7 +1996,7 @@ function InterviewGuide() {
             Backend
           </button>
           <button
-            onClick={() => setActiveTab("frontend")}
+            onClick={() => handleTabClick("frontend")}
             style={{
               padding: "8px 20px",
               border: activeTab === "frontend" ? "2px solid #00816A" : "2px solid #e5e7eb",
@@ -1821,7 +2012,7 @@ function InterviewGuide() {
             Frontend
           </button>
           <button
-            onClick={() => setActiveTab("infrastructure")}
+            onClick={() => handleTabClick("infrastructure")}
             style={{
               padding: "8px 20px",
               border: activeTab === "infrastructure" ? "2px solid #00816A" : "2px solid #e5e7eb",
