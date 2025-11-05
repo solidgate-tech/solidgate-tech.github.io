@@ -810,62 +810,70 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
 
   return (
     <div>
-      {/* Tabs */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "16px",
-        marginBottom: "24px",
-      }}>
-        <button
-          onClick={() => setActiveTab("backend")}
-          style={{
-            padding: "8px 20px",
-            border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-            background: activeTab === "backend" ? "#E4F0EC" : "transparent",
-            color: activeTab === "backend" ? "#66BB6A" : "#64748b",
-            fontWeight: activeTab === "backend" ? 600 : 400,
-            fontSize: "0.95rem",
-            cursor: "pointer",
-            borderRadius: "6px",
-            transition: "all 0.2s ease",
-          }}
-        >
-          Backend
-        </button>
-        <button
-          onClick={() => setActiveTab("frontend")}
-          style={{
-            padding: "8px 20px",
-            border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-            background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
-            color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
-            fontWeight: activeTab === "frontend" ? 600 : 400,
-            fontSize: "0.95rem",
-            cursor: "pointer",
-            borderRadius: "6px",
-            transition: "all 0.2s ease",
-          }}
-        >
-          Frontend
-        </button>
-        <button
-          onClick={() => setActiveTab("infrastructure")}
-          style={{
-            padding: "8px 20px",
-            border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-            background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
-            color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
-            fontWeight: activeTab === "infrastructure" ? 600 : 400,
-            fontSize: "0.95rem",
-            cursor: "pointer",
-            borderRadius: "6px",
-            transition: "all 0.2s ease",
-          }}
-        >
-          Infrastructure
-        </button>
-      </div>
+        {/* Tabs */}
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: isMobile ? "8px" : "16px",
+          marginBottom: "24px",
+          flexWrap: "wrap",
+          padding: isMobile ? "0 8px" : "0"
+        }}>
+          <button
+            onClick={() => setActiveTab("backend")}
+            style={{
+              padding: isMobile ? "6px 12px" : "8px 20px",
+              border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              background: activeTab === "backend" ? "#E4F0EC" : "transparent",
+              color: activeTab === "backend" ? "#66BB6A" : "#64748b",
+              fontWeight: activeTab === "backend" ? 600 : 400,
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
+            }}
+          >
+            Backend
+          </button>
+          <button
+            onClick={() => setActiveTab("frontend")}
+            style={{
+              padding: isMobile ? "6px 12px" : "8px 20px",
+              border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
+              color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
+              fontWeight: activeTab === "frontend" ? 600 : 400,
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
+            }}
+          >
+            Frontend
+          </button>
+          <button
+            onClick={() => setActiveTab("infrastructure")}
+            style={{
+              padding: isMobile ? "6px 12px" : "8px 20px",
+              border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
+              fontWeight: activeTab === "infrastructure" ? 600 : 400,
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
+            }}
+          >
+            Infrastructure
+          </button>
+        </div>
 
       <div
         style={{
@@ -2138,21 +2146,25 @@ function InterviewGuide() {
         <div style={{
           display: "flex",
           justifyContent: "center",
-          gap: "16px",
+          gap: isMobile ? "8px" : "16px",
           marginBottom: "24px",
+          flexWrap: "wrap",
+          padding: isMobile ? "0 8px" : "0"
         }}>
           <button
             onClick={() => handleTabClick("backend")}
             style={{
-              padding: "8px 20px",
+              padding: isMobile ? "6px 12px" : "8px 20px",
               border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
               background: activeTab === "backend" ? "#E4F0EC" : "transparent",
               color: activeTab === "backend" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "backend" ? 600 : 400,
-              fontSize: "0.95rem",
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
               transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
             }}
           >
             Backend
@@ -2160,15 +2172,17 @@ function InterviewGuide() {
           <button
             onClick={() => handleTabClick("frontend")}
             style={{
-              padding: "8px 20px",
+              padding: isMobile ? "6px 12px" : "8px 20px",
               border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
               background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
               color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "frontend" ? 600 : 400,
-              fontSize: "0.95rem",
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
               transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
             }}
           >
             Frontend
@@ -2176,15 +2190,17 @@ function InterviewGuide() {
           <button
             onClick={() => handleTabClick("infrastructure")}
             style={{
-              padding: "8px 20px",
+              padding: isMobile ? "6px 12px" : "8px 20px",
               border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
               background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
               color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "infrastructure" ? 600 : 400,
-              fontSize: "0.95rem",
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
               cursor: "pointer",
               borderRadius: "6px",
               transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
             }}
           >
             Infrastructure
@@ -4189,23 +4205,33 @@ export function App() {
         width: "100%", 
         maxWidth: 1200, 
         margin: "0 auto", 
-        padding: window.innerWidth < 768 ? "16px" : "10px" 
+        padding: window.innerWidth < 768 ? "16px" : "10px",
+        boxSizing: "border-box"
       }}>
         <section
           style={{
             background: "#f7f8fa",
             textAlign: "center",
             borderRadius: "14px",
-            padding: "2rem",
+            padding: window.innerWidth < 768 ? "1.5rem 1rem" : "2rem",
             marginBottom: "3rem",
+            boxSizing: "border-box",
+            width: "100%",
+            maxWidth: "100%",
+            overflow: "hidden"
           }}
         >
           <blockquote
             style={{
               margin: 0,
-              fontSize: "1rem",
+              fontSize: window.innerWidth < 768 ? "0.9rem" : "1rem",
               fontWeight: 500,
               color: "#181A20",
+              lineHeight: "1.6",
+              wordWrap: "break-word",
+              overflowWrap: "break-word",
+              maxWidth: "100%",
+              boxSizing: "border-box"
             }}
           >
             We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.
