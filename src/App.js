@@ -738,7 +738,58 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
     },
   ];
 
-  const categories = activeTab === "backend" ? backendCategories : activeTab === "frontend" ? frontendCategories : infrastructureCategories;
+  const dataEngineeringCategories = [
+    {
+      name: "Data Pipelines",
+      score: 4,
+      description:
+        "Ability to design, build, and operate reliable batch & streaming pipelines with clear SLAs, idempotency, and safe backfill/replay strategies. Includes ingestion, transformation, lineage/observability, and cost/latency trade-offs.",
+    },
+    {
+      name: "Python",
+      score: 3,
+      description:
+        "Writes maintainable Python for ETL/ELT and platform tooling with tests and typing. Includes packaging/virtual envs, common data libs, and pragmatic performance awareness (I/O, memory).",
+    },
+    {
+      name: "Databases",
+      score: 4,
+      description:
+        "Strong SQL and data-modeling for OLTP/OLAP; understands partitioning/indexing, transaction isolation, and query plans. Includes schema evolution and cost/performance optimization.",
+    },
+    {
+      name: "Airflow",
+      score: 4,
+      description:
+        "Designs clear, idempotent DAGs with retries, SLAs, and event-driven patterns; manages backfills safely. Includes modular operators, DAG testing, and deployment/versioning best practices.",
+    },
+    {
+      name: "AWS Cloud",
+      score: 3,
+      description:
+        "Working knowledge of core services (S3, IAM, Glue/EMR, Lambda, Kinesis, EKS) and IaC (Terraform/CloudFormation). Includes basic networking/security and cost awareness.",
+    },
+    {
+      name: "Engineering Culture",
+      score: 4,
+      description:
+        "Adheres to high standards in code quality, reviews, testing, and documentation; collaborates effectively. Includes agile practices and a \"build data products, not firefighting\" mindset.",
+    },
+    {
+      name: "Data Modeling",
+      score: 5,
+      description:
+        "Expert in dimensional/medallion modeling and semantic layers; defines clear grain and conformed dimensions. Includes partitioning/clustering strategies, SCDs, handling late-arriving data, and data contracts.",
+    },
+    {
+      name: "Compute Engines",
+      score: 4,
+      description:
+        "Proficient with distributed/serverless engines for batch & streaming (Athena/Trino/Redshift, Spark on EMR/Glue, Flink/KDA). Includes tuning partitions/shuffle/file sizes, right-tool selection, and reliability at scale.",
+    },
+  ];
+
+  const categories = activeTab === "backend" ? backendCategories : activeTab === "frontend" ? frontendCategories : activeTab === "data-engineering" ? dataEngineeringCategories : infrastructureCategories;
 
   const maxScore = 5;
   const radius = 140;
@@ -872,6 +923,24 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
             }}
           >
             Infrastructure
+          </button>
+          <button
+            onClick={() => setActiveTab("data-engineering")}
+            style={{
+              padding: isMobile ? "6px 12px" : "8px 20px",
+              border: activeTab === "data-engineering" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              background: activeTab === "data-engineering" ? "#E4F0EC" : "transparent",
+              color: activeTab === "data-engineering" ? "#66BB6A" : "#64748b",
+              fontWeight: activeTab === "data-engineering" ? 600 : 400,
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
+            }}
+          >
+            Data Engineering
           </button>
         </div>
 
@@ -2205,6 +2274,24 @@ function InterviewGuide() {
           >
             Infrastructure
           </button>
+          <button
+            onClick={() => handleTabClick("data-engineering")}
+            style={{
+              padding: isMobile ? "6px 12px" : "8px 20px",
+              border: activeTab === "data-engineering" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              background: activeTab === "data-engineering" ? "#E4F0EC" : "transparent",
+              color: activeTab === "data-engineering" ? "#66BB6A" : "#64748b",
+              fontWeight: activeTab === "data-engineering" ? 600 : 400,
+              fontSize: isMobile ? "0.85rem" : "0.95rem",
+              cursor: "pointer",
+              borderRadius: "6px",
+              transition: "all 0.2s ease",
+              flex: isMobile ? "1 1 auto" : "none",
+              minWidth: isMobile ? "80px" : "auto"
+            }}
+          >
+            Data Engineering
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -2386,6 +2473,67 @@ function InterviewGuide() {
                 "How do you auto-rollback a bad deploy without paging a human?",
                 "What quality gates belong in a modern CI pipeline?",
                 "How do you make builds reproducible and promotable across dev→stg→prod?",
+              ]}
+            />
+          </div>
+        )}
+
+        {activeTab === "data-engineering" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <LanguageBlock
+              language="Compute Engines"
+              logo="/covers/aws-logo.svg"
+              requirements={[
+                "Experience in designing and optimizing data processing pipelines.",
+                "Understanding of how compute engines (e.g., Spark, Trino) execute queries under the hood: decompression, shuffle, spilling, broadcasting, etc.",
+                "Familiarity with the core components of a modern data lake: object storage, metadata/catalog layer, table formats, and orchestration systems.",
+              ]}
+              questions={[
+                "What join strategies does Apache Spark use? When does Spark select each strategy?",
+                "What is the difference between Apache Parquet and Apache Iceberg? When would you use Apache Iceberg?",
+                "What is a metadata/catalog layer in a data lake, and why do you need it?",
+              ]}
+            />
+            <LanguageBlock
+              language="Data Modeling"
+              logo="/covers/postgres-logo.svg"
+              requirements={[
+                "Knowledge of Slowly Changing Dimensions (SCD) types and how to implement them in ELT pipelines.",
+                "Understanding of CDC flows — update patterns, ordering, deduplication, late data handling, and schema evolution.",
+                "Familiarity with dbt (or similar ELT frameworks).",
+                "Experience in data quality validations and handling of historical corrections/backfills.",
+              ]}
+              questions={[
+                "Explain SCD Type 1 vs Type 2. When would you use each one?",
+                "Describe how dbt organizes projects (models, staging, marts). How do ref(), tests, and snapshots work?",
+                "How would you implement a PII data cleaning in a CDC pipeline?",
+              ]}
+            />
+            <LanguageBlock
+              language="Python"
+              logo="/covers/python-logo.svg"
+              requirements={[
+                "Proficiency in resolving data processing/transferring tasks using native language tooling and Pandas/Polars.",
+                "Ability to write maintainable code using typing, testing, and other development best practices.",
+              ]}
+              questions={[
+                "What is a context manager? What problems does it solve? How to implement a custom one?",
+                "What is the complexity of searching for a value in a dict/list?",
+                "What is the difference between an iterator and a generator?",
+              ]}
+            />
+            <LanguageBlock
+              language="Data Pipelines"
+              logo="/covers/aws-logo.svg"
+              requirements={[
+                "Experience in building multi-stage data pipelines using orchestration and compute engines",
+                "Knowledge of batch/streaming processing practices",
+                "How to establish and maintain data quality gates",
+              ]}
+              questions={[
+                "What is the difference between ETL vs ELT, and what are the use-cases for each?",
+                "How to enforce data quality?",
+                "What is the difference in approach to batch processing compared to stream processing?",
               ]}
             />
           </div>
