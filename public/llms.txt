@@ -1,0 +1,60 @@
+# Solidgate Tech Radar
+
+> Solidgate Tech Radar is a public-facing website showcasing Solidgate's technology stack, engineering culture, hiring process, and recommended resources. The site features interactive Tech Radar visualizations (2023 and 2025), engineer testimonials, book recommendations, and comprehensive information about working at Solidgate as a payment processing and orchestration platform.
+
+This site provides insights into Solidgate's engineering practices, technology choices, and company culture. It serves as both a resource for potential candidates and a public record of our technical decisions and recommendations.
+
+Solidgate is a payment processing and orchestration platform helping thousands of businesses accept payments online globally. We enable businesses to accept payments through a unified API, supporting multiple payment methods, currencies, and compliance requirements. At Solidgate, we work with engineers who design systems, not just maintain them. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
+
+## Main Site
+
+- [Solidgate Tech Radar](https://solidgate-tech.github.io/): Interactive Tech Radar visualizations and comprehensive information about Solidgate's engineering culture, hiring process, and technology stack
+
+## Company Information
+
+- [Solidgate Main Website](https://solidgate.com/): Official Solidgate website with product information and API documentation
+- [Solidgate Careers](https://solidgate.teamtailor.com/): Open positions and career opportunities at Solidgate
+- [Solidgate Status](https://status.solidgate.com/): System status and uptime information
+
+## Tech Radar
+
+The Tech Radar visualizations categorize technologies into four quadrants:
+- **Techniques**: Methodologies, practices, and approaches
+- **Tools**: Development tools, infrastructure, and platforms
+- **Languages & Frameworks**: Programming languages and frameworks
+- **Platforms**: Cloud platforms, databases, and infrastructure services
+
+Technologies are placed in rings indicating adoption status:
+- **Adopt**: Technologies we use in production and recommend
+- **Trial**: Technologies we're evaluating in real projects
+- **Assess**: Technologies under evaluation in test environments
+- **Hold**: Technologies we don't recommend for new projects
+
+## Engineering Culture
+
+The site includes detailed information about:
+- Solidgate's engineering philosophy and approach
+- Technology stack and infrastructure choices
+- DevOps practices and SRE principles
+- Interview process and technical evaluation criteria
+- Career progression paths (Junior, Middle, Senior, Tech Lead)
+
+## Testimonials
+
+Audio testimonials from Solidgate engineers sharing:
+- Why they chose Solidgate
+- Technical interview experiences
+- Engineering culture insights
+- Team contributions and impact
+
+## Recommended Books
+
+The site features a curated list of engineering books covering:
+- Software engineering practices and architecture
+- DevOps and SRE principles
+- System design and data-intensive applications
+- TypeScript and modern development practices
+
+## Optional
+
+- [GitHub Repository](https://github.com/solidgate-tech/solidgate-tech.github.io): Source code for this Tech Radar site
