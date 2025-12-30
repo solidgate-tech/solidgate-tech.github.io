@@ -382,6 +382,7 @@ const RADAR_CONFIG = {
       { label: "Grafana", quadrant: 1, ring: 0, moved: 0 },
       { label: "Apache Airflow", quadrant: 1, ring: 0, moved: 0 },
       { label: "Docker", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Kubernetes", quadrant: 1, ring: 2, moved: 0 },
       { label: "AWS", quadrant: 1, ring: 0, moved: 0 },
       { label: "Terraform", quadrant: 1, ring: 0, moved: 0 },
       // Data Management
@@ -2473,6 +2474,21 @@ function InterviewGuide() {
                 "How do you auto-rollback a bad deploy without paging a human?",
                 "What quality gates belong in a modern CI pipeline?",
                 "How do you make builds reproducible and promotable across dev→stg→prod?",
+              ]}
+            />
+            <LanguageBlock
+              language="Kubernetes"
+              logo="/covers/kubernetes-logo.svg"
+              requirements={[
+                "Understanding of Kubernetes core concepts (pods, services, deployments, namespaces)",
+                "Experience with container orchestration and workload management",
+                "Knowledge of networking, storage, and resource management in Kubernetes",
+              ]}
+              questions={[
+                "How would you design a multi-tenant Kubernetes cluster with resource isolation?",
+                "Explain the difference between Deployments, StatefulSets, and DaemonSets—when would you use each?",
+                "How do you handle persistent storage and state in Kubernetes applications?",
+                "What strategies would you use for Kubernetes networking and ingress control?",
               ]}
             />
           </div>
