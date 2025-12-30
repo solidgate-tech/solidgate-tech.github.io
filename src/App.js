@@ -350,7 +350,7 @@ const RADAR_CONFIG = {
   },
     2025: {
     ...DEFAULT_RADAR_CONFIG,
-    date: getLastUpdated('2025-07-28'),
+    date: getLastUpdated('2025-12-30'),
     title: "Tech Radar 2025",
     entries: [
       // Languages & Frameworks
