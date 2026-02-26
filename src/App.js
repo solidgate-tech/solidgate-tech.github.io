@@ -1807,9 +1807,9 @@ function InterviewGuide() {
         <p style={{ fontSize: "1rem", lineHeight: "1.6", color: "#444" }}>
           We embrace DevOps principles with continuous integration/deployment,
           infrastructure as code (Terraform, AWS Fargate), comprehensive
-          monitoring (Grafana, VictoriaMetrics, Loki), and site reliability
-          engineering. Our technology stack includes Go, Kotlin, Python, React,
-          TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
+          monitoring (Grafana, VictoriaMetrics, VictoriaLogs), and site reliability
+          engineering. Our technology stack includes Go, Kotlin, Python, Node.js,
+          React, TypeScript, RDS, Kafka, and AWS cloud infrastructure.
         </p>
       </section>
 
