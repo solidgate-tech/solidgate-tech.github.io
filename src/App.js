@@ -3086,6 +3086,83 @@ function MindsBehindTheCode() {
                 </p>
               </div>
             </a>
+            <a
+              href="https://dou.ua/forums/topic/57529/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <div className="media-block">
+                <h4
+                  style={{
+                    color: "#181A20",
+                    marginBottom: 8,
+                    fontSize: "0.95rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      background: "#66BB6A",
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "12px",
+                        height: "12px",
+                        background: "white",
+                        borderRadius: "2px",
+                        position: "relative",
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#66BB6A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "4px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#66BB6A",
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          left: "2px",
+                          right: "2px",
+                          height: "1px",
+                          background: "#66BB6A",
+                        }}
+                      />
+                    </div>
+                  </span>
+                  Навіщо фронтендерам мʼютекси: Web Locks API
+                </h4>
+                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                  Святослав Головін, Frontend engineer
+                </p>
+              </div>
+            </a>
           </div>
       </section>
 
