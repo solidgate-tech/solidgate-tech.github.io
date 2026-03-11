@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Testimonials } from "./components/Testimonials";
 
 // Add CSS animations for consistent expandable components
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   @keyframes slideDown {
     from {
@@ -348,9 +348,9 @@ const RADAR_CONFIG = {
       { label: "GitOps", quadrant: 3, ring: 1, moved: 1 },
     ],
   },
-    2025: {
+  2025: {
     ...DEFAULT_RADAR_CONFIG,
-    date: getLastUpdated('2025-12-30'),
+    date: getLastUpdated("2025-12-30"),
     title: "Tech Radar 2025",
     entries: [
       // Languages & Frameworks
@@ -426,35 +426,35 @@ function LanguageBlock({ language, logo, requirements, questions }) {
         padding: 20,
         border: "2px solid #e5e7eb",
         marginBottom: 12,
-        transition: 'all 0.3s ease',
-        cursor: 'pointer',
-        boxShadow: 'none',
-        position: 'relative',
-        overflow: 'hidden',
+        transition: "all 0.3s ease",
+        cursor: "pointer",
+        boxShadow: "none",
+        position: "relative",
+        overflow: "hidden",
       }}
       onClick={() => setIsExpanded(!isExpanded)}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'scale(1.02)';
-        e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = '#66BB6A';
+        e.currentTarget.style.transform = "scale(1.02)";
+        e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.borderColor = "#66BB6A";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'scale(1)';
-        e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = '#e5e7eb';
+        e.currentTarget.style.transform = "scale(1)";
+        e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.borderColor = "#e5e7eb";
       }}
     >
       {/* Background accent */}
       <div
         style={{
-          position: 'absolute',
+          position: "absolute",
           top: 0,
           left: 0,
           right: 0,
-          height: '4px',
-          background: '#66BB6A',
+          height: "4px",
+          background: "#66BB6A",
           borderTopLeftRadius: 12,
-          borderTopRightRadius: 12
+          borderTopRightRadius: 12,
         }}
       />
 
@@ -473,7 +473,12 @@ function LanguageBlock({ language, logo, requirements, questions }) {
             <img
               src={logo}
               alt={`${language} logo`}
-              style={{ width: 28, height: 28, marginRight: 16, objectFit: "contain" }}
+              style={{
+                width: 28,
+                height: 28,
+                marginRight: 16,
+                objectFit: "contain",
+              }}
             />
           )}
           <h4
@@ -598,7 +603,10 @@ function TechRadar({ config }) {
           margin: "0 auto",
         }}
       >
-        <svg id="radar" style={{ display: "block", flex: "0 0 auto", minHeight: "925px" }}></svg>
+        <svg
+          id="radar"
+          style={{ display: "block", flex: "0 0 auto", minHeight: "925px" }}
+        ></svg>
       </div>
     </div>
   );
@@ -774,7 +782,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
       name: "Engineering Culture",
       score: 4,
       description:
-        "Adheres to high standards in code quality, reviews, testing, and documentation; collaborates effectively. Includes agile practices and a \"build data products, not firefighting\" mindset.",
+        'Adheres to high standards in code quality, reviews, testing, and documentation; collaborates effectively. Includes agile practices and a "build data products, not firefighting" mindset.',
     },
     {
       name: "Data Modeling",
@@ -790,7 +798,14 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
     },
   ];
 
-  const categories = activeTab === "backend" ? backendCategories : activeTab === "frontend" ? frontendCategories : activeTab === "data-engineering" ? dataEngineeringCategories : infrastructureCategories;
+  const categories =
+    activeTab === "backend"
+      ? backendCategories
+      : activeTab === "frontend"
+      ? frontendCategories
+      : activeTab === "data-engineering"
+      ? dataEngineeringCategories
+      : infrastructureCategories;
 
   const maxScore = 5;
   const radius = 140;
@@ -862,88 +877,104 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
 
   return (
     <div>
-        {/* Tabs */}
-        <div style={{
+      {/* Tabs */}
+      <div
+        style={{
           display: "flex",
           justifyContent: "center",
           gap: isMobile ? "8px" : "16px",
           marginBottom: "24px",
           flexWrap: "wrap",
-          padding: isMobile ? "0 8px" : "0"
-        }}>
-          <button
-            onClick={() => setActiveTab("backend")}
-            style={{
-              padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-              background: activeTab === "backend" ? "#E4F0EC" : "transparent",
-              color: activeTab === "backend" ? "#66BB6A" : "#64748b",
-              fontWeight: activeTab === "backend" ? 600 : 400,
-              fontSize: isMobile ? "0.85rem" : "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-              flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
-            }}
-          >
-            Backend
-          </button>
-          <button
-            onClick={() => setActiveTab("frontend")}
-            style={{
-              padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-              background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
-              color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
-              fontWeight: activeTab === "frontend" ? 600 : 400,
-              fontSize: isMobile ? "0.85rem" : "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-              flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
-            }}
-          >
-            Frontend
-          </button>
-          <button
-            onClick={() => setActiveTab("infrastructure")}
-            style={{
-              padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-              background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
-              color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
-              fontWeight: activeTab === "infrastructure" ? 600 : 400,
-              fontSize: isMobile ? "0.85rem" : "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-              flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
-            }}
-          >
-            Infrastructure
-          </button>
-          <button
-            onClick={() => setActiveTab("data-engineering")}
-            style={{
-              padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "data-engineering" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-              background: activeTab === "data-engineering" ? "#E4F0EC" : "transparent",
-              color: activeTab === "data-engineering" ? "#66BB6A" : "#64748b",
-              fontWeight: activeTab === "data-engineering" ? 600 : 400,
-              fontSize: isMobile ? "0.85rem" : "0.95rem",
-              cursor: "pointer",
-              borderRadius: "6px",
-              transition: "all 0.2s ease",
-              flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
-            }}
-          >
-            Data Engineering
-          </button>
-        </div>
+          padding: isMobile ? "0 8px" : "0",
+        }}
+      >
+        <button
+          onClick={() => setActiveTab("backend")}
+          style={{
+            padding: isMobile ? "6px 12px" : "8px 20px",
+            border:
+              activeTab === "backend"
+                ? "2px solid #66BB6A"
+                : "2px solid #e5e7eb",
+            background: activeTab === "backend" ? "#E4F0EC" : "transparent",
+            color: activeTab === "backend" ? "#66BB6A" : "#64748b",
+            fontWeight: activeTab === "backend" ? 600 : 400,
+            fontSize: isMobile ? "0.85rem" : "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+            flex: isMobile ? "1 1 auto" : "none",
+            minWidth: isMobile ? "80px" : "auto",
+          }}
+        >
+          Backend
+        </button>
+        <button
+          onClick={() => setActiveTab("frontend")}
+          style={{
+            padding: isMobile ? "6px 12px" : "8px 20px",
+            border:
+              activeTab === "frontend"
+                ? "2px solid #66BB6A"
+                : "2px solid #e5e7eb",
+            background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
+            color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
+            fontWeight: activeTab === "frontend" ? 600 : 400,
+            fontSize: isMobile ? "0.85rem" : "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+            flex: isMobile ? "1 1 auto" : "none",
+            minWidth: isMobile ? "80px" : "auto",
+          }}
+        >
+          Frontend
+        </button>
+        <button
+          onClick={() => setActiveTab("infrastructure")}
+          style={{
+            padding: isMobile ? "6px 12px" : "8px 20px",
+            border:
+              activeTab === "infrastructure"
+                ? "2px solid #66BB6A"
+                : "2px solid #e5e7eb",
+            background:
+              activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+            color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
+            fontWeight: activeTab === "infrastructure" ? 600 : 400,
+            fontSize: isMobile ? "0.85rem" : "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+            flex: isMobile ? "1 1 auto" : "none",
+            minWidth: isMobile ? "80px" : "auto",
+          }}
+        >
+          Infrastructure
+        </button>
+        <button
+          onClick={() => setActiveTab("data-engineering")}
+          style={{
+            padding: isMobile ? "6px 12px" : "8px 20px",
+            border:
+              activeTab === "data-engineering"
+                ? "2px solid #66BB6A"
+                : "2px solid #e5e7eb",
+            background:
+              activeTab === "data-engineering" ? "#E4F0EC" : "transparent",
+            color: activeTab === "data-engineering" ? "#66BB6A" : "#64748b",
+            fontWeight: activeTab === "data-engineering" ? 600 : 400,
+            fontSize: isMobile ? "0.85rem" : "0.95rem",
+            cursor: "pointer",
+            borderRadius: "6px",
+            transition: "all 0.2s ease",
+            flex: isMobile ? "1 1 auto" : "none",
+            minWidth: isMobile ? "80px" : "auto",
+          }}
+        >
+          Data Engineering
+        </button>
+      </div>
 
       <div
         style={{
@@ -980,141 +1011,229 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
           >
             Competency Matrix
           </h3>
-        <div
-          style={{
-            width: "100%",
-            overflowX: "auto",
-            overflowY: "hidden",
-          }}
-        >
-          <svg
-            width="600"
-            height="600"
+          <div
             style={{
-              display: "block",
-              margin: "0 auto",
-              filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06))",
-              minWidth: "600px",
+              width: "100%",
+              overflowX: "auto",
+              overflowY: "hidden",
             }}
           >
-            <defs>
-              <linearGradient
-                id="dataGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#66BB6A" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#66BB6A" stopOpacity="0.25" />
-              </linearGradient>
-              <linearGradient
-                id="gridGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#f1f5f9" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.6" />
-              </linearGradient>
-            </defs>
+            <svg
+              width="600"
+              height="600"
+              style={{
+                display: "block",
+                margin: "0 auto",
+                filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06))",
+                minWidth: "600px",
+              }}
+            >
+              <defs>
+                <linearGradient
+                  id="dataGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#66BB6A" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#66BB6A" stopOpacity="0.25" />
+                </linearGradient>
+                <linearGradient
+                  id="gridGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#f1f5f9" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.6" />
+                </linearGradient>
+              </defs>
 
-            {/* Background circle */}
-            <circle
-              cx={centerX}
-              cy={centerY}
-              r={radius + 30}
-              fill="url(#gridGradient)"
-              opacity="0.4"
-            />
-
-            {/* Grid lines */}
-            {gridLines.map((points, index) => (
-              <path
-                key={`grid-${index}`}
-                d={createHexagonPath(points)}
-                fill="none"
-                stroke={index === 0 ? "#cbd5e1" : "#e2e8f0"}
-                strokeWidth={index === 0 ? "2" : "1"}
-                opacity="0.7"
+              {/* Background circle */}
+              <circle
+                cx={centerX}
+                cy={centerY}
+                r={radius + 30}
+                fill="url(#gridGradient)"
+                opacity="0.4"
               />
-            ))}
 
-            {/* Category labels */}
-            {hexagonPoints.map((point, index) => {
-              const angle = (index * 2 * Math.PI) / numCategories - Math.PI / 2;
-              const labelRadius = radius + 90;
-              const labelX = centerX + labelRadius * Math.cos(angle);
-              const labelY = centerY + labelRadius * Math.sin(angle);
+              {/* Grid lines */}
+              {gridLines.map((points, index) => (
+                <path
+                  key={`grid-${index}`}
+                  d={createHexagonPath(points)}
+                  fill="none"
+                  stroke={index === 0 ? "#cbd5e1" : "#e2e8f0"}
+                  strokeWidth={index === 0 ? "2" : "1"}
+                  opacity="0.7"
+                />
+              ))}
 
-              return (
-                <g key={`label-${index}`} style={{ cursor: "pointer" }}>
-                  <rect
-                    x={labelX - 85}
-                    y={labelY - 15}
-                    width="170"
-                    height="30"
-                    rx="15"
-                    fill="rgba(255, 255, 255, 0.95)"
-                    stroke="#e2e8f0"
-                    strokeWidth="1"
-                    style={{ transition: "all 0.15s ease" }}
-                    onMouseEnter={() => handleCategoryHover(index)}
-                    onMouseLeave={handleCategoryLeave}
-                  />
-                  <text
-                    x={labelX}
-                    y={labelY}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fontSize="13"
-                    fill="#334155"
-                    fontWeight="600"
-                    style={{
-                      fontFamily: "Inter, sans-serif",
-                      transition: "all 0.15s ease",
-                    }}
-                    onMouseEnter={() => handleCategoryHover(index)}
-                    onMouseLeave={handleCategoryLeave}
-                  >
-                    {categories[index].name}
-                  </text>
-                </g>
-              );
-            })}
+              {/* Category labels */}
+              {hexagonPoints.map((point, index) => {
+                const angle =
+                  (index * 2 * Math.PI) / numCategories - Math.PI / 2;
+                const labelRadius = radius + 90;
+                const labelX = centerX + labelRadius * Math.cos(angle);
+                const labelY = centerY + labelRadius * Math.sin(angle);
 
-            {/* Score labels */}
-            {hexagonPoints.map((point, index) => {
-              const scoreRadius = (categories[index].score / maxScore) * radius;
-              const scoreX =
-                centerX +
-                scoreRadius *
-                  Math.cos((index * 2 * Math.PI) / numCategories - Math.PI / 2);
-              const scoreY =
-                centerY +
-                scoreRadius *
-                  Math.sin((index * 2 * Math.PI) / numCategories - Math.PI / 2);
+                return (
+                  <g key={`label-${index}`} style={{ cursor: "pointer" }}>
+                    <rect
+                      x={labelX - 85}
+                      y={labelY - 15}
+                      width="170"
+                      height="30"
+                      rx="15"
+                      fill="rgba(255, 255, 255, 0.95)"
+                      stroke="#e2e8f0"
+                      strokeWidth="1"
+                      style={{ transition: "all 0.15s ease" }}
+                      onMouseEnter={() => handleCategoryHover(index)}
+                      onMouseLeave={handleCategoryLeave}
+                    />
+                    <text
+                      x={labelX}
+                      y={labelY}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fontSize="13"
+                      fill="#334155"
+                      fontWeight="600"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        transition: "all 0.15s ease",
+                      }}
+                      onMouseEnter={() => handleCategoryHover(index)}
+                      onMouseLeave={handleCategoryLeave}
+                    >
+                      {categories[index].name}
+                    </text>
+                  </g>
+                );
+              })}
 
-              return (
-                <g key={`score-${index}`} style={{ cursor: "pointer" }}>
+              {/* Score labels */}
+              {hexagonPoints.map((point, index) => {
+                const scoreRadius =
+                  (categories[index].score / maxScore) * radius;
+                const scoreX =
+                  centerX +
+                  scoreRadius *
+                    Math.cos(
+                      (index * 2 * Math.PI) / numCategories - Math.PI / 2
+                    );
+                const scoreY =
+                  centerY +
+                  scoreRadius *
+                    Math.sin(
+                      (index * 2 * Math.PI) / numCategories - Math.PI / 2
+                    );
+
+                return (
+                  <g key={`score-${index}`} style={{ cursor: "pointer" }}>
+                    <circle
+                      cx={scoreX}
+                      cy={scoreY}
+                      r="14"
+                      fill="white"
+                      stroke="#66BB6A"
+                      strokeWidth="2.5"
+                      style={{ transition: "all 0.15s ease" }}
+                      onMouseEnter={(e) => {
+                        e.target.style.r = "16";
+
+                        const categoryDetails = document.getElementById(
+                          `category-${index}`
+                        );
+                        if (categoryDetails) {
+                          categoryDetails.style.background = "#E4F0EC";
+                          categoryDetails.style.borderColor = "#66BB6A";
+                          categoryDetails.style.padding = "16px";
+
+                          const description = document.getElementById(
+                            `description-${index}`
+                          );
+                          if (description) {
+                            description.style.maxHeight = "1000px";
+                            description.style.opacity = "1";
+                            description.style.marginTop = "12px";
+                          }
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.r = "14";
+
+                        const categoryDetails = document.getElementById(
+                          `category-${index}`
+                        );
+                        if (categoryDetails) {
+                          categoryDetails.style.background = "#FAFAFA";
+                          categoryDetails.style.borderColor = "#e2e8f0";
+                          categoryDetails.style.padding = "20px";
+
+                          const description = document.getElementById(
+                            `description-${index}`
+                          );
+                          if (description) {
+                            description.style.maxHeight = "0";
+                            description.style.opacity = "0";
+                            description.style.marginTop = "0";
+                          }
+                        }
+                      }}
+                    />
+                    <text
+                      x={scoreX}
+                      y={scoreY}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fontSize="15"
+                      fill="#5ba300"
+                      fontWeight="700"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        transition: "all 0.15s ease",
+                      }}
+                    >
+                      {categories[index].score}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {/* Data area fill */}
+              <path
+                d={createDataPath(dataPoints)}
+                fill="url(#dataGradient)"
+                stroke="#66BB6A"
+                strokeWidth="2.5"
+                opacity="0.9"
+              />
+
+              {/* Data points */}
+              {dataPoints.map((point, index) => (
+                <g key={`point-${index}`} style={{ cursor: "pointer" }}>
                   <circle
-                    cx={scoreX}
-                    cy={scoreY}
-                    r="14"
-                    fill="white"
-                    stroke="#66BB6A"
+                    cx={point.x}
+                    cy={point.y}
+                    r="7"
+                    fill="#66BB6A"
+                    stroke="white"
                     strokeWidth="2.5"
                     style={{ transition: "all 0.15s ease" }}
                     onMouseEnter={(e) => {
-                      e.target.style.r = "16";
+                      e.target.style.r = "9";
 
                       const categoryDetails = document.getElementById(
                         `category-${index}`
                       );
                       if (categoryDetails) {
                         categoryDetails.style.background = "#E4F0EC";
-                        categoryDetails.style.borderColor = '#66BB6A';
+                        categoryDetails.style.borderColor = "#66BB6A";
                         categoryDetails.style.padding = "16px";
 
                         const description = document.getElementById(
@@ -1128,7 +1247,7 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                       }
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.r = "14";
+                      e.target.style.r = "7";
 
                       const categoryDetails = document.getElementById(
                         `category-${index}`
@@ -1149,146 +1268,66 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                       }
                     }}
                   />
-                  <text
-                    x={scoreX}
-                    y={scoreY}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fontSize="15"
-                    fill="#5ba300"
-                    fontWeight="700"
-                    style={{
-                      fontFamily: "Inter, sans-serif",
-                      transition: "all 0.15s ease",
-                    }}
-                  >
-                    {categories[index].score}
-                  </text>
                 </g>
-              );
-            })}
+              ))}
 
-            {/* Data area fill */}
-            <path
-              d={createDataPath(dataPoints)}
-              fill="url(#dataGradient)"
-              stroke="#66BB6A"
-              strokeWidth="2.5"
-              opacity="0.9"
-            />
-
-            {/* Data points */}
-            {dataPoints.map((point, index) => (
-              <g key={`point-${index}`} style={{ cursor: "pointer" }}>
-                <circle
-                  cx={point.x}
-                  cy={point.y}
-                  r="7"
-                  fill="#66BB6A"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  style={{ transition: "all 0.15s ease" }}
-                  onMouseEnter={(e) => {
-                    e.target.style.r = "9";
-
-                    const categoryDetails = document.getElementById(
-                      `category-${index}`
-                    );
-                    if (categoryDetails) {
-                      categoryDetails.style.background = "#E4F0EC";
-                      categoryDetails.style.borderColor = '#66BB6A';
-                      categoryDetails.style.padding = "16px";
-
-                      const description = document.getElementById(
-                        `description-${index}`
-                      );
-                      if (description) {
-                        description.style.maxHeight = "1000px";
-                        description.style.opacity = "1";
-                        description.style.marginTop = "12px";
-                      }
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.r = "7";
-
-                    const categoryDetails = document.getElementById(
-                      `category-${index}`
-                    );
-                    if (categoryDetails) {
-                      categoryDetails.style.background = "#FAFAFA";
-                      categoryDetails.style.borderColor = "#e2e8f0";
-                      categoryDetails.style.padding = "20px";
-
-                      const description = document.getElementById(
-                        `description-${index}`
-                      );
-                      if (description) {
-                        description.style.maxHeight = "0";
-                        description.style.opacity = "0";
-                        description.style.marginTop = "0";
-                      }
-                    }
-                  }}
-                />
-              </g>
-            ))}
-
-            {/* Center point */}
-            <circle
-              cx={centerX}
-              cy={centerY}
-              r="5"
-              fill="#66BB6A"
-              stroke="white"
-              strokeWidth="2"
-            />
-          </svg>
+              {/* Center point */}
+              <circle
+                cx={centerX}
+                cy={centerY}
+                r="5"
+                fill="#66BB6A"
+                stroke="white"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
 
-      {/* Categories Details Panel */}
-      <div
-        style={{
-          width: isMobile ? "100%" : "380px",
-          maxWidth: isMobile ? "600px" : "380px",
-          background: "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
-          borderRadius: "16px",
-          padding: isMobile ? "20px" : "30px",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-          border: "1px solid #f1f5f9",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <h3
-          style={{
-            margin: isMobile ? "0 0 20px 0" : "0 0 25px 0",
-            fontSize: isMobile ? "20px" : "24px",
-            fontWeight: "700",
-            color: "#0f172a",
-            textAlign: "center",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Category Details
-        </h3>
+        {/* Categories Details Panel */}
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: isMobile ? "12px" : "14px",
+            width: isMobile ? "100%" : "380px",
+            maxWidth: isMobile ? "600px" : "380px",
+            background: "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
+            borderRadius: "16px",
+            padding: isMobile ? "20px" : "30px",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+            border: "1px solid #f1f5f9",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          {categories.map((category, index) => {
-            const isExpanded = expandedCategory === index;
-            return (
-              <div
-                key={`category-${index}`}
-                id={`category-${index}`}
-                                  style={{
+          <h3
+            style={{
+              margin: isMobile ? "0 0 20px 0" : "0 0 25px 0",
+              fontSize: isMobile ? "20px" : "24px",
+              fontWeight: "700",
+              color: "#0f172a",
+              textAlign: "center",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Category Details
+          </h3>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: isMobile ? "12px" : "14px",
+            }}
+          >
+            {categories.map((category, index) => {
+              const isExpanded = expandedCategory === index;
+              return (
+                <div
+                  key={`category-${index}`}
+                  id={`category-${index}`}
+                  style={{
                     background: "rgba(255, 255, 255, 0.95)",
-                    border: isExpanded ? "2px solid #66BB6A" : "2px solid #e2e8f0",
+                    border: isExpanded
+                      ? "2px solid #66BB6A"
+                      : "2px solid #e2e8f0",
                     borderRadius: "12px",
                     padding: isMobile ? "20px" : "20px",
                     transition: "all 0.5s ease",
@@ -1298,349 +1337,380 @@ function CompetencyMatrix({ activeTab, setActiveTab }) {
                     boxShadow: "none",
                     transform: isExpanded ? "scale(1.02)" : "scale(1)",
                   }}
-                onMouseEnter={() => handleCategoryHover(index)}
-                onMouseLeave={handleCategoryLeave}
-              >
-                {/* Background accent for each expandable */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: "4px",
-                    background: '#66BB6A',
-                    borderTopLeftRadius: 12,
-                    borderTopRightRadius: 12,
-                  }}
-                />
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginTop: "4px",
-                  }}
+                  onMouseEnter={() => handleCategoryHover(index)}
+                  onMouseLeave={handleCategoryLeave}
                 >
-                  <h4
+                  {/* Background accent for each expandable */}
+                  <div
                     style={{
-                      margin: "0",
-                      fontSize: isMobile ? "16px" : "18px",
-                      fontWeight: "700",
-                      color: "#000000",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: "4px",
+                      background: "#66BB6A",
+                      borderTopLeftRadius: 12,
+                      borderTopRightRadius: 12,
                     }}
-                  >
-                    {category.name}
-                  </h4>
+                  />
                   <div
                     style={{
                       display: "flex",
+                      justifyContent: "space-between",
                       alignItems: "center",
-                      gap: "4px",
+                      marginTop: "4px",
                     }}
                   >
-                    <span
+                    <h4
                       style={{
-                        fontSize: isMobile ? "20px" : "22px",
+                        margin: "0",
+                        fontSize: isMobile ? "16px" : "18px",
                         fontWeight: "700",
-                        color: "#66BB6A",
+                        color: "#000000",
                       }}
                     >
-                      {category.score}
-                    </span>
-                    <span
+                      {category.name}
+                    </h4>
+                    <div
                       style={{
-                        fontSize: isMobile ? "13px" : "14px",
-                        color: "#64748b",
-                        fontWeight: "500",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
                       }}
                     >
-                      /5
-                    </span>
+                      <span
+                        style={{
+                          fontSize: isMobile ? "20px" : "22px",
+                          fontWeight: "700",
+                          color: "#66BB6A",
+                        }}
+                      >
+                        {category.score}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: isMobile ? "13px" : "14px",
+                          color: "#64748b",
+                          fontWeight: "500",
+                        }}
+                      >
+                        /5
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    id={`description-${index}`}
+                    style={{
+                      maxHeight: isExpanded ? "1000px" : "0",
+                      opacity: isExpanded ? 1 : 0,
+                      marginTop: isExpanded ? "12px" : "0",
+                      transition: "all 0.5s ease",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <p
+                      style={{
+                        margin: "0",
+                        fontSize: isMobile ? "13px" : "14px",
+                        lineHeight: "1.6",
+                        color: "#475569",
+                      }}
+                    >
+                      {category.description}
+                    </p>
                   </div>
                 </div>
-                <div
-                  id={`description-${index}`}
-                  style={{
-                    maxHeight: isExpanded ? '1000px' : '0',
-                    opacity: isExpanded ? 1 : 0,
-                    marginTop: isExpanded ? '12px' : '0',
-                    transition: 'all 0.5s ease',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <p
-                    style={{
-                      margin: "0",
-                      fontSize: isMobile ? "13px" : "14px",
-                      lineHeight: "1.6",
-                      color: "#475569",
-                    }}
-                  >
-                    {category.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div
-          style={{
-            marginTop: "25px",
-            padding: "16px",
-            background: "#F5F5F5",
-            borderRadius: "12px",
-            border: "1px solid rgba(91, 163, 0, 0.1)",
-          }}
-        >
-          <p
+              );
+            })}
+          </div>
+          <div
             style={{
-              margin: "0",
-              fontSize: "0.9rem",
-              color: "#666666",
-              textAlign: "center",
-              fontWeight: "500",
+              marginTop: "25px",
+              padding: "16px",
+              background: "#F5F5F5",
+              borderRadius: "12px",
+              border: "1px solid rgba(91, 163, 0, 0.1)",
             }}
           >
-            Hover over hexagon elements or category cards to expand details
-          </p>
+            <p
+              style={{
+                margin: "0",
+                fontSize: "0.9rem",
+                color: "#666666",
+                textAlign: "center",
+                fontWeight: "500",
+              }}
+            >
+              Hover over hexagon elements or category cards to expand details
+            </p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
 }
 
 function EngineeringLevelsTree() {
-    const [expandedLevels, setExpandedLevels] = useState({});
+  const [expandedLevels, setExpandedLevels] = useState({});
 
-    const levels = [
-        {
-            name: "Junior Engineer 🤓",
-            description: "Entry-level engineer with basic programming skills and learning mindset",
-            characteristics: [
-                "Basic understanding of core technologies",
-                "Needs guidance for complex problems",
-                "Works on small, well-defined tasks",
-                "Learns to collaborate with team members",
-                "Receives mentorship",
-                "Communicates effectively with the team",
-                "Follows guidance on decisions",
-                "Actively learning and developing skills",
-                "No leadership responsibilities"
-            ]
-        },
-        {
-            name: "Middle Engineer 💪",
-            description: "Experienced engineer who can work independently on most tasks",
-            characteristics: [
-                "Proficient in core technologies",
-                "Can solve most problems independently",
-                "Works on larger, more complex tasks",
-                "Collaborates effectively within a team",
-                "Provides mentorship to more junior engineers",
-                "Communicates effectively with stakeholders",
-                "Makes informed decisions with some autonomy",
-                "Continuously improving and expanding skills",
-                "May lead small projects or teams"
-            ]
-        },
-        {
-            name: "Senior Engineer ⭐",
-            description: "Expert engineer who can handle complex technical challenges",
-            characteristics: [
-                "Expert in core technologies and tools (only proficient answers)",
-                "Solves complex problems using appropriate solutions",
-                "Handles full project lifecycle from start to finish",
-                "Actively mentors others and leads by example",
-                "Communicates effectively at all levels, including leadership",
-                "Drives key technical decisions and provides strategic direction",
-                "Constantly seeks out new knowledge and mentors others",
-                "Leads teams, projects, or departments; influences company direction"
-            ]
-        },
-        {
-            name: "Staff Engineer 🏆",
-            description: "Senior technical leader with broad organizational impact and deep technical expertise",
-            characteristics: [
-                "Expert in core technologies with deep architectural knowledge",
-                "Solves complex cross-team and cross-system problems independently",
-                "Shapes technical strategy and architecture across multiple teams",
-                "Handles full project lifecycle for complex, multi-team initiatives",
-                "Leads collaboration across departments and external stakeholders",
-                "Actively mentors senior engineers and technical leaders",
-                "Communicates effectively with C-level executives and board members",
-                "Drives strategic technical decisions that impact company direction",
-                "Constantly seeks out new knowledge and sets technical standards",
-                "Leads multiple teams or departments; shapes company technical vision"
-            ]
-        },
-        {
-            name: "Tech Lead 🎯",
-            description: "Technical leader with both technical excellence and team management responsibilities",
-            characteristics: [
-                "Expert in core technologies with strong architectural skills",
-                "Solves complex problems using innovative and appropriate solutions",
-                "Handles full project lifecycle with team coordination",
-                "Leads collaboration within team and across stakeholders",
-                "Actively mentors engineers and grows team capabilities",
-                "Communicates effectively with all levels including leadership",
-                "Drives key technical decisions and provides strategic direction",
-                "Balances technical excellence with business needs and deadlines",
-                "Manages team processes, technical delivery, and quality standards",
-                "Leads team projects and influences team technical direction"
-            ]
-        }
-    ];
+  const levels = [
+    {
+      name: "Junior Engineer 🤓",
+      description:
+        "Entry-level engineer with basic programming skills and learning mindset",
+      characteristics: [
+        "Basic understanding of core technologies",
+        "Needs guidance for complex problems",
+        "Works on small, well-defined tasks",
+        "Learns to collaborate with team members",
+        "Receives mentorship",
+        "Communicates effectively with the team",
+        "Follows guidance on decisions",
+        "Actively learning and developing skills",
+        "No leadership responsibilities",
+      ],
+    },
+    {
+      name: "Middle Engineer 💪",
+      description:
+        "Experienced engineer who can work independently on most tasks",
+      characteristics: [
+        "Proficient in core technologies",
+        "Can solve most problems independently",
+        "Works on larger, more complex tasks",
+        "Collaborates effectively within a team",
+        "Provides mentorship to more junior engineers",
+        "Communicates effectively with stakeholders",
+        "Makes informed decisions with some autonomy",
+        "Continuously improving and expanding skills",
+        "May lead small projects or teams",
+      ],
+    },
+    {
+      name: "Senior Engineer ⭐",
+      description:
+        "Expert engineer who can handle complex technical challenges",
+      characteristics: [
+        "Expert in core technologies and tools (only proficient answers)",
+        "Solves complex problems using appropriate solutions",
+        "Handles full project lifecycle from start to finish",
+        "Actively mentors others and leads by example",
+        "Communicates effectively at all levels, including leadership",
+        "Drives key technical decisions and provides strategic direction",
+        "Constantly seeks out new knowledge and mentors others",
+        "Leads teams, projects, or departments; influences company direction",
+      ],
+    },
+    {
+      name: "Staff Engineer 🏆",
+      description:
+        "Senior technical leader with broad organizational impact and deep technical expertise",
+      characteristics: [
+        "Expert in core technologies with deep architectural knowledge",
+        "Solves complex cross-team and cross-system problems independently",
+        "Shapes technical strategy and architecture across multiple teams",
+        "Handles full project lifecycle for complex, multi-team initiatives",
+        "Leads collaboration across departments and external stakeholders",
+        "Actively mentors senior engineers and technical leaders",
+        "Communicates effectively with C-level executives and board members",
+        "Drives strategic technical decisions that impact company direction",
+        "Constantly seeks out new knowledge and sets technical standards",
+        "Leads multiple teams or departments; shapes company technical vision",
+      ],
+    },
+    {
+      name: "Tech Lead 🎯",
+      description:
+        "Technical leader with both technical excellence and team management responsibilities",
+      characteristics: [
+        "Expert in core technologies with strong architectural skills",
+        "Solves complex problems using innovative and appropriate solutions",
+        "Handles full project lifecycle with team coordination",
+        "Leads collaboration within team and across stakeholders",
+        "Actively mentors engineers and grows team capabilities",
+        "Communicates effectively with all levels including leadership",
+        "Drives key technical decisions and provides strategic direction",
+        "Balances technical excellence with business needs and deadlines",
+        "Manages team processes, technical delivery, and quality standards",
+        "Leads team projects and influences team technical direction",
+      ],
+    },
+  ];
 
-    const toggleLevel = (index) => {
-        setExpandedLevels(prev => ({
-            ...prev,
-            [index]: !prev[index]
-        }));
-    };
+  const toggleLevel = (index) => {
+    setExpandedLevels((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
-    return (
-        <div style={{
-            background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
-            borderRadius: '16px',
-            padding: '30px',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-            border: '1px solid #f1f5f9',
-            position: 'relative',
-            overflow: 'hidden'
-        }}>
-            {/* Background accent */}
-            <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '4px',
-                background: '#66BB6A',
-                borderTopLeftRadius: '16px',
-                borderTopRightRadius: '16px'
-            }} />
+  return (
+    <div
+      style={{
+        background: "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
+        borderRadius: "16px",
+        padding: "30px",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+        border: "1px solid #f1f5f9",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background accent */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "4px",
+          background: "#66BB6A",
+          borderTopLeftRadius: "16px",
+          borderTopRightRadius: "16px",
+        }}
+      />
 
-            <h3 style={{
-                margin: '0 0 30px 0',
-                fontSize: '28px',
-                fontWeight: '700',
-                color: '#0f172a',
-                textAlign: 'center',
-                letterSpacing: '-0.02em'
-            }}>
-                Engineering Career Levels
-            </h3>
+      <h3
+        style={{
+          margin: "0 0 30px 0",
+          fontSize: "28px",
+          fontWeight: "700",
+          color: "#0f172a",
+          textAlign: "center",
+          letterSpacing: "-0.02em",
+        }}
+      >
+        Engineering Career Levels
+      </h3>
 
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-                position: 'relative'
-            }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          position: "relative",
+        }}
+      >
+        {levels.map((level, index) => {
+          return (
+            <div
+              key={index}
+              style={{
+                width: "100%",
+                background: "rgba(255, 255, 255, 0.95)",
+                border: "2px solid #e2e8f0",
+                borderRadius: "12px",
+                boxShadow: "none",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+                overflow: "hidden",
+                position: "relative",
+              }}
+              onClick={() => toggleLevel(index)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.02)";
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.borderColor = "#66BB6A";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.borderColor = "#e2e8f0";
+              }}
+            >
+              {/* Background accent for each level */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "4px",
+                  background: "#66BB6A",
+                  borderTopLeftRadius: 12,
+                  borderTopRightRadius: 12,
+                }}
+              />
 
-                {levels.map((level, index) => {
-                    return (
-                        <div
-                            key={index}
-                            style={{
-                                width: '100%',
-                                background: 'rgba(255, 255, 255, 0.95)',
-                                border: '2px solid #e2e8f0',
-                                borderRadius: '12px',
-                                boxShadow: 'none',
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer',
-                                overflow: 'hidden',
-                                position: 'relative'
-                            }}
-                            onClick={() => toggleLevel(index)}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.02)';
-                                e.currentTarget.style.boxShadow = 'none';
-                                e.currentTarget.style.borderColor = '#66BB6A';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'scale(1)';
-                                e.currentTarget.style.boxShadow = 'none';
-                                e.currentTarget.style.borderColor = '#e2e8f0';
-                            }}
-                        >
-                            {/* Background accent for each level */}
-                            <div style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                height: '4px',
-                                background: '#66BB6A',
-                                borderTopLeftRadius: 12,
-                                borderTopRightRadius: 12
-                            }} />
+              <div
+                style={{
+                  padding: "20px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "4px",
+                }}
+              >
+                <div style={{ flex: 1 }}>
+                  <h4
+                    style={{
+                      margin: "0 0 8px 0",
+                      fontSize: "18px",
+                      fontWeight: "700",
+                      color: "#000000",
+                    }}
+                  >
+                    {level.name}
+                  </h4>
+                  <p
+                    style={{
+                      margin: "0",
+                      fontSize: "14px",
+                      color: "#475569",
+                      lineHeight: "1.6",
+                    }}
+                  >
+                    {level.description}
+                  </p>
+                </div>
+                <div
+                  style={{
+                    fontSize: "1.6rem",
+                    color: "#66BB6A",
+                    transition: "transform 0.3s ease",
+                    transform: expandedLevels[index]
+                      ? "rotate(90deg)"
+                      : "rotate(0deg)",
+                    marginLeft: "16px",
+                    fontWeight: "400",
+                  }}
+                >
+                  ›
+                </div>
+              </div>
 
-                            <div style={{
-                                padding: '20px',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                marginTop: '4px'
-                            }}>
-                                <div style={{ flex: 1 }}>
-                                    <h4 style={{
-                                        margin: '0 0 8px 0',
-                                        fontSize: '18px',
-                                        fontWeight: '700',
-                                        color: '#000000'
-                                    }}>
-                                        {level.name}
-                                    </h4>
-                                    <p style={{
-                                        margin: '0',
-                                        fontSize: '14px',
-                                        color: '#475569',
-                                        lineHeight: '1.6'
-                                    }}>
-                                        {level.description}
-                                    </p>
-                                </div>
-                                <div style={{
-                                    fontSize: '1.6rem',
-                                    color: '#66BB6A',
-                                    transition: 'transform 0.3s ease',
-                                    transform: expandedLevels[index] ? 'rotate(90deg)' : 'rotate(0deg)',
-                                    marginLeft: '16px',
-                                    fontWeight: '400'
-                                }}>
-                                    ›
-                                </div>
-                            </div>
-
-                        {expandedLevels[index] && (
-                            <div style={{
-                                padding: '0 20px 20px 20px',
-                                borderTop: '2px solid #f1f5f9',
-                                marginTop: '8px',
-                                animation: 'slideDown 0.3s ease-out'
-                            }}>
-                                <ul style={{
-                                    margin: '0',
-                                    paddingLeft: '20px',
-                                    fontSize: '13px',
-                                    color: '#64748b',
-                                    lineHeight: '1.6'
-                                }}>
-                                    {level.characteristics.map((char, charIndex) => (
-                                        <li key={charIndex} style={{ marginBottom: '8px' }}>{char}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                )})}
+              {expandedLevels[index] && (
+                <div
+                  style={{
+                    padding: "0 20px 20px 20px",
+                    borderTop: "2px solid #f1f5f9",
+                    marginTop: "8px",
+                    animation: "slideDown 0.3s ease-out",
+                  }}
+                >
+                  <ul
+                    style={{
+                      margin: "0",
+                      paddingLeft: "20px",
+                      fontSize: "13px",
+                      color: "#64748b",
+                      lineHeight: "1.6",
+                    }}
+                  >
+                    {level.characteristics.map((char, charIndex) => (
+                      <li key={charIndex} style={{ marginBottom: "8px" }}>
+                        {char}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
-        </div>
-    );
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function FireworkExplosion({ position }) {
@@ -1674,31 +1744,38 @@ function FireworkExplosion({ position }) {
           top: `${currentPos.y}%`,
           fontSize: "48px",
           zIndex: 9999,
-          transition: phase === "flying" ? "left 0.5s ease-out, top 0.5s ease-out" : "opacity 0.1s ease-out, transform 0.1s ease-out",
+          transition:
+            phase === "flying"
+              ? "left 0.5s ease-out, top 0.5s ease-out"
+              : "opacity 0.1s ease-out, transform 0.1s ease-out",
           pointerEvents: "none",
-          transform: phase === "exploding" ? "translate(-50%, -50%) scale(0)" : "translate(-50%, -50%)",
+          transform:
+            phase === "exploding"
+              ? "translate(-50%, -50%) scale(0)"
+              : "translate(-50%, -50%)",
           opacity: phase === "exploding" ? 0 : 1,
         }}
       >
         💚
       </div>
       {/* Exploding hearts - appear when main heart reaches position */}
-      {phase === "exploding" && Array.from({ length: 8 }).map((_, i) => (
-        <div
-          key={i}
-          style={{
-            position: "fixed",
-            left: position.x + "%",
-            top: position.y + "%",
-            fontSize: "32px",
-            zIndex: 9999,
-            animation: `heartExplode${i + 1} 0.8s ease-out forwards`,
-            pointerEvents: "none",
-          }}
-        >
-          💚
-        </div>
-      ))}
+      {phase === "exploding" &&
+        Array.from({ length: 8 }).map((_, i) => (
+          <div
+            key={i}
+            style={{
+              position: "fixed",
+              left: position.x + "%",
+              top: position.y + "%",
+              fontSize: "32px",
+              zIndex: 9999,
+              animation: `heartExplode${i + 1} 0.8s ease-out forwards`,
+              pointerEvents: "none",
+            }}
+          >
+            💚
+          </div>
+        ))}
     </>
   );
 }
@@ -1713,8 +1790,8 @@ function InterviewGuide() {
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Reset click count after 2 seconds of inactivity
@@ -1740,7 +1817,7 @@ function InterviewGuide() {
       setFireworkPosition({ x: randomX, y: randomY });
       setShowFirework(true);
       setTabClickCount(0);
-      
+
       // Clean up after animation completes (0.5s fly + 0.8s explode)
       setTimeout(() => {
         setShowFirework(false);
@@ -1795,7 +1872,8 @@ function InterviewGuide() {
             marginBottom: "15px",
           }}
         >
-          At Solidgate, we work with <span style={{ fontWeight: 600 }}>engineers</span>, not just
+          At Solidgate, we work with{" "}
+          <span style={{ fontWeight: 600 }}>engineers</span>, not just
           developers. Solidgate engineers don't maintain systems — they design
           them. We build the architecture behind seamless global payments,
           trusted by 150+ digital leaders. They take a holistic approach to
@@ -1807,9 +1885,10 @@ function InterviewGuide() {
         <p style={{ fontSize: "1rem", lineHeight: "1.6", color: "#444" }}>
           We embrace DevOps principles with continuous integration/deployment,
           infrastructure as code (Terraform, AWS Fargate), comprehensive
-          monitoring (Grafana, VictoriaMetrics, VictoriaLogs), and site reliability
-          engineering. Our technology stack includes Go, Kotlin, Python, Node.js,
-          React, TypeScript, RDS, Kafka, and AWS cloud infrastructure.
+          monitoring (Grafana, VictoriaMetrics, VictoriaLogs), and site
+          reliability engineering. Our technology stack includes Go, Kotlin,
+          Python, Node.js, React, TypeScript, RDS, Kafka, and AWS cloud
+          infrastructure.
         </p>
       </section>
 
@@ -1818,38 +1897,70 @@ function InterviewGuide() {
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
           🚀 Our Hiring Process
         </h2>
-        <p style={{ color: "#444", marginBottom: 30, fontSize: "0.95rem", lineHeight: "1.6" }}>
-          We move fast. We stay transparent. We evaluate impact and thinking — not buzzwords.
+        <p
+          style={{
+            color: "#444",
+            marginBottom: 30,
+            fontSize: "0.95rem",
+            lineHeight: "1.6",
+          }}
+        >
+          We move fast. We stay transparent. We evaluate impact and thinking —
+          not buzzwords.
         </p>
 
         {/* Step 1 */}
-        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+        <div
+          style={{
+            marginBottom: 30,
+            paddingBottom: 30,
+            borderBottom: "1px solid #e2e8f0",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#66BB6A", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#66BB6A",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               1
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+              <h3
+                style={{
+                  color: "#000000",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  margin: "0 0 8px 0",
+                }}
+              >
                 🔍 Recruiter Screening (30–45 min)
               </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: 8 }}>
+              <p
+                style={{ color: "#444", fontSize: "0.95rem", marginBottom: 8 }}
+              >
                 First alignment.
               </p>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                Talent team learns your story, expectations, goals, motivation + comp range.
+                Talent team learns your story, expectations, goals, motivation +
+                comp range.
               </p>
-              <p style={{ color: "#444", fontSize: "0.95rem", margin: "8px 0 0 0" }}>
+              <p
+                style={{
+                  color: "#444",
+                  fontSize: "0.95rem",
+                  margin: "8px 0 0 0",
+                }}
+              >
                 You get signal on role, team, product and direction.
               </p>
             </div>
@@ -1857,72 +1968,118 @@ function InterviewGuide() {
         </div>
 
         {/* Step 2 - Frontend Tech Screen (Frontend Only) */}
-        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+        <div
+          style={{
+            marginBottom: 30,
+            paddingBottom: 30,
+            borderBottom: "1px solid #e2e8f0",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#FF9800", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#FF9800",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               2
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: 0 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 8,
+                }}
+              >
+                <h3
+                  style={{
+                    color: "#000000",
+                    fontWeight: 600,
+                    fontSize: "1.1rem",
+                    margin: 0,
+                  }}
+                >
                   💻 Tech Screen (React live-coding) (30 min)
                 </h3>
-                <span style={{
-                  padding: "4px 8px",
-                  background: "#FFF4E6",
-                  color: "#E65100",
-                  borderRadius: "4px",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  border: "1px solid #FFE0B2"
-                }}>
+                <span
+                  style={{
+                    padding: "4px 8px",
+                    background: "#FFF4E6",
+                    color: "#E65100",
+                    borderRadius: "4px",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    border: "1px solid #FFE0B2",
+                  }}
+                >
                   Frontend Only
                 </span>
               </div>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                A real-time coding session focused on React fundamentals and problem-solving. Before the technical interview, Front-End Engineer candidates go through this additional step.
+                A real-time coding session focused on React fundamentals and
+                problem-solving. Before the technical interview, Front-End
+                Engineer candidates go through this additional step.
               </p>
             </div>
           </div>
         </div>
 
         {/* Step 3 - Technical Interview */}
-        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+        <div
+          style={{
+            marginBottom: 30,
+            paddingBottom: 30,
+            borderBottom: "1px solid #e2e8f0",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#66BB6A", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#66BB6A",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               3
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+              <h3
+                style={{
+                  color: "#000000",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  margin: "0 0 8px 0",
+                }}
+              >
                 ⚙️ Technical Interview (~1.5 hours)
               </h3>
-              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: 12 }}>
+              <p
+                style={{ color: "#444", fontSize: "0.95rem", marginBottom: 12 }}
+              >
                 Deep dive into how you engineer, reason and make decisions.
               </p>
-              <p style={{ color: "#444", fontSize: "0.95rem", marginBottom: 16 }}>
-                Architecture thinking, trade-offs, problem solving, clarity of thought.
+              <p
+                style={{ color: "#444", fontSize: "0.95rem", marginBottom: 16 }}
+              >
+                Architecture thinking, trade-offs, problem solving, clarity of
+                thought.
               </p>
 
               <button
@@ -1941,7 +2098,7 @@ function InterviewGuide() {
                   textAlign: "left",
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
                 onMouseEnter={(e) => {
                   if (!showTechInterview) {
@@ -1960,105 +2117,173 @@ function InterviewGuide() {
                 </span>
               </button>
               {showTechInterview && (
-                <div style={{ 
-                  marginTop: 20, 
-                  padding: 20, 
-                  background: "#F9FAFB", 
-                  borderRadius: "8px",
-                  border: "1px solid #e2e8f0"
-                }}>
+                <div
+                  style={{
+                    marginTop: 20,
+                    padding: 20,
+                    background: "#F9FAFB",
+                    borderRadius: "8px",
+                    border: "1px solid #e2e8f0",
+                  }}
+                >
                   <div style={{ marginBottom: "25px" }}>
-                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
                       Preparation
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      Start by checking out our website — <a href="https://solidgate.com/" style={{textDecoration: "none", color: "#66BB6A"}}>solidgate.com</a> 💚 — and get to know our product inside out. Want to dig deeper? Our API docs have all the details you need.
-                      Below, you'll find a clear breakdown of the skills we look for across engineering roles.
+                      Start by checking out our website —{" "}
+                      <a
+                        href="https://solidgate.com/"
+                        style={{ textDecoration: "none", color: "#66BB6A" }}
+                      >
+                        solidgate.com
+                      </a>{" "}
+                      💚 — and get to know our product inside out. Want to dig
+                      deeper? Our API docs have all the details you need. Below,
+                      you'll find a clear breakdown of the skills we look for
+                      across engineering roles.
                     </p>
                   </div>
                   <div style={{ marginBottom: "25px" }}>
-                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
                       1. 👋 Intro (5 min)
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      We'll kick things off with quick intros — who you are, who we are,
-                      and what we're here to do. Before we dive in, you'll have a chance
-                      to ask any questions upfront — about the role, the team, how we
-                      work, or anything that helps you feel confident moving forward.
+                      We'll kick things off with quick intros — who you are, who
+                      we are, and what we're here to do. Before we dive in,
+                      you'll have a chance to ask any questions upfront — about
+                      the role, the team, how we work, or anything that helps
+                      you feel confident moving forward.
                     </p>
                   </div>
                   <div style={{ marginBottom: "25px" }}>
-                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
                       2. 📂 Deep Dive into Experience (20 min)
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      We want to understand how you work, not just where you've worked.
+                      We want to understand how you work, not just where you've
+                      worked.
                     </p>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
                       We'll ask about:
                     </p>
-                    <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: 20 }}>
+                    <ul
+                      style={{
+                        color: "#444",
+                        fontSize: "0.95rem",
+                        marginLeft: 20,
+                      }}
+                    >
                       <li>Key projects you've shipped</li>
                       <li>Technical decisions you've made (and why)</li>
                       <li>Real impact you've had on teams and products</li>
                     </ul>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      Be ready to go beyond your CV. We're interested in ownership and
-                      real impact you've had on teams and products.
+                      Be ready to go beyond your CV. We're interested in
+                      ownership and real impact you've had on teams and
+                      products.
                     </p>
                   </div>
                   <div style={{ marginBottom: "25px" }}>
-                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
                       3. 🧠 Technical Questions (60 min)
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      Now we go into your engineering skills. Expect questions covering the
-                      topics outlined in the competence matrix section.
+                      Now we go into your engineering skills. Expect questions
+                      covering the topics outlined in the competence matrix
+                      section.
                     </p>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      This could be hands-on or conceptual. We're not just looking for the
-                      right answer — we care about how you approach problems.
+                      This could be hands-on or conceptual. We're not just
+                      looking for the right answer — we care about how you
+                      approach problems.
                     </p>
                   </div>
-                  <div style={{
-                    textAlign: 'center',
-                    margin: '20px 0',
-                    fontSize: '1.1rem',
-                    fontWeight: '600',
-                    color: '#000000'
-                  }}>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      margin: "20px 0",
+                      fontSize: "1.1rem",
+                      fontWeight: "600",
+                      color: "#000000",
+                    }}
+                  >
                     OR
                   </div>
                   <div style={{ marginBottom: "25px" }}>
-                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
                       3. 🏗️ Architecture Task (60 min)
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      If relevant for the role, we'll throw in a system design challenge.
+                      If relevant for the role, we'll throw in a system design
+                      challenge.
                     </p>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      You might be asked to sketch out how you'd build something like:
+                      You might be asked to sketch out how you'd build something
+                      like:
                     </p>
-                    <ul style={{ color: "#444", fontSize: "0.95rem", marginLeft: 20 }}>
+                    <ul
+                      style={{
+                        color: "#444",
+                        fontSize: "0.95rem",
+                        marginLeft: 20,
+                      }}
+                    >
                       <li>A high-load payments service</li>
                       <li>A secure API for transaction processing</li>
                       <li>An internal tool for risk monitoring</li>
                     </ul>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      We want to see how you balance scalability, reliability, and speed —
-                      and how you justify your tech choices.
+                      We want to see how you balance scalability, reliability,
+                      and speed — and how you justify your tech choices.
                     </p>
                   </div>
                   <div style={{ marginBottom: "25px" }}>
-                    <h4 style={{ color: "#000000", fontWeight: 600, fontSize: "1rem" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
                       4. ✅ Wrap-Up & Next Steps (5 min)
                     </h4>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
                       We'll close with a short debrief and outline what's next.
                     </p>
                     <p style={{ color: "#444", fontSize: "0.95rem" }}>
-                      You'll also have time to ask us anything — about the role, the team,
-                      the culture, or how we build at Solidgate.
+                      You'll also have time to ask us anything — about the role,
+                      the team, the culture, or how we build at Solidgate.
                     </p>
                   </div>
                 </div>
@@ -2068,84 +2293,134 @@ function InterviewGuide() {
         </div>
 
         {/* Step 4 */}
-        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+        <div
+          style={{
+            marginBottom: 30,
+            paddingBottom: 30,
+            borderBottom: "1px solid #e2e8f0",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#66BB6A", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#66BB6A",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               4
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+              <h3
+                style={{
+                  color: "#000000",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  margin: "0 0 8px 0",
+                }}
+              >
                 🤝 Soft Skills Interview (~1.5 hours)
               </h3>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                We evaluate leadership behaviors, ownership, communication, feedback culture, and collaboration patterns. Usually with the Head of Engineering or the Engineering Managers.
+                We evaluate leadership behaviors, ownership, communication,
+                feedback culture, and collaboration patterns. Usually with the
+                Head of Engineering or the Engineering Managers.
               </p>
             </div>
           </div>
         </div>
 
         {/* Step 5 */}
-        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+        <div
+          style={{
+            marginBottom: 30,
+            paddingBottom: 30,
+            borderBottom: "1px solid #e2e8f0",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#66BB6A", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#66BB6A",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               5
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+              <h3
+                style={{
+                  color: "#000000",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  margin: "0 0 8px 0",
+                }}
+              >
                 📈 Bar-Raising Interview (1–1.5 hours)
               </h3>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                Independent calibration. We check if you increase our bar — not just match it. Focus on long-term potential and cultural contribution. Held by the CEO.
+                Independent calibration. We check if you increase our bar — not
+                just match it. Focus on long-term potential and cultural
+                contribution. Held by the CEO.
               </p>
             </div>
           </div>
         </div>
 
         {/* Step 6 */}
-        <div style={{ marginBottom: 30, paddingBottom: 30, borderBottom: "1px solid #e2e8f0" }}>
+        <div
+          style={{
+            marginBottom: 30,
+            paddingBottom: 30,
+            borderBottom: "1px solid #e2e8f0",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#66BB6A", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#66BB6A",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               6
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+              <h3
+                style={{
+                  color: "#000000",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  margin: "0 0 8px 0",
+                }}
+              >
                 ✅ Final Alignment Call (15 min)
               </h3>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                We align on offer details, expectations, timeline and final signals from both sides.
+                We align on offer details, expectations, timeline and final
+                signals from both sides.
               </p>
             </div>
           </div>
@@ -2154,26 +2429,36 @@ function InterviewGuide() {
         {/* Step 7 */}
         <div style={{ marginBottom: 0 }}>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ 
-              width: "40px", 
-              height: "40px", 
-              borderRadius: "50%", 
-              background: "#66BB6A", 
-              color: "white", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center", 
-              fontWeight: 600,
-              flexShrink: 0
-            }}>
+            <div
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                background: "#66BB6A",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
               7
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: "#000000", fontWeight: 600, fontSize: "1.1rem", margin: "0 0 8px 0" }}>
+              <h3
+                style={{
+                  color: "#000000",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  margin: "0 0 8px 0",
+                }}
+              >
                 💚 Offer Signed
               </h3>
               <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                And you join one of the strongest fintech engineering teams in the world.
+                And you join one of the strongest fintech engineering teams in
+                the world.
               </p>
             </div>
           </div>
@@ -2211,21 +2496,26 @@ function InterviewGuide() {
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
           Language-Specific Requirements
         </h2>
-        
+
         {/* Tabs */}
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: isMobile ? "8px" : "16px",
-          marginBottom: "24px",
-          flexWrap: "wrap",
-          padding: isMobile ? "0 8px" : "0"
-        }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: isMobile ? "8px" : "16px",
+            marginBottom: "24px",
+            flexWrap: "wrap",
+            padding: isMobile ? "0 8px" : "0",
+          }}
+        >
           <button
             onClick={() => handleTabClick("backend")}
             style={{
               padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "backend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              border:
+                activeTab === "backend"
+                  ? "2px solid #66BB6A"
+                  : "2px solid #e5e7eb",
               background: activeTab === "backend" ? "#E4F0EC" : "transparent",
               color: activeTab === "backend" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "backend" ? 600 : 400,
@@ -2234,7 +2524,7 @@ function InterviewGuide() {
               borderRadius: "6px",
               transition: "all 0.2s ease",
               flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
+              minWidth: isMobile ? "80px" : "auto",
             }}
           >
             Backend
@@ -2243,7 +2533,10 @@ function InterviewGuide() {
             onClick={() => handleTabClick("frontend")}
             style={{
               padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "frontend" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
+              border:
+                activeTab === "frontend"
+                  ? "2px solid #66BB6A"
+                  : "2px solid #e5e7eb",
               background: activeTab === "frontend" ? "#E4F0EC" : "transparent",
               color: activeTab === "frontend" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "frontend" ? 600 : 400,
@@ -2252,7 +2545,7 @@ function InterviewGuide() {
               borderRadius: "6px",
               transition: "all 0.2s ease",
               flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
+              minWidth: isMobile ? "80px" : "auto",
             }}
           >
             Frontend
@@ -2261,8 +2554,12 @@ function InterviewGuide() {
             onClick={() => handleTabClick("infrastructure")}
             style={{
               padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "infrastructure" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-              background: activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
+              border:
+                activeTab === "infrastructure"
+                  ? "2px solid #66BB6A"
+                  : "2px solid #e5e7eb",
+              background:
+                activeTab === "infrastructure" ? "#E4F0EC" : "transparent",
               color: activeTab === "infrastructure" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "infrastructure" ? 600 : 400,
               fontSize: isMobile ? "0.85rem" : "0.95rem",
@@ -2270,7 +2567,7 @@ function InterviewGuide() {
               borderRadius: "6px",
               transition: "all 0.2s ease",
               flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
+              minWidth: isMobile ? "80px" : "auto",
             }}
           >
             Infrastructure
@@ -2279,8 +2576,12 @@ function InterviewGuide() {
             onClick={() => handleTabClick("data-engineering")}
             style={{
               padding: isMobile ? "6px 12px" : "8px 20px",
-              border: activeTab === "data-engineering" ? "2px solid #66BB6A" : "2px solid #e5e7eb",
-              background: activeTab === "data-engineering" ? "#E4F0EC" : "transparent",
+              border:
+                activeTab === "data-engineering"
+                  ? "2px solid #66BB6A"
+                  : "2px solid #e5e7eb",
+              background:
+                activeTab === "data-engineering" ? "#E4F0EC" : "transparent",
               color: activeTab === "data-engineering" ? "#66BB6A" : "#64748b",
               fontWeight: activeTab === "data-engineering" ? 600 : 400,
               fontSize: isMobile ? "0.85rem" : "0.95rem",
@@ -2288,7 +2589,7 @@ function InterviewGuide() {
               borderRadius: "6px",
               transition: "all 0.2s ease",
               flex: isMobile ? "1 1 auto" : "none",
-              minWidth: isMobile ? "80px" : "auto"
+              minWidth: isMobile ? "80px" : "auto",
             }}
           >
             Data Engineering
@@ -2393,7 +2694,7 @@ function InterviewGuide() {
               questions={[
                 "What's the difference between any and unknown?",
                 "Why does JSON.parse() return any? How would you make it more type-safe?",
-                "How would you write a generic type that converts \"a,b,c,d\" into \"a\" | \"b\" | \"c\" | \"d\"?",
+                'How would you write a generic type that converts "a,b,c,d" into "a" | "b" | "c" | "d"?',
               ]}
             />
           </div>
@@ -2574,596 +2875,584 @@ function MindsBehindTheCode() {
         <h2 className="section-title" style={{ fontSize: "1.3rem" }}>
           Our Engineers on Media
         </h2>
-          <div
-            style={{
-              display: "grid",
-              gap: 15,
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            }}
+        <div
+          style={{
+            display: "grid",
+            gap: 15,
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <a
+            href="https://www.youtube.com/watch?v=Dz0JS8fVN6M"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
           >
-            <a
-              href="https://www.youtube.com/watch?v=Dz0JS8fVN6M"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      background: "#FF0000",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
                   >
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      style={{ marginLeft: "2px" }}
-                    >
-                      <path
-                        d="M7 5L3 2V8L7 5Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </span>
-                  Як 50 інженерів роблять 1000 деплоїв на місяць | DOU Day 2025
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Макс Багінський, Head of engineering
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://www.youtube.com/watch?v=B6pO8SkaSUY"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    <path d="M7 5L3 2V8L7 5Z" fill="white" />
+                  </svg>
+                </span>
+                Як 50 інженерів роблять 1000 деплоїв на місяць | DOU Day 2025
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Макс Багінський, Head of engineering
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://www.youtube.com/watch?v=B6pO8SkaSUY"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      background: "#FF0000",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
                   >
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      style={{ marginLeft: "2px" }}
-                    >
-                      <path
-                        d="M7 5L3 2V8L7 5Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </span>
-                  Challenge: Unbreakable Payment Form
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Лев Давидов Tech Lead(FE Guild Master)
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://www.youtube.com/watch?v=bfUboflKmf0"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    <path d="M7 5L3 2V8L7 5Z" fill="white" />
+                  </svg>
+                </span>
+                Challenge: Unbreakable Payment Form
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Лев Давидов Tech Lead(FE Guild Master)
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://www.youtube.com/watch?v=bfUboflKmf0"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      background: "#FF0000",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
                   >
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      style={{ marginLeft: "2px" }}
-                    >
-                      <path
-                        d="M7 5L3 2V8L7 5Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </span>
-                  Реальність керування 100+ «керованими» базами даних RDS Postgres
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Микита Глушак, Head of Infrastructure
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://youtu.be/Ax4BEp3ArO4?si=tKDDnCv_fHmAStlq"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    <path d="M7 5L3 2V8L7 5Z" fill="white" />
+                  </svg>
+                </span>
+                Реальність керування 100+ «керованими» базами даних RDS Postgres
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Микита Глушак, Head of Infrastructure
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://youtu.be/Ax4BEp3ArO4?si=tKDDnCv_fHmAStlq"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "#FF0000",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      background: "#FF0000",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    style={{ marginLeft: "2px" }}
                   >
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      style={{ marginLeft: "2px" }}
-                    >
-                      <path
-                        d="M7 5L3 2V8L7 5Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </span>
-                  Надійність систем за налаштованого CI/CD
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Сергій Сафонов, ex-Tech Lead
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://dou.ua/forums/topic/54148"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    <path d="M7 5L3 2V8L7 5Z" fill="white" />
+                  </svg>
+                </span>
+                Надійність систем за налаштованого CI/CD
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Сергій Сафонов, ex-Tech Lead
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://dou.ua/forums/topic/54148"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    background: "#66BB6A",
+                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
+                  <div
                     style={{
-                      width: "20px",
-                      height: "20px",
-                      background: "#66BB6A",
-                      borderRadius: "4px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
                     }}
                   >
                     <div
                       style={{
-                        width: "12px",
-                        height: "12px",
-                        background: "white",
-                        borderRadius: "2px",
-                        position: "relative",
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
                       }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "4px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                    </div>
-                  </span>
-                  Чи варто деплоїтись у п'ятницю
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Сергій Сафонов, ex-Tech Lead
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://dou.ua/forums/topic/50318/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                  </div>
+                </span>
+                Чи варто деплоїтись у п'ятницю
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Сергій Сафонов, ex-Tech Lead
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://dou.ua/forums/topic/50318/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    background: "#66BB6A",
+                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
+                  <div
                     style={{
-                      width: "20px",
-                      height: "20px",
-                      background: "#66BB6A",
-                      borderRadius: "4px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
                     }}
                   >
                     <div
                       style={{
-                        width: "12px",
-                        height: "12px",
-                        background: "white",
-                        borderRadius: "2px",
-                        position: "relative",
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
                       }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "4px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                    </div>
-                  </span>
-                  $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
-                  фінтех
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Макс Багінський, Head of Engineering
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://dou.ua/forums/topic/53604"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                  </div>
+                </span>
+                $10.000 за хвилину даунтайму: архітектура, черги та стрімінг у
+                фінтех
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Макс Багінський, Head of Engineering
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://dou.ua/forums/topic/53604"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    background: "#66BB6A",
+                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
+                  <div
                     style={{
-                      width: "20px",
-                      height: "20px",
-                      background: "#66BB6A",
-                      borderRadius: "4px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
                     }}
                   >
                     <div
                       style={{
-                        width: "12px",
-                        height: "12px",
-                        background: "white",
-                        borderRadius: "2px",
-                        position: "relative",
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
                       }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "4px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                    </div>
-                  </span>
-                  Як стати джуном, якого найматимуть
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Владислав Павленко, Go Engineer
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://dou.ua/forums/topic/51033/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                  </div>
+                </span>
+                Як стати джуном, якого найматимуть
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Владислав Павленко, Go Engineer
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://dou.ua/forums/topic/51033/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    background: "#66BB6A",
+                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
+                  <div
                     style={{
-                      width: "20px",
-                      height: "20px",
-                      background: "#66BB6A",
-                      borderRadius: "4px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
                     }}
                   >
                     <div
                       style={{
-                        width: "12px",
-                        height: "12px",
-                        background: "white",
-                        borderRadius: "2px",
-                        position: "relative",
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
                       }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "4px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                    </div>
-                  </span>
-                  Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Сергій Сафонов, ex-Tech Lead
-                </p>
-              </div>
-            </a>
-            <a
-              href="https://dou.ua/forums/topic/57529/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <div className="media-block">
-                <h4
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                  </div>
+                </span>
+                Як ми розпилювали моноліт. Наш досвід переходу до мікросервісів
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Сергій Сафонов, ex-Tech Lead
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://dou.ua/forums/topic/57529/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="media-block">
+              <h4
+                style={{
+                  color: "#181A20",
+                  marginBottom: 8,
+                  fontSize: "0.95rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span
                   style={{
-                    color: "#181A20",
-                    marginBottom: 8,
-                    fontSize: "0.95rem",
+                    width: "20px",
+                    height: "20px",
+                    background: "#66BB6A",
+                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  <span
+                  <div
                     style={{
-                      width: "20px",
-                      height: "20px",
-                      background: "#66BB6A",
-                      borderRadius: "4px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
+                      width: "12px",
+                      height: "12px",
+                      background: "white",
+                      borderRadius: "2px",
+                      position: "relative",
                     }}
                   >
                     <div
                       style={{
-                        width: "12px",
-                        height: "12px",
-                        background: "white",
-                        borderRadius: "2px",
-                        position: "relative",
+                        position: "absolute",
+                        top: "2px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
                       }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "4px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "6px",
-                          left: "2px",
-                          right: "2px",
-                          height: "1px",
-                          background: "#66BB6A",
-                        }}
-                      />
-                    </div>
-                  </span>
-                  Навіщо фронтендерам мʼютекси: Web Locks API
-                </h4>
-                <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
-                  Святослав Головін, Frontend engineer
-                </p>
-              </div>
-            </a>
-          </div>
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "4px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "2px",
+                        right: "2px",
+                        height: "1px",
+                        background: "#66BB6A",
+                      }}
+                    />
+                  </div>
+                </span>
+                Навіщо фронтендерам мʼютекси: Web Locks API
+              </h4>
+              <p style={{ color: "#66BB6A", fontWeight: 500, fontSize: 13 }}>
+                Святослав Головін, Frontend engineer
+              </p>
+            </div>
+          </a>
+        </div>
       </section>
 
       {/* Testimonials Section */}
@@ -3196,39 +3485,44 @@ function TheTeam() {
   const engineeringValues = [
     {
       title: "📦 Work in Small Batches",
-      description: "Slice work into pieces that can be completed in a week or less. We use Trunk-Based Development to deliver incremental value continuously, reducing risk and accelerating delivery.",
+      description:
+        "Slice work into pieces that can be completed in a week or less. We use Trunk-Based Development to deliver incremental value continuously, reducing risk and accelerating delivery.",
       color: "#66BB6A",
       gradient: "linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%)",
-      icon: "📦"
+      icon: "📦",
     },
     {
       title: "👁️ Make Flow of Work Visible",
-      description: "Full visibility from business processes to customer delivery. Everyone knows the status of products and features at every stage.",
+      description:
+        "Full visibility from business processes to customer delivery. Everyone knows the status of products and features at every stage.",
       color: "#2196F3",
       gradient: "linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%)",
-      icon: "👁️"
+      icon: "👁️",
     },
     {
       title: "💬 Gather & Implement Customer Feedback",
-      description: "More information from clients → better customer satisfaction → better product.",
+      description:
+        "More information from clients → better customer satisfaction → better product.",
       color: "#FF9800",
       gradient: "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)",
-      icon: "💬"
+      icon: "💬",
     },
     {
       title: "🧪 Team Experimentation",
-      description: "Developers explore new ideas and adjust specs autonomously. This accelerates innovation when combined with small batches, customer feedback, and workflow transparency.",
+      description:
+        "Developers explore new ideas and adjust specs autonomously. This accelerates innovation when combined with small batches, customer feedback, and workflow transparency.",
       color: "#9C27B0",
       gradient: "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)",
-      icon: "🧪"
+      icon: "🧪",
     },
     {
       title: "🧱 We MUST be Reliability Obsessed",
-      description: "Reliability is the most important feature. We can have a thousand features, but none of them will work if our system fails.",
+      description:
+        "Reliability is the most important feature. We can have a thousand features, but none of them will work if our system fails.",
       color: "#8B4513",
       gradient: "linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 100%)",
-      icon: "🧱"
-    }
+      icon: "🧱",
+    },
   ];
 
   const streams = [
@@ -3238,15 +3532,16 @@ function TheTeam() {
       points: [
         "Standardised service patterns, frameworks, and shared primitives",
         "Scalable, secure, high-performance defaults",
-        "Enable product teams to focus on product outcomes instead of platform complexity"
+        "Enable product teams to focus on product outcomes instead of platform complexity",
       ],
-      quote: "Platform sets the baseline and architectural direction, so everything we build compounds.",
+      quote:
+        "Platform sets the baseline and architectural direction, so everything we build compounds.",
       teams: ["Frontend Platform", "Backend Platform", "Data Platform"],
       color: "#66BB6A",
       darkColor: "#4A9F8A",
       mediumColor: "#5BA892",
       gradient: "linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%)",
-      icon: "🏗️"
+      icon: "🏗️",
     },
     {
       title: "Payments Stream",
@@ -3255,15 +3550,16 @@ function TheTeam() {
         "Orchestration logic",
         "Gateway and payment method integrations",
         "Global payment routing",
-        "Merchant + developer integration experience"
+        "Merchant + developer integration experience",
       ],
-      quote: "This is where we win or lose milliseconds, conversion, margin and scale.",
+      quote:
+        "This is where we win or lose milliseconds, conversion, margin and scale.",
       teams: ["Core", "Orchestration", "Integrations", "Connectivity"],
       color: "#2196F3",
       darkColor: "#0D47A1",
       mediumColor: "#1565C0",
       gradient: "linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%)",
-      icon: "💳"
+      icon: "💳",
     },
     {
       title: "Infra Stream",
@@ -3271,7 +3567,7 @@ function TheTeam() {
       points: [
         "Infra, CI/CD, runtime performance, cost optimisation",
         "Monitoring, security and tooling",
-        "Automation everywhere"
+        "Automation everywhere",
       ],
       quote: "Infra is the force multiplier: less manual work, safer velocity.",
       teams: [],
@@ -3279,26 +3575,34 @@ function TheTeam() {
       darkColor: "#E65100",
       mediumColor: "#E65100",
       gradient: "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)",
-      icon: "⚙️"
+      icon: "⚙️",
     },
     {
       title: "Value Added Services",
-      description: "Build products that extend revenue and create a competitive edge.",
+      description:
+        "Build products that extend revenue and create a competitive edge.",
       points: [
         "Risk & fraud systems",
         "Treasury",
         "Finance Engineering",
         "Billing/Subscriptions",
-        "Launch team accelerating merchant go-live"
+        "Launch team accelerating merchant go-live",
       ],
-      quote: "This stream turns \"payments processor\" into \"financial infrastructure\".",
-      teams: ["Risk Systems", "Banking", "Finance Engineering", "Billing", "Launch"],
+      quote:
+        'This stream turns "payments processor" into "financial infrastructure".',
+      teams: [
+        "Risk Systems",
+        "Banking",
+        "Finance Engineering",
+        "Billing",
+        "Launch",
+      ],
       color: "#9C27B0",
       darkColor: "#6A1B9A",
       mediumColor: "#7B1FA2",
       gradient: "linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)",
-      icon: "💎"
-    }
+      icon: "💎",
+    },
   ];
 
   return (
@@ -3312,19 +3616,31 @@ function TheTeam() {
     >
       {/* Engineering Values Section */}
       <section className="card">
-        <h2 className="section-title" style={{ fontSize: "1.3rem", marginBottom: 30 }}>
+        <h2
+          className="section-title"
+          style={{ fontSize: "1.3rem", marginBottom: 30 }}
+        >
           Engineering Values
         </h2>
-        <p style={{ color: "#444", marginBottom: 30, fontSize: "0.95rem", lineHeight: "1.6" }}>
+        <p
+          style={{
+            color: "#444",
+            marginBottom: 30,
+            fontSize: "0.95rem",
+            lineHeight: "1.6",
+          }}
+        >
           These principles guide how we build, ship, and improve.
         </p>
 
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
-          gap: 24,
-          position: "relative"
-        }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+            gap: 24,
+            position: "relative",
+          }}
+        >
           {engineeringValues.map((value, idx) => {
             const colorVars = {
               "#4CAF50": { dark: "#4A9F8A", medium: "#5BA892" },
@@ -3332,12 +3648,17 @@ function TheTeam() {
               "#FF9800": { dark: "#E65100", medium: "#E65100" },
               "#9C27B0": { dark: "#6A1B9A", medium: "#7B1FA2" },
               "#66BB6A": { dark: "#4A9F8A", medium: "#5BA892" },
-              "#8B4513": { dark: "#654321", medium: "#7A4F2E" }
+              "#8B4513": { dark: "#654321", medium: "#7A4F2E" },
             };
-            const colors = colorVars[value.color] || { dark: value.color, medium: value.color };
-            
-            const isReliabilityObsessed = value.title.includes("Reliability Obsessed");
-            
+            const colors = colorVars[value.color] || {
+              dark: value.color,
+              medium: value.color,
+            };
+
+            const isReliabilityObsessed = value.title.includes(
+              "Reliability Obsessed"
+            );
+
             return (
               <div
                 key={idx}
@@ -3350,76 +3671,97 @@ function TheTeam() {
                   position: "relative",
                   overflow: "hidden",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
-                  gridColumn: isReliabilityObsessed ? (isMobile ? "1 / -1" : "1 / -1") : "auto"
+                  gridColumn: isReliabilityObsessed
+                    ? isMobile
+                      ? "1 / -1"
+                      : "1 / -1"
+                    : "auto",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+                  e.currentTarget.style.transform =
+                    "translateY(-4px) scale(1.02)";
                   e.currentTarget.style.boxShadow = `0 8px 16px ${value.color}33`;
                   e.currentTarget.style.borderColor = colors.dark;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0) scale(1)";
-                  e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 6px rgba(0, 0, 0, 0.05)";
                   e.currentTarget.style.borderColor = value.color;
                 }}
               >
-                <div style={{
-                  position: "absolute",
-                  top: 20,
-                  right: 20,
-                  fontSize: "48px",
-                  opacity: 0.15,
-                  transform: "rotate(-15deg)"
-                }}>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 20,
+                    right: 20,
+                    fontSize: "48px",
+                    opacity: 0.15,
+                    transform: "rotate(-15deg)",
+                  }}
+                >
                   {value.icon}
                 </div>
-                
-                <div style={{ 
-                  display: "flex", 
-                  flexDirection: isMobile && isReliabilityObsessed ? "column" : "row",
-                  alignItems: isMobile && isReliabilityObsessed ? "flex-start" : "center",
-                  gap: 12, 
-                  marginBottom: 16, 
-                  position: "relative", 
-                  zIndex: 1,
-                  width: "100%",
-                  boxSizing: "border-box",
-                  overflow: "hidden"
-                }}>
-                  <div style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                    background: value.color,
+
+                <div
+                  style={{
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "24px",
-                    flexShrink: 0
-                  }}>
+                    flexDirection:
+                      isMobile && isReliabilityObsessed ? "column" : "row",
+                    alignItems:
+                      isMobile && isReliabilityObsessed
+                        ? "flex-start"
+                        : "center",
+                    gap: 12,
+                    marginBottom: 16,
+                    position: "relative",
+                    zIndex: 1,
+                    width: "100%",
+                    boxSizing: "border-box",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "12px",
+                      background: value.color,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "24px",
+                      flexShrink: 0,
+                    }}
+                  >
                     {value.icon}
                   </div>
-                  <h3 style={{ 
-                    color: colors.dark, 
-                    fontWeight: 700, 
-                    fontSize: isMobile && isReliabilityObsessed ? "1.1rem" : "1.3rem", 
-                    margin: 0, 
-                    flex: 1,
-                    wordWrap: "break-word",
-                    overflowWrap: "break-word",
-                    maxWidth: "100%"
-                  }}>
-                    {value.title.split(' ').slice(1).join(' ')}
+                  <h3
+                    style={{
+                      color: colors.dark,
+                      fontWeight: 700,
+                      fontSize:
+                        isMobile && isReliabilityObsessed ? "1.1rem" : "1.3rem",
+                      margin: 0,
+                      flex: 1,
+                      wordWrap: "break-word",
+                      overflowWrap: "break-word",
+                      maxWidth: "100%",
+                    }}
+                  >
+                    {value.title.split(" ").slice(1).join(" ")}
                   </h3>
                   {value.title.includes("Reliability Obsessed") && (
                     <>
                       {!isMobile && (
-                        <div style={{
-                          fontSize: "24px",
-                          color: colors.dark,
-                          opacity: 0.6,
-                          margin: "0 16px"
-                        }}>
+                        <div
+                          style={{
+                            fontSize: "24px",
+                            color: colors.dark,
+                            opacity: 0.6,
+                            margin: "0 16px",
+                          }}
+                        >
                           →
                         </div>
                       )}
@@ -3446,14 +3788,16 @@ function TheTeam() {
                           alignItems: "center",
                           width: isMobile ? "100%" : "auto",
                           boxSizing: "border-box",
-                          flexShrink: isMobile ? 1 : 0
+                          flexShrink: isMobile ? 1 : 0,
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background = value.color;
                           e.currentTarget.style.color = "white";
                           e.currentTarget.style.transform = "translateX(-2px)";
-                          const uptimeGoal = e.currentTarget.querySelector('[data-uptime-goal]');
-                          const uptimeText = e.currentTarget.querySelector('[data-uptime-text]');
+                          const uptimeGoal =
+                            e.currentTarget.querySelector("[data-uptime-goal]");
+                          const uptimeText =
+                            e.currentTarget.querySelector("[data-uptime-text]");
                           if (uptimeGoal) uptimeGoal.style.color = "white";
                           if (uptimeText) uptimeText.style.color = "white";
                         }}
@@ -3461,39 +3805,60 @@ function TheTeam() {
                           e.currentTarget.style.background = "white";
                           e.currentTarget.style.color = colors.dark;
                           e.currentTarget.style.transform = "translateX(0)";
-                          const uptimeGoal = e.currentTarget.querySelector('[data-uptime-goal]');
-                          const uptimeText = e.currentTarget.querySelector('[data-uptime-text]');
-                          if (uptimeGoal) uptimeGoal.style.color = colors.medium;
+                          const uptimeGoal =
+                            e.currentTarget.querySelector("[data-uptime-goal]");
+                          const uptimeText =
+                            e.currentTarget.querySelector("[data-uptime-text]");
+                          if (uptimeGoal)
+                            uptimeGoal.style.color = colors.medium;
                           if (uptimeText) uptimeText.style.color = colors.dark;
                         }}
                       >
-                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 6,
+                          }}
+                        >
                           <span>Status page</span>
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 2H3C2.44772 2 2 2.44772 2 3V9M10 2L6 6M10 2V6M10 2H6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M9 2H3C2.44772 2 2 2.44772 2 3V9M10 2L6 6M10 2V6M10 2H6"
+                              stroke="currentColor"
+                              strokeWidth="1.2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
                           </svg>
                         </div>
-                        <div 
+                        <div
                           data-uptime-goal
-                          style={{ 
-                            fontSize: isMobile ? "0.7rem" : "0.75rem", 
-                            fontWeight: 700, 
+                          style={{
+                            fontSize: isMobile ? "0.7rem" : "0.75rem",
+                            fontWeight: 700,
                             color: colors.medium,
                             textAlign: "center",
                             marginTop: 2,
                             transition: "color 0.2s ease",
                             wordWrap: "break-word",
                             overflowWrap: "break-word",
-                            maxWidth: "100%"
+                            maxWidth: "100%",
                           }}
                         >
                           UPTIME Goal: 99.99%
                         </div>
-                        <div 
+                        <div
                           data-uptime-text
-                          style={{ 
-                            fontSize: isMobile ? "0.65rem" : "0.7rem", 
-                            fontWeight: 400, 
+                          style={{
+                            fontSize: isMobile ? "0.65rem" : "0.7rem",
+                            fontWeight: 400,
                             color: colors.dark,
                             opacity: 0.8,
                             textAlign: "center",
@@ -3501,17 +3866,30 @@ function TheTeam() {
                             transition: "color 0.2s ease",
                             wordWrap: "break-word",
                             overflowWrap: "break-word",
-                            maxWidth: "100%"
+                            maxWidth: "100%",
                           }}
                         >
-                          every <span style={{ textDecoration: "line-through" }}>second</span> payment matters
+                          every{" "}
+                          <span style={{ textDecoration: "line-through" }}>
+                            second
+                          </span>{" "}
+                          payment matters
                         </div>
                       </a>
                     </>
                   )}
                 </div>
-                
-                <p style={{ color: colors.medium, fontSize: "0.95rem", lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+
+                <p
+                  style={{
+                    color: colors.medium,
+                    fontSize: "0.95rem",
+                    lineHeight: "1.7",
+                    fontWeight: 500,
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                >
                   {value.description}
                 </p>
               </div>
@@ -3522,16 +3900,21 @@ function TheTeam() {
 
       {/* Team Structure Section */}
       <section className="card">
-        <h2 className="section-title" style={{ fontSize: "1.3rem", marginBottom: 30 }}>
+        <h2
+          className="section-title"
+          style={{ fontSize: "1.3rem", marginBottom: 30 }}
+        >
           Team Structure
         </h2>
-        
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
-          gap: 24,
-          position: "relative"
-        }}>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+            gap: 24,
+            position: "relative",
+          }}
+        >
           {streams.map((stream, idx) => (
             <div
               key={idx}
@@ -3543,79 +3926,151 @@ function TheTeam() {
                 transition: "all 0.3s ease",
                 position: "relative",
                 overflow: "hidden",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)"
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px) scale(1.02)";
+                e.currentTarget.style.transform =
+                  "translateY(-4px) scale(1.02)";
                 e.currentTarget.style.boxShadow = `0 8px 16px ${stream.color}33`;
                 e.currentTarget.style.borderColor = stream.darkColor;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0) scale(1)";
-                e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.05)";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 6px rgba(0, 0, 0, 0.05)";
                 e.currentTarget.style.borderColor = stream.color;
               }}
             >
-              <div style={{
-                position: "absolute",
-                top: 20,
-                right: 20,
-                fontSize: "48px",
-                opacity: 0.15,
-                transform: "rotate(-15deg)"
-              }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 20,
+                  right: 20,
+                  fontSize: "48px",
+                  opacity: 0.15,
+                  transform: "rotate(-15deg)",
+                }}
+              >
                 {stream.icon}
               </div>
-              
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16, position: "relative", zIndex: 1 }}>
-                <div style={{
-                  width: "48px",
-                  height: "48px",
-                  borderRadius: "12px",
-                  background: stream.color,
+
+              <div
+                style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "24px",
-                  flexShrink: 0
-                }}>
+                  gap: 12,
+                  marginBottom: 16,
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                <div
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "12px",
+                    background: stream.color,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "24px",
+                    flexShrink: 0,
+                  }}
+                >
                   {stream.icon}
                 </div>
-                <h3 style={{ color: stream.darkColor, fontWeight: 700, fontSize: "1.3rem", margin: 0 }}>
+                <h3
+                  style={{
+                    color: stream.darkColor,
+                    fontWeight: 700,
+                    fontSize: "1.3rem",
+                    margin: 0,
+                  }}
+                >
                   {stream.title}
                 </h3>
               </div>
-              
-              <p style={{ color: stream.mediumColor, fontSize: "0.95rem", marginBottom: 16, lineHeight: "1.7", fontWeight: 500, position: "relative", zIndex: 1 }}>
+
+              <p
+                style={{
+                  color: stream.mediumColor,
+                  fontSize: "0.95rem",
+                  marginBottom: 16,
+                  lineHeight: "1.7",
+                  fontWeight: 500,
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
                 {stream.description}
               </p>
-              
-              <ul style={{ color: "#424242", fontSize: "0.9rem", marginBottom: 20, paddingLeft: 20, lineHeight: "1.8", position: "relative", zIndex: 1 }}>
+
+              <ul
+                style={{
+                  color: "#424242",
+                  fontSize: "0.9rem",
+                  marginBottom: 20,
+                  paddingLeft: 20,
+                  lineHeight: "1.8",
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
                 {stream.points.map((point, pIdx) => (
                   <li key={pIdx}>{point}</li>
                 ))}
               </ul>
-              
-              <p style={{ color: stream.mediumColor, fontSize: "0.9rem", marginBottom: 20, fontStyle: "italic", fontWeight: 500, position: "relative", zIndex: 1 }}>
+
+              <p
+                style={{
+                  color: stream.mediumColor,
+                  fontSize: "0.9rem",
+                  marginBottom: 20,
+                  fontStyle: "italic",
+                  fontWeight: 500,
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
                 {stream.quote}
               </p>
-              
+
               {stream.teams.length > 0 && (
-                <div style={{ marginTop: 20, paddingTop: 16, borderTop: `2px solid ${stream.color}4D`, position: "relative", zIndex: 1 }}>
-                  <p style={{ color: stream.darkColor, fontWeight: 600, fontSize: "0.85rem", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                <div
+                  style={{
+                    marginTop: 20,
+                    paddingTop: 16,
+                    borderTop: `2px solid ${stream.color}4D`,
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      color: stream.darkColor,
+                      fontWeight: 600,
+                      fontSize: "0.85rem",
+                      marginBottom: 12,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.5px",
+                    }}
+                  >
                     Teams
                   </p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                     {stream.teams.map((team, tIdx) => (
-                      <span key={tIdx} style={{
-                        padding: "6px 12px",
-                        background: stream.color,
-                        color: "white",
-                        borderRadius: "20px",
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        boxShadow: `0 2px 4px ${stream.color}4D`
-                      }}>
+                      <span
+                        key={tIdx}
+                        style={{
+                          padding: "6px 12px",
+                          background: stream.color,
+                          color: "white",
+                          borderRadius: "20px",
+                          fontSize: "0.8rem",
+                          fontWeight: 600,
+                          boxShadow: `0 2px 4px ${stream.color}4D`,
+                        }}
+                      >
                         {team}
                       </span>
                     ))}
@@ -3631,7 +4086,6 @@ function TheTeam() {
 }
 
 function BookList() {
-
   const books = [
     {
       title: "Software Engineering at Google",
@@ -3688,7 +4142,8 @@ function BookList() {
     {
       title: "TypeScript Cookbook",
       authors: "Stefan Baumgartner",
-      description: "Comprehensive guide to TypeScript patterns, type manipulation, and advanced techniques",
+      description:
+        "Comprehensive guide to TypeScript patterns, type manipulation, and advanced techniques",
       cover: "/covers/ts-cookbook.jpg",
     },
   ];
@@ -3720,7 +4175,7 @@ function BookList() {
               e.currentTarget.style.transform = "translateY(-2px)";
               e.currentTarget.style.background = "#E4F0EC";
               // Rotate the book cover randomly left or right
-              const bookCover = e.currentTarget.querySelector('div');
+              const bookCover = e.currentTarget.querySelector("div");
               if (bookCover) {
                 const randomDirection = Math.random() > 0.5 ? 1 : -1;
                 const randomAngle = (Math.random() * 3 + 2) * randomDirection; // 2-5 degrees
@@ -3731,7 +4186,7 @@ function BookList() {
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.background = "#FAFAFA";
               // Reset book cover rotation
-              const bookCover = e.currentTarget.querySelector('div');
+              const bookCover = e.currentTarget.querySelector("div");
               if (bookCover) {
                 bookCover.style.transform = "rotate(0deg)";
               }
@@ -3781,31 +4236,35 @@ function BookList() {
                 {book.title}
               </h4>
 
-              <p style={{
-                color: "#66BB6A",
-                fontWeight: 500,
-                fontSize: "0.8rem",
-                marginBottom: 12,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                lineHeight: "1.3",
-              }}>
+              <p
+                style={{
+                  color: "#66BB6A",
+                  fontWeight: 500,
+                  fontSize: "0.8rem",
+                  marginBottom: 12,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  lineHeight: "1.3",
+                }}
+              >
                 by {book.authors}
               </p>
 
-              <p style={{
-                color: "#64748b",
-                fontSize: "0.8rem",
-                lineHeight: "1.4",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-              }}>
+              <p
+                style={{
+                  color: "#64748b",
+                  fontSize: "0.8rem",
+                  lineHeight: "1.4",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
                 {book.description}
               </p>
             </div>
@@ -3838,15 +4297,15 @@ function TechRadarTabs() {
             borderRadius: "6px",
             background: "#ffffff",
             boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-        }}
-      >
-        <button
-          onClick={() => setSelected("2023")}
-          style={{
+          }}
+        >
+          <button
+            onClick={() => setSelected("2023")}
+            style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-            border: "none",
+              border: "none",
               borderRadius: "4px",
               background: selected === "2023" ? "#E1EFFC" : "#ffffff",
               color: "#111827",
@@ -3855,7 +4314,7 @@ function TechRadarTabs() {
               fontSize: "14px",
               lineHeight: "20px",
               fontWeight: "500",
-            cursor: "pointer",
+              cursor: "pointer",
               zIndex: selected === "2023" ? 1 : "auto",
               outline: selected === "2023" ? "2px solid #0072E0" : "none",
               flex: "1 1 auto",
@@ -3875,17 +4334,17 @@ function TechRadarTabs() {
               if (selected !== "2023") {
                 e.target.style.background = "#d1d5db";
               }
-          }}
-        >
-          2023
-        </button>
-        <button
-          onClick={() => setSelected("2025")}
-          style={{
+            }}
+          >
+            2023
+          </button>
+          <button
+            onClick={() => setSelected("2025")}
+            style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-            border: "none",
+              border: "none",
               borderRadius: "4px",
               background: selected === "2025" ? "#E1EFFC" : "#ffffff",
               color: "#111827",
@@ -3894,7 +4353,7 @@ function TechRadarTabs() {
               fontSize: "14px",
               lineHeight: "20px",
               fontWeight: "500",
-            cursor: "pointer",
+              cursor: "pointer",
               zIndex: selected === "2025" ? 1 : "auto",
               outline: selected === "2025" ? "2px solid #0072E0" : "none",
               flex: "1 1 auto",
@@ -3914,10 +4373,10 @@ function TechRadarTabs() {
               if (selected !== "2025") {
                 e.target.style.background = "#d1d5db";
               }
-          }}
-        >
-          2025
-        </button>
+            }}
+          >
+            2025
+          </button>
         </div>
       </div>
       <TechRadar key={selected} config={RADAR_CONFIG[selected]} />
@@ -3939,9 +4398,11 @@ function Footer() {
         gap: "8px",
       }}
     >
-      <div style={{
-        fontWeight: 400,
-      }}>
+      <div
+        style={{
+          fontWeight: 400,
+        }}
+      >
         Built by backend engineers, for engineers — with love! 💚
       </div>
     </div>
@@ -4000,23 +4461,25 @@ export function App() {
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
-          >
-            <img
+            >
+              <img
                 src="logo.svg"
-              alt="Solidgate logo"
-              style={{
-                maxWidth: 120,
-                width: "auto",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
+                alt="Solidgate logo"
+                style={{
+                  maxWidth: 120,
+                  width: "auto",
+                  height: "auto",
+                  cursor: "pointer",
+                }}
+              />
             </a>
 
             {isMobile ? (
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
                 <a
-                  href="https://solidgate.teamtailor.com/"
+                  href="https://solidgate.com/careers/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -4060,9 +4523,17 @@ export function App() {
                   ☰
                 </button>
               </div>
-                        ) : (
+            ) : (
               <>
-                <div style={{ display: "flex", gap: "16px", position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "16px",
+                    position: "absolute",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                >
                   <a
                     href="#home"
                     style={{
@@ -4136,7 +4607,8 @@ export function App() {
                       fontSize: "1rem",
                       padding: "8px 16px",
                       borderRadius: "8px",
-                      background: hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
+                      background:
+                        hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
@@ -4168,7 +4640,8 @@ export function App() {
                       fontSize: "1rem",
                       padding: "8px 16px",
                       borderRadius: "8px",
-                      background: hash === "#more-about-us" ? "#E1EFFC" : "#ffffff",
+                      background:
+                        hash === "#more-about-us" ? "#E1EFFC" : "#ffffff",
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
@@ -4193,7 +4666,7 @@ export function App() {
                   </a>
                 </div>
                 <a
-                  href="https://solidgate.teamtailor.com/"
+                  href="https://solidgate.com/careers/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -4314,7 +4787,8 @@ export function App() {
                   fontSize: "1rem",
                   padding: "8px 16px",
                   borderRadius: "8px",
-                  background: hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
+                  background:
+                    hash === "#minds-behind-code" ? "#E1EFFC" : "#ffffff",
                   border: "2px solid transparent",
                   transition: "all 0.2s ease",
                   textAlign: "center",
@@ -4374,27 +4848,30 @@ export function App() {
           )}
         </div>
 
-              {/* Page Content */}
-      <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
-        {hash === "#interview" ? (
-          <InterviewGuide />
-        ) : hash === "#minds-behind-code" ? (
-          <TheTeam />
-        ) : hash === "#more-about-us" ? (
-          <MindsBehindTheCode />
-        ) : (
-          <>
-            {/* TechRadar Section ONLY */}
-            <section style={{
-              "background": "#fff",
-              "padding": "2rem",
-              "textAlign": "center",
-
-            }}>
-              <TechRadarTabs />
-              <div style={{
-                padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
-              }}>
+        {/* Page Content */}
+        <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
+          {hash === "#interview" ? (
+            <InterviewGuide />
+          ) : hash === "#minds-behind-code" ? (
+            <TheTeam />
+          ) : hash === "#more-about-us" ? (
+            <MindsBehindTheCode />
+          ) : (
+            <>
+              {/* TechRadar Section ONLY */}
+              <section
+                style={{
+                  background: "#fff",
+                  padding: "2rem",
+                  textAlign: "center",
+                }}
+              >
+                <TechRadarTabs />
+                <div
+                  style={{
+                    padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
+                  }}
+                >
                   <p>
                     <div
                       id="hold"
@@ -4410,7 +4887,8 @@ export function App() {
                     >
                       Hold
                     </div>{" "}
-                    — Tools we know well but only use to support existing systems. Not used for new projects.
+                    — Tools we know well but only use to support existing
+                    systems. Not used for new projects.
                   </p>
                   <p>
                     <div
@@ -4427,7 +4905,8 @@ export function App() {
                     >
                       Assess
                     </div>{" "}
-                    — Technologies under evaluation, used only in test environments, not for real tasks.
+                    — Technologies under evaluation, used only in test
+                    environments, not for real tasks.
                   </p>
                   <p>
                     <div
@@ -4444,7 +4923,8 @@ export function App() {
                     >
                       Trial
                     </div>{" "}
-                    — Tools that have passed testing and are being prepared (or already used) in production.
+                    — Tools that have passed testing and are being prepared (or
+                    already used) in production.
                   </p>
                   <p>
                     <div
@@ -4461,58 +4941,61 @@ export function App() {
                     >
                       Adopt
                     </div>{" "}
-                    — Fully implemented tools actively used by teams. We have solid expertise with these.
+                    — Fully implemented tools actively used by teams. We have
+                    solid expertise with these.
                   </p>
-              </div>
-            </section>
-            
-          </>
-        )}
-      </div>
+                </div>
+              </section>
+            </>
+          )}
+        </div>
 
-      {/* Quote Section - Footer for all tabs */}
-      <div style={{ 
-        width: "100%", 
-        maxWidth: 1200, 
-        margin: "0 auto", 
-        padding: window.innerWidth < 768 ? "16px" : "10px",
-        boxSizing: "border-box"
-      }}>
-        <section
+        {/* Quote Section - Footer for all tabs */}
+        <div
           style={{
-            background: "#f7f8fa",
-            textAlign: "center",
-            borderRadius: "14px",
-            padding: window.innerWidth < 768 ? "1.5rem 1rem" : "2rem",
-            marginBottom: "3rem",
-            boxSizing: "border-box",
             width: "100%",
-            maxWidth: "100%",
-            overflow: "hidden"
+            maxWidth: 1200,
+            margin: "0 auto",
+            padding: window.innerWidth < 768 ? "16px" : "10px",
+            boxSizing: "border-box",
           }}
         >
-          <blockquote
+          <section
             style={{
-              margin: 0,
-              fontSize: window.innerWidth < 768 ? "0.9rem" : "1rem",
-              fontWeight: 500,
-              color: "#181A20",
-              lineHeight: "1.6",
-              wordWrap: "break-word",
-              overflowWrap: "break-word",
+              background: "#f7f8fa",
+              textAlign: "center",
+              borderRadius: "14px",
+              padding: window.innerWidth < 768 ? "1.5rem 1rem" : "2rem",
+              marginBottom: "3rem",
+              boxSizing: "border-box",
+              width: "100%",
               maxWidth: "100%",
-              boxSizing: "border-box"
+              overflow: "hidden",
             }}
           >
-            We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.
-          </blockquote>
-        </section>
-      </div>
+            <blockquote
+              style={{
+                margin: 0,
+                fontSize: window.innerWidth < 768 ? "0.9rem" : "1rem",
+                fontWeight: 500,
+                color: "#181A20",
+                lineHeight: "1.6",
+                wordWrap: "break-word",
+                overflowWrap: "break-word",
+                maxWidth: "100%",
+                boxSizing: "border-box",
+              }}
+            >
+              We don't just complete tasks at Solidgate — we build top-quality
+              products using DevOps and Lean approaches.
+            </blockquote>
+          </section>
+        </div>
 
-      <div id="footer">
-        <Footer />
+        <div id="footer">
+          <Footer />
+        </div>
       </div>
-    </div>
     </div>
   );
 }
