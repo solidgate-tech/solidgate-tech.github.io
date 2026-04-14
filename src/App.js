@@ -404,13 +404,14 @@ const RADAR_CONFIG = {
       { label: "OpenAPI", quadrant: 3, ring: 3, moved: 0 },
       { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
       { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
-      { label: "Github Copilot", quadrant: 3, ring: 0, moved: 1 },
       { label: "Blue-Green Deployment", quadrant: 3, ring: 0, moved: 1 },
       { label: "GitOps", quadrant: 3, ring: 0, moved: 1 },
-      { label: "ChatGPT", quadrant: 3, ring: 0, moved: 0 },
+      { label: "GitHub Copilot", quadrant: 3, ring: 3, moved: -1 },
+      { label: "OpenAI", quadrant: 3, ring: 0, moved: 0 },
       { label: "Gemini", quadrant: 3, ring: 0, moved: 0 },
       { label: "Cursor", quadrant: 3, ring: 1, moved: 2 },
       { label: "CodeRabbit", quadrant: 3, ring: 0, moved: 2 },
+      { label: "Claude", quadrant: 3, ring: 1, moved: 2 },
     ],
   },
 };
@@ -4275,6 +4276,152 @@ function BookList() {
   );
 }
 
+function AIUsageSection() {
+  const tools = [
+    {
+      name: "CodeRabbit",
+      ring: "ADOPT",
+      ringColor: "#4A9F8A",
+      ringBg: "#E4F0EC",
+      description: "AI-powered code review integrated into our GitLab workflow. CodeRabbit provides automated PR reviews, catching bugs, style issues, and security concerns before human reviewers get involved.",
+      uses: ["Automated PR reviews", "Bug detection", "Code quality checks"],
+    },
+    {
+      name: "OpenAI",
+      ring: "ADOPT",
+      ringColor: "#4A9F8A",
+      ringBg: "#E4F0EC",
+      description: "Used team-wide for problem-solving, drafting documentation, and exploring new ideas. Engineers use OpenAI models for debugging complex issues, writing technical specs, and general Q&A.",
+      uses: ["Documentation writing", "Problem-solving", "Research"],
+    },
+    {
+      name: "Gemini",
+      ring: "ADOPT",
+      ringColor: "#4A9F8A",
+      ringBg: "#E4F0EC",
+      description: "Google's AI assistant used as an alternative to OpenAI, particularly useful for tasks requiring up-to-date knowledge and integration with the Google ecosystem.",
+      uses: ["Research assistance", "Code generation", "Writing support"],
+    },
+    {
+      name: "Cursor",
+      ring: "TRIAL",
+      ringColor: "#4D1D74",
+      ringBg: "#DBC0F0",
+      description: "An AI-first IDE being trialed by our engineering teams. Cursor offers deep codebase context awareness and natural language editing, enabling faster code exploration and modification.",
+      uses: ["Codebase navigation", "Natural language edits", "Context-aware completion"],
+    },
+    {
+      name: "Claude",
+      ring: "TRIAL",
+      ringColor: "#4D1D74",
+      ringBg: "#DBC0F0",
+      description: "Anthropic's Claude is being trialed for complex reasoning tasks, architecture discussions, and detailed technical analysis. Particularly useful for understanding large codebases and reviewing architectural decisions.",
+      uses: ["Architecture discussions", "Code review", "Technical analysis"],
+    },
+  ];
+
+  return (
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 32px" }}>
+      <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+        <h2 style={{ fontSize: "1.6rem", fontWeight: 700, color: "#181A20", marginBottom: "0.5rem" }}>
+          How We Use AI at Solidgate
+        </h2>
+        <p style={{ color: "#64748b", fontSize: "1rem", maxWidth: 600, margin: "0 auto", lineHeight: "1.6" }}>
+          AI tools are woven into our daily engineering workflow — from code completion to automated reviews and intelligent pair programming.
+        </p>
+      </div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "16px",
+        }}
+      >
+        {tools.map((tool) => (
+          <div
+            key={tool.name}
+            style={{
+              background: "#fff",
+              borderRadius: 12,
+              padding: 20,
+              border: "2px solid #e5e7eb",
+              position: "relative",
+              overflow: "hidden",
+              textAlign: "left",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "4px",
+                background: "#66BB6A",
+                borderTopLeftRadius: 12,
+                borderTopRightRadius: 12,
+              }}
+            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: "8px",
+                marginBottom: "12px",
+              }}
+            >
+              <h3 style={{ margin: 0, fontSize: "1.1rem", fontWeight: 700, color: "#181A20" }}>
+                {tool.name}
+              </h3>
+              <span
+                style={{
+                  background: tool.ringBg,
+                  color: tool.ringColor,
+                  padding: "2px 8px",
+                  borderRadius: 4,
+                  fontWeight: 500,
+                  fontSize: "0.75rem",
+                }}
+              >
+                {tool.ring}
+              </span>
+            </div>
+            <p
+              style={{
+                color: "#64748b",
+                fontSize: "0.875rem",
+                lineHeight: "1.5",
+                marginBottom: "12px",
+                marginTop: 0,
+              }}
+            >
+              {tool.description}
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {tool.uses.map((use) => (
+                <span
+                  key={use}
+                  style={{
+                    background: "#f1f5f9",
+                    color: "#475569",
+                    padding: "3px 8px",
+                    borderRadius: 4,
+                    fontSize: "0.75rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  {use}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function TechRadarTabs() {
   const [selected, setSelected] = useState("2025");
   return (
@@ -4664,6 +4811,38 @@ export function App() {
                   >
                     Knowledge Vault
                   </a>
+                  <a
+                    href="#ai"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background: hash === "#ai" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                      textAlign: "center",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#ai") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#ai") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#ai") {
+                        e.target.style.background = "#d1d5db";
+                      }
+                    }}
+                  >
+                    AI @ Solidgate
+                  </a>
                 </div>
                 <a
                   href="https://solidgate.com/careers/"
@@ -4844,34 +5023,66 @@ export function App() {
               >
                 More About us
               </a>
+              <a
+                href="#ai"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: "#26282C",
+                  fontWeight: 400,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                  background: hash === "#ai" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                  textAlign: "center",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#ai") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#ai") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#ai") {
+                    e.target.style.background = "#d1d5db";
+                  }
+                }}
+              >
+                AI @ Solidgate
+              </a>
             </div>
           )}
         </div>
 
-        {/* Page Content */}
-        <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
-          {hash === "#interview" ? (
-            <InterviewGuide />
-          ) : hash === "#minds-behind-code" ? (
-            <TheTeam />
-          ) : hash === "#more-about-us" ? (
-            <MindsBehindTheCode />
-          ) : (
-            <>
-              {/* TechRadar Section ONLY */}
-              <section
-                style={{
-                  background: "#fff",
-                  padding: "2rem",
-                  textAlign: "center",
-                }}
-              >
-                <TechRadarTabs />
-                <div
-                  style={{
-                    padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
-                  }}
-                >
+              {/* Page Content */}
+      <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
+        {hash === "#interview" ? (
+          <InterviewGuide />
+        ) : hash === "#minds-behind-code" ? (
+          <TheTeam />
+        ) : hash === "#more-about-us" ? (
+          <MindsBehindTheCode />
+        ) : hash === "#ai" ? (
+          <AIUsageSection />
+        ) : (
+          <>
+            {/* TechRadar Section ONLY */}
+            <section style={{
+              "background": "#fff",
+              "padding": "2rem",
+              "textAlign": "center",
+
+            }}>
+              <TechRadarTabs />
+              <div style={{
+                padding: window.innerWidth < 768 ? "0 16px" : "0 40px",
+              }}>
                   <p>
                     <div
                       id="hold"
