@@ -414,6 +414,72 @@ const RADAR_CONFIG = {
       { label: "Claude", quadrant: 3, ring: 1, moved: 2 },
     ],
   },
+  2026: {
+    ...DEFAULT_RADAR_CONFIG,
+    date: getLastUpdated("2026-07-10"),
+    title: "Tech Radar 2026",
+    entries: [
+      // Languages & Frameworks
+      { label: "Go", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Kotlin", quadrant: 0, ring: 0, moved: 0 },
+      { label: "PHP", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Symfony", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Ktor", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Spring", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Echo v4", quadrant: 0, ring: 3, moved: -1 },
+      { label: "GORM", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Go PGX", quadrant: 0, ring: 0, moved: 1 },
+      { label: "React", quadrant: 0, ring: 0, moved: 0 },
+      { label: "TypeScript", quadrant: 0, ring: 0, moved: 0 },
+      { label: "JavaScript", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Hugo", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Astro", quadrant: 0, ring: 1, moved: 1 },
+      { label: "Redux", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Python", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Task", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Fastify", quadrant: 0, ring: 0, moved: 0 },
+      { label: "Shell", quadrant: 0, ring: 3, moved: -1 },
+      { label: "Make", quadrant: 0, ring: 3, moved: -1 },
+      // Platform & Infrastructure
+      { label: "Loki", quadrant: 1, ring: 3, moved: -1 },
+      { label: "GitLab", quadrant: 1, ring: 0, moved: 0 },
+      { label: "GitLab CI/CD", quadrant: 1, ring: 0, moved: 0 },
+      { label: "VictoriaMetrics", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Grafana", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Apache Airflow", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Docker", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Kubernetes", quadrant: 1, ring: 2, moved: 0 },
+      { label: "AWS", quadrant: 1, ring: 0, moved: 0 },
+      { label: "Terraform", quadrant: 1, ring: 0, moved: 0 },
+      // Data Management
+      { label: "RabbitMQ", quadrant: 2, ring: 3, moved: -1 },
+      { label: "SQS", quadrant: 2, ring: 0, moved: 0 },
+      { label: "PostgreSQL", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Redis", quadrant: 2, ring: 0, moved: 0 },
+      { label: "Kafka", quadrant: 2, ring: 0, moved: 0 },
+      { label: "ElasticSearch", quadrant: 2, ring: 3, moved: -1 },
+      { label: "OpenSearch", quadrant: 2, ring: 0, moved: 0 },
+      { label: "MongoDB", quadrant: 2, ring: 3, moved: -1 },
+      { label: "MySQL", quadrant: 2, ring: 3, moved: -1 },
+      // Techniques, Tools & AI
+      { label: "TBD", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Buf (gRPC)", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Buf (gRPC) Registry", quadrant: 3, ring: 0, moved: 0 },
+      { label: "golangci-lint", quadrant: 3, ring: 0, moved: 0 },
+      { label: "bufbuild/protovalidate", quadrant: 3, ring: 1, moved: 0 },
+      { label: "OpenAPI", quadrant: 3, ring: 3, moved: 0 },
+      { label: "Jira", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Confluence", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Blue-Green Deployment", quadrant: 3, ring: 0, moved: 0 },
+      { label: "GitOps", quadrant: 3, ring: 0, moved: 0 },
+      { label: "GitHub Copilot", quadrant: 3, ring: 3, moved: 0 },
+      { label: "OpenAI", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Gemini", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Cursor", quadrant: 3, ring: 0, moved: 1 },
+      { label: "CodeRabbit", quadrant: 3, ring: 0, moved: 0 },
+      { label: "Claude", quadrant: 3, ring: 0, moved: 1 },
+    ],
+  },
 };
 
 function LanguageBlock({ language, logo, requirements, questions }) {
@@ -4422,8 +4488,291 @@ function AIUsageSection() {
   );
 }
 
+const POSITION_STACK_STYLES = {
+  Go: { color: "#14416C", bg: "#CADCED" },
+  Kotlin: { color: "#E65100", bg: "#FFE0B2" },
+  "Node.js": { color: "#4A9F8A", bg: "#E4F0EC" },
+  Frontend: { color: "#4D1D74", bg: "#DBC0F0" },
+};
+
+const ENGINEERING_SCHOOL_POSITIONS = [
+  {
+    title: "Node.js Backend Engineer",
+    team: "Banking",
+    stack: "Node.js",
+    hook: "Move millions across currencies — build the IBANs merchants use instead of a local bank account.",
+    details:
+      "Treasury gives merchants their own EUR, USD, and GBP IBANs, fast SEPA and SWIFT transfers, competitive FX rates, and worldwide payouts — moving millions in merchant funds across markets every month, all from a single dashboard. The team owns everything from account provisioning to reconciliation with banking partners, so companies never have to open a local bank account just to operate globally.",
+  },
+  {
+    title: "Go Engineer",
+    team: "Billing & Taxes",
+    stack: "Go",
+    hook: "Run the subscription engine behind 10M+ active subscriptions — and the taxes on every single one.",
+    details:
+      "The team owns the subscription engine end-to-end for 10M+ active subscriptions — renewals, upgrades, downgrades, cancellations, and revenue recovery — plus the Tax sub-team, which keeps tax calculation and compliance correct across every market Solidgate operates in. Get this wrong and merchants lose LTV and churn; get it right and it compounds revenue quietly in the background.",
+  },
+  {
+    title: "Go Engineer",
+    team: "Antifraud",
+    stack: "Go",
+    hook: "Screen every one of our 20M+ monthly transactions for fraud — in real time, without slowing anyone down.",
+    details:
+      "Part of Risk Systems, this team builds the fraud-prevention engine that scores and screens all 20M+ transactions Solidgate processes every month in real time, combining rules and automated detection to block fraud before it happens. The hard part is doing that without adding friction for legitimate shoppers — a balance that directly protects merchant trust and Solidgate's own financial resilience.",
+  },
+  {
+    title: "Go Engineer",
+    team: "Dispute Representment",
+    stack: "Go",
+    hook: "Build the system that fights chargebacks — 96% of it running with zero human hands.",
+    details:
+      "Also part of Risk Systems, in the Dispute Management sub-team, this group builds the logic behind chargebacks and disputes — evidence handling, automated representment, and outcome tracking — with 96% of the representment process fully automated. Winning disputes recovers revenue merchants would otherwise lose, so this is one of the clearest places where engineering work shows up directly in a merchant's bottom line.",
+  },
+  {
+    title: "Go Engineer",
+    team: "APM (Alternative Payment Methods)",
+    stack: "Go",
+    hook: "Wire up 20+ alternative payment methods into one engine that decides how every transaction gets paid.",
+    details:
+      "Part of Payment Infra, the APMs sub-team integrates 20+ alternative payment methods — wallets, bank transfers, and local payment rails — into Solidgate's orchestration and routing layer. Every new method and every routing decision affects conversion, latency, and margin at a scale where milliseconds and basis points matter.",
+  },
+  {
+    title: "Frontend Engineer",
+    team: "APM",
+    stack: "Frontend",
+    hook: "Make 20+ alternative payment methods feel like one seamless checkout, everywhere they show up.",
+    details:
+      "Same Payment Infra / APMs mission as the Go role on this team, from the frontend side: the checkout and merchant-facing surfaces that expose our 20+ alternative payment methods have to stay fast and reliable as new methods and routing logic roll out underneath them.",
+  },
+  {
+    title: "Frontend Engineer",
+    team: "Finance Engineering",
+    stack: "Frontend",
+    hook: "Turn billions of calculations a month into dashboards Finance can actually trust.",
+    details:
+      "Finance Engineering automates work that would otherwise be manual for the Finance team — reconciliation, reporting, ledgers — while running billions of calculations every month on financial data. The team builds the internal tools and dashboards that let Finance operate at Solidgate's transaction volume without drowning in spreadsheets.",
+  },
+  {
+    title: "Kotlin Engineer",
+    team: "Core",
+    stack: "Kotlin",
+    hook: "Build the engine that authorizes and routes 20M+ card payments every single month.",
+    details:
+      "Core is the heart of Solidgate's payment router — the engine that decides how every one of the 20M+ card payments we process each month gets authorized, routed, and settled. It sits inside the Orchestration team, which builds intelligent routing across PSPs and payment methods for NA, EU, and LatAm — the layer where milliseconds, conversion, and merchant trust are won or lost.",
+  },
+];
+
+function PositionCard({ position, isExpanded, onToggle }) {
+  const stack = POSITION_STACK_STYLES[position.stack];
+
+  return (
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: 12,
+        padding: "14px 16px",
+        border: "2px solid #e5e7eb",
+        transition: "all 0.3s ease",
+        cursor: "pointer",
+        position: "relative",
+        overflow: "hidden",
+        textAlign: "left",
+        height: isExpanded ? "auto" : 190,
+        boxSizing: "border-box",
+      }}
+      onClick={onToggle}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "#66BB6A";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "#e5e7eb";
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "4px",
+          background: "#66BB6A",
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12,
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          gap: 8,
+          marginTop: "6px",
+        }}
+      >
+        <div style={{ minWidth: 0 }}>
+          <h3
+            style={{
+              margin: "0 0 2px",
+              fontSize: "1rem",
+              fontWeight: 700,
+              color: "#181A20",
+              lineHeight: "1.3",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {position.title}
+          </h3>
+          <p
+            style={{
+              color: "#8a94a6",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.02em",
+              lineHeight: "1.4",
+              margin: 0,
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {position.team} Team
+          </p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            flexShrink: 0,
+          }}
+        >
+          <span
+            style={{
+              background: stack.bg,
+              color: stack.color,
+              padding: "2px 8px",
+              borderRadius: 4,
+              fontWeight: 500,
+              fontSize: "0.75rem",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {position.stack}
+          </span>
+          <span
+            style={{
+              fontSize: "1.3rem",
+              color: "#66BB6A",
+              transition: "transform 0.3s ease",
+              transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+              fontWeight: "400",
+            }}
+          >
+            ›
+          </span>
+        </div>
+      </div>
+
+      <p
+        style={{
+          color: "#181A20",
+          fontSize: "0.875rem",
+          fontWeight: 500,
+          lineHeight: "1.45",
+          margin: "10px 0 0",
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
+        {position.hook}
+      </p>
+
+      {isExpanded && (
+        <div
+          style={{
+            marginTop: 12,
+            paddingTop: 12,
+            borderTop: "2px solid #f1f5f9",
+            animation: "slideDown 0.3s ease-out",
+          }}
+        >
+          <p
+            style={{
+              color: "#475569",
+              fontSize: "0.85rem",
+              lineHeight: "1.6",
+              margin: 0,
+            }}
+          >
+            {position.details}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function EngineeringSchoolSection() {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  return (
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 32px" }}>
+      <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+        <h2
+          style={{
+            fontSize: "1.6rem",
+            fontWeight: 700,
+            color: "#181A20",
+            marginBottom: "0.5rem",
+          }}
+        >
+          Software Engineering School — Open Positions
+        </h2>
+        <p
+          style={{
+            color: "#64748b",
+            fontSize: "1rem",
+            maxWidth: 640,
+            margin: "0 auto",
+            lineHeight: "1.6",
+          }}
+        >
+          We look for product engineers who know how to code and are ready to
+          become real T-shaped specialists.
+        </p>
+      </div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+          gap: "16px",
+          alignItems: "start",
+        }}
+      >
+        {ENGINEERING_SCHOOL_POSITIONS.map((position, index) => (
+          <PositionCard
+            key={`${position.title}-${position.team}-${index}`}
+            position={position}
+            isExpanded={expandedIndex === index}
+            onToggle={() =>
+              setExpandedIndex(expandedIndex === index ? null : index)
+            }
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function TechRadarTabs() {
-  const [selected, setSelected] = useState("2025");
+  const [selected, setSelected] = useState("2026");
   return (
     <div>
       <div
@@ -4523,6 +4872,45 @@ function TechRadarTabs() {
             }}
           >
             2025
+          </button>
+          <button
+            onClick={() => setSelected("2026")}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "none",
+              borderRadius: "4px",
+              background: selected === "2026" ? "#E1EFFC" : "#ffffff",
+              color: "#111827",
+              height: "calc(2rem - 2px)",
+              padding: "4px 16px",
+              fontSize: "14px",
+              lineHeight: "20px",
+              fontWeight: "500",
+              cursor: "pointer",
+              zIndex: selected === "2026" ? 1 : "auto",
+              outline: selected === "2026" ? "2px solid #0072E0" : "none",
+              flex: "1 1 auto",
+              minWidth: "80px",
+            }}
+            onMouseEnter={(e) => {
+              if (selected !== "2026") {
+                e.target.style.background = "#F5F5F5";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selected !== "2026") {
+                e.target.style.background = "#ffffff";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (selected !== "2026") {
+                e.target.style.background = "#d1d5db";
+              }
+            }}
+          >
+            2026
           </button>
         </div>
       </div>
@@ -4675,10 +5063,11 @@ export function App() {
                 <div
                   style={{
                     display: "flex",
-                    gap: "16px",
-                    position: "absolute",
-                    left: "50%",
-                    transform: "translateX(-50%)",
+                    flexWrap: "wrap",
+                    gap: "8px 16px",
+                    flex: "1 1 auto",
+                    justifyContent: "center",
+                    minWidth: 0,
                   }}
                 >
                   <a
@@ -4694,6 +5083,7 @@ export function App() {
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#home") {
@@ -4726,6 +5116,7 @@ export function App() {
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#interview") {
@@ -4759,6 +5150,7 @@ export function App() {
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#minds-behind-code") {
@@ -4792,6 +5184,7 @@ export function App() {
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#more-about-us") {
@@ -4824,6 +5217,7 @@ export function App() {
                       border: "2px solid transparent",
                       transition: "all 0.2s ease",
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                     }}
                     onMouseEnter={(e) => {
                       if (hash !== "#ai") {
@@ -4842,6 +5236,40 @@ export function App() {
                     }}
                   >
                     AI @ Solidgate
+                  </a>
+                  <a
+                    href="#se-school"
+                    style={{
+                      color: "#26282C",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      padding: "8px 16px",
+                      borderRadius: "8px",
+                      background:
+                        hash === "#se-school" ? "#E1EFFC" : "#ffffff",
+                      border: "2px solid transparent",
+                      transition: "all 0.2s ease",
+                      textAlign: "center",
+                      whiteSpace: "nowrap",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (hash !== "#se-school") {
+                        e.target.style.background = "#F5F5F5";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hash !== "#se-school") {
+                        e.target.style.background = "#ffffff";
+                      }
+                    }}
+                    onMouseDown={(e) => {
+                      if (hash !== "#se-school") {
+                        e.target.style.background = "#d1d5db";
+                      }
+                    }}
+                  >
+                    Engineering School
                   </a>
                 </div>
                 <a
@@ -5056,13 +5484,48 @@ export function App() {
               >
                 AI @ Solidgate
               </a>
+              <a
+                href="#se-school"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: "#26282C",
+                  fontWeight: 400,
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                  background: hash === "#se-school" ? "#E1EFFC" : "#ffffff",
+                  border: "2px solid transparent",
+                  transition: "all 0.2s ease",
+                  textAlign: "center",
+                }}
+                onMouseEnter={(e) => {
+                  if (hash !== "#se-school") {
+                    e.target.style.background = "#F5F5F5";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (hash !== "#se-school") {
+                    e.target.style.background = "#ffffff";
+                  }
+                }}
+                onMouseDown={(e) => {
+                  if (hash !== "#se-school") {
+                    e.target.style.background = "#d1d5db";
+                  }
+                }}
+              >
+                Engineering School
+              </a>
             </div>
           )}
         </div>
 
               {/* Page Content */}
       <div style={{ padding: window.innerWidth < 768 ? "16px" : "0px" }}>
-        {hash === "#interview" ? (
+        {hash === "#se-school" ? (
+          <EngineeringSchoolSection />
+        ) : hash === "#interview" ? (
           <InterviewGuide />
         ) : hash === "#minds-behind-code" ? (
           <TheTeam />
