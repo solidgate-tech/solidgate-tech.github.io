@@ -4530,11 +4530,11 @@ const ENGINEERING_SCHOOL_POSITIONS = [
   },
   {
     title: "Go Engineer",
-    team: "APM (Alternative Payment Methods)",
+    team: "Cards",
     stack: "Go",
-    hook: "Wire up 20+ alternative payment methods into one engine that decides how every transaction gets paid.",
+    hook: "Build the integrations that connect Solidgate to card networks and acquiring banks worldwide.",
     details:
-      "Part of Payment Infra, the APMs sub-team integrates 20+ alternative payment methods — wallets, bank transfers, and local payment rails — into Solidgate's orchestration and routing layer. Every new method and every routing decision affects conversion, latency, and margin at a scale where milliseconds and basis points matter.",
+      "The Cards team owns card payment integrations — connecting Solidgate to card networks, schemes, and acquiring banks so every card transaction can be authorized and processed reliably. Every new integration affects uptime, authorization rates, and how many markets and card types Solidgate can support.",
   },
   {
     title: "Frontend Engineer",
