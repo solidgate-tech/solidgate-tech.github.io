@@ -4493,6 +4493,7 @@ const POSITION_STACK_STYLES = {
   Kotlin: { color: "#E65100", bg: "#FFE0B2" },
   "Node.js": { color: "#4A9F8A", bg: "#E4F0EC" },
   Frontend: { color: "#4D1D74", bg: "#DBC0F0" },
+  ML: { color: "#00838F", bg: "#B2EBF2" },
 };
 
 const ENGINEERING_SCHOOL_POSITIONS = [
@@ -4559,6 +4560,14 @@ const ENGINEERING_SCHOOL_POSITIONS = [
     hook: "Build the engine that authorizes and routes 20M+ card payments every single month.",
     details:
       "Core is the heart of Solidgate's payment router — the engine that decides how every one of the 20M+ card payments we process each month gets authorized, routed, and settled. It sits inside the Orchestration team, which builds intelligent routing across PSPs and payment methods for NA, EU, and LatAm — the layer where milliseconds, conversion, and merchant trust are won or lost.",
+  },
+  {
+    title: "ML Engineer",
+    team: "Orchestration",
+    stack: "ML",
+    hook: "Train the models that decide, in milliseconds, which PSP gets each of our 20M+ monthly card payments.",
+    details:
+      "Orchestration builds intelligent payment routing across PSPs and payment methods for NA, EU, and LatAm — the layer where milliseconds, conversion, and merchant trust are won or lost. This role builds the machine learning models behind that routing — feature pipelines, training, and online scoring — working alongside the Go engineers who run the router in production, so routing decisions keep getting sharper as PSP performance and fraud patterns shift.",
   },
 ];
 
