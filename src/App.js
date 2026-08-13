@@ -1853,6 +1853,7 @@ function InterviewGuide() {
   const [fireworkPosition, setFireworkPosition] = useState(null);
   const [showFirework, setShowFirework] = useState(false);
   const [showTechInterview, setShowTechInterview] = useState(false);
+  const [showAIScreen, setShowAIScreen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
@@ -2076,7 +2077,7 @@ function InterviewGuide() {
                     margin: 0,
                   }}
                 >
-                  💻 Tech Screen (React live-coding) (30 min)
+                  🤖 AI Fluency Screening (~1 hour)
                 </h3>
                 <span
                   style={{
@@ -2089,14 +2090,222 @@ function InterviewGuide() {
                     border: "1px solid #FFE0B2",
                   }}
                 >
-                  Frontend Only
+                  Frontend / Full-Stack Only
                 </span>
               </div>
-              <p style={{ color: "#444", fontSize: "0.95rem", margin: 0 }}>
-                A real-time coding session focused on React fundamentals and
-                problem-solving. Before the technical interview, Front-End
-                Engineer candidates go through this additional step.
+              <p
+                style={{ color: "#444", fontSize: "0.95rem", marginBottom: 12 }}
+              >
+                A browser-based VS Code session with Claude Code available
+                throughout. You'll explore a small TypeScript/Node.js
+                codebase, add a focused feature, then implement a bigger one
+                from a deliberately concise spec. Before the technical
+                interview, Front-End and Full-Stack Engineer candidates go
+                through this additional step.
               </p>
+              <p
+                style={{ color: "#444", fontSize: "0.95rem", marginBottom: 16 }}
+              >
+                We're not grading whether you finish — we're watching how you
+                direct AI, verify its output, and reason about trade-offs.
+              </p>
+
+              <button
+                onClick={() => setShowAIScreen(!showAIScreen)}
+                style={{
+                  padding: "10px 20px",
+                  border: "2px solid #FF9800",
+                  background: showAIScreen ? "#FFF4E6" : "transparent",
+                  color: "#E65100",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  cursor: "pointer",
+                  borderRadius: "6px",
+                  transition: "all 0.2s ease",
+                  width: "100%",
+                  textAlign: "left",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+                onMouseEnter={(e) => {
+                  if (!showAIScreen) {
+                    e.currentTarget.style.background = "#FFF9F0";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!showAIScreen) {
+                    e.currentTarget.style.background = "transparent";
+                  }
+                }}
+              >
+                <span>{showAIScreen ? "▼" : "▶"} AI Fluency Screening Plan</span>
+                <span style={{ fontSize: "0.85rem", fontWeight: 400 }}>
+                  {showAIScreen ? "Hide details" : "Show details"}
+                </span>
+              </button>
+              {showAIScreen && (
+                <div
+                  style={{
+                    marginTop: 20,
+                    padding: 20,
+                    background: "#F9FAFB",
+                    borderRadius: "8px",
+                    border: "1px solid #e2e8f0",
+                  }}
+                >
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      Preparation
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      Check out{" "}
+                      <a
+                        href="https://solidgate.com/"
+                        style={{ textDecoration: "none", color: "#66BB6A" }}
+                      >
+                        solidgate.com
+                      </a>{" "}
+                      💚 and get to know what we build. You don't need domain
+                      knowledge going in — what matters is how you think,
+                      communicate, and use AI tools like Claude.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      1. 👋 Intro (5 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      Quick introductions, then a chance to ask any questions
+                      upfront — about the role, the team, or how we work.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      2. 🔍 Warm-Up — Explore the Environment (5 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      A browser-based VS Code environment, pre-configured
+                      with Node.js, TypeScript, and Claude Code CLI. Read the
+                      spec, run the tests, ask clarifying questions.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      3. 🔧 Task 1 — Small Feature (15 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      A small, well-scoped feature on a pre-built TypeScript/
+                      Node.js app. Get oriented, make a focused change, verify
+                      it works in the running app — not just that the code
+                      looks right.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      4. ✨ Task 2 — Feature Implementation (20 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      A bigger feature from a spec that's intentionally
+                      concise. Treat it like a real ticket — ask clarifying
+                      questions, read the code you're building on, consider
+                      edge cases, verify your work.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      5. ✅ Wrap-Up & Next Steps (5 min)
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      A short debrief and what's next. Time to ask us
+                      anything — about the role, the team, or the engineering
+                      culture at Solidgate.
+                    </p>
+                  </div>
+                  <div style={{ marginBottom: "25px" }}>
+                    <h4
+                      style={{
+                        color: "#000000",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      What we're looking for
+                    </h4>
+                    <p style={{ color: "#444", fontSize: "0.95rem" }}>
+                      Not whether you finish everything — how you approach
+                      problems and collaborate with AI:
+                    </p>
+                    <ul
+                      style={{
+                        color: "#444",
+                        fontSize: "0.95rem",
+                        marginLeft: 20,
+                      }}
+                    >
+                      <li>
+                        <strong>Requirements Discovery</strong> — explore
+                        before touching code; ask about what's left open
+                        rather than assuming
+                      </li>
+                      <li>
+                        <strong>AI Direction</strong> — give Claude specific,
+                        bounded tasks; skip it when reading the code yourself
+                        is faster
+                      </li>
+                      <li>
+                        <strong>Verification & Debugging</strong> — read
+                        AI-generated code before applying it; dig for root
+                        cause, don't just patch symptoms
+                      </li>
+                      <li>
+                        <strong>Judgment & Trade-offs</strong> — make
+                        reasonable calls on scope and design, and say why
+                      </li>
+                      <li>
+                        <strong>Communication</strong> — think out loud,
+                        treat the interviewer as a pairing partner
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
