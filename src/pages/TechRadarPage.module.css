@@ -2,6 +2,10 @@
   padding-top: clamp(32px, 5vw, 72px);
 }
 
+.research {
+  margin-bottom: clamp(48px, 6vw, 96px);
+}
+
 .stage {
   max-width: 1450px;
   margin: 0 auto;

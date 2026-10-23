@@ -162,7 +162,7 @@
   width: 100%;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1179px) {
   .nav {
     display: none;
   }
@@ -177,7 +177,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1180px) {
   .mobileMenu {
     display: none;
   }

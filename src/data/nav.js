@@ -3,12 +3,11 @@ export const NAV_ITEMS = [
   { hash: "#interview", label: "Interview Guide" },
   { hash: "#minds-behind-code", label: "Minds Behind the Code" },
   { hash: "#more-about-us", label: "Knowledge Vault" },
-  { hash: "#ai", label: "AI @ Solidgate" },
-  { hash: "#se-school", label: "Engineering School" },
+  { hash: "#ai", label: "AI at Solidgate" },
 ];
 
 export const HOME_HASH = "#home";
 
 export const SOLIDGATE_URL = "https://solidgate.com";
 
-export const HIRING = { label: "We're hiring!", href: "https://solidgate.com/careers/" };
+export const HIRING = { label: "We're hiring!", href: "https://solidgate.com/careers/engineers/" };

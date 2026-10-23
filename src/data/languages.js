@@ -8,7 +8,7 @@ export const LANGUAGES = {
   backend: [
     {
       name: "Golang",
-      logo: "/covers/go-logo.svg",
+      logo: "/covers/mono/go.svg",
       requirements: [
         "Strong understanding of Go concurrency patterns (goroutines, channels)",
         "Experience with Go modules and dependency management",
@@ -34,7 +34,7 @@ export const LANGUAGES = {
     },
     {
       name: "Kotlin",
-      logo: "/covers/kotlin-logo.svg",
+      logo: "/covers/mono/kotlin.svg",
       requirements: [
         "Proficiency in Kotlin syntax and language features",
         "Experience with Spring Boot and Kotlin integration",
@@ -61,7 +61,7 @@ export const LANGUAGES = {
     },
     {
       name: "Node.js",
-      logo: "/covers/nodejs-logo.svg",
+      logo: "/covers/mono/nodejs.svg",
       requirements: [
         "Strong JavaScript/TypeScript fundamentals",
         "Experience with Fastify framework",
@@ -86,7 +86,7 @@ export const LANGUAGES = {
     },
     {
       name: "Python",
-      logo: "/covers/python-logo.svg",
+      logo: "/covers/mono/python.svg",
       requirements: [
         "Strong Python fundamentals and best practices",
         "Experience with simple web frameworks (Flask, FastAPI)",
@@ -115,7 +115,7 @@ export const LANGUAGES = {
   frontend: [
     {
       name: "JavaScript",
-      logo: "/covers/js-logo.svg",
+      logo: "/covers/mono/js.svg",
       requirements: [
         "Strong TypeScript & JavaScript fundamentals",
         "Solid understanding of browser APIs, rendering pipeline & networking",
@@ -139,7 +139,7 @@ export const LANGUAGES = {
     },
     {
       name: "TypeScript",
-      logo: "/covers/ts-logo.svg",
+      logo: "/covers/mono/ts.svg",
       requirements: [
         "Core concepts: Primitive types, interfaces, structural typing, utility types, generics",
         "Type manipulation: Conditional types, mapped types, template literals, infer, function overloads",
@@ -165,7 +165,7 @@ export const LANGUAGES = {
   infrastructure: [
     {
       name: "AWS Cloud",
-      logo: "/covers/aws-logo.svg",
+      logo: "/covers/mono/aws.svg",
       requirements: [
         "Strong knowledge of core AWS Services (networking, compute, storage, databases, monitoring)",
         "Experience in building fault-tolerant and scalable systems",
@@ -188,7 +188,7 @@ export const LANGUAGES = {
     },
     {
       name: "Infrastructure as a Code",
-      logo: "/covers/terraform-logo.svg",
+      logo: "/covers/mono/terraform.svg",
       requirements: [
         "Proficiency in Terraform syntax and language features",
         "Experience in building complex multi-account/env infrastructures using IaaC",
@@ -215,7 +215,7 @@ export const LANGUAGES = {
     },
     {
       name: "DBA",
-      logo: "/covers/postgres-logo.svg",
+      logo: "/covers/mono/postgres.svg",
       requirements: [
         "Understanding of SQL syntax and principles",
         "Knowledge of how Postgres operates, administration and clustering",
@@ -243,7 +243,7 @@ export const LANGUAGES = {
     },
     {
       name: "Observability",
-      logo: "/covers/observability-logo.png",
+      logo: "/covers/mono/observability.svg",
       requirements: [
         "General understanding of how monitoring and alerting works",
         "Proficiency in building durable observability systems",
@@ -271,7 +271,7 @@ export const LANGUAGES = {
     },
     {
       name: "SDLC",
-      logo: "/covers/sdlc-logo.svg",
+      logo: "/covers/mono/sdlc.svg",
       requirements: [
         "Proficiency in designing and operating end-to-end CI/CD",
         "Understanding of release management and deployment hygiene",
@@ -291,7 +291,7 @@ export const LANGUAGES = {
     },
     {
       name: "Kubernetes",
-      logo: "/covers/kubernetes-logo.svg",
+      logo: "/covers/mono/kubernetes.svg",
       requirements: [
         "Understanding of Kubernetes core concepts (pods, services, deployments, namespaces)",
         "Experience with container orchestration and workload management",
@@ -320,7 +320,7 @@ export const LANGUAGES = {
   "data-engineering": [
     {
       name: "Compute Engines",
-      logo: "/covers/aws-logo.svg",
+      logo: "/covers/mono/aws.svg",
       requirements: [
         "Experience in designing and optimizing data processing pipelines.",
         "Understanding of how compute engines (e.g., Spark, Trino) execute queries under the hood: decompression, shuffle, spilling, broadcasting, etc.",
@@ -343,7 +343,7 @@ export const LANGUAGES = {
     },
     {
       name: "Data Modeling",
-      logo: "/covers/postgres-logo.svg",
+      logo: "/covers/mono/postgres.svg",
       requirements: [
         "Knowledge of Slowly Changing Dimensions (SCD) types and how to implement them in ELT pipelines.",
         "Understanding of CDC flows — update patterns, ordering, deduplication, late data handling, and schema evolution.",
@@ -367,7 +367,7 @@ export const LANGUAGES = {
     },
     {
       name: "Python",
-      logo: "/covers/python-logo.svg",
+      logo: "/covers/mono/python.svg",
       requirements: [
         "Proficiency in resolving data processing/transferring tasks using native language tooling and Pandas/Polars.",
         "Ability to write maintainable code using typing, testing, and other development best practices.",
@@ -389,7 +389,7 @@ export const LANGUAGES = {
     },
     {
       name: "Data Pipelines",
-      logo: "/covers/aws-logo.svg",
+      logo: "/covers/mono/aws.svg",
       requirements: [
         "Experience in building multi-stage data pipelines using orchestration and compute engines",
         "Knowledge of batch/streaming processing practices",

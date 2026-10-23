@@ -5,7 +5,7 @@ export const ABOUT_PARAGRAPHS = [
   [
     {
       text:
-        "Solidgate is helping thousands of businesses to accept payments online. We enable businesses to accept payments globally through a unified API, supporting multiple payment methods, currencies, and compliance requirements. Our client base encompasses various industries and countries, working with both local merchants and multinational corporations. ",
+        "Solidgate is helping hundreds of businesses to accept payments online. We enable businesses to accept payments globally through a unified API, supporting multiple payment methods, currencies, and compliance requirements. Our client base encompasses various industries and countries, working with both local merchants and multinational corporations. ",
       highlight: false,
     },
     {
@@ -46,3 +46,5 @@ export const LOVE_TAGLINE = {
   lines: ["Built by engineers", "for engineers with love!"],
   emoji: "🖤",
 };
+
+export const COPYRIGHT_HOLDER = "Solidgate";

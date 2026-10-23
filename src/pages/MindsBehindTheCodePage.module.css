@@ -88,12 +88,20 @@
   font-style: italic;
 }
 
-.streamCard {
-  display: flex;
-  flex-direction: column;
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 
-.streamDescription {
+.teamCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.teamDescription {
+  max-width: 320px;
   margin-top: 28px;
   font-size: 18px;
   font-weight: 300;
@@ -103,12 +111,12 @@
 .points {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   margin: 24px 0 0;
   padding: 0;
   list-style: none;
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .points li {
@@ -128,10 +136,10 @@
 }
 
 .quote {
-  max-width: 340px;
+  max-width: 290px;
   margin-top: 28px;
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .teams {
@@ -139,18 +147,20 @@
   padding-top: 40px;
 }
 
-.teamsLabel {
-  margin-bottom: 12px;
-  color: var(--text-on-light-muted);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+@media (max-width: 1023px) {
+  .teamGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 767px) {
-  .grid {
+  .grid,
+  .teamGrid {
     grid-template-columns: 1fr;
+  }
+
+  .teamCard {
+    min-height: 0;
   }
 
   .valueCard {

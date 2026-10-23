@@ -53,6 +53,22 @@
   line-height: 1.4;
 }
 
+.characteristics li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.characteristics li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-on-light);
+}
+
 @media (max-width: 767px) {
   .summary {
     grid-template-columns: 1fr;
@@ -61,10 +77,5 @@
 
   .header {
     gap: 12px;
-  }
-
-  .characteristics {
-    padding-left: 18px;
-    list-style: disc;
   }
 }

@@ -4,7 +4,6 @@ import { Chip } from "../ui/Chip";
 import { CtaButton } from "../ui/CtaButton";
 import { SectionHeader } from "../ui/SectionHeader";
 import { HIRING_SECTION, HIRING_STEPS } from "../../data/hiringSteps";
-import { cx } from "../../utils/cx";
 import styles from "./HiringProcess.module.css";
 
 function PlanBlock({ block }) {
@@ -65,7 +64,7 @@ function HiringStep({ step }) {
 
   return (
     <li className={styles.step}>
-      <span className={cx(styles.number, styles[step.accent])} aria-hidden="true">
+      <span className={styles.number} aria-hidden="true">
         {step.number}
       </span>
       <Card className={styles.card}>

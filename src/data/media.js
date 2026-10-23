@@ -52,7 +52,7 @@ export const MEDIA = [
     tags: ["DOU", "Blog"],
   },
   {
-    title: "Why frontenders need mutexes: the Web Locks API",
+    title: "Why frontend engineers need mutexes: the Web Locks API",
     author: "Sviatoslav Holovin, Frontend Engineer",
     href: "https://dou.ua/forums/topic/57529/",
     tags: ["DOU", "Blog"],

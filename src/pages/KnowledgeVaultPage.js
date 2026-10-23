@@ -1,10 +1,8 @@
-import { AudioPlayer } from "../components/ui/AudioPlayer";
 import { Card } from "../components/ui/Card";
 import { Chip, ChipList } from "../components/ui/Chip";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { BOOKS, BOOKS_SECTION } from "../data/books";
 import { MEDIA, MEDIA_SECTION } from "../data/media";
-import { TESTIMONIALS, TESTIMONIALS_SECTION } from "../data/testimonials";
 import styles from "./KnowledgeVaultPage.module.css";
 
 function Media() {
@@ -32,46 +30,6 @@ function Media() {
               ))}
             </ChipList>
           </Card>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  return (
-    <section className="section container" aria-labelledby="testimonials-title">
-      <SectionHeader id="testimonials-title" title={TESTIMONIALS_SECTION.title} />
-      <div className={styles.testimonials}>
-        {TESTIMONIALS.map((person) => (
-          <article key={person.fullName} className={styles.testimonial}>
-            <img src={person.photoUrl} alt={`${person.fullName} avatar`} className={styles.photo} />
-            <div className={styles.testimonialBody}>
-              <p className={styles.testimonialText}>{person.description}</p>
-              <div className={styles.clips}>
-                {person.clips.map((clip) => (
-                  <div key={clip.src} className={styles.clip}>
-                    <p className={styles.clipQuestion}>{clip.question}</p>
-                    <AudioPlayer src={clip.src} label={clip.question} />
-                  </div>
-                ))}
-              </div>
-              <p className={styles.person}>
-                {person.name}, {person.role}
-                {person.linkedinUrl && (
-                  <a
-                    href={person.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.linkedin}
-                    aria-label={`${person.fullName} on LinkedIn`}
-                  >
-                    LinkedIn
-                  </a>
-                )}
-              </p>
-            </div>
-          </article>
         ))}
       </div>
     </section>
@@ -126,7 +84,6 @@ export function KnowledgeVaultPage() {
   return (
     <>
       <Media />
-      <Testimonials />
       <Books />
     </>
   );

@@ -54,10 +54,22 @@ export const BOOKS = [
     cover: "/covers/sre-by-google.jpg",
   },
   {
+    title: "The Site Reliability Workbook",
+    authors: "Google",
+    description: "Practical ways to implement SRE — a companion to the SRE book",
+    cover: "/covers/the-site-reliability-workbook.jpg",
+  },
+  {
     title: "TypeScript Cookbook",
     authors: "Stefan Baumgartner",
     description:
       "Comprehensive guide to TypeScript patterns, type manipulation, and advanced techniques",
     cover: "/covers/ts-cookbook.jpg",
+  },
+  {
+    title: "Extreme Ownership",
+    authors: "Jocko Willink & Leif Babin",
+    description: "Leadership lessons from Navy SEALs on taking full ownership of outcomes",
+    cover: "/covers/extreme-ownership.jpg",
   },
 ];

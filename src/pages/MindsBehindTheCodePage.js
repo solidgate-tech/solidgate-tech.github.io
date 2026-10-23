@@ -1,7 +1,7 @@
 import { Card } from "../components/ui/Card";
 import { Chip, ChipList } from "../components/ui/Chip";
 import { SectionHeader } from "../components/ui/SectionHeader";
-import { TEAM_STREAMS, TEAMS_SECTION } from "../data/teams";
+import { TEAM_GROUPS, TEAMS_SECTION } from "../data/teams";
 import { ENGINEERING_VALUES, RELIABILITY_VALUE, VALUES_SECTION } from "../data/values";
 import styles from "./MindsBehindTheCodePage.module.css";
 
@@ -47,27 +47,26 @@ function EngineeringValues() {
 function TeamStructure() {
   return (
     <section className="section container" aria-labelledby="teams-title">
-      <SectionHeader id="teams-title" title={TEAMS_SECTION.title} />
-      <div className={styles.grid}>
-        {TEAM_STREAMS.map((stream) => (
-          <Card key={stream.title} as="article" className={styles.streamCard}>
-            <h3 className={styles.cardTitle}>{stream.title}</h3>
-            <p className={styles.streamDescription}>{stream.description}</p>
-            <ul className={styles.points}>
-              {stream.points.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-            <p className={styles.quote}>{stream.quote}</p>
-            {stream.teams.length > 0 && (
-              <div className={styles.teams}>
-                <p className={styles.teamsLabel}>{TEAMS_SECTION.teamsLabel}</p>
-                <ChipList>
-                  {stream.teams.map((team) => (
-                    <Chip key={team}>{team}</Chip>
-                  ))}
-                </ChipList>
-              </div>
+      <SectionHeader id="teams-title" title={TEAMS_SECTION.title} subtitle={TEAMS_SECTION.subtitle} />
+      <div className={styles.teamGrid}>
+        {TEAM_GROUPS.map((group) => (
+          <Card key={group.title} as="article" className={styles.teamCard}>
+            <h3 className={styles.cardTitle}>{group.title}</h3>
+            {group.description && <p className={styles.teamDescription}>{group.description}</p>}
+            {group.points && (
+              <ul className={styles.points}>
+                {group.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            )}
+            {group.quote && <p className={styles.quote}>{group.quote}</p>}
+            {group.teams.length > 0 && (
+              <ChipList className={styles.teams}>
+                {group.teams.map((team) => (
+                  <Chip key={team}>{team}</Chip>
+                ))}
+              </ChipList>
             )}
           </Card>
         ))}

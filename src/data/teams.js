@@ -1,8 +1,15 @@
-export const TEAMS_SECTION = { title: "Team Structure", teamsLabel: "Teams" };
+export const TEAMS_SECTION = {
+  title: "Team Structure",
+  subtitle: [
+    "We move fast. We stay transparent.",
+    "We evaluate impact and thinking — not buzzwords.",
+  ],
+};
 
-export const TEAM_STREAMS = [
+// description, points and quote are optional; teams render as chips
+export const TEAM_GROUPS = [
   {
-    title: "Platform Stream",
+    title: "Product Platform",
     description: "Builds the core platform that every product team runs on.",
     points: [
       "Standardised service patterns, frameworks, and shared primitives",
@@ -11,10 +18,10 @@ export const TEAM_STREAMS = [
     ],
     quote:
       "Platform sets the baseline and architectural direction, so everything we build compounds.",
-    teams: ["Frontend Platform", "Backend Platform", "Data Platform"],
+    teams: ["Platform", "Web Platform", "Platform Analytics", "Data Engineering"],
   },
   {
-    title: "Payments Stream",
+    title: "Payment Infra",
     description: "Builds the core product — the payment engine.",
     points: [
       "Orchestration logic",
@@ -24,10 +31,11 @@ export const TEAM_STREAMS = [
     ],
     quote:
       "This is where we win or lose milliseconds, conversion, margin and scale.",
-    teams: ["Core", "Orchestration", "Integrations", "Connectivity"],
+    teams: ["Connectors", "APMs", "Reconciliation"],
   },
   {
     title: "Infra Stream",
+    // The mockup shows "Dispute Management" here, which is a Risk Systems team
     description: "Keeps everything fast, reliable and shippable.",
     points: [
       "Infra, CI/CD, runtime performance, cost optimisation",
@@ -38,24 +46,55 @@ export const TEAM_STREAMS = [
     teams: [],
   },
   {
-    title: "Value Added Services",
+    title: "Orchestration",
     description:
-      "Build products that extend revenue and create a competitive edge.",
+      "Builds the payment router — the brain behind every transaction decision.",
     points: [
-      "Risk & fraud systems",
-      "Treasury",
-      "Finance Engineering",
-      "Billing/Subscriptions",
-      "Launch team accelerating merchant go-live",
+      "Intelligent routing logic across PSPs and payment methods",
+      "Orchestration services for NA, EU, and LatAm markets",
+      "Faster feature delivery than any competitor on the market",
+      "Simple integration, powerful control",
     ],
     quote:
-      'This stream turns "payments processor" into "financial infrastructure".',
-    teams: [
-      "Risk Systems",
-      "Banking",
-      "Finance Engineering",
-      "Billing",
-      "Launch",
+      "This is where we win or lose conversion, margin, and merchant trust.",
+    teams: ["Connectivity", "Routing", "Core"],
+  },
+  {
+    title: "Billing",
+    description:
+      "Builds the subscription engine — the backbone of recurring revenue.",
+    points: [
+      "Full subscription lifecycle management",
+      "Renewals, upgrades, pauses, and cancellations",
+      "Retention and revenue recovery logic",
+      "Billing evolution driven by market and merchant feedback",
     ],
+    quote:
+      "This is where we win or lose LTV, churn, and long-term merchant growth.",
+    teams: ["Tax", "Subscriptions"],
+  },
+  {
+    title: "Risk Systems",
+    description:
+      "Builds the fraud prevention engine — the line between safe payments and financial exposure.",
+    points: [
+      "Advanced fraud detection and risk analysis",
+      "Chargeback management and dispute logic",
+      "Real-time alerting and automated prevention",
+      "Payment integrity at scale",
+    ],
+    quote:
+      "This is where we win or lose merchant trust, transaction safety, and financial resilience.",
+    teams: ["Launch", "Dispute Management"],
+  },
+  {
+    title: "Product Operations",
+    teams: ["Product Design", "Tech Writers"],
+  },
+  {
+    title: "Standalone Teams",
+    description:
+      "Cross-cutting functions that operate independently across every group.",
+    teams: ["Treasury", "Finance Engineering", "Information Security"],
   },
 ];

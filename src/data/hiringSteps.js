@@ -222,7 +222,6 @@ export const HIRING_STEPS = [
     title: "Recruiter Screening",
     duration: "30–45 min",
     tag: null,
-    accent: "default",
     body: [
       "First alignment.",
       "Talent team learns your story, expectations, goals, motivation + comp range.",
@@ -235,7 +234,6 @@ export const HIRING_STEPS = [
     title: "AI Fluency Screening",
     duration: "~60 min",
     tag: "Frontend / Full-Stack Only",
-    accent: "amber",
     body: [
       "A browser-based VS Code session with Claude Code available throughout. You'll explore a small TypeScript/Node.js codebase, add a focused feature, then implement a bigger one from a deliberately concise spec. Before the technical interview, Front-End and Full-Stack Engineer candidates go through this additional step.",
       "We're not grading whether you finish — we're watching how you direct AI, verify its output, and reason about trade-offs.",
@@ -247,7 +245,6 @@ export const HIRING_STEPS = [
     title: "Technical Interview",
     duration: "~90 min",
     tag: null,
-    accent: "default",
     body: [
       "Deep dive into how you engineer, reason and make decisions.",
       "Architecture thinking, trade-offs, problem solving, clarity of thought.",
@@ -259,7 +256,6 @@ export const HIRING_STEPS = [
     title: "Soft Skills Interview",
     duration: "~90 min",
     tag: null,
-    accent: "default",
     body: [
       "We evaluate leadership behaviors, ownership, communication, feedback culture, and collaboration patterns.",
       "Usually with the Head of Engineering or the Engineering Managers.",
@@ -271,7 +267,6 @@ export const HIRING_STEPS = [
     title: "Bar-Raising Interview",
     duration: "60–90 min",
     tag: null,
-    accent: "default",
     body: [
       "Independent calibration. We check if you increase our bar — not just match it.",
       "Focus on long-term potential and cultural contribution. Held by the CEO.",
@@ -283,7 +278,6 @@ export const HIRING_STEPS = [
     title: "Final Alignment Call",
     duration: "15 min",
     tag: null,
-    accent: "default",
     body: [
       "We align on offer details, expectations, timeline and final signals from both sides.",
     ],
@@ -294,7 +288,6 @@ export const HIRING_STEPS = [
     title: "Offer Signed",
     duration: null,
     tag: null,
-    accent: "lime",
     body: [
       "And you join one of the strongest fintech engineering teams in the world.",
     ],

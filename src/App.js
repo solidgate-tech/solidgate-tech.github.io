@@ -3,7 +3,6 @@ import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
 import { HOME_HASH } from "./data/nav";
 import { AIPage } from "./pages/AIPage";
-import { EngineeringSchoolPage } from "./pages/EngineeringSchoolPage";
 import { InterviewGuidePage } from "./pages/InterviewGuidePage";
 import { KnowledgeVaultPage } from "./pages/KnowledgeVaultPage";
 import { MindsBehindTheCodePage } from "./pages/MindsBehindTheCodePage";
@@ -16,7 +15,6 @@ const PAGES = {
   "#minds-behind-code": MindsBehindTheCodePage,
   "#more-about-us": KnowledgeVaultPage,
   "#ai": AIPage,
-  "#se-school": EngineeringSchoolPage,
 };
 
 const currentHash = () => (PAGES[window.location.hash] ? window.location.hash : HOME_HASH);

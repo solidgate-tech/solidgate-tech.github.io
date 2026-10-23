@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ResearchBanner } from "../components/ResearchBanner";
 import { TechRadar } from "../components/radar/TechRadar";
 import { PillTabs } from "../components/ui/PillTabs";
 import {
@@ -20,6 +21,8 @@ export function TechRadarPage() {
 
   return (
     <div className={styles.page}>
+      <ResearchBanner className={`container ${styles.research}`} />
+
       <div className={styles.stage}>
         <h1 className={styles.title}>
           {titleWords.join(" ")}

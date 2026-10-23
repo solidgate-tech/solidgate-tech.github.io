@@ -32,71 +32,6 @@
   padding-top: 40px;
 }
 
-/* Testimonials */
-.testimonials {
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
-}
-
-.testimonial {
-  display: grid;
-  grid-template-columns: minmax(0, 384px) minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 80px);
-  align-items: center;
-}
-
-.photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 384 / 420;
-  border-radius: 16px;
-  object-fit: cover;
-}
-
-.testimonialBody {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.testimonialText {
-  max-width: 700px;
-  font-size: clamp(20px, 2vw, 28px);
-  line-height: 1.2;
-}
-
-.clips {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.clipQuestion {
-  margin-bottom: 14px;
-  color: var(--text-muted);
-  font-size: 15px;
-}
-
-.person {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 24px;
-  font-size: clamp(20px, 2vw, 28px);
-}
-
-.linkedin {
-  color: var(--text-muted);
-  font-size: 15px;
-  text-decoration: none;
-}
-
-.linkedin:hover {
-  color: var(--text);
-  text-decoration: underline;
-}
-
 /* Books */
 .booksGrid {
   gap: 32px;
@@ -167,14 +102,6 @@
 
   .mediaCard {
     min-height: 0;
-  }
-
-  .testimonial {
-    grid-template-columns: 1fr;
-  }
-
-  .photo {
-    max-width: 320px;
   }
 
   .bookCard {

@@ -28,14 +28,6 @@
   font-weight: 700;
 }
 
-.amber {
-  color: var(--amber);
-}
-
-.lime {
-  color: var(--accent);
-}
-
 .card {
   min-height: 160px;
   padding: 28px 26px 26px;

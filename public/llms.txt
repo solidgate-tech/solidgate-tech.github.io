@@ -1,10 +1,10 @@
 # Solidgate Tech Radar
 
-> Solidgate Tech Radar is a public-facing website showcasing Solidgate's technology stack, engineering culture, hiring process, and recommended resources. The site features interactive Tech Radar visualizations (2023, 2025 and 2026), engineer testimonials, book recommendations, and comprehensive information about working at Solidgate as a payment processing and orchestration platform.
+> Solidgate Tech Radar is a public-facing website showcasing Solidgate's technology stack, engineering culture, hiring process, and recommended resources. The site features interactive Tech Radar visualizations (2023, 2025 and 2026), engineering talks and articles, book recommendations, and comprehensive information about working at Solidgate as a payment processing and orchestration platform.
 
 This site provides insights into Solidgate's engineering practices, technology choices, and company culture. It serves as both a resource for potential candidates and a public record of our technical decisions and recommendations.
 
-Solidgate is a payment processing and orchestration platform helping thousands of businesses accept payments online globally. We enable businesses to accept payments through a unified API, supporting multiple payment methods, currencies, and compliance requirements. At Solidgate, we work with engineers who design systems, not just maintain them. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
+Solidgate is a payment processing and orchestration platform helping hundreds of businesses accept payments online globally. We enable businesses to accept payments through a unified API, supporting multiple payment methods, currencies, and compliance requirements. At Solidgate, we work with engineers who design systems, not just maintain them. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
 
 ## Main Site
 
@@ -15,9 +15,8 @@ Solidgate is a payment processing and orchestration platform helping thousands o
 - **Tech Radar**: Interactive radars for 2023, 2025 and 2026
 - **Interview Guide**: Hiring process, career levels, and interview questions by role
 - **Minds Behind the Code**: Engineering values and team structure
-- **Knowledge Vault**: Talks and articles, engineer testimonials, and recommended books
-- **AI @ Solidgate**: AI tools we use day to day — CodeRabbit, OpenAI, Gemini, Cursor, and Claude, all at Adopt on the 2026 Tech Radar
-- **Engineering School**: Open positions in Solidgate's Software Engineering School
+- **Knowledge Vault**: Talks, articles and recommended books
+- **AI at Solidgate**: How Solidgate became AI-first — the AI tools we use (CodeRabbit, OpenAI, Gemini, Cursor, Claude — all at Adopt on the 2026 Tech Radar), 10+ in-house agents including Veritas and Ward, our AI journey since 2024 and the guardrails that keep it compliant
 
 ## Company Information
 
@@ -57,14 +56,6 @@ The site includes detailed information about:
 5. Bar-raising interview with the CEO
 6. Final alignment call
 
-## Testimonials
-
-Audio testimonials from Solidgate engineers sharing:
-- Why they chose Solidgate
-- Technical interview experiences
-- Engineering culture insights
-- Team contributions and impact
-
 ## Recommended Books
 
 The site features a curated list of engineering books covering:
@@ -72,6 +63,7 @@ The site features a curated list of engineering books covering:
 - DevOps and SRE principles
 - System design and data-intensive applications
 - TypeScript and modern development practices
+- Leadership and ownership
 
 ## Optional
 
