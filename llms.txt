@@ -63,6 +63,7 @@ The site features a curated list of engineering books covering:
 - DevOps and SRE principles
 - System design and data-intensive applications
 - TypeScript and modern development practices
+- Leadership and ownership
 
 ## Optional
 
