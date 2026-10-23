@@ -1,0 +1,189 @@
+.firstSection {
+  padding-top: clamp(48px, 8vw, 140px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* Media */
+.mediaCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+.mediaTitle {
+  max-width: 520px;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.05;
+}
+
+.mediaAuthor {
+  margin-top: 16px;
+  font-size: clamp(16px, 1.3vw, 18px);
+  font-weight: 300;
+}
+
+.mediaTags {
+  margin-top: auto;
+  padding-top: 40px;
+}
+
+/* Testimonials */
+.testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.testimonial {
+  display: grid;
+  grid-template-columns: minmax(0, 384px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 384 / 420;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.testimonialBody {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.testimonialText {
+  max-width: 700px;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.2;
+}
+
+.clips {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.clipQuestion {
+  margin-bottom: 14px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.person {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 24px;
+  font-size: clamp(20px, 2vw, 28px);
+}
+
+.linkedin {
+  color: var(--text-muted);
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.linkedin:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* Books */
+.booksGrid {
+  gap: 32px;
+}
+
+.bookCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 36px 24px;
+}
+
+.cover {
+  flex-shrink: 0;
+  width: 182px;
+  height: 200px;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.3s ease;
+}
+
+.cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.bookInfo {
+  min-width: 0;
+  padding-top: 8px;
+}
+
+.bookTitle {
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.2;
+}
+
+.bookAuthors {
+  margin-top: 12px;
+  font-size: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bookDescription {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .booksGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mediaCard {
+    min-height: 0;
+  }
+
+  .testimonial {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    max-width: 320px;
+  }
+
+  .bookCard {
+    gap: 16px;
+    padding: 24px 20px;
+  }
+
+  .cover {
+    width: 96px;
+    height: 128px;
+  }
+}

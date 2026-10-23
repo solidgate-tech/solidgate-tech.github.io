@@ -1,0 +1,22 @@
+.scroller {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  min-width: 1100px;
+  height: auto;
+  aspect-ratio: 1450 / 1100;
+  margin: 0 auto;
+}
+
+.svg :global(text) {
+  font-family: var(--font-body);
+}
+
+.svg :global(a) {
+  text-decoration: none;
+}

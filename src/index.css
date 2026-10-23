@@ -1,34 +1,61 @@
-@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* Design tokens */
+:root {
+  --bg: #000000;
+  --surface-dark: #1a1a1a;
+  --surface-dark-hover: #2a2a2a;
+  --surface-light: #ffffff;
+  --accent: #c1dc55;
+  --accent-hover: #b2cd46;
+  --accent-pale: #eeffa9;
+  --accent-deep: #5f6e27;
+  --pill-light: #dfdfdf;
+  --amber: #e8a33d;
+
+  --text: #ffffff;
+  --text-soft: #cfcfcf;
+  --text-muted: #9e9e9e;
+  --text-subtle: #7a7a7a;
+  --text-on-light: #000000;
+  --text-on-light-muted: #555555;
+
+  --radius-card: 24px;
+  --radius-pill: 999px;
+
+  --font-heading: "Inter", "Onest", Arial, Helvetica, sans-serif;
+  --font-body: "Onest", Arial, Helvetica, sans-serif;
+
+  --content-width: 1200px;
+  --gutter: 24px;
+  --section-gap: clamp(96px, 12vw, 200px);
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--bg);
+}
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Onest", Arial, Helvetica, sans-serif;
-  background: #fff;
-  color: #222;
-  min-height: 100vh;
 }
 
 #root {
   min-height: 100vh;
 }
-
-#radar-description {
-  margin: auto;
-  text-align: left;
-  display: inline-block;
-  font-size: 1rem;
-  color: #222;
-}
-
-#footer {
-  margin-bottom: 3vw;
-  font-size: 12px;
-  color: #888;
-}
-
-/* --- Solidgate.com inspired styles --- */
 
 h1,
 h2,
@@ -36,71 +63,131 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Onest", Arial, Helvetica, sans-serif;
-  color: #181a20;
+  margin: 0;
+  font-family: var(--font-heading);
   font-weight: 700;
-  margin-top: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-.card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 2rem;
-  margin-bottom: 1rem;
-  text-align: left;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
 }
 
-.button,
+a {
+  color: inherit;
+}
+
 button {
-  font-family: "Onest", Arial, Helvetica, sans-serif;
-  background: #5ba300;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(91, 163, 0, 0.08);
-}
-.button:hover,
-button:hover {
-  background: #489000;
+  font: inherit;
+  color: inherit;
 }
 
-.section-title {
-  color: #181a20;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--text-on-light);
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #eee;
+  height: 8px;
+  background: var(--bg);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: var(--surface-dark-hover);
   border-radius: 8px;
 }
 
-/* Media blocks hover effect */
-.media-block {
-  background: #FAFAFA;
-  border-radius: 12px;
-  padding: 20px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 
-.media-block:hover {
-  transform: translateY(-2px);
-  background: #E4F0EC;
+.section {
+  padding-top: var(--section-gap);
 }
 
-/* Radar font styling */
-#radar text {
-  font-family: "Onest", Arial, Helvetica, sans-serif !important;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartExplode1 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(200px, -150px) scale(0.8); }
+}
+@keyframes heartExplode2 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-200px, -150px) scale(0.8); }
+}
+@keyframes heartExplode3 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(200px, 150px) scale(0.8); }
+}
+@keyframes heartExplode4 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-200px, 150px) scale(0.8); }
+}
+@keyframes heartExplode5 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(0, -200px) scale(0.8); }
+}
+@keyframes heartExplode6 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(0, 200px) scale(0.8); }
+}
+@keyframes heartExplode7 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(200px, 0) scale(0.8); }
+}
+@keyframes heartExplode8 {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-200px, 0) scale(0.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

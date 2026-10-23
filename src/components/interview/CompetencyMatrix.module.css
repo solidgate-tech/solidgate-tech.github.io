@@ -1,0 +1,144 @@
+.wrap {
+  max-width: calc(1560px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.tabs {
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+}
+
+.chart {
+  margin: 0;
+}
+
+.label {
+  margin-bottom: 12px;
+  color: var(--text-subtle);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.details .label {
+  margin-top: clamp(0px, 6vw, 80px);
+}
+
+.chartSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.gridLine {
+  fill: none;
+  stroke: #2a2a2a;
+  stroke-width: 1;
+}
+
+.dataArea {
+  fill: rgba(193, 220, 85, 0.07);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dataPoint {
+  fill: var(--accent);
+  cursor: pointer;
+  transition: r 0.15s ease;
+}
+
+.chartLabel {
+  fill: var(--text);
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  cursor: default;
+  transition: fill 0.15s ease;
+}
+
+.chartLabelActive {
+  fill: var(--accent);
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rowName {
+  font-size: clamp(16px, 1.3vw, 20px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.rowScore {
+  flex-shrink: 0;
+  font-size: clamp(16px, 1.3vw, 20px);
+}
+
+.rowScore strong {
+  font-weight: 700;
+}
+
+.openName {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 2.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.openScore {
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 2.4vw, 40px);
+  font-weight: 700;
+}
+
+.openMax {
+  color: var(--accent-deep);
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.description {
+  max-width: 520px;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+}
+
+.hint {
+  margin-top: 20px;
+  color: var(--text-subtle);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .chart {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .details .label {
+    margin-top: 0;
+  }
+}

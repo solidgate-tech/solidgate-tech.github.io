@@ -1,0 +1,50 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.md {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.lg {
+  padding: 8px 16px;
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 700;
+}
+
+.sm {
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+.lime {
+  background: var(--accent);
+  color: var(--text-on-light);
+}
+
+.dark {
+  background: var(--text-on-light);
+  color: var(--text);
+}
+
+.label {
+  background: var(--text-on-light);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.grey {
+  background: var(--pill-light);
+  color: #3a3a3a;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

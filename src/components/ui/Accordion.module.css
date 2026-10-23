@@ -1,0 +1,83 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  border-radius: var(--radius-card);
+  background: var(--accent);
+  color: var(--text-on-light);
+  transition: background 0.2s ease;
+}
+
+.item:not(.open):hover {
+  background: var(--accent-hover);
+}
+
+.trigger {
+  display: block;
+  width: 100%;
+  padding: 24px 32px;
+  border: none;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.open .trigger {
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+
+.panel {
+  padding: 0 32px 32px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.split.open {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.split.open .trigger {
+  padding-bottom: 32px;
+}
+
+.split.open .panel {
+  padding: 32px 32px 32px 0;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--text-on-light);
+  outline-offset: -6px;
+  border-radius: var(--radius-card);
+}
+
+@media (max-width: 767px) {
+  .trigger {
+    padding: 20px;
+  }
+
+  .open .trigger {
+    padding-top: 24px;
+  }
+
+  .panel {
+    padding: 0 20px 24px;
+  }
+
+  .split.open {
+    display: block;
+  }
+
+  .split.open .trigger {
+    padding-bottom: 12px;
+  }
+
+  .split.open .panel {
+    padding: 0 20px 24px;
+  }
+}

@@ -1,0 +1,33 @@
+.card {
+  display: block;
+  padding: 32px;
+  border-radius: var(--radius-card);
+  color: var(--text-on-light);
+  text-decoration: none;
+}
+
+.white {
+  background: var(--surface-light);
+}
+
+.lime {
+  background: var(--accent);
+}
+
+.interactive {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+}
+
+.lime.interactive:hover {
+  background: var(--accent-hover);
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 24px 20px;
+  }
+}

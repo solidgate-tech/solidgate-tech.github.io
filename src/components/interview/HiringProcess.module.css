@@ -1,0 +1,153 @@
+.wrap {
+  max-width: calc(1330px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 6px;
+  align-items: start;
+}
+
+.number {
+  padding-top: 30px;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.amber {
+  color: var(--amber);
+}
+
+.lime {
+  color: var(--accent);
+}
+
+.card {
+  min-height: 160px;
+  padding: 28px 26px 26px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.titleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.title {
+  font-size: clamp(19px, 1.6vw, 22px);
+}
+
+.duration {
+  flex-shrink: 0;
+  padding-top: 4px;
+  color: var(--text-on-light-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.bodyRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.body {
+  max-width: 900px;
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.cta {
+  flex-shrink: 0;
+}
+
+.plan {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e6e6e6;
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.55;
+  animation: slideDown 0.3s ease-out;
+}
+
+.planSection + .planSection {
+  margin-top: 24px;
+}
+
+.planSection p + p,
+.planSection p + ul,
+.planSection ul + p {
+  margin-top: 8px;
+}
+
+.planHeading {
+  margin-bottom: 8px;
+  color: var(--text-on-light);
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.planList {
+  padding-left: 20px;
+}
+
+.plan a {
+  color: var(--text-on-light);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.divider {
+  margin: 24px 0;
+  color: var(--text-on-light);
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .step {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .number {
+    padding: 8px 0 0 4px;
+  }
+
+  .head,
+  .bodyRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card {
+    padding: 22px 20px;
+  }
+}

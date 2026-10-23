@@ -1,0 +1,29 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tab {
+  min-height: 40px;
+  padding: 8px 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--surface-dark);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tab:hover {
+  background: var(--surface-dark-hover);
+}
+
+.active,
+.active:hover {
+  background: var(--accent);
+  color: var(--text-on-light);
+}

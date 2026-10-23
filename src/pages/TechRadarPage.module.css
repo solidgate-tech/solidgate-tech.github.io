@@ -1,0 +1,69 @@
+.page {
+  padding-top: clamp(32px, 5vw, 72px);
+}
+
+.stage {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(40px, 4.6vw, 56px);
+  line-height: 0.95;
+  text-align: center;
+  pointer-events: none;
+}
+
+.radar {
+  margin-top: clamp(-72px, -5vw, -24px);
+}
+
+.controls {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(-96px, -6.5vw, 0px);
+  padding: 0 var(--gutter);
+}
+
+.updated {
+  color: var(--text-subtle);
+  font-size: 13px;
+}
+
+.markers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.rings {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 56px;
+  color: var(--text-muted);
+  font-size: clamp(15px, 1.2vw, 17px);
+  text-align: center;
+}
+
+@media (max-width: 1099px) {
+  .radar {
+    margin-top: 0;
+  }
+
+  .controls {
+    margin-top: 24px;
+  }
+}

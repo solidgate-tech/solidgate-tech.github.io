@@ -1,0 +1,33 @@
+.page {
+  position: relative;
+}
+
+.hero {
+  padding-top: clamp(48px, 8vw, 140px);
+}
+
+.statement {
+  max-width: 1110px;
+  font-size: clamp(36px, 5.4vw, 74px);
+  line-height: 1.07;
+  letter-spacing: -0.025em;
+}
+
+.sentence {
+  display: block;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 980px;
+  margin-top: clamp(40px, 5vw, 72px);
+  color: var(--text-subtle);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: var(--text);
+}
