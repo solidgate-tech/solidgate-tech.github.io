@@ -16,7 +16,7 @@ Solidgate is a payment processing and orchestration platform helping hundreds of
 - **Interview Guide**: Hiring process, career levels, and interview questions by role
 - **Minds Behind the Code**: Engineering values and team structure
 - **Knowledge Vault**: Talks, articles and recommended books
-- **AI@Solidgate**: AI tools we use day to day — CodeRabbit, OpenAI, Gemini, Cursor, and Claude, all at Adopt on the 2026 Tech Radar
+- **AI at Solidgate**: AI tools we use day to day — CodeRabbit, OpenAI, Gemini, Cursor, and Claude, all at Adopt on the 2026 Tech Radar
 
 ## Company Information
 
