@@ -9,44 +9,7 @@ export const TEAMS_SECTION = {
 // description, points and quote are optional; teams render as chips
 export const TEAM_GROUPS = [
   {
-    title: "Product Platform",
-    description: "Builds the core platform that every product team runs on.",
-    points: [
-      "Standardised service patterns, frameworks, and shared primitives",
-      "Scalable, secure, high-performance defaults",
-      "Enable product teams to focus on product outcomes instead of platform complexity",
-    ],
-    quote:
-      "Platform sets the baseline and architectural direction, so everything we build compounds.",
-    teams: ["Platform", "Web Platform", "Platform Analytics", "Data Engineering"],
-  },
-  {
-    title: "Payment Infra",
-    description: "Builds the core product — the payment engine.",
-    points: [
-      "Orchestration logic",
-      "Gateway and payment method integrations",
-      "Global payment routing",
-      "Merchant + developer integration experience",
-    ],
-    quote:
-      "This is where we win or lose milliseconds, conversion, margin and scale.",
-    teams: ["Connectors", "APMs", "Reconciliation"],
-  },
-  {
-    title: "Infra Stream",
-    // The mockup shows "Dispute Management" here, which is a Risk Systems team
-    description: "Keeps everything fast, reliable and shippable.",
-    points: [
-      "Infra, CI/CD, runtime performance, cost optimisation",
-      "Monitoring, security and tooling",
-      "Automation everywhere",
-    ],
-    quote: "Infra is the force multiplier: less manual work, safer velocity.",
-    teams: [],
-  },
-  {
-    title: "Orchestration",
+    title: "Payments Stream",
     description:
       "Builds the payment router — the brain behind every transaction decision.",
     points: [
@@ -57,10 +20,35 @@ export const TEAM_GROUPS = [
     ],
     quote:
       "This is where we win or lose conversion, margin, and merchant trust.",
-    teams: ["Connectivity", "Routing", "Core"],
+    teams: ["Core", "Connectivity", "Orchestration", "Vault", "Payments Analytics"],
   },
   {
-    title: "Billing",
+    title: "Payments Infra Stream",
+    description: "Builds the core product — the payment engine.",
+    points: [
+      "Orchestration logic",
+      "Gateway and payment method integrations",
+      "Global payment routing",
+      "Merchant + developer integration experience",
+    ],
+    quote:
+      "This is where we win or lose milliseconds, conversion, margin and scale.",
+    teams: ["Integrations", "Reconciliation", "APMs"],
+  },
+  {
+    title: "Platform Stream",
+    description: "Builds the core platform that every product team runs on.",
+    points: [
+      "Standardised service patterns, frameworks, and shared primitives",
+      "Scalable, secure, high-performance defaults",
+      "Enable product teams to focus on product outcomes instead of platform complexity",
+    ],
+    quote:
+      "Platform sets the baseline and architectural direction, so everything we build compounds.",
+    teams: ["Data Engineering", "Backend Platform", "Web Platform", "Platform Analytics"],
+  },
+  {
+    title: "Billing Stream",
     description:
       "Builds the subscription engine — the backbone of recurring revenue.",
     points: [
@@ -71,10 +59,10 @@ export const TEAM_GROUPS = [
     ],
     quote:
       "This is where we win or lose LTV, churn, and long-term merchant growth.",
-    teams: ["Tax", "Subscriptions"],
+    teams: ["Billing & Subscription Management", "Tax & Customers"],
   },
   {
-    title: "Risk Systems",
+    title: "Risk Systems Stream",
     description:
       "Builds the fraud prevention engine — the line between safe payments and financial exposure.",
     points: [
@@ -85,16 +73,14 @@ export const TEAM_GROUPS = [
     ],
     quote:
       "This is where we win or lose merchant trust, transaction safety, and financial resilience.",
-    teams: ["Launch", "Dispute Management"],
+    teams: ["Risk Systems", "Dispute Management", "Launch", "Antifraud"],
   },
   {
-    title: "Product Operations",
-    teams: ["Product Design", "Tech Writers"],
-  },
-  {
-    title: "Standalone Teams",
+    title: "VAS",
     description:
-      "Cross-cutting functions that operate independently across every group.",
-    teams: ["Treasury", "Finance Engineering", "Information Security"],
+      "Value Added Services: build products that extend revenue and create a competitive edge.",
+    quote:
+      'This stream turns "payments processor" into "financial infrastructure".',
+    teams: ["Banking", "Finance Engineering"],
   },
 ];
