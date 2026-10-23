@@ -76,11 +76,9 @@ export const TEAM_GROUPS = [
     teams: ["Risk Systems", "Dispute Management", "Launch", "Antifraud"],
   },
   {
-    title: "VAS",
+    title: "Standalone Teams",
     description:
-      "Value Added Services: build products that extend revenue and create a competitive edge.",
-    quote:
-      'This stream turns "payments processor" into "financial infrastructure".',
+      "Cross-cutting functions that operate independently across every group.",
     teams: ["Banking", "Finance Engineering"],
   },
 ];
