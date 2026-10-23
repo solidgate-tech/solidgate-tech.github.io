@@ -41,7 +41,6 @@ export const ABOUT_PARAGRAPHS = [
 export const QUOTE =
   "We don't just complete tasks at Solidgate — we build top-quality products using DevOps and Lean approaches.";
 
-// Rendered one line per entry, as in the mockup
 export const LOVE_TAGLINE = {
   lines: ["Built by engineers", "for engineers with love!"],
   emoji: "🖤",

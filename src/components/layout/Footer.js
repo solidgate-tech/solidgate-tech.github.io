@@ -21,11 +21,7 @@ export function Footer() {
         </blockquote>
 
         <p className={styles.tagline}>
-          {LOVE_TAGLINE.lines.map((line) => (
-            <span key={line} className={styles.taglineLine}>
-              {line}{" "}
-            </span>
-          ))}
+          {LOVE_TAGLINE.lines.join(" ")}{" "}
           <span className={styles.heart} aria-hidden="true">
             {LOVE_TAGLINE.emoji}
           </span>

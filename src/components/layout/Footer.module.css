@@ -3,12 +3,14 @@
 }
 
 .quote {
-  max-width: 820px;
+  max-width: 1000px;
   margin: 0 auto;
-  color: var(--text-muted);
-  font-size: clamp(18px, 1.8vw, 24px);
-  font-weight: 300;
-  line-height: 1.4;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   text-align: center;
   text-wrap: balance;
 }
@@ -18,24 +20,15 @@
 }
 
 .tagline {
-  max-width: 720px;
-  margin: clamp(48px, 5vw, 80px) auto 0;
-  font-family: var(--font-heading);
-  font-size: clamp(36px, 4.6vw, 56px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  margin: clamp(28px, 3vw, 44px) auto 0;
+  color: var(--text-muted);
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.4;
   text-align: center;
-  text-wrap: balance;
-}
-
-.taglineLine {
-  display: block;
 }
 
 .heart {
-  display: block;
-  margin-top: 8px;
+  margin-left: 2px;
 }
 
 .copyright {
