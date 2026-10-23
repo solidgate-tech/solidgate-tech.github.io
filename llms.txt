@@ -4,7 +4,7 @@
 
 This site provides insights into Solidgate's engineering practices, technology choices, and company culture. It serves as both a resource for potential candidates and a public record of our technical decisions and recommendations.
 
-Solidgate is a payment processing and orchestration platform helping thousands of businesses accept payments online globally. We enable businesses to accept payments through a unified API, supporting multiple payment methods, currencies, and compliance requirements. At Solidgate, we work with engineers who design systems, not just maintain them. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
+Solidgate is a payment processing and orchestration platform helping hundreds of businesses accept payments online globally. We enable businesses to accept payments through a unified API, supporting multiple payment methods, currencies, and compliance requirements. At Solidgate, we work with engineers who design systems, not just maintain them. Our technology stack includes Go, Kotlin, Python, React, TypeScript, PostgreSQL, Redis, and AWS cloud infrastructure.
 
 ## Main Site
 
@@ -16,8 +16,7 @@ Solidgate is a payment processing and orchestration platform helping thousands o
 - **Interview Guide**: Hiring process, career levels, and interview questions by role
 - **Minds Behind the Code**: Engineering values and team structure
 - **Knowledge Vault**: Talks and articles, engineer testimonials, and recommended books
-- **AI @ Solidgate**: AI tools we use day to day — CodeRabbit, OpenAI, Gemini, Cursor, and Claude, all at Adopt on the 2026 Tech Radar
-- **Engineering School**: Open positions in Solidgate's Software Engineering School
+- **AI@Solidgate**: AI tools we use day to day — CodeRabbit, OpenAI, Gemini, Cursor, and Claude, all at Adopt on the 2026 Tech Radar
 
 ## Company Information
 
