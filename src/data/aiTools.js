@@ -72,6 +72,7 @@ export const IN_HOUSE_AGENTS = [
   {
     name: "Veritas",
     kind: "Agentic platform",
+    icon: "/icons/ai/veritas.svg",
     description:
       "Describe a task in a Jira ticket or a Slack message and Veritas plans it, writes the code, runs the tests, opens a merge request and iterates on review comments — no IDE needed. Designed by Staff Engineer Vlad Pistun, it now serves product managers, QA, infrastructure and frontend engineers making changes outside their usual stack.",
     highlights: ["100+ tickets, zero production defects", "2-month feature shipped in a week"],
