@@ -64,8 +64,13 @@ function InHouseAgents() {
       <div className={styles.agents}>
         {IN_HOUSE_AGENTS.map((agent) => (
           <Card key={agent.name} as="article" className={styles.agent}>
-            <h3 className={styles.agentName}>{agent.name}</h3>
-            <p className={styles.agentKind}>{agent.kind}</p>
+            <div className={styles.agentHead}>
+              <div>
+                <h3 className={styles.agentName}>{agent.name}</h3>
+                <p className={styles.agentKind}>{agent.kind}</p>
+              </div>
+              {agent.icon && <img src={agent.icon} alt="" className={styles.agentIcon} />}
+            </div>
             <p className={styles.agentDescription}>{agent.description}</p>
             <ChipList className={styles.highlights}>
               {agent.highlights.map((highlight) => (

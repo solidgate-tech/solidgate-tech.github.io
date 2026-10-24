@@ -94,6 +94,20 @@
   flex-direction: column;
 }
 
+.agentHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.agentIcon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
 .agentName {
   font-size: clamp(28px, 2.6vw, 40px);
 }

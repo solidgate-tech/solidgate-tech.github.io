@@ -79,6 +79,7 @@ export const IN_HOUSE_AGENTS = [
   {
     name: "Ward",
     kind: "Observability 2.0 agent",
+    icon: "/icons/ai/ward.svg",
     description:
       "For every alert, Ward pulls context from VictoriaLogs, VictoriaMetrics, GitLab and RDS Performance Insights and suggests what went wrong. Engineers stay in the loop and can hand the fix to Veritas in one click. Built by Software Engineers Yuriy Zaiveilev and Vlad Pavlenko.",
     highlights: ["3–4× less alert noise", "3–4× less time per alert"],
