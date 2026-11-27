@@ -149,7 +149,7 @@ export const AI_FLUENCY_PLAN = [
     ],
   },
   {
-    heading: "3. Task 1 — Small Feature (15 min)",
+    heading: "3. Task 1 — Small Feature (10 min)",
     blocks: [
       {
         type: "p",
@@ -159,7 +159,7 @@ export const AI_FLUENCY_PLAN = [
     ],
   },
   {
-    heading: "4. Task 2 — Feature Implementation (20 min)",
+    heading: "4. Task 2 — Feature Implementation (25 min)",
     blocks: [
       {
         type: "p",
