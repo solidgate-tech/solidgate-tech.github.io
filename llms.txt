@@ -23,7 +23,6 @@ Solidgate is a payment processing and orchestration platform helping hundreds of
 - [Solidgate Main Website](https://solidgate.com/): Official Solidgate website with product information and API documentation
 - [Solidgate Careers](https://solidgate.teamtailor.com/): Open positions and career opportunities at Solidgate
 - [Solidgate Status](https://status.solidgate.com/): System status and uptime information
-- [Solidgate on GitHub](https://github.com/solidgate-tech): Solidgate's open-source organization with payment SDKs and tools from our engineers
 
 ## Tech Radar
 
